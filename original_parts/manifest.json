@@ -1,0 +1,2524 @@
+{
+  "version": 1,
+  "name": "JUGRE Original Parts",
+  "format": "glTF 2.0 binary",
+  "units": "meter",
+  "up": "+Y",
+  "rocketNose": "+Y",
+  "mountOutward": "+Z",
+  "mountClocking": "+Y",
+  "statsKind": "gameplay",
+  "catalogTypes": 25,
+  "groups": {
+    "propulsion": {
+      "ru": "Двигатели",
+      "en": "Engines"
+    },
+    "tanks": {
+      "ru": "Баки и баллоны",
+      "en": "Tanks and pressure vessels"
+    },
+    "structure": {
+      "ru": "Рамы, переходники и отделители",
+      "en": "Mounts, adapters, and separators"
+    },
+    "surfaces": {
+      "ru": "Стабилизаторы, рули и крылья",
+      "en": "Fins, control surfaces, and wings"
+    },
+    "payload": {
+      "ru": "Управление и полезная нагрузка",
+      "en": "Control and payload"
+    }
+  },
+  "propellants": {
+    "kerolox": {
+      "ru": "керосин и жидкий кислород",
+      "en": "kerosene and liquid oxygen"
+    },
+    "nitrogen": {
+      "ru": "сжатый азот",
+      "en": "compressed nitrogen"
+    }
+  },
+  "parts": {
+    "k_35_iskra": {
+      "id": "k_35_iskra",
+      "code": "K-35",
+      "group": "propulsion",
+      "catalogId": "k_35_iskra",
+      "name": {
+        "ru": "Искра",
+        "en": "Spark"
+      },
+      "massKg": 170,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "propellant": "kerolox",
+        "thrustKN": {
+          "seaLevel": 35,
+          "vacuum": 42
+        },
+        "specificImpulseS": {
+          "seaLevel": 270,
+          "vacuum": 324
+        }
+      },
+      "use": {
+        "ru": "Стартовый двигатель лёгкой ракеты.",
+        "en": "Launch engine for a light rocket."
+      },
+      "file": "models/k_35_iskra.glb",
+      "root": "k_35_iskra",
+      "dimensionsM": [
+        0.6800000071525574,
+        1.0419999996200204,
+        0.6800000071525574
+      ],
+      "bounds": {
+        "min": [
+          -0.3400000035762787,
+          -1.05,
+          -0.3400000035762787
+        ],
+        "max": [
+          0.3400000035762787,
+          -0.00800000037997961,
+          0.3400000035762787
+        ]
+      },
+      "mounts": {
+        "k_35_iskra.mount_engine": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engine",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "k_35_iskra.gimbal_pitch": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "k_35_iskra.gimbal_pitch.gimbal_yaw": {
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "clips": []
+    },
+    "k_125_klen": {
+      "id": "k_125_klen",
+      "code": "K-125",
+      "group": "propulsion",
+      "catalogId": "k_125_klen",
+      "name": {
+        "ru": "Клён",
+        "en": "Maple"
+      },
+      "massKg": 410,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "propellant": "kerolox",
+        "thrustKN": {
+          "seaLevel": 125,
+          "vacuum": 145
+        },
+        "specificImpulseS": {
+          "seaLevel": 275,
+          "vacuum": 319
+        }
+      },
+      "use": {
+        "ru": "Одиночная установка или блок из трёх двигателей на раме Р-253.",
+        "en": "Single installation or a cluster of three on the R-253 plate."
+      },
+      "file": "models/k_125_klen.glb",
+      "root": "k_125_klen",
+      "dimensionsM": [
+        0.89055997133255,
+        1.552000000551343,
+        0.89055997133255
+      ],
+      "bounds": {
+        "min": [
+          -0.445279985666275,
+          -1.56,
+          -0.445279985666275
+        ],
+        "max": [
+          0.445279985666275,
+          -0.007999999448657036,
+          0.445279985666275
+        ]
+      },
+      "mounts": {
+        "k_125_klen.mount_engine": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engine",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "k_125_klen.gimbal_pitch": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "k_125_klen.gimbal_pitch.gimbal_yaw": {
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "clips": []
+    },
+    "k_420_kedr": {
+      "id": "k_420_kedr",
+      "code": "K-420",
+      "group": "propulsion",
+      "catalogId": "k_420_kedr",
+      "name": {
+        "ru": "Кедр",
+        "en": "Cedar"
+      },
+      "massKg": 1570,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "propellant": "kerolox",
+        "thrustKN": {
+          "seaLevel": 420,
+          "vacuum": 470
+        },
+        "specificImpulseS": {
+          "seaLevel": 283,
+          "vacuum": 317
+        }
+      },
+      "use": {
+        "ru": "Стартовый двигатель тяжёлой ступени.",
+        "en": "Launch engine for a heavy stage."
+      },
+      "file": "models/k_420_kedr.glb",
+      "root": "k_420_kedr",
+      "dimensionsM": [
+        1.8620799779891968,
+        2.6719999996200205,
+        1.8620799779891968
+      ],
+      "bounds": {
+        "min": [
+          -0.9310399889945984,
+          -2.68,
+          -0.9310399889945984
+        ],
+        "max": [
+          0.9310399889945984,
+          -0.00800000037997961,
+          0.9310399889945984
+        ]
+      },
+      "mounts": {
+        "k_420_kedr.mount_engine": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "engine",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "k_420_kedr.gimbal_pitch": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "k_420_kedr.gimbal_pitch.gimbal_yaw": {
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "clips": []
+    },
+    "k_155v_dalniy": {
+      "id": "k_155v_dalniy",
+      "code": "K-155V",
+      "group": "propulsion",
+      "catalogId": "k_155v_dalniy",
+      "name": {
+        "ru": "Дальний",
+        "en": "Longreach"
+      },
+      "massKg": 480,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "propellant": "kerolox",
+        "thrustKN": {
+          "seaLevel": 95,
+          "vacuum": 155
+        },
+        "specificImpulseS": {
+          "seaLevel": 224,
+          "vacuum": 365
+        }
+      },
+      "use": {
+        "ru": "Вакуумный двигатель верхней ступени с широким соплом.",
+        "en": "Upper-stage vacuum engine with a wide nozzle."
+      },
+      "file": "models/k_155v_dalniy.glb",
+      "root": "k_155v_dalniy",
+      "dimensionsM": [
+        1.2395199537277222,
+        1.9220000005513431,
+        1.2395199537277222
+      ],
+      "bounds": {
+        "min": [
+          -0.6197599768638611,
+          -1.9300000000000002,
+          -0.6197599768638611
+        ],
+        "max": [
+          0.6197599768638611,
+          -0.007999999448657036,
+          0.6197599768638611
+        ]
+      },
+      "mounts": {
+        "k_155v_dalniy.mount_engine": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engine",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "k_155v_dalniy.gimbal_pitch": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "k_155v_dalniy.gimbal_pitch.gimbal_yaw": {
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "clips": []
+    },
+    "r_08_shepot": {
+      "id": "r_08_shepot",
+      "code": "R-08",
+      "group": "propulsion",
+      "catalogId": "r_08_shepot",
+      "name": {
+        "ru": "Шёпот",
+        "en": "Whisper"
+      },
+      "massKg": 12,
+      "stats": {
+        "mountDiameterM": null,
+        "propellant": "nitrogen",
+        "thrustKN": {
+          "seaLevel": 0.8,
+          "vacuum": 0.8
+        },
+        "specificImpulseS": {
+          "seaLevel": 60,
+          "vacuum": 60
+        }
+      },
+      "use": {
+        "ru": "Боковое сопло ориентации и малых коррекций. Питается от Г-060.",
+        "en": "Side-mounted thruster for attitude control and small corrections. Fed by the G-060 tank."
+      },
+      "file": "models/r_08_shepot.glb",
+      "root": "r_08_shepot",
+      "dimensionsM": [
+        0.25999999046325684,
+        0.1899999976158142,
+        0.26149999935738744
+      ],
+      "bounds": {
+        "min": [
+          -0.12999999523162842,
+          -0.0949999988079071,
+          0.0025000006426125765
+        ],
+        "max": [
+          0.12999999523162842,
+          0.0949999988079071,
+          0.264
+        ]
+      },
+      "mounts": {
+        "r_08_shepot.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "thruster",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "b_12_sota": {
+      "id": "b_12_sota",
+      "code": "B-12",
+      "group": "tanks",
+      "catalogId": "b_12_sota",
+      "name": {
+        "ru": "Сота",
+        "en": "Cell"
+      },
+      "massKg": 145,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "heightM": 1.5,
+        "capacityKg": 1200,
+        "propellant": "kerolox"
+      },
+      "use": {
+        "ru": "Компактный бак лёгкой ступени.",
+        "en": "Compact tank for a light stage."
+      },
+      "file": "models/b_12_sota.glb",
+      "root": "b_12_sota",
+      "dimensionsM": [
+        1.3140000030398369,
+        1.5,
+        1.3221694035682607
+      ],
+      "bounds": {
+        "min": [
+          -0.6570000015199184,
+          0,
+          -0.6570000015199184
+        ],
+        "max": [
+          0.6570000015199184,
+          1.5,
+          0.6651694020483422
+        ]
+      },
+      "mounts": {
+        "b_12_sota.mount_radial_1_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            0.30000000000000004,
+            0.657
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_12_sota.mount_radial_1_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0.657,
+            0.30000000000000004,
+            4.0229647351990556e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_12_sota.mount_radial_1_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            8.045929470398111e-17,
+            0.30000000000000004,
+            -0.657
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_12_sota.mount_radial_1_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -0.657,
+            0.30000000000000004,
+            -1.2068894205597166e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_12_sota.mount_radial_2_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            1.095,
+            0.657
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_12_sota.mount_radial_2_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0.657,
+            1.095,
+            4.0229647351990556e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_12_sota.mount_radial_2_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            8.045929470398111e-17,
+            1.095,
+            -0.657
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_12_sota.mount_radial_2_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -0.657,
+            1.095,
+            -1.2068894205597166e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_12_sota.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_12_sota.mount_forward": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            1.5,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "b_32_stvol": {
+      "id": "b_32_stvol",
+      "code": "B-32",
+      "group": "tanks",
+      "catalogId": "b_32_stvol",
+      "name": {
+        "ru": "Ствол",
+        "en": "Spine"
+      },
+      "massKg": 285,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "heightM": 3.2,
+        "capacityKg": 3200,
+        "propellant": "kerolox"
+      },
+      "use": {
+        "ru": "Удлинённый бак того же диаметра.",
+        "en": "Longer tank with the same attachment diameter."
+      },
+      "file": "models/b_32_stvol.glb",
+      "root": "b_32_stvol",
+      "dimensionsM": [
+        1.3140000030398369,
+        3.200000047683716,
+        1.3221694035682607
+      ],
+      "bounds": {
+        "min": [
+          -0.6570000015199184,
+          0,
+          -0.6570000015199184
+        ],
+        "max": [
+          0.6570000015199184,
+          3.200000047683716,
+          0.6651694020483422
+        ]
+      },
+      "mounts": {
+        "b_32_stvol.mount_radial_1_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            0.6400000000000001,
+            0.657
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_32_stvol.mount_radial_1_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0.657,
+            0.6400000000000001,
+            4.0229647351990556e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_32_stvol.mount_radial_1_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            8.045929470398111e-17,
+            0.6400000000000001,
+            -0.657
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_32_stvol.mount_radial_1_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -0.657,
+            0.6400000000000001,
+            -1.2068894205597166e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_32_stvol.mount_radial_2_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            2.336,
+            0.657
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_32_stvol.mount_radial_2_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0.657,
+            2.336,
+            4.0229647351990556e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_32_stvol.mount_radial_2_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            8.045929470398111e-17,
+            2.336,
+            -0.657
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_32_stvol.mount_radial_2_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -0.657,
+            2.336,
+            -1.2068894205597166e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_32_stvol.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_32_stvol.mount_forward": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            3.2,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "b_140_bochka": {
+      "id": "b_140_bochka",
+      "code": "B-140",
+      "group": "tanks",
+      "catalogId": "b_140_bochka",
+      "name": {
+        "ru": "Бочка",
+        "en": "Barrel"
+      },
+      "massKg": 980,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "heightM": 3.5,
+        "capacityKg": 14000,
+        "propellant": "kerolox"
+      },
+      "use": {
+        "ru": "Основной бак ступени среднего размера.",
+        "en": "Main tank for a medium-sized stage."
+      },
+      "file": "models/b_140_bochka.glb",
+      "root": "b_140_bochka",
+      "dimensionsM": [
+        2.564000003039837,
+        3.5,
+        2.6047449219112533
+      ],
+      "bounds": {
+        "min": [
+          -1.2820000015199184,
+          0,
+          -1.2820000015199184
+        ],
+        "max": [
+          1.2820000015199184,
+          3.5,
+          1.3227449203913346
+        ]
+      },
+      "mounts": {
+        "b_140_bochka.mount_radial_1_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            0.7000000000000001,
+            1.282
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_140_bochka.mount_radial_1_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.282,
+            0.7000000000000001,
+            7.849985982534534e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_140_bochka.mount_radial_1_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.5699971965069068e-16,
+            0.7000000000000001,
+            -1.282
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_140_bochka.mount_radial_1_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -1.282,
+            0.7000000000000001,
+            -2.3549957947603603e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_140_bochka.mount_radial_2_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            2.5549999999999997,
+            1.282
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_140_bochka.mount_radial_2_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.282,
+            2.5549999999999997,
+            7.849985982534534e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_140_bochka.mount_radial_2_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.5699971965069068e-16,
+            2.5549999999999997,
+            -1.282
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_140_bochka.mount_radial_2_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -1.282,
+            2.5549999999999997,
+            -2.3549957947603603e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_140_bochka.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_140_bochka.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            3.5,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "b_240_rezerv": {
+      "id": "b_240_rezerv",
+      "code": "B-240",
+      "group": "tanks",
+      "catalogId": "b_240_rezerv",
+      "name": {
+        "ru": "Резерв",
+        "en": "Reserve"
+      },
+      "massKg": 1620,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "heightM": 6,
+        "capacityKg": 24000,
+        "propellant": "kerolox"
+      },
+      "use": {
+        "ru": "Удлинённый бак тяжёлой ступени.",
+        "en": "Extended tank for a heavy stage."
+      },
+      "file": "models/b_240_rezerv.glb",
+      "root": "b_240_rezerv",
+      "dimensionsM": [
+        2.564000003039837,
+        6,
+        2.6047449219112533
+      ],
+      "bounds": {
+        "min": [
+          -1.2820000015199184,
+          0,
+          -1.2820000015199184
+        ],
+        "max": [
+          1.2820000015199184,
+          6,
+          1.3227449203913346
+        ]
+      },
+      "mounts": {
+        "b_240_rezerv.mount_radial_1_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            1.2000000000000002,
+            1.282
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_240_rezerv.mount_radial_1_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.282,
+            1.2000000000000002,
+            7.849985982534534e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_240_rezerv.mount_radial_1_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.5699971965069068e-16,
+            1.2000000000000002,
+            -1.282
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_240_rezerv.mount_radial_1_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -1.282,
+            1.2000000000000002,
+            -2.3549957947603603e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_240_rezerv.mount_radial_2_01": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            0,
+            4.38,
+            1.282
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "b_240_rezerv.mount_radial_2_02": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.282,
+            4.38,
+            7.849985982534534e-17
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_240_rezerv.mount_radial_2_03": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            1.5699971965069068e-16,
+            4.38,
+            -1.282
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ]
+        },
+        "b_240_rezerv.mount_radial_2_04": {
+          "profile": "jugre_radial",
+          "attachmentRole": "host",
+          "translation": [
+            -1.282,
+            4.38,
+            -2.3549957947603603e-16
+          ],
+          "rotation": [
+            0,
+            -0.7071067811865476,
+            0,
+            0.7071067811865475
+          ]
+        },
+        "b_240_rezerv.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "b_240_rezerv.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            6,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "g_060_puls": {
+      "id": "g_060_puls",
+      "code": "G-060",
+      "group": "tanks",
+      "catalogId": "g_060_puls",
+      "name": {
+        "ru": "Пульс",
+        "en": "Pulse"
+      },
+      "massKg": 24,
+      "stats": {
+        "mountDiameterM": null,
+        "heightM": 0.52,
+        "capacityKg": 60,
+        "propellant": "nitrogen"
+      },
+      "use": {
+        "ru": "Боковой блок баллонов для двигателей ориентации Р-08.",
+        "en": "Side-mounted pressure vessel pack for R-08 thrusters."
+      },
+      "file": "models/g_060_puls.glb",
+      "root": "g_060_puls",
+      "dimensionsM": [
+        0.9760000138282776,
+        0.5199999809265137,
+        0.4880000076815486
+      ],
+      "bounds": {
+        "min": [
+          -0.4880000069141388,
+          -0.25999999046325684,
+          0.0009999992325901985
+        ],
+        "max": [
+          0.4880000069141388,
+          0.25999999046325684,
+          0.4890000069141388
+        ]
+      },
+      "mounts": {
+        "g_060_puls.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "tank",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "r_253_triada": {
+      "id": "r_253_triada",
+      "code": "R-253",
+      "group": "structure",
+      "catalogId": "r_253_triada",
+      "name": {
+        "ru": "Триада",
+        "en": "Triad"
+      },
+      "massKg": 250,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "engineMountDiameterM": 1.25,
+        "engineSlots": 3,
+        "compatibleEngineId": "k_125_klen"
+      },
+      "use": {
+        "ru": "Двигательная рама на три К-125.",
+        "en": "Engine plate for three K-125 engines."
+      },
+      "file": "models/r_253_triada.glb",
+      "root": "r_253_triada",
+      "dimensionsM": [
+        2.5,
+        0.3199999928474426,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          -1.25,
+          0,
+          -1.25
+        ],
+        "max": [
+          1.25,
+          0.3199999928474426,
+          1.25
+        ]
+      },
+      "mounts": {
+        "r_253_triada.mount_engine_01": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engineReceiver",
+          "nominalDiameterM": 1.25,
+          "acceptsParts": [
+            "k_125_klen"
+          ],
+          "translation": [
+            0,
+            0,
+            0.62
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "r_253_triada.mount_engine_02": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engineReceiver",
+          "nominalDiameterM": 1.25,
+          "acceptsParts": [
+            "k_125_klen"
+          ],
+          "translation": [
+            0.536935750346352,
+            0,
+            -0.3099999999999999
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "r_253_triada.mount_engine_03": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engineReceiver",
+          "nominalDiameterM": 1.25,
+          "acceptsParts": [
+            "k_125_klen"
+          ],
+          "translation": [
+            -0.5369357503463519,
+            0,
+            -0.3100000000000003
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "r_253_triada.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0.32,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "p_2512_konus": {
+      "id": "p_2512_konus",
+      "code": "P-2512",
+      "group": "structure",
+      "catalogId": "p_2512_konus",
+      "name": {
+        "ru": "Конус",
+        "en": "Cone"
+      },
+      "massKg": 145,
+      "stats": {
+        "forwardDiameterM": 2.5,
+        "aftDiameterM": 1.25,
+        "heightM": 0.55
+      },
+      "use": {
+        "ru": "Соединяет широкую секцию с узкой. Для обратной установки переходник переворачивается.",
+        "en": "Joins a wide section to a narrow one. Flip the adapter to reverse the order."
+      },
+      "file": "models/p_2512_konus.glb",
+      "root": "p_2512_konus",
+      "dimensionsM": [
+        2.5,
+        0.550000011920929,
+        2.5
+      ],
+      "bounds": {
+        "min": [
+          -1.25,
+          0,
+          -1.25
+        ],
+        "max": [
+          1.25,
+          0.550000011920929,
+          1.25
+        ]
+      },
+      "mounts": {
+        "p_2512_konus.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "p_2512_konus.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0.55,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "o_12_schelchok": {
+      "id": "o_12_schelchok",
+      "code": "O-12",
+      "group": "structure",
+      "catalogId": "o_12_schelchok",
+      "name": {
+        "ru": "Щелчок",
+        "en": "Click"
+      },
+      "massKg": 55,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "heightM": 0.18,
+        "staging": "axialSeparation"
+      },
+      "use": {
+        "ru": "Отделяет нижнюю секцию по команде ступени.",
+        "en": "Releases the lower section on a staging command."
+      },
+      "file": "models/o_12_schelchok.glb",
+      "root": "o_12_schelchok",
+      "dimensionsM": [
+        1.2725000381469727,
+        0.18000000715255737,
+        1.2725000381469727
+      ],
+      "bounds": {
+        "min": [
+          -0.6362500190734863,
+          0,
+          -0.6362500190734863
+        ],
+        "max": [
+          0.6362500190734863,
+          0.18000000715255737,
+          0.6362500190734863
+        ]
+      },
+      "mounts": {
+        "o_12_schelchok.retained_ring.mount_forward": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0.18,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "o_12_schelchok.release_ring.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "o_25_razryv": {
+      "id": "o_25_razryv",
+      "code": "O-25",
+      "group": "structure",
+      "catalogId": "o_25_razryv",
+      "name": {
+        "ru": "Разрыв",
+        "en": "Breakaway"
+      },
+      "massKg": 135,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "heightM": 0.22,
+        "staging": "axialSeparation"
+      },
+      "use": {
+        "ru": "Отделитель широкой ступени.",
+        "en": "Axial separator for a wide stage."
+      },
+      "file": "models/o_25_razryv.glb",
+      "root": "o_25_razryv",
+      "dimensionsM": [
+        2.505000114440918,
+        0.2199999988079071,
+        2.505000114440918
+      ],
+      "bounds": {
+        "min": [
+          -1.252500057220459,
+          0,
+          -1.252500057220459
+        ],
+        "max": [
+          1.252500057220459,
+          0.2199999988079071,
+          1.252500057220459
+        ]
+      },
+      "mounts": {
+        "o_25_razryv.retained_ring.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0.22,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "o_25_razryv.release_ring.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "bk_6_zamok": {
+      "id": "bk_6_zamok",
+      "code": "BK-6",
+      "group": "structure",
+      "catalogId": "bk_6_zamok",
+      "name": {
+        "ru": "Замок",
+        "en": "Latch"
+      },
+      "massKg": 95,
+      "stats": {
+        "maxBoosterMassKg": 6000,
+        "staging": "radialSeparation"
+      },
+      "use": {
+        "ru": "Боковой замок сбрасывает один ускоритель по команде ступени.",
+        "en": "Radial latch releases one booster on a staging command."
+      },
+      "file": "models/bk_6_zamok.glb",
+      "root": "bk_6_zamok",
+      "dimensionsM": [
+        0.3100000023841858,
+        0.5600000023841858,
+        0.2935000091195107
+      ],
+      "bounds": {
+        "min": [
+          -0.1550000011920929,
+          -0.2800000011920929,
+          -0.00250000053644181
+        ],
+        "max": [
+          0.1550000011920929,
+          0.2800000011920929,
+          0.29100000858306885
+        ]
+      },
+      "mounts": {
+        "bk_6_zamok.host_plate.mount_host": {
+          "profile": "jugre_radial",
+          "attachmentRole": "adapter",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        "bk_6_zamok.release_plate.mount_booster": {
+          "profile": "jugre_radial",
+          "attachmentRole": "boosterReceiver",
+          "translation": [
+            0,
+            0,
+            0.291
+          ],
+          "rotation": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "s_22_pero": {
+      "id": "s_22_pero",
+      "code": "S-22",
+      "group": "surfaces",
+      "catalogId": "s_22_pero",
+      "name": {
+        "ru": "Перо",
+        "en": "Feather"
+      },
+      "massKg": 14,
+      "stats": {
+        "areaM2": 0.22
+      },
+      "use": {
+        "ru": "Лёгкий неподвижный стабилизатор.",
+        "en": "Light fixed stabilizer."
+      },
+      "file": "models/s_22_pero.glb",
+      "root": "s_22_pero",
+      "dimensionsM": [
+        0.09437999874353409,
+        0.6724120676517487,
+        0.6144628984332084
+      ],
+      "bounds": {
+        "min": [
+          -0.047189999371767044,
+          -0.3224828243255615,
+          1.2516975234078132e-9
+        ],
+        "max": [
+          0.047189999371767044,
+          0.34992924332618713,
+          0.614462899684906
+        ]
+      },
+      "mounts": {
+        "s_22_pero.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "surface",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "s_65_kil": {
+      "id": "s_65_kil",
+      "code": "S-65",
+      "group": "surfaces",
+      "catalogId": "s_65_kil",
+      "name": {
+        "ru": "Киль",
+        "en": "Keel"
+      },
+      "massKg": 38,
+      "stats": {
+        "areaM2": 0.65
+      },
+      "use": {
+        "ru": "Неподвижный стабилизатор тяжёлой ступени.",
+        "en": "Fixed stabilizer for a heavy stage."
+      },
+      "file": "models/s_65_kil.glb",
+      "root": "s_65_kil",
+      "dimensionsM": [
+        0.1658799946308136,
+        1.0311622023582458,
+        1.1198042494654654
+      ],
+      "bounds": {
+        "min": [
+          -0.0829399973154068,
+          -0.49184590578079224,
+          1.2516975234078132e-9
+        ],
+        "max": [
+          0.0829399973154068,
+          0.5393162965774536,
+          1.119804250717163
+        ]
+      },
+      "mounts": {
+        "s_65_kil.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "surface",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "r_42_lopast": {
+      "id": "r_42_lopast",
+      "code": "R-42",
+      "group": "surfaces",
+      "catalogId": "r_42_lopast",
+      "name": {
+        "ru": "Лопасть",
+        "en": "Vane"
+      },
+      "massKg": 32,
+      "stats": {
+        "areaM2": 0.42,
+        "maxDeflectionDeg": 20
+      },
+      "use": {
+        "ru": "Поворотный аэродинамический руль.",
+        "en": "Pivoting aerodynamic control surface."
+      },
+      "file": "models/r_42_lopast.glb",
+      "root": "r_42_lopast",
+      "dimensionsM": [
+        0.15729999542236328,
+        0.7308539748191833,
+        0.9307945234179497
+      ],
+      "bounds": {
+        "min": [
+          -0.07864999771118164,
+          -0.3907458782196045,
+          1.2516975234078132e-9
+        ],
+        "max": [
+          0.07864999771118164,
+          0.34010809659957886,
+          0.9307945246696472
+        ]
+      },
+      "mounts": {
+        "r_42_lopast.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "surface",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "r_42_lopast.deflection": {
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "maxDeflectionDeg": 20
+        }
+      },
+      "clips": []
+    },
+    "rr_49_reshetka": {
+      "id": "rr_49_reshetka",
+      "code": "RR-49",
+      "group": "surfaces",
+      "catalogId": "rr_49_reshetka",
+      "name": {
+        "ru": "Решётка",
+        "en": "Grid"
+      },
+      "massKg": 66,
+      "stats": {
+        "areaM2": 0.49,
+        "maxDeflectionDeg": 25,
+        "deployable": true
+      },
+      "use": {
+        "ru": "Складной решётчатый руль для управления ступенью на спуске.",
+        "en": "Folding grid fin for controlling a returning stage."
+      },
+      "file": "models/rr_49_reshetka.glb",
+      "root": "rr_49_reshetka",
+      "dimensionsM": [
+        0.35199999809265137,
+        0.7440000176429749,
+        0.9810000032186508
+      ],
+      "bounds": {
+        "min": [
+          -0.17599999904632568,
+          -0.3720000088214874,
+          -3.576278717609682e-10
+        ],
+        "max": [
+          0.17599999904632568,
+          0.3720000088214874,
+          0.981000002861023
+        ]
+      },
+      "mounts": {
+        "rr_49_reshetka.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "surface",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "rr_49_reshetka.deployment": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "rr_49_reshetka.deployment.deflection": {
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "maxDeflectionDeg": 25
+        }
+      },
+      "clips": [
+        "deployment"
+      ]
+    },
+    "sk_18_luch": {
+      "id": "sk_18_luch",
+      "code": "SK-18",
+      "group": "surfaces",
+      "catalogId": "sk_18_luch",
+      "name": {
+        "ru": "Луч",
+        "en": "Ray"
+      },
+      "massKg": 42,
+      "stats": {
+        "areaM2": 6,
+        "peakPowerKW": 1.8,
+        "deployable": true
+      },
+      "use": {
+        "ru": "Складное солнечное крыло. Пиковая мощность при прямом освещении.",
+        "en": "Folding solar wing. Peak output is measured in direct light."
+      },
+      "file": "models/sk_18_luch.glb",
+      "root": "sk_18_luch",
+      "dimensionsM": [
+        1.50600004196167,
+        0.3999648094177246,
+        4.4184599454775455
+      ],
+      "bounds": {
+        "min": [
+          -0.753000020980835,
+          -0.1999824047088623,
+          -0.01246000174432993
+        ],
+        "max": [
+          0.753000020980835,
+          0.1999824047088623,
+          4.405999943733216
+        ]
+      },
+      "mounts": {
+        "sk_18_luch.mount_rail": {
+          "profile": "jugre_radial",
+          "attachmentRole": "surface",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "sk_18_luch.deployment": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        "sk_18_luch.deployment.inner_leaf.panel_fold": {
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "clips": [
+        "deployment"
+      ]
+    },
+    "pk_2_kontur": {
+      "id": "pk_2_kontur",
+      "code": "PK-2",
+      "group": "payload",
+      "catalogId": "pk_2_kontur",
+      "name": {
+        "ru": "Контур",
+        "en": "Contour"
+      },
+      "massKg": 1450,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "crewSeats": 2,
+        "batteryKWh": 2,
+        "oxygenPersonMinutes": 240
+      },
+      "use": {
+        "ru": "Пилотируемая кабина. Для возвращения добавляются теплозащита и парашют.",
+        "en": "Crew capsule. Add a heat shield and parachute for recovery."
+      },
+      "file": "models/pk_2_kontur.glb",
+      "root": "pk_2_kontur",
+      "dimensionsM": [
+        2.515955859426738,
+        2.059999942779541,
+        2.507999897003174
+      ],
+      "bounds": {
+        "min": [
+          -1.253999948501587,
+          0,
+          -1.253999948501587
+        ],
+        "max": [
+          1.2619559109251512,
+          2.059999942779541,
+          1.253999948501587
+        ]
+      },
+      "mounts": {
+        "pk_2_kontur.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "pk_2_kontur.mount_recovery": {
+          "profile": "jugre_recovery",
+          "attachmentRole": "recoveryReceiver",
+          "translation": [
+            0,
+            2.06,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {
+        "pk_2_kontur.crew_hatch": {
+          "axis": [
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      "clips": []
+    },
+    "pb_1_strizh": {
+      "id": "pb_1_strizh",
+      "code": "PB-1",
+      "group": "payload",
+      "catalogId": "pb_1_strizh",
+      "name": {
+        "ru": "Стриж",
+        "en": "Swift"
+      },
+      "massKg": 80,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "batteryKWh": 0.5,
+        "powerDrawKW": 0.1
+      },
+      "use": {
+        "ru": "Беспилотный командный блок с собственной батареей.",
+        "en": "Uncrewed control core with its own battery."
+      },
+      "file": "models/pb_1_strizh.glb",
+      "root": "pb_1_strizh",
+      "dimensionsM": [
+        1.25,
+        0.30000001192092896,
+        1.25
+      ],
+      "bounds": {
+        "min": [
+          -0.625,
+          0,
+          -0.625
+        ],
+        "max": [
+          0.625,
+          0.30000001192092896,
+          0.625
+        ]
+      },
+      "mounts": {
+        "pb_1_strizh.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "pb_1_strizh.mount_forward": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0.3,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "pn_1_polka": {
+      "id": "pn_1_polka",
+      "code": "PN-1",
+      "group": "payload",
+      "catalogId": "pn_1_polka",
+      "name": {
+        "ru": "Полка",
+        "en": "Shelf"
+      },
+      "massKg": 92,
+      "stats": {
+        "mountDiameterM": 1.25,
+        "payloadMounts": 4,
+        "maxPayloadMassKg": 650
+      },
+      "use": {
+        "ru": "Открытая рама для крепления полезной нагрузки.",
+        "en": "Open frame for mounting payload equipment."
+      },
+      "file": "models/pn_1_polka.glb",
+      "root": "pn_1_polka",
+      "dimensionsM": [
+        1.25,
+        0.4699999988079071,
+        1.25
+      ],
+      "bounds": {
+        "min": [
+          -0.625,
+          0,
+          -0.625
+        ],
+        "max": [
+          0.625,
+          0.4699999988079071,
+          0.625
+        ]
+      },
+      "mounts": {
+        "pn_1_polka.mount_payload_01": {
+          "profile": "jugre_equipment",
+          "attachmentRole": "payloadReceiver",
+          "translation": [
+            0.3189051583151329,
+            0.47,
+            0.31890515831513294
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "pn_1_polka.mount_payload_02": {
+          "profile": "jugre_equipment",
+          "attachmentRole": "payloadReceiver",
+          "translation": [
+            0.31890515831513294,
+            0.47,
+            -0.3189051583151329
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "pn_1_polka.mount_payload_03": {
+          "profile": "jugre_equipment",
+          "attachmentRole": "payloadReceiver",
+          "translation": [
+            -0.3189051583151329,
+            0.47,
+            -0.318905158315133
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "pn_1_polka.mount_payload_04": {
+          "profile": "jugre_equipment",
+          "attachmentRole": "payloadReceiver",
+          "translation": [
+            -0.318905158315133,
+            0.47,
+            0.3189051583151329
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "pn_1_polka.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 1.25,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "ob_25_poyas": {
+      "id": "ob_25_poyas",
+      "code": "OB-25",
+      "group": "payload",
+      "catalogId": "ob_25_poyas",
+      "name": {
+        "ru": "Пояс",
+        "en": "Belt"
+      },
+      "massKg": 95,
+      "stats": {
+        "mountDiameterM": 2.5,
+        "fairingLatches": 2
+      },
+      "use": {
+        "ru": "Основание обтекателя с отдельными замками для левой и правой створок.",
+        "en": "Fairing base with separate latches for the left and right shells."
+      },
+      "file": "models/ob_25_poyas.glb",
+      "root": "ob_25_poyas",
+      "dimensionsM": [
+        2.503999948501587,
+        0.27299999833106997,
+        2.503999948501587
+      ],
+      "bounds": {
+        "min": [
+          -1.2519999742507935,
+          0,
+          -1.2519999742507935
+        ],
+        "max": [
+          1.2519999742507935,
+          0.27299999833106997,
+          1.2519999742507935
+        ]
+      },
+      "mounts": {
+        "ob_25_poyas.mount_shell_left": {
+          "profile": "jugre_fairing_250_left",
+          "attachmentRole": "shellReceiver",
+          "translation": [
+            -1.106,
+            0.27,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "ob_25_poyas.mount_shell_right": {
+          "profile": "jugre_fairing_250_right",
+          "attachmentRole": "shellReceiver",
+          "translation": [
+            1.106,
+            0.27,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "ob_25_poyas.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "ob_25_poyas.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0.27,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "st_25_stvorka_left": {
+      "id": "st_25_stvorka_left",
+      "code": "ST-25-L",
+      "group": "payload",
+      "catalogId": "st_25_stvorka",
+      "name": {
+        "ru": "Створка левая",
+        "en": "Shell, left"
+      },
+      "massKg": 85,
+      "stats": {
+        "side": "left",
+        "requiredBaseId": "ob_25_poyas",
+        "outerDiameterM": 2.5,
+        "maxPayloadDiameterM": 2.1,
+        "maxPayloadHeightM": 1.8,
+        "staging": "fairingJettison"
+      },
+      "use": {
+        "ru": "Отдельно сбрасываемая половина обтекателя. Габарит груза указан для пары створок.",
+        "en": "Independently jettisonable fairing half. Payload clearance applies to the paired shells."
+      },
+      "file": "models/st_25_stvorka_left.glb",
+      "root": "st_25_stvorka_left",
+      "dimensionsM": [
+        1.2708487392175445,
+        2.7723325026454404,
+        2.522811532020569
+      ],
+      "bounds": {
+        "min": [
+          -0.16484873921754417,
+          -0.0008974802913144231,
+          -1.2608115673065186
+        ],
+        "max": [
+          1.1060000000000003,
+          2.771435022354126,
+          1.2619999647140503
+        ]
+      },
+      "mounts": {
+        "st_25_stvorka_left.mount_latch": {
+          "profile": "jugre_fairing_250_left",
+          "attachmentRole": "shell",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    },
+    "st_25_stvorka_right": {
+      "id": "st_25_stvorka_right",
+      "code": "ST-25-R",
+      "group": "payload",
+      "catalogId": "st_25_stvorka",
+      "name": {
+        "ru": "Створка правая",
+        "en": "Shell, right"
+      },
+      "massKg": 85,
+      "stats": {
+        "side": "right",
+        "requiredBaseId": "ob_25_poyas",
+        "outerDiameterM": 2.5,
+        "maxPayloadDiameterM": 2.1,
+        "maxPayloadHeightM": 1.8,
+        "staging": "fairingJettison"
+      },
+      "use": {
+        "ru": "Отдельно сбрасываемая половина обтекателя. Габарит груза указан для пары створок.",
+        "en": "Independently jettisonable fairing half. Payload clearance applies to the paired shells."
+      },
+      "file": "models/st_25_stvorka_right.glb",
+      "root": "st_25_stvorka_right",
+      "dimensionsM": [
+        1.2708487392175445,
+        2.7723325026454404,
+        2.522811532020569
+      ],
+      "bounds": {
+        "min": [
+          -1.106,
+          -0.0008974802913144231,
+          -1.2608115673065186
+        ],
+        "max": [
+          0.1648487392175444,
+          2.771435022354126,
+          1.2619999647140503
+        ]
+      },
+      "mounts": {
+        "st_25_stvorka_right.mount_latch": {
+          "profile": "jugre_fairing_250_right",
+          "attachmentRole": "shell",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "hinges": {},
+      "clips": []
+    }
+  }
+}

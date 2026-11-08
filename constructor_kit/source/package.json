@@ -1,0 +1,6 @@
+{
+  "name": "jugre-constructor-kit",
+  "private": true,
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "three": "0.187.0" }
+}

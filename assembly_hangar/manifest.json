@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "name": "JUGRE Assembly Hangar",
+  "units": "meter",
+  "up": "+Y",
+  "visitorForward": "+Z",
+  "hangar": {
+    "file": "models/assembly_hangar.glb",
+    "exampleAssembly": "assembly_hangar.example_rocket",
+    "bounds": {
+      "min": [
+        -15.0649995803833,
+        -0.29999998211860657,
+        -17.5
+      ],
+      "max": [
+        15.0649995803833,
+        11.979999542236328,
+        17.5
+      ]
+    }
+  },
+  "wordmark": {
+    "node": "assembly_hangar.brand_frame.hangar_brand",
+    "default": "JUGRE"
+  },
+  "locomotionMps": {
+    "walk": 1.3,
+    "run": 2.9
+  },
+  "scientists": [
+    {
+      "file": "models/scientist_white_coat_teal.glb",
+      "clips": [
+        "walk",
+        "run"
+      ],
+      "route": {
+        "start": 0.03,
+        "runOffset": null,
+        "points": [
+          [
+            -7,
+            3
+          ],
+          [
+            0,
+            2.8
+          ],
+          [
+            6.8,
+            3.1
+          ],
+          [
+            7,
+            8.7
+          ],
+          [
+            -6.9,
+            8.7
+          ]
+        ]
+      }
+    },
+    {
+      "file": "models/scientist_white_coat_blue.glb",
+      "clips": [
+        "walk",
+        "run"
+      ],
+      "route": {
+        "start": 0.2,
+        "runOffset": null,
+        "points": [
+          [
+            -7,
+            -11.2
+          ],
+          [
+            0,
+            -11.1
+          ],
+          [
+            6.6,
+            -10.9
+          ],
+          [
+            6.4,
+            -14.6
+          ],
+          [
+            -6.8,
+            -14.5
+          ]
+        ]
+      }
+    },
+    {
+      "file": "models/scientist_white_coat_ochre.glb",
+      "clips": [
+        "walk",
+        "run"
+      ],
+      "route": {
+        "start": 0.042,
+        "runOffset": 3,
+        "points": [
+          [
+            -9.45,
+            5.8
+          ],
+          [
+            -9.55,
+            -2
+          ],
+          [
+            -10.55,
+            -9.5
+          ],
+          [
+            -12.25,
+            -8
+          ],
+          [
+            -12.12,
+            7.4
+          ],
+          [
+            -11.5,
+            9.8
+          ]
+        ]
+      }
+    },
+    {
+      "file": "models/scientist_white_coat_burgundy.glb",
+      "clips": [
+        "walk",
+        "run"
+      ],
+      "route": {
+        "start": 0.62,
+        "runOffset": 12,
+        "points": [
+          [
+            9.25,
+            -7.6
+          ],
+          [
+            9.25,
+            0
+          ],
+          [
+            9.3,
+            7.5
+          ],
+          [
+            11.85,
+            9
+          ],
+          [
+            12,
+            -7.6
+          ],
+          [
+            10.9,
+            -10.2
+          ]
+        ]
+      }
+    }
+  ]
+}

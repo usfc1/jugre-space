@@ -1,0 +1,6 @@
+{
+  "name": "jugre-assembly-hangar",
+  "private": true,
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "esbuild": "0.27.7", "three": "0.187.0" }
+}

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сборочный ангар · JUGRE Space Project</title>
+<style>
+  :root{color-scheme:dark;--page:#0d151c;--panel:#14202a;--border:#2d3e4a;--ink:#f0f2ec;--muted:#a7b4bd;--amber:#efb570;--mint:#8bd6bd;--mono:Consolas,"Courier New",monospace;font:15px "Segoe UI",Arial,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);background:var(--page)}
+  button,input{font:inherit}
+  button{cursor:pointer;color:inherit}
+  button:disabled{cursor:wait;opacity:.62}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+  .shell{display:grid;grid-template-rows:auto minmax(360px,1fr) auto;min-height:100svh;height:100svh;padding:0 25px}
+  header{min-height:91px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+  .title{display:flex;align-items:center;gap:15px;min-width:0}
+  .tile{width:42px;height:42px;display:grid;place-items:center;border:1px solid #70563c;color:var(--amber);background:#2a2521;border-radius:8px;flex:none}
+  .tile svg{width:24px;height:24px}
+  .eyebrow{font:700 10px var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+  h1{margin:0;font-size:clamp(20px,2.8vw,29px);line-height:1.06;letter-spacing:-.035em;font-weight:650}
+  nav{display:flex;padding:4px;gap:3px;background:#101b23;border:1px solid var(--border);border-radius:8px}
+  nav button{border:0;border-radius:4px;background:none;color:var(--muted);padding:8px 13px;white-space:nowrap;font-size:13px}
+  nav button[aria-pressed=true]{background:#243440;color:var(--ink)}
+  nav button:hover:not(:disabled){color:var(--ink);background:#273b48}
+  #work-area{display:grid;grid-template-columns:minmax(0,1fr);min-width:0;min-height:0;gap:12px}
+  #work-area.building{grid-template-columns:minmax(0,1fr) 290px}
+  #viewport{position:relative;background:#283b49;border:1px solid #3b505e;border-radius:10px;overflow:hidden;isolation:isolate;min-width:0;min-height:0}
+  canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+  canvas:active{cursor:grabbing}
+  .view-tag{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:9px;background:#0e1922eb;border:1px solid #536573;padding:8px 10px;border-radius:5px;font:700 10px var(--mono);letter-spacing:.09em;text-transform:uppercase;pointer-events:none}
+  .view-tag b{color:var(--amber);font-weight:700}
+  .view-tag i{width:1px;height:13px;background:#536573}
+  #catalog{display:flex;flex-direction:column;min-width:0;min-height:0;gap:14px;background:#111e27;border:1px solid #334652;border-radius:10px;padding:16px}
+  .catalog-title{display:flex;align-items:start;justify-content:space-between;gap:8px}
+  .catalog-title h2{font-size:20px;line-height:1.12}
+  .catalog-total{padding:5px 6px;background:#213341;border:1px solid #364c5a;border-radius:4px;font:700 11px var(--mono);color:#b9d0d7}
+  .catalog-guide{color:var(--muted);font-size:12px;line-height:1.4;margin:6px 0 0}
+  #part-filters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:3px;background:#0b151d;border:1px solid #2d414d;border-radius:6px}
+  #part-filters button{padding:7px 2px;border:0;border-radius:4px;background:none;font-size:11px;color:#b5c5ce}
+  #part-filters button:hover{background:#22343f}
+  #part-filters button[aria-pressed=true]{background:#2b414d;color:#f1f4ef}
+  #part-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:8px;min-height:0;overflow:auto;flex:1;padding:2px}
+  .part-card{display:grid;align-content:start;justify-items:start;grid-template-columns:minmax(0,1fr);min-width:0;padding:8px 9px 9px;gap:2px;border:1px solid #304652;border-radius:6px;background:linear-gradient(145deg,#203340,#15232e);text-align:left;touch-action:none;user-select:none;cursor:grab}
+  .part-card:hover,.part-card[aria-pressed=true]{border-color:#ce9a61;background:linear-gradient(145deg,#394039,#222d32)}
+  .part-card svg{justify-self:center;width:51px;height:44px;margin:0 0 2px;fill:#6e91a357;stroke:#c4e3ed;stroke-width:1.3;stroke-linejoin:round}
+  .part-code{font:700 10px var(--mono);color:#efb570;line-height:1.2}
+  .part-name{font-weight:650;font-size:13px;line-height:1.13}
+  .part-detail{font-size:10px;color:#9fb3bf}
+  .catalog-actions{display:flex;flex-direction:column;gap:8px;border-top:1px solid #2d414d;padding-top:12px}
+  .catalog-actions .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}
+  .catalog-actions .control{padding:7px 9px;font-size:12px}
+  .catalog-actions #assembly-undo:disabled{cursor:default;opacity:.4}
+  #assembly-remove{border:1px dashed #a98565;color:#edbd8c}
+  #assembly-remove.over{background:#533c2c;border-color:#f5c286}
+  #assembly-hud{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);display:flex;gap:8px;align-items:center;padding:8px 10px;color:#e7ece9;background:#111c25ed;border:1px solid #536573;border-radius:5px;pointer-events:none;font-size:12px}
+  .assembly-label{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:#afc1cb;flex:none}
+  #assembly-count{color:var(--amber);font-weight:700}
+  #assembly-message{border-left:1px solid #526672;padding-left:8px}
+  #assembly-message[data-tone=snap]{color:var(--mint)}
+  #assembly-message[data-tone=invalid]{color:#f2bd85}
+  #mount-points{position:absolute;inset:0;pointer-events:none}
+  .mount-point{position:absolute;display:grid;place-items:center;width:21px;height:21px;border:1px solid #c5ffe2;border-radius:50%;padding:0;background:#184f42cb;box-shadow:0 0 0 3px #14372d7a;transform:translate(-50%,-50%);pointer-events:none}
+  .mount-point::before{content:"";width:6px;height:6px;border-radius:50%;background:#bcf4d7}
+  .mount-point.snapped,.mount-point:hover{background:#a8edcd;border-color:#eefff5;box-shadow:0 0 0 5px #91e8bb60}
+  .mount-point.snapped::before,.mount-point:hover::before{background:#235b49}
+  .choosing .mount-point{pointer-events:auto}
+  .gripping,.gripping canvas,.gripping .part-card{cursor:grabbing!important;user-select:none}
+  #loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:20px;background:#172731;color:#dbe4e7}
+  #loading[hidden]{display:none}
+  footer{display:flex;align-items:center;justify-content:space-between;min-height:67px;gap:14px}
+  .tools,.crew-state{display:flex;align-items:center;gap:13px}
+  #activity{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 9px #8bd6bd77;flex:none}
+  #activity.paused{background:var(--amber);box-shadow:none}
+  #crew-status{font:700 11px var(--mono);color:#c5d6db;text-transform:uppercase;letter-spacing:.07em}
+  .hint{font-size:12px;color:var(--muted);text-align:center}
+  .control{display:flex;justify-content:center;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:8px 11px;white-space:nowrap;font-size:13px}
+  .control svg{width:14px;height:14px}
+  .control:hover:not(:disabled){background:#233746;border-color:#4a6473}
+  .control.emphasis{background:#29241e;border-color:#6d553d;color:#f5c68d}
+  .control.emphasis:hover:not(:disabled){background:#3b2d21;border-color:#aa8257}
+  #feedback{font-size:12px;color:var(--mint)}
+  dialog{width:min(440px,calc(100vw - 30px));padding:24px;border:1px solid #496170;border-radius:12px;background:#17242e;color:var(--ink);box-shadow:0 16px 58px #0009}
+  dialog::backdrop{background:#050a1180}
+  h2{margin:0;font-size:23px;letter-spacing:-.025em}
+  dialog p{color:var(--muted);margin:6px 0 20px;line-height:1.4}
+  label{display:block;margin-bottom:7px;font-size:13px}
+  input{width:100%;padding:10px 11px;background:#0d1922;border:1px solid #516775;border-radius:6px;color:var(--ink)}
+  .actions{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
+  .actions div{display:flex;gap:8px}
+  @media(max-width:750px){
+    .shell{padding:0 12px;grid-template-rows:auto minmax(480px,1fr) auto;height:auto}
+    header{padding:13px 0;gap:12px;flex-wrap:wrap}
+    .tile{width:36px;height:36px}
+    nav{flex:1;min-width:min(100%,280px)}
+    nav button{flex:1;padding:7px 6px;font-size:12px}
+    .hint{display:none}
+    footer{min-height:59px;gap:6px;flex-wrap:wrap;padding:8px 0}
+    .tools,.crew-state{gap:7px}
+    #crew-status{font-size:10px}
+    .control{padding:7px 8px;font-size:12px}
+    .view-tag{top:10px;left:10px}
+    #work-area{min-height:490px}
+    #work-area.building{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(295px,47svh) auto;gap:8px}
+    #catalog{padding:10px;gap:7px}
+    .catalog-title h2{font-size:16px}
+    .catalog-title .eyebrow,.catalog-guide,.part-detail{display:none}
+    #part-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+    .part-card{grid-template-columns:28px minmax(0,1fr);column-gap:3px;padding:5px;align-items:center}
+    .part-card svg{grid-row:span 2;width:28px;height:26px;margin:0}
+    .part-name{font-size:11px}
+    .part-code{font-size:9px}
+    .catalog-actions{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px;padding-top:7px}
+    .catalog-actions .row{display:contents}
+    #assembly-remove{grid-column:1/-1}
+    #assembly-hud{left:8px;bottom:8px;max-width:calc(100% - 16px);font-size:11px}
+  }
+</style>
+</head>
+<body>
+<main class="shell">
+  <header>
+    <div class="title">
+      <div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9m-4-11.2 8-4.5"/></svg></div>
+      <div><div class="eyebrow">JUGRE Space Project / 01</div><h1>Сборочный ангар</h1></div>
+    </div>
+    <nav aria-label="Ракурсы камеры">
+      <button type="button" data-view="overview" aria-pressed="false" disabled>Общий вид</button>
+      <button type="button" data-view="rocket" aria-pressed="true" disabled>Сборка</button>
+      <button type="button" data-view="crew" aria-pressed="false" disabled>Сотрудники</button>
+    </nav>
+  </header>
+  <div id="work-area">
+    <section id="viewport" aria-label="Интерактивная 3D-модель сборочного ангара">
+      <canvas aria-label="Сцена сборочного ангара"></canvas>
+      <div class="view-tag"><b>Цех 01</b><i></i><span id="current-view">Сборка ракеты</span></div>
+      <div id="mount-points" aria-label="Свободные крепления"></div>
+      <div id="assembly-hud" hidden><span class="assembly-label">Детали <span id="assembly-count">0</span></span><span id="assembly-message" role="status">Перетащите деталь из каталога к креплению.</span></div>
+      <div id="loading" role="status">Загрузка 3D-сцены…</div>
+    </section>
+    <aside id="catalog" aria-label="Каталог деталей" hidden>
+      <div class="catalog-title">
+        <div><div class="eyebrow">Конструктор / JUGRE</div><h2>Детали ракеты</h2><p class="catalog-guide">Зажмите карточку и перенесите деталь к зелёной точке на ракете.</p></div>
+        <span id="catalog-total" class="catalog-total"></span>
+      </div>
+      <div id="part-filters" role="group" aria-label="Категории деталей"></div>
+      <div id="part-cards" aria-label="Доступные детали"></div>
+      <div class="catalog-actions">
+        <button class="control" id="assembly-undo" type="button" title="Ctrl+Z" disabled>Отменить</button>
+        <div class="row">
+          <button class="control" id="assembly-new" type="button">Новая сборка</button>
+          <button class="control" id="assembly-example" type="button">Пример</button>
+        </div>
+        <button class="control" id="assembly-remove" type="button" hidden>Вернуть узел в каталог</button>
+      </div>
+    </aside>
+  </div>
+  <footer>
+    <div class="crew-state">
+      <span id="activity" aria-hidden="true"></span>
+      <span id="crew-status" aria-live="polite">04 сотрудника</span>
+      <button class="control" id="pause" type="button" aria-pressed="false" disabled><span>Пауза</span></button>
+    </div>
+    <div class="hint">Пустая область — поворот камеры · Колесо или щипок — масштаб</div>
+    <div class="tools">
+      <output id="feedback" role="status"></output>
+      <button class="control emphasis" id="edit-brand" type="button" disabled>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="m3 10-.7 3.7L6 13l7.1-7.1-3-3L3 10Zm5.8-5.8 3 3"/></svg>
+        Изменить вывеску
+      </button>
+    </div>
+  </footer>
+</main>
+<dialog id="branding" aria-labelledby="brand-title">
+  <form id="brand-form">
+    <h2 id="brand-title">Вывеска ангара</h2>
+    <p>Введите текст, который будет виден на задней стене рядом с флагом.</p>
+    <label for="wordmark">Надпись</label>
+    <input id="wordmark" maxlength="22" placeholder="JUGRE" autocomplete="off" spellcheck="false">
+    <div class="actions">
+      <button class="control" id="reset-brand" type="button">Сбросить</button>
+      <div>
+        <button class="control" id="cancel-brand" type="button">Отмена</button>
+        <button class="control emphasis" type="submit">Сохранить</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+<script>/* ASSET_DATA */</script>
+<script>/* VIEWER_SCRIPT */</script>
+<!-- THREE_LICENSE -->
+</body>
+</html>

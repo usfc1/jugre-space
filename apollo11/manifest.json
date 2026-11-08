@@ -1,0 +1,1685 @@
+{
+  "version": 1,
+  "mission": "Apollo 11",
+  "format": "glTF 2.0 binary",
+  "units": "meter",
+  "up": "+Y",
+  "mountOutward": "+Z",
+  "assemblies": {
+    "saturn_v_sa506": {
+      "file": "models/assemblies/saturn_v_sa506.glb",
+      "root": "saturn_v_sa506",
+      "state": "launch"
+    },
+    "columbia_csm": {
+      "file": "models/assemblies/columbia_csm.glb",
+      "root": "columbia_csm",
+      "state": "orbit"
+    },
+    "eagle_lm": {
+      "file": "models/assemblies/eagle_lm.glb",
+      "root": "eagle_lm",
+      "state": "landing"
+    },
+    "apollo11_sla_open": {
+      "file": "models/assemblies/apollo11_sla_open.glb",
+      "root": "apollo11_sla_open",
+      "state": "before_extraction"
+    },
+    "apollo11_csm_lm_docked": {
+      "file": "models/assemblies/apollo11_csm_lm_docked.glb",
+      "root": "apollo11_csm_lm_docked",
+      "state": "after_extraction"
+    }
+  },
+  "components": {
+    "s_ic": {
+      "file": "models/components/s_ic.glb",
+      "root": "s_ic"
+    },
+    "interstage_1_2": {
+      "file": "models/components/interstage_1_2.glb",
+      "root": "interstage_1_2"
+    },
+    "s_ii": {
+      "file": "models/components/s_ii.glb",
+      "root": "s_ii"
+    },
+    "interstage_2_3": {
+      "file": "models/components/interstage_2_3.glb",
+      "root": "interstage_2_3"
+    },
+    "s_ivb": {
+      "file": "models/components/s_ivb.glb",
+      "root": "s_ivb"
+    },
+    "instrument_unit": {
+      "file": "models/components/instrument_unit.glb",
+      "root": "instrument_unit"
+    },
+    "sla": {
+      "file": "models/components/sla.glb",
+      "root": "sla"
+    },
+    "launch_escape": {
+      "file": "models/components/launch_escape.glb",
+      "root": "launch_escape"
+    },
+    "apollo_cm": {
+      "file": "models/components/apollo_cm.glb",
+      "root": "apollo_cm"
+    },
+    "apollo_sm": {
+      "file": "models/components/apollo_sm.glb",
+      "root": "apollo_sm"
+    },
+    "eagle_descent": {
+      "file": "models/components/eagle_descent.glb",
+      "root": "eagle_descent"
+    },
+    "eagle_ascent": {
+      "file": "models/components/eagle_ascent.glb",
+      "root": "eagle_ascent"
+    },
+    "eagle_antennas": {
+      "file": "models/components/eagle_antennas.glb",
+      "root": "eagle_antennas"
+    }
+  },
+  "variants": {
+    "s_ic_cutaway": {
+      "file": "models/variants/s_ic_cutaway.glb",
+      "root": "s_ic",
+      "state": "cutaway"
+    },
+    "s_ii_cutaway": {
+      "file": "models/variants/s_ii_cutaway.glb",
+      "root": "s_ii",
+      "state": "cutaway"
+    },
+    "s_ivb_cutaway": {
+      "file": "models/variants/s_ivb_cutaway.glb",
+      "root": "s_ivb",
+      "state": "cutaway"
+    },
+    "apollo_sm_cutaway": {
+      "file": "models/variants/apollo_sm_cutaway.glb",
+      "root": "apollo_sm",
+      "state": "cutaway"
+    },
+    "apollo_sm_stowed": {
+      "file": "models/variants/apollo_sm_stowed.glb",
+      "root": "apollo_sm",
+      "state": "stowed"
+    },
+    "eagle_lm_stowed": {
+      "file": "models/variants/eagle_lm_stowed.glb",
+      "root": "eagle_lm",
+      "state": "stowed"
+    },
+    "apollo_cm_recovery": {
+      "file": "models/variants/apollo_cm_recovery.glb",
+      "root": "apollo_cm",
+      "state": "recovery"
+    },
+    "apollo_cm.parachutes_deployed": {
+      "file": "models/variants/apollo_cm.parachutes_deployed.glb",
+      "root": "apollo_cm.parachutes",
+      "state": "deployed"
+    }
+  },
+  "parts": {
+    "s_ic.engine_fairing_01": {
+      "file": "models/parts/s_ic.engine_fairing_01.glb",
+      "root": "s_ic.engine_fairing_01",
+      "parent": "s_ic",
+      "translation": [
+        0,
+        0.44,
+        4.7092
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.engine_fairing_01.fin": {
+      "file": "models/parts/s_ic.engine_fairing_01.fin.glb",
+      "root": "s_ic.engine_fairing_01.fin",
+      "parent": "s_ic.engine_fairing_01",
+      "translation": [
+        0,
+        0.12,
+        1.45
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.engine_fairing_02": {
+      "file": "models/parts/s_ic.engine_fairing_02.glb",
+      "root": "s_ic.engine_fairing_02",
+      "parent": "s_ic",
+      "translation": [
+        4.7092,
+        0.44,
+        2.883553353272358e-16
+      ],
+      "rotation": [
+        0,
+        0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    "s_ic.engine_fairing_02.fin": {
+      "file": "models/parts/s_ic.engine_fairing_02.fin.glb",
+      "root": "s_ic.engine_fairing_02.fin",
+      "parent": "s_ic.engine_fairing_02",
+      "translation": [
+        0,
+        0.12,
+        1.45
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.engine_fairing_03": {
+      "file": "models/parts/s_ic.engine_fairing_03.glb",
+      "root": "s_ic.engine_fairing_03",
+      "parent": "s_ic",
+      "translation": [
+        5.767106706544716e-16,
+        0.44,
+        -4.7092
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    "s_ic.engine_fairing_03.fin": {
+      "file": "models/parts/s_ic.engine_fairing_03.fin.glb",
+      "root": "s_ic.engine_fairing_03.fin",
+      "parent": "s_ic.engine_fairing_03",
+      "translation": [
+        0,
+        0.12,
+        1.45
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.engine_fairing_04": {
+      "file": "models/parts/s_ic.engine_fairing_04.glb",
+      "root": "s_ic.engine_fairing_04",
+      "parent": "s_ic",
+      "translation": [
+        -4.7092,
+        0.44,
+        -8.650660059817073e-16
+      ],
+      "rotation": [
+        0,
+        0.7071067811865476,
+        0,
+        -0.7071067811865475
+      ]
+    },
+    "s_ic.engine_fairing_04.fin": {
+      "file": "models/parts/s_ic.engine_fairing_04.fin.glb",
+      "root": "s_ic.engine_fairing_04.fin",
+      "parent": "s_ic.engine_fairing_04",
+      "translation": [
+        0,
+        0.12,
+        1.45
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.f1_01": {
+      "file": "models/parts/s_ic.f1_01.glb",
+      "root": "s_ic.f1_01",
+      "parent": "s_ic",
+      "translation": [
+        0,
+        3.69,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.f1_02": {
+      "file": "models/parts/s_ic.f1_02.glb",
+      "root": "s_ic.f1_02",
+      "parent": "s_ic",
+      "translation": [
+        0,
+        3.69,
+        3.33
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.f1_03": {
+      "file": "models/parts/s_ic.f1_03.glb",
+      "root": "s_ic.f1_03",
+      "parent": "s_ic",
+      "translation": [
+        3.33,
+        3.69,
+        2.0390369205803431e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.f1_04": {
+      "file": "models/parts/s_ic.f1_04.glb",
+      "root": "s_ic.f1_04",
+      "parent": "s_ic",
+      "translation": [
+        4.0780738411606863e-16,
+        3.69,
+        -3.33
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ic.f1_05": {
+      "file": "models/parts/s_ic.f1_05.glb",
+      "root": "s_ic.f1_05",
+      "parent": "s_ic",
+      "translation": [
+        -3.33,
+        3.69,
+        -6.117110761741029e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ii.j2_01": {
+      "file": "models/parts/s_ii.j2_01.glb",
+      "root": "s_ii.j2_01",
+      "parent": "s_ii",
+      "translation": [
+        0,
+        -1.27,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ii.j2_02": {
+      "file": "models/parts/s_ii.j2_02.glb",
+      "root": "s_ii.j2_02",
+      "parent": "s_ii",
+      "translation": [
+        0,
+        -1.27,
+        2.68
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ii.j2_03": {
+      "file": "models/parts/s_ii.j2_03.glb",
+      "root": "s_ii.j2_03",
+      "parent": "s_ii",
+      "translation": [
+        2.68,
+        -1.27,
+        1.6410267108574534e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ii.j2_04": {
+      "file": "models/parts/s_ii.j2_04.glb",
+      "root": "s_ii.j2_04",
+      "parent": "s_ii",
+      "translation": [
+        3.2820534217149067e-16,
+        -1.27,
+        -2.68
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ii.j2_05": {
+      "file": "models/parts/s_ii.j2_05.glb",
+      "root": "s_ii.j2_05",
+      "parent": "s_ii",
+      "translation": [
+        -2.68,
+        -1.27,
+        -4.92308013257236e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ivb.j2_01": {
+      "file": "models/parts/s_ivb.j2_01.glb",
+      "root": "s_ivb.j2_01",
+      "parent": "s_ivb",
+      "translation": [
+        0,
+        -1.8,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "s_ivb.aps_01": {
+      "file": "models/parts/s_ivb.aps_01.glb",
+      "root": "s_ivb.aps_01",
+      "parent": "s_ivb",
+      "translation": [
+        3.0699757921075626,
+        0.67,
+        -1.1173798082449597
+      ],
+      "rotation": [
+        0,
+        0.8191520442889918,
+        0,
+        0.573576436351046
+      ]
+    },
+    "s_ivb.aps_02": {
+      "file": "models/parts/s_ivb.aps_02.glb",
+      "root": "s_ivb.aps_02",
+      "parent": "s_ivb",
+      "translation": [
+        -3.0699757921075626,
+        0.67,
+        1.1173798082449606
+      ],
+      "rotation": [
+        0,
+        0.5735764363510459,
+        0,
+        -0.8191520442889919
+      ]
+    },
+    "sla.panel_01": {
+      "file": "models/parts/sla.panel_01.glb",
+      "root": "sla.panel_01",
+      "parent": "sla",
+      "translation": [
+        0,
+        2.09,
+        2.972327380952381
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "sla.panel_02": {
+      "file": "models/parts/sla.panel_02.glb",
+      "root": "sla.panel_02",
+      "parent": "sla",
+      "translation": [
+        2.972327380952381,
+        2.09,
+        1.8200256065506845e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "sla.panel_03": {
+      "file": "models/parts/sla.panel_03.glb",
+      "root": "sla.panel_03",
+      "parent": "sla",
+      "translation": [
+        3.640051213101369e-16,
+        2.09,
+        -2.972327380952381
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "sla.panel_04": {
+      "file": "models/parts/sla.panel_04.glb",
+      "root": "sla.panel_04",
+      "parent": "sla",
+      "translation": [
+        -2.972327380952381,
+        2.09,
+        -5.460076819652054e-16
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "launch_escape.bpc": {
+      "file": "models/parts/launch_escape.bpc.glb",
+      "root": "launch_escape.bpc",
+      "parent": "launch_escape",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "launch_escape.escape_motor": {
+      "file": "models/parts/launch_escape.escape_motor.glb",
+      "root": "launch_escape.escape_motor",
+      "parent": "launch_escape",
+      "translation": [
+        0,
+        6.62,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.heat_shield": {
+      "file": "models/parts/apollo_cm.heat_shield.glb",
+      "root": "apollo_cm.heat_shield",
+      "parent": "apollo_cm",
+      "translation": [
+        0,
+        0.11,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.side_hatch": {
+      "file": "models/parts/apollo_cm.side_hatch.glb",
+      "root": "apollo_cm.side_hatch",
+      "parent": "apollo_cm",
+      "translation": [
+        -0.4647582942016686,
+        1.42,
+        1.3964203435275955
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.docking_tunnel": {
+      "file": "models/parts/apollo_cm.docking_tunnel.glb",
+      "root": "apollo_cm.docking_tunnel",
+      "parent": "apollo_cm",
+      "translation": [
+        0,
+        2.83,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.docking_tunnel.forward_hatch": {
+      "file": "models/parts/apollo_cm.docking_tunnel.forward_hatch.glb",
+      "root": "apollo_cm.docking_tunnel.forward_hatch",
+      "parent": "apollo_cm.docking_tunnel",
+      "translation": [
+        0.4,
+        0.365,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.docking_tunnel.probe": {
+      "file": "models/parts/apollo_cm.docking_tunnel.probe.glb",
+      "root": "apollo_cm.docking_tunnel.probe",
+      "parent": "apollo_cm.docking_tunnel",
+      "translation": [
+        0,
+        0.41,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.forward_cover": {
+      "file": "models/parts/apollo_cm.forward_cover.glb",
+      "root": "apollo_cm.forward_cover",
+      "parent": "apollo_cm",
+      "translation": [
+        0,
+        2.78,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_cm.parachutes": {
+      "file": "models/parts/apollo_cm.parachutes.glb",
+      "root": "apollo_cm.parachutes",
+      "parent": "apollo_cm",
+      "translation": [
+        0,
+        2.79,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.rcs_01": {
+      "file": "models/parts/apollo_sm.rcs_01.glb",
+      "root": "apollo_sm.rcs_01",
+      "parent": "apollo_sm",
+      "translation": [
+        -1.448136742531455,
+        3.97,
+        1.2588460648269855
+      ],
+      "rotation": [
+        0,
+        -0.414693242656239,
+        0,
+        0.9099612708765432
+      ]
+    },
+    "apollo_sm.rcs_01.nozzle_01": {
+      "file": "models/parts/apollo_sm.rcs_01.nozzle_01.glb",
+      "root": "apollo_sm.rcs_01.nozzle_01",
+      "parent": "apollo_sm.rcs_01",
+      "translation": [
+        0,
+        0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "apollo_sm.rcs_01.nozzle_02": {
+      "file": "models/parts/apollo_sm.rcs_01.nozzle_02.glb",
+      "root": "apollo_sm.rcs_01.nozzle_02",
+      "parent": "apollo_sm.rcs_01",
+      "translation": [
+        0,
+        -0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.rcs_01.nozzle_03": {
+      "file": "models/parts/apollo_sm.rcs_01.nozzle_03.glb",
+      "root": "apollo_sm.rcs_01.nozzle_03",
+      "parent": "apollo_sm.rcs_01",
+      "translation": [
+        0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_01.nozzle_04": {
+      "file": "models/parts/apollo_sm.rcs_01.nozzle_04.glb",
+      "root": "apollo_sm.rcs_01.nozzle_04",
+      "parent": "apollo_sm.rcs_01",
+      "translation": [
+        -0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_02": {
+      "file": "models/parts/apollo_sm.rcs_02.glb",
+      "root": "apollo_sm.rcs_02",
+      "parent": "apollo_sm",
+      "translation": [
+        1.4259462911260241,
+        3.97,
+        1.2839278074813771
+      ],
+      "rotation": [
+        0,
+        0.4067366430758002,
+        0,
+        0.9135454576426009
+      ]
+    },
+    "apollo_sm.rcs_02.nozzle_01": {
+      "file": "models/parts/apollo_sm.rcs_02.nozzle_01.glb",
+      "root": "apollo_sm.rcs_02.nozzle_01",
+      "parent": "apollo_sm.rcs_02",
+      "translation": [
+        0,
+        0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "apollo_sm.rcs_02.nozzle_02": {
+      "file": "models/parts/apollo_sm.rcs_02.nozzle_02.glb",
+      "root": "apollo_sm.rcs_02.nozzle_02",
+      "parent": "apollo_sm.rcs_02",
+      "translation": [
+        0,
+        -0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.rcs_02.nozzle_03": {
+      "file": "models/parts/apollo_sm.rcs_02.nozzle_03.glb",
+      "root": "apollo_sm.rcs_02.nozzle_03",
+      "parent": "apollo_sm.rcs_02",
+      "translation": [
+        0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_02.nozzle_04": {
+      "file": "models/parts/apollo_sm.rcs_02.nozzle_04.glb",
+      "root": "apollo_sm.rcs_02.nozzle_04",
+      "parent": "apollo_sm.rcs_02",
+      "translation": [
+        -0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_03": {
+      "file": "models/parts/apollo_sm.rcs_03.glb",
+      "root": "apollo_sm.rcs_03",
+      "parent": "apollo_sm",
+      "translation": [
+        1.2588460648269855,
+        3.97,
+        -1.448136742531455
+      ],
+      "rotation": [
+        0,
+        0.9366721892483976,
+        0,
+        0.35020738125946743
+      ]
+    },
+    "apollo_sm.rcs_03.nozzle_01": {
+      "file": "models/parts/apollo_sm.rcs_03.nozzle_01.glb",
+      "root": "apollo_sm.rcs_03.nozzle_01",
+      "parent": "apollo_sm.rcs_03",
+      "translation": [
+        0,
+        0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "apollo_sm.rcs_03.nozzle_02": {
+      "file": "models/parts/apollo_sm.rcs_03.nozzle_02.glb",
+      "root": "apollo_sm.rcs_03.nozzle_02",
+      "parent": "apollo_sm.rcs_03",
+      "translation": [
+        0,
+        -0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.rcs_03.nozzle_03": {
+      "file": "models/parts/apollo_sm.rcs_03.nozzle_03.glb",
+      "root": "apollo_sm.rcs_03.nozzle_03",
+      "parent": "apollo_sm.rcs_03",
+      "translation": [
+        0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_03.nozzle_04": {
+      "file": "models/parts/apollo_sm.rcs_03.nozzle_04.glb",
+      "root": "apollo_sm.rcs_03.nozzle_04",
+      "parent": "apollo_sm.rcs_03",
+      "translation": [
+        -0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_04": {
+      "file": "models/parts/apollo_sm.rcs_04.glb",
+      "root": "apollo_sm.rcs_04",
+      "parent": "apollo_sm",
+      "translation": [
+        -1.4259462911260243,
+        3.97,
+        -1.283927807481377
+      ],
+      "rotation": [
+        0,
+        0.9135454576426009,
+        0,
+        -0.40673664307580026
+      ]
+    },
+    "apollo_sm.rcs_04.nozzle_01": {
+      "file": "models/parts/apollo_sm.rcs_04.nozzle_01.glb",
+      "root": "apollo_sm.rcs_04.nozzle_01",
+      "parent": "apollo_sm.rcs_04",
+      "translation": [
+        0,
+        0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "apollo_sm.rcs_04.nozzle_02": {
+      "file": "models/parts/apollo_sm.rcs_04.nozzle_02.glb",
+      "root": "apollo_sm.rcs_04.nozzle_02",
+      "parent": "apollo_sm.rcs_04",
+      "translation": [
+        0,
+        -0.32,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.rcs_04.nozzle_03": {
+      "file": "models/parts/apollo_sm.rcs_04.nozzle_03.glb",
+      "root": "apollo_sm.rcs_04.nozzle_03",
+      "parent": "apollo_sm.rcs_04",
+      "translation": [
+        0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.rcs_04.nozzle_04": {
+      "file": "models/parts/apollo_sm.rcs_04.nozzle_04.glb",
+      "root": "apollo_sm.rcs_04.nozzle_04",
+      "parent": "apollo_sm.rcs_04",
+      "translation": [
+        -0.36,
+        0,
+        0.24
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "apollo_sm.sps": {
+      "file": "models/parts/apollo_sm.sps.glb",
+      "root": "apollo_sm.sps",
+      "parent": "apollo_sm",
+      "translation": [
+        0,
+        0.1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "apollo_sm.high_gain_antenna": {
+      "file": "models/parts/apollo_sm.high_gain_antenna.glb",
+      "root": "apollo_sm.high_gain_antenna",
+      "parent": "apollo_sm",
+      "translation": [
+        0,
+        0.09,
+        -1.53
+      ],
+      "rotation": [
+        0.7604059656000309,
+        0,
+        0,
+        0.6494480483301837
+      ]
+    },
+    "eagle_descent.dps": {
+      "file": "models/parts/eagle_descent.dps.glb",
+      "root": "eagle_descent.dps",
+      "parent": "eagle_descent",
+      "translation": [
+        0,
+        1.6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_descent.gear_front": {
+      "file": "models/parts/eagle_descent.gear_front.glb",
+      "root": "eagle_descent.gear_front",
+      "parent": "eagle_descent",
+      "translation": [
+        0,
+        2.96,
+        1.72
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_descent.gear_front.main_strut.footpad": {
+      "file": "models/parts/eagle_descent.gear_front.main_strut.footpad.glb",
+      "root": "eagle_descent.gear_front.main_strut.footpad",
+      "parent": "eagle_descent.gear_front.main_strut",
+      "translation": [
+        0,
+        -3.7007377363283034,
+        0.7193505452251161
+      ],
+      "rotation": [
+        0.26850803561117653,
+        0,
+        0,
+        0.9632774443597375
+      ]
+    },
+    "eagle_descent.gear_front.main_strut.ladder": {
+      "file": "models/parts/eagle_descent.gear_front.main_strut.ladder.glb",
+      "root": "eagle_descent.gear_front.main_strut.ladder",
+      "parent": "eagle_descent.gear_front.main_strut",
+      "translation": [
+        0,
+        -0.08,
+        0.12
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_descent.gear_right": {
+      "file": "models/parts/eagle_descent.gear_right.glb",
+      "root": "eagle_descent.gear_right",
+      "parent": "eagle_descent",
+      "translation": [
+        1.72,
+        2.96,
+        1.0531962472667238e-16
+      ],
+      "rotation": [
+        0,
+        0.7071067811865475,
+        0,
+        0.7071067811865476
+      ]
+    },
+    "eagle_descent.gear_right.main_strut.footpad": {
+      "file": "models/parts/eagle_descent.gear_right.main_strut.footpad.glb",
+      "root": "eagle_descent.gear_right.main_strut.footpad",
+      "parent": "eagle_descent.gear_right.main_strut",
+      "translation": [
+        0,
+        -3.7007377363283034,
+        0.7193505452251161
+      ],
+      "rotation": [
+        0.26850803561117653,
+        0,
+        0,
+        0.9632774443597375
+      ]
+    },
+    "eagle_descent.gear_rear": {
+      "file": "models/parts/eagle_descent.gear_rear.glb",
+      "root": "eagle_descent.gear_rear",
+      "parent": "eagle_descent",
+      "translation": [
+        2.1063924945334475e-16,
+        2.96,
+        -1.72
+      ],
+      "rotation": [
+        0,
+        1,
+        0,
+        6.123233995736766e-17
+      ]
+    },
+    "eagle_descent.gear_rear.main_strut.footpad": {
+      "file": "models/parts/eagle_descent.gear_rear.main_strut.footpad.glb",
+      "root": "eagle_descent.gear_rear.main_strut.footpad",
+      "parent": "eagle_descent.gear_rear.main_strut",
+      "translation": [
+        0,
+        -3.7007377363283034,
+        0.7193505452251161
+      ],
+      "rotation": [
+        0.26850803561117653,
+        0,
+        0,
+        0.9632774443597375
+      ]
+    },
+    "eagle_descent.gear_left": {
+      "file": "models/parts/eagle_descent.gear_left.glb",
+      "root": "eagle_descent.gear_left",
+      "parent": "eagle_descent",
+      "translation": [
+        -1.72,
+        2.96,
+        -3.159588741800171e-16
+      ],
+      "rotation": [
+        0,
+        0.7071067811865476,
+        0,
+        -0.7071067811865475
+      ]
+    },
+    "eagle_descent.gear_left.main_strut.footpad": {
+      "file": "models/parts/eagle_descent.gear_left.main_strut.footpad.glb",
+      "root": "eagle_descent.gear_left.main_strut.footpad",
+      "parent": "eagle_descent.gear_left.main_strut",
+      "translation": [
+        0,
+        -3.7007377363283034,
+        0.7193505452251161
+      ],
+      "rotation": [
+        0.26850803561117653,
+        0,
+        0,
+        0.9632774443597375
+      ]
+    },
+    "eagle_descent.landing_radar": {
+      "file": "models/parts/eagle_descent.landing_radar.glb",
+      "root": "eagle_descent.landing_radar",
+      "parent": "eagle_descent",
+      "translation": [
+        0.74,
+        1.53,
+        1.06
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_descent.porch": {
+      "file": "models/parts/eagle_descent.porch.glb",
+      "root": "eagle_descent.porch",
+      "parent": "eagle_descent",
+      "translation": [
+        0,
+        2.98,
+        1.97
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.forward_hatch": {
+      "file": "models/parts/eagle_ascent.forward_hatch.glb",
+      "root": "eagle_ascent.forward_hatch",
+      "parent": "eagle_ascent",
+      "translation": [
+        -0.44,
+        0.84,
+        1.835
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.rcs_01": {
+      "file": "models/parts/eagle_ascent.rcs_01.glb",
+      "root": "eagle_ascent.rcs_01",
+      "parent": "eagle_ascent",
+      "translation": [
+        1.400071426749364,
+        2.27,
+        1.4000714267493641
+      ],
+      "rotation": [
+        0,
+        0.3826834323650898,
+        0,
+        0.9238795325112867
+      ]
+    },
+    "eagle_ascent.rcs_01.nozzle_01": {
+      "file": "models/parts/eagle_ascent.rcs_01.nozzle_01.glb",
+      "root": "eagle_ascent.rcs_01.nozzle_01",
+      "parent": "eagle_ascent.rcs_01",
+      "translation": [
+        0,
+        0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "eagle_ascent.rcs_01.nozzle_02": {
+      "file": "models/parts/eagle_ascent.rcs_01.nozzle_02.glb",
+      "root": "eagle_ascent.rcs_01.nozzle_02",
+      "parent": "eagle_ascent.rcs_01",
+      "translation": [
+        0,
+        -0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.rcs_01.nozzle_03": {
+      "file": "models/parts/eagle_ascent.rcs_01.nozzle_03.glb",
+      "root": "eagle_ascent.rcs_01.nozzle_03",
+      "parent": "eagle_ascent.rcs_01",
+      "translation": [
+        0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_01.nozzle_04": {
+      "file": "models/parts/eagle_ascent.rcs_01.nozzle_04.glb",
+      "root": "eagle_ascent.rcs_01.nozzle_04",
+      "parent": "eagle_ascent.rcs_01",
+      "translation": [
+        -0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_02": {
+      "file": "models/parts/eagle_ascent.rcs_02.glb",
+      "root": "eagle_ascent.rcs_02",
+      "parent": "eagle_ascent",
+      "translation": [
+        1.4000714267493641,
+        2.27,
+        -1.400071426749364
+      ],
+      "rotation": [
+        0,
+        0.9238795325112867,
+        0,
+        0.38268343236508984
+      ]
+    },
+    "eagle_ascent.rcs_02.nozzle_01": {
+      "file": "models/parts/eagle_ascent.rcs_02.nozzle_01.glb",
+      "root": "eagle_ascent.rcs_02.nozzle_01",
+      "parent": "eagle_ascent.rcs_02",
+      "translation": [
+        0,
+        0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "eagle_ascent.rcs_02.nozzle_02": {
+      "file": "models/parts/eagle_ascent.rcs_02.nozzle_02.glb",
+      "root": "eagle_ascent.rcs_02.nozzle_02",
+      "parent": "eagle_ascent.rcs_02",
+      "translation": [
+        0,
+        -0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.rcs_02.nozzle_03": {
+      "file": "models/parts/eagle_ascent.rcs_02.nozzle_03.glb",
+      "root": "eagle_ascent.rcs_02.nozzle_03",
+      "parent": "eagle_ascent.rcs_02",
+      "translation": [
+        0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_02.nozzle_04": {
+      "file": "models/parts/eagle_ascent.rcs_02.nozzle_04.glb",
+      "root": "eagle_ascent.rcs_02.nozzle_04",
+      "parent": "eagle_ascent.rcs_02",
+      "translation": [
+        -0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_03": {
+      "file": "models/parts/eagle_ascent.rcs_03.glb",
+      "root": "eagle_ascent.rcs_03",
+      "parent": "eagle_ascent",
+      "translation": [
+        -1.400071426749364,
+        2.27,
+        -1.4000714267493644
+      ],
+      "rotation": [
+        0,
+        0.9238795325112867,
+        0,
+        -0.3826834323650897
+      ]
+    },
+    "eagle_ascent.rcs_03.nozzle_01": {
+      "file": "models/parts/eagle_ascent.rcs_03.nozzle_01.glb",
+      "root": "eagle_ascent.rcs_03.nozzle_01",
+      "parent": "eagle_ascent.rcs_03",
+      "translation": [
+        0,
+        0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "eagle_ascent.rcs_03.nozzle_02": {
+      "file": "models/parts/eagle_ascent.rcs_03.nozzle_02.glb",
+      "root": "eagle_ascent.rcs_03.nozzle_02",
+      "parent": "eagle_ascent.rcs_03",
+      "translation": [
+        0,
+        -0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.rcs_03.nozzle_03": {
+      "file": "models/parts/eagle_ascent.rcs_03.nozzle_03.glb",
+      "root": "eagle_ascent.rcs_03.nozzle_03",
+      "parent": "eagle_ascent.rcs_03",
+      "translation": [
+        0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_03.nozzle_04": {
+      "file": "models/parts/eagle_ascent.rcs_03.nozzle_04.glb",
+      "root": "eagle_ascent.rcs_03.nozzle_04",
+      "parent": "eagle_ascent.rcs_03",
+      "translation": [
+        -0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_04": {
+      "file": "models/parts/eagle_ascent.rcs_04.glb",
+      "root": "eagle_ascent.rcs_04",
+      "parent": "eagle_ascent",
+      "translation": [
+        -1.4000714267493644,
+        2.27,
+        1.4000714267493637
+      ],
+      "rotation": [
+        0,
+        0.3826834323650899,
+        0,
+        -0.9238795325112867
+      ]
+    },
+    "eagle_ascent.rcs_04.nozzle_01": {
+      "file": "models/parts/eagle_ascent.rcs_04.nozzle_01.glb",
+      "root": "eagle_ascent.rcs_04.nozzle_01",
+      "parent": "eagle_ascent.rcs_04",
+      "translation": [
+        0,
+        0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "eagle_ascent.rcs_04.nozzle_02": {
+      "file": "models/parts/eagle_ascent.rcs_04.nozzle_02.glb",
+      "root": "eagle_ascent.rcs_04.nozzle_02",
+      "parent": "eagle_ascent.rcs_04",
+      "translation": [
+        0,
+        -0.2944,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.rcs_04.nozzle_03": {
+      "file": "models/parts/eagle_ascent.rcs_04.nozzle_03.glb",
+      "root": "eagle_ascent.rcs_04.nozzle_03",
+      "parent": "eagle_ascent.rcs_04",
+      "translation": [
+        0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.rcs_04.nozzle_04": {
+      "file": "models/parts/eagle_ascent.rcs_04.nozzle_04.glb",
+      "root": "eagle_ascent.rcs_04.nozzle_04",
+      "parent": "eagle_ascent.rcs_04",
+      "translation": [
+        -0.3312,
+        0,
+        0.2208
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865475
+      ]
+    },
+    "eagle_ascent.docking_tunnel": {
+      "file": "models/parts/eagle_ascent.docking_tunnel.glb",
+      "root": "eagle_ascent.docking_tunnel",
+      "parent": "eagle_ascent",
+      "translation": [
+        0,
+        3.18,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.docking_tunnel.overhead_hatch": {
+      "file": "models/parts/eagle_ascent.docking_tunnel.overhead_hatch.glb",
+      "root": "eagle_ascent.docking_tunnel.overhead_hatch",
+      "parent": "eagle_ascent.docking_tunnel",
+      "translation": [
+        0.39,
+        0.14,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.docking_tunnel.drogue": {
+      "file": "models/parts/eagle_ascent.docking_tunnel.drogue.glb",
+      "root": "eagle_ascent.docking_tunnel.drogue",
+      "parent": "eagle_ascent.docking_tunnel",
+      "translation": [
+        0,
+        0.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_ascent.aps": {
+      "file": "models/parts/eagle_ascent.aps.glb",
+      "root": "eagle_ascent.aps",
+      "parent": "eagle_ascent",
+      "translation": [
+        0,
+        0.28,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "eagle_antennas.rendezvous_radar": {
+      "file": "models/parts/eagle_antennas.rendezvous_radar.glb",
+      "root": "eagle_antennas.rendezvous_radar",
+      "parent": "eagle_antennas",
+      "translation": [
+        -0.77,
+        3.08,
+        1.06
+      ],
+      "rotation": [
+        -0.3255681544571567,
+        0,
+        0,
+        0.9455185755993168
+      ]
+    },
+    "eagle_antennas.s_band": {
+      "file": "models/parts/eagle_antennas.s_band.glb",
+      "root": "eagle_antennas.s_band",
+      "parent": "eagle_antennas",
+      "translation": [
+        1.27,
+        2.61,
+        -0.66
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.45399049973954675,
+        0.8910065241883679
+      ]
+    },
+    "eagle_antennas.vhf_01": {
+      "file": "models/parts/eagle_antennas.vhf_01.glb",
+      "root": "eagle_antennas.vhf_01",
+      "parent": "eagle_antennas",
+      "translation": [
+        -1.55,
+        2.7,
+        -0.32
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.49242356010346716,
+        0.8703556959398997
+      ]
+    },
+    "eagle_antennas.vhf_02": {
+      "file": "models/parts/eagle_antennas.vhf_02.glb",
+      "root": "eagle_antennas.vhf_02",
+      "parent": "eagle_antennas",
+      "translation": [
+        1.55,
+        2.7,
+        -0.32
+      ],
+      "rotation": [
+        0,
+        0,
+        0.49242356010346716,
+        0.8703556959398997
+      ]
+    }
+  }
+}

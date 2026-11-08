@@ -1,0 +1,6 @@
+{
+  "name": "jugre-historical-spacecraft",
+  "private": true,
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "three": "0.187.0" }
+}
