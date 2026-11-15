@@ -1,7 +1,6 @@
-import { Euler, Group, Quaternion, Vector3 } from 'three';
+import { Group, Quaternion, Vector3 } from 'three';
+import { decoratePayload } from './payload-configuration.mjs';
 
-export const standPosition = [-6.38, 2.24, -4.42];
-export const standRotation = new Quaternion().setFromEuler(new Euler(0, Math.PI / 2, -Math.PI / 2, 'ZYX'));
 export const example = [
   { key: 'tank', part: 'b_240_rezerv' },
   { key: 'frame', part: 'r_253_triada', parent: 'tank', socket: 'mount_aft', plug: 'mount_forward' },
@@ -13,11 +12,17 @@ export const example = [
   { key: 'base', part: 'ob_25_poyas', parent: 'upper', socket: 'mount_forward', plug: 'mount_aft' },
   { key: 'shell', part: 'st_25_stvorka_right', parent: 'base', socket: 'mount_shell_right', plug: 'mount_latch' },
 ];
+export const cargoExample = [
+  ...example.slice(0, 6),
+  { key: 'bay', part: 'go_34_cargo_bay', parent: 'separator', socket: 'retained_ring.mount_forward', plug: 'mount_aft' },
+  { key: 'crew', part: 'pk_2_kontur', parent: 'bay', socket: 'mount_forward', plug: 'mount_aft' },
+  { key: 'satellite', part: 'mayak_k', parent: 'bay', socket: 'mount_payload', plug: 'bay_payload' },
+];
 
 const flip = new Quaternion(0, 1, 0, 0);
 const rolePairs = new Set([
   'structure/structure', 'engine/structure', 'engine/engineReceiver', 'boosterReceiver/host',
-  'host/surface', 'host/tank', 'host/thruster', 'adapter/host', 'shell/shellReceiver',
+  'host/surface', 'host/tank', 'host/thruster', 'adapter/host', 'shell/shellReceiver', 'payload/payloadReceiver',
 ]);
 
 export function compatible(target, targetPart, source, sourcePart) {
@@ -46,21 +51,16 @@ export function prepareParts(parts) {
   }));
 }
 
-export function buildCraft(layout, specs, models) {
-  const group = new Group();
+export function resolveAssembly(layout, specs) {
   const pieces = new Map();
   for (const entry of layout) {
     const { key, part, parent, socket, plug } = entry;
     const spec = specs.get(part);
     if (!spec || typeof key !== 'string' || pieces.has(key)) throw new Error('Invalid assembly part');
-    const object = new Group();
-    object.name = key;
-    object.userData.assemblyKey = key;
-    object.add(models.get(part).clone(true));
     const used = new Set();
+    let pose;
     if (parent === undefined) {
       if (pieces.size || !isFoundation(spec)) throw new Error('Invalid assembly foundation');
-      group.add(object);
     } else {
       const host = pieces.get(parent);
       const target = host?.spec.mounts.get(socket);
@@ -68,14 +68,32 @@ export function buildCraft(layout, specs, models) {
       if (!target || !source || host.used.has(socket) || !compatible(target, host.entry.part, source, part)) {
         throw new Error(`Invalid assembly connection: ${part}.${plug} → ${parent}.${socket}`);
       }
-      const { position, rotation } = jointPose(target.position, target.rotation, source);
-      object.position.copy(position);
-      object.quaternion.copy(rotation);
-      host.object.add(object);
+      pose = jointPose(target.position, target.rotation, source);
       host.used.add(socket);
       used.add(plug);
     }
-    pieces.set(key, { entry, object, spec, used });
+    pieces.set(key, { entry, pose, spec, used });
+  }
+  return pieces;
+}
+
+export function buildCraft(layout, specs, models) {
+  const group = new Group();
+  const pieces = resolveAssembly(layout, specs);
+  for (const { entry, pose, spec, used } of pieces.values()) {
+    const { key, part, parent } = entry;
+    const object = new Group();
+    object.name = key;
+    object.userData.assemblyKey = key;
+    const visual = models.get(part).clone(true);
+    decoratePayload(visual, entry.spacecraft);
+    object.add(visual);
+    if (pose) {
+      object.position.copy(pose.position);
+      object.quaternion.copy(pose.rotation);
+    }
+    (pieces.get(parent)?.object ?? group).add(object);
+    pieces.set(key, { entry, object, visual, spec, used });
   }
   return { group, pieces };
 }

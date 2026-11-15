@@ -1,0 +1,56 @@
+[
+  {
+    "id": "southeast",
+    "file": "southeast.png",
+    "bounds": [
+      -91,
+      19,
+      -71,
+      39
+    ],
+    "width": 4096,
+    "height": 4096,
+    "service": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+    "projection": "EPSG:4326",
+    "attribution": "USDA / USGS The National Map; NAIP, Landsat, Blue Marble",
+    "downloadedAt": "2026-11-12T16:28:14.738Z",
+    "bytes": 16472040,
+    "sha256": "585ad538d42d87eb1f017020023655c226a3bcb2b3c883d3db76261c688945b9"
+  },
+  {
+    "id": "florida",
+    "file": "florida.png",
+    "bounds": [
+      -85,
+      23,
+      -76,
+      32
+    ],
+    "width": 4096,
+    "height": 4096,
+    "service": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+    "projection": "EPSG:4326",
+    "attribution": "USDA / USGS The National Map; NAIP, Landsat, Blue Marble",
+    "downloadedAt": "2026-11-12T16:29:34.864Z",
+    "bytes": 11343094,
+    "sha256": "c5bc9b081c29ad5281d9252bbbba89e58396e9664c7e96db9fa1b97a7c1f16aa"
+  },
+  {
+    "id": "space_coast",
+    "file": "space-coast.png",
+    "bounds": [
+      -82.5,
+      26,
+      -78.5,
+      30
+    ],
+    "width": 3072,
+    "height": 3072,
+    "service": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+    "projection": "EPSG:4326",
+    "attribution": "USDA / USGS The National Map; NAIP, Landsat, Blue Marble",
+    "downloadedAt": "2026-11-12T16:34:36.639Z",
+    "bytes": 9021153,
+    "sha256": "ad97d7a0ea6cf4835b82478b48c7aa2066faaca5e722adbc5f7b9b0950c9d1e0"
+  }
+]

@@ -1,0 +1,1168 @@
+{
+  "model": "3-DOF rotating-Earth force integration; SI; fixed 1/120 s",
+  "summary": [
+    {
+      "id": "apollo_11",
+      "vehicle": "Saturn V / SA-506",
+      "initialMassKg": 2923000,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913128.0845318467,
+        "yM": 3050634.0630845996,
+        "zM": 5518270.450873661,
+        "groundDistanceM": 1.0275987022680708,
+        "altitudeM": 144.31280584353954,
+        "vxMps": 3.6386568878807495,
+        "vyMps": 12.022811249040192,
+        "vzMps": 22.102926016865247,
+        "verticalSpeedMps": 25.422384565331054,
+        "horizontalSpeedMps": 0.1718016216617014,
+        "surfaceSpeedMps": 25.42296506674208,
+        "inertialSpeedMps": 408.6436089589657,
+        "accelerationMps2": 2.4721093225094126,
+        "properG": 1.2507597443475587,
+        "thrustN": 33930592.95022361,
+        "massKg": 2765519.6896688095,
+        "fuelMassKg": 2542519.6896688095,
+        "pitchDeg": 0,
+        "yawDeg": 17,
+        "rollDeg": 0,
+        "pitchRateDegS": 0,
+        "dynamicPressurePa": 390.4197503012146,
+        "stageIndex": 0,
+        "periapsisM": -6362518.939493706,
+        "apoapsisM": 177.30856810230762
+      },
+      "orbit": {
+        "simulationTimeS": 631.9999999995896,
+        "xM": 2885207.3896775832,
+        "yM": 3552905.0137998876,
+        "zM": 4695455.545772643,
+        "groundDistanceM": 2166342.676757539,
+        "altitudeM": 186046.47694841214,
+        "vxMps": 5964.8971877044,
+        "vyMps": 828.5490393076843,
+        "vzMps": -4291.859249010433,
+        "verticalSpeedMps": 0.2268045728665129,
+        "horizontalSpeedMps": 7395.03534354621,
+        "surfaceSpeedMps": 7395.035347024241,
+        "inertialSpeedMps": 7793.506168875481,
+        "accelerationMps2": 8.369423989077008,
+        "properG": 0.0000021528740079187737,
+        "thrustN": 0,
+        "massKg": 139890.57628694313,
+        "fuelMassKg": 82890.57628694313,
+        "pitchDeg": 90.31005836979286,
+        "yawDeg": 17,
+        "rollDeg": 0,
+        "pitchRateDegS": 1.1879871655292613,
+        "dynamicPressurePa": 0.1228779240694164,
+        "stageIndex": 2,
+        "periapsisM": 175073.13626646716,
+        "apoapsisM": 186049.78969488665
+      },
+      "measuredPeak": {
+        "timeS": 78.00000000000814,
+        "altitudeM": 11015.551427853294,
+        "pressurePa": 28723.78761863686
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 166.25833333334646
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 130000,
+            "parts": [
+              "s_ic",
+              "interstage_1_2"
+            ],
+            "physicsTime": 166.25833333334646
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 2,
+            "physicsTime": 532.0416666663472
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 2,
+            "releasedMassKg": 36000,
+            "parts": [
+              "s_ii",
+              "interstage_2_3"
+            ],
+            "physicsTime": 532.0416666663472
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 631.5083333329234
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 175073.17110101692,
+            "apoapsisM": 186049.7897057999,
+            "physicsTime": 631.5083333329234
+          }
+        }
+      ],
+      "source": "https://www.nasa.gov/wp-content/uploads/static/history/afj/ap08fj/pdf/sa503-flightmanual.pdf",
+      "assumptions": "Nominal mass model and approximate closed-loop guidance"
+    },
+    {
+      "id": "artemis_ii",
+      "vehicle": "SLS Block 1 / Orion",
+      "initialMassKg": 2581585,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913153.0561375273,
+        "yM": 3050717.415867984,
+        "zM": 5518421.222896276,
+        "groundDistanceM": 1.0259909997379446,
+        "altitudeM": 318.39172439742833,
+        "vxMps": 8.231223457143534,
+        "vyMps": 26.865106298575448,
+        "vzMps": 48.92606620536563,
+        "verticalSpeedMps": 56.41985449781894,
+        "horizontalSpeedMps": 0.21667674528746395,
+        "surfaceSpeedMps": 56.4202705626888,
+        "inertialSpeedMps": 411.8975450770473,
+        "accelerationMps2": 5.575725056408279,
+        "properG": 1.5670222434924737,
+        "thrustN": 37096146.7725763,
+        "massKg": 2411657.818980394,
+        "fuelMassKg": 2096292.818980394,
+        "pitchDeg": 0.6677720852474555,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.26745963986028914,
+        "dynamicPressurePa": 1890.8351231284225,
+        "stageIndex": 0,
+        "periapsisM": -6362511.681105514,
+        "apoapsisM": 480.9177924701944
+      },
+      "orbit": {
+        "simulationTimeS": 462.99999999974324,
+        "xM": 1998994.3307548824,
+        "yM": 3119541.700770027,
+        "zM": 5445191.814356644,
+        "groundDistanceM": 1052668.698012757,
+        "altitudeM": 215169.80136178248,
+        "vxMps": 6953.485407169948,
+        "vyMps": -391.32214834702955,
+        "vzMps": -2335.9458861169337,
+        "verticalSpeedMps": -6.140332145640059,
+        "horizontalSpeedMps": 7345.794566328418,
+        "surfaceSpeedMps": 7345.797132672463,
+        "inertialSpeedMps": 7768.056466266286,
+        "accelerationMps2": 8.23663868739466,
+        "properG": 5.130770825132545e-7,
+        "thrustN": 0,
+        "massKg": 56710,
+        "fuelMassKg": 27220,
+        "pitchDeg": 88.98978397161167,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": -0.5287681703373681,
+        "dynamicPressurePa": 0.015143824531332476,
+        "stageIndex": 1,
+        "periapsisM": 175829.69447416067,
+        "apoapsisM": 215854.71031475905
+      },
+      "measuredPeak": {
+        "timeS": 57.99999999999735,
+        "altitudeM": 9886.339641812257,
+        "pressurePa": 31479.41832928009
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "boostersSeparated",
+          "detail": {
+            "releasedMassKg": 198000,
+            "parts": [
+              "sls_srb_l",
+              "sls_srb_r"
+            ],
+            "physicsTime": 140.3500000000367
+          }
+        },
+        {
+          "type": "fairingSeparated",
+          "detail": {
+            "releasedMassKg": 2600,
+            "physicsTime": 160.5083333333517
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 462.80833333307675
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 123137.1122408853,
+            "parts": [
+              "sls_core",
+              "lvsa"
+            ],
+            "physicsTime": 462.80833333307675
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 462.80833333307675
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 175829.69765958004,
+            "apoapsisM": 215854.71037107613,
+            "physicsTime": 462.80833333307675
+          }
+        }
+      ],
+      "source": "https://www.nasa.gov/wp-content/uploads/2022/03/sls-reference-guide-2022-v2-508-0.pdf",
+      "assumptions": "Nominal ratings and approximate solid thrust curve/guidance"
+    },
+    {
+      "id": "mars_2020",
+      "vehicle": "Atlas V 541 / RL10C-1",
+      "initialMassKg": 522266,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913183.0237212544,
+        "yM": 3050814.3060161774,
+        "zM": 5518596.3248157045,
+        "groundDistanceM": 1.3830128671509052,
+        "altitudeM": 520.7416185233742,
+        "vxMps": 14.349285568142678,
+        "vyMps": 45.04021782280705,
+        "vzMps": 81.69010782987627,
+        "verticalSpeedMps": 94.37740503286231,
+        "horizontalSpeedMps": 0.8380658457900372,
+        "surfaceSpeedMps": 94.38112594739917,
+        "inertialSpeedMps": 419.4702058565835,
+        "accelerationMps2": 9.890389766027154,
+        "properG": 2.006675578213781,
+        "thrustN": 9566565.660831472,
+        "massKg": 484204.3868722413,
+        "fuelMassKg": 430018.3868722413,
+        "pitchDeg": 1.2358922354773314,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.25574408603951565,
+        "dynamicPressurePa": 5188.4344868522585,
+        "stageIndex": 0,
+        "periapsisM": -6362481.947711051,
+        "apoapsisM": 975.5690679578111
+      },
+      "orbit": {
+        "simulationTimeS": 711.9999999995168,
+        "xM": 3961731.265917287,
+        "yM": 2818994.0938461903,
+        "zM": 4539595.359454778,
+        "groundDistanceM": 3161921.4661511695,
+        "altitudeM": 281064.9690204961,
+        "vxMps": 5811.181850761774,
+        "vyMps": -1534.1195602273278,
+        "vzMps": -4118.881107247135,
+        "verticalSpeedMps": -0.05813383477152456,
+        "horizontalSpeedMps": 7286.188228419092,
+        "surfaceSpeedMps": 7286.188228651007,
+        "inertialSpeedMps": 7714.194807285672,
+        "accelerationMps2": 8.056119250711669,
+        "properG": 6.174797586692986e-9,
+        "thrustN": 0,
+        "massKg": 16289.441522205256,
+        "fuelMassKg": 10203.441522205256,
+        "pitchDeg": 88.45741336804828,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": -1.37447444623156,
+        "dynamicPressurePa": 0.0001345929205133267,
+        "stageIndex": 1,
+        "periapsisM": 190103.42230240814,
+        "apoapsisM": 281064.99626962934
+      },
+      "measuredPeak": {
+        "timeS": 41.99999999999826,
+        "altitudeM": 8663.673556931317,
+        "pressurePa": 50827.88773254003
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "boostersSeparated",
+          "detail": {
+            "releasedMassKg": 23600,
+            "parts": [
+              "atlas_v_srb_01",
+              "atlas_v_srb_02",
+              "atlas_v_srb_03",
+              "atlas_v_srb_04"
+            ],
+            "physicsTime": 96.58333333335626
+          }
+        },
+        {
+          "type": "fairingSeparated",
+          "detail": {
+            "releasedMassKg": 3500,
+            "physicsTime": 124.55000000004519
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 240.41666666661234
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 21000,
+            "parts": [
+              "atlas_v_core",
+              "atlas_v_interstage",
+              "atlas_v_boattail"
+            ],
+            "physicsTime": 240.41666666661234
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 711.1416666661843
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 190103.42247815337,
+            "apoapsisM": 281064.9962695055,
+            "physicsTime": 711.1416666661843
+          }
+        }
+      ],
+      "source": "https://www.ulalaunch.com/docs/default-source/launch-booklets/mars2020_mobrochure_200717.pdf",
+      "assumptions": "Nominal engine ratings; approximate dry masses and guidance"
+    },
+    {
+      "id": "mars_science_laboratory",
+      "vehicle": "Atlas V 541 / RL10A-4-2",
+      "initialMassKg": 522320,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913182.4649637549,
+        "yM": 3050814.1968550636,
+        "zM": 5518596.3315193225,
+        "groundDistanceM": 1.1432346598744465,
+        "altitudeM": 520.615073626861,
+        "vxMps": 14.11176392699131,
+        "vyMps": 44.980706564570454,
+        "vzMps": 81.73818225110854,
+        "verticalSpeedMps": 94.35650648815769,
+        "horizontalSpeedMps": 0.6212610118277752,
+        "surfaceSpeedMps": 94.35855171575368,
+        "inertialSpeedMps": 419.22955996795184,
+        "accelerationMps2": 9.888054031403792,
+        "properG": 2.006453163465366,
+        "thrustN": 9566553.466616359,
+        "massKg": 484258.39319419616,
+        "fuelMassKg": 430018.39319419616,
+        "pitchDeg": 1.209500974401071,
+        "yawDeg": -5,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.292240387989593,
+        "dynamicPressurePa": 5186.01657882182,
+        "stageIndex": 0,
+        "periapsisM": -6362492.052013566,
+        "apoapsisM": 975.2396407425404
+      },
+      "orbit": {
+        "simulationTimeS": 726.9999999995032,
+        "xM": 4045578.062036887,
+        "yM": 2547351.099486935,
+        "zM": 4624243.027332522,
+        "groundDistanceM": 3249387.704505057,
+        "altitudeM": 280264.77114878315,
+        "vxMps": 5783.940079269044,
+        "vyMps": -2068.698831996799,
+        "vzMps": -3920.5817486126034,
+        "verticalSpeedMps": -0.0066094912981498055,
+        "horizontalSpeedMps": 7287.279255359321,
+        "surfaceSpeedMps": 7287.279255362318,
+        "inertialSpeedMps": 7714.864357560037,
+        "accelerationMps2": 8.056562413882807,
+        "properG": 6.541118182107126e-9,
+        "thrustN": 0,
+        "massKg": 16286.581709723418,
+        "fuelMassKg": 10146.581709723418,
+        "pitchDeg": 89.13140974573723,
+        "yawDeg": -5,
+        "rollDeg": 0,
+        "pitchRateDegS": -0.7958560984291295,
+        "dynamicPressurePa": 0.00014255263013585403,
+        "stageIndex": 1,
+        "periapsisM": 190008.55190852843,
+        "apoapsisM": 280264.7715036636
+      },
+      "measuredPeak": {
+        "timeS": 41.99999999999826,
+        "altitudeM": 8662.00746434927,
+        "pressurePa": 50817.0215177989
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "boostersSeparated",
+          "detail": {
+            "releasedMassKg": 23600,
+            "parts": [
+              "atlas_v_srb_01",
+              "atlas_v_srb_02",
+              "atlas_v_srb_03",
+              "atlas_v_srb_04"
+            ],
+            "physicsTime": 96.58333333335626
+          }
+        },
+        {
+          "type": "fairingSeparated",
+          "detail": {
+            "releasedMassKg": 3500,
+            "physicsTime": 124.56666666671187
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 240.39166666661237
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 21000,
+            "parts": [
+              "atlas_v_core",
+              "atlas_v_interstage",
+              "atlas_v_boattail"
+            ],
+            "physicsTime": 240.39166666661237
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 726.7166666661701
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 190008.5519701019,
+            "apoapsisM": 280264.7715034932,
+            "physicsTime": 726.7166666661701
+          }
+        }
+      ],
+      "source": "https://www.ulalaunch.com/docs/default-source/news-items/av_msl_mob.pdf",
+      "assumptions": "Nominal engine ratings; approximate dry masses and guidance"
+    },
+    {
+      "id": "dart",
+      "vehicle": "Falcon 9 Block 5 / DART",
+      "initialMassKg": 550610,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913152.9209067222,
+        "yM": 3050713.602607276,
+        "zM": 5518414.15906618,
+        "groundDistanceM": 1.4113016863610102,
+        "altitudeM": 310.4282459542155,
+        "vxMps": 8.307979852980756,
+        "vyMps": 25.497316281697064,
+        "vzMps": 46.371670626880594,
+        "verticalSpeedMps": 53.563478548167474,
+        "horizontalSpeedMps": 0.64905265913622,
+        "surfaceSpeedMps": 53.56741083470741,
+        "inertialSpeedMps": 412.004059173311,
+        "accelerationMps2": 4.940343977868219,
+        "properG": 1.5019771974494085,
+        "thrustN": 7629449.532674003,
+        "massKg": 517609.95593265543,
+        "fuelMassKg": 485499.95593265543,
+        "pitchDeg": 0.9955785522136553,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.19099227185879872,
+        "dynamicPressurePa": 1705.76437430029,
+        "stageIndex": 0,
+        "periapsisM": -6362491.182311937,
+        "apoapsisM": 456.914633971639
+      },
+      "orbit": {
+        "simulationTimeS": 455.9999999997496,
+        "xM": 2308416.2582960855,
+        "yM": 3091429.365764322,
+        "zM": 5337786.377763863,
+        "groundDistanceM": 1370697.5177676107,
+        "altitudeM": 215173.74199292995,
+        "vxMps": 6838.586081831782,
+        "vyMps": -550.9484467823595,
+        "vzMps": -2644.459841729169,
+        "verticalSpeedMps": -4.931031786466519,
+        "horizontalSpeedMps": 7352.751004153414,
+        "surfaceSpeedMps": 7352.752657621058,
+        "inertialSpeedMps": 7775.395696865783,
+        "accelerationMps2": 8.234567521748977,
+        "properG": 1.8580904048169917e-7,
+        "thrustN": 0,
+        "massKg": 26273.695963356928,
+        "fuelMassKg": 21663.695963356928,
+        "pitchDeg": 88.99615922016142,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": -0.6823384371658315,
+        "dynamicPressurePa": 0.01516824655363311,
+        "stageIndex": 1,
+        "periapsisM": 200101.1561438702,
+        "apoapsisM": 216328.76465300843
+      },
+      "measuredPeak": {
+        "timeS": 60.99999999999718,
+        "altitudeM": 10671.954179220833,
+        "pressurePa": 35970.00637694456
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "fairingSeparated",
+          "detail": {
+            "releasedMassKg": 1900,
+            "physicsTime": 151.37500000002666
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 154.13333333335748
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 25600,
+            "parts": [
+              "falcon9_stage_1",
+              "falcon9_interstage"
+            ],
+            "physicsTime": 154.13333333335748
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 455.74999999974983
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 200101.15757199842,
+            "apoapsisM": 216328.76476341486,
+            "physicsTime": 455.74999999974983
+          }
+        }
+      ],
+      "source": "https://www.spacex.com/assets/media/falcon-users-guide-2025-05-09.pdf",
+      "assumptions": "Published thrust; approximate stage dry/propellant masses and guidance"
+    },
+    {
+      "id": "iss_resupply",
+      "vehicle": "Falcon 9 Block 5 / Cargo Dragon",
+      "initialMassKg": 560600,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913149.3973209022,
+        "yM": 3050704.9816783965,
+        "zM": 5518398.169950599,
+        "groundDistanceM": 0.7718544780294414,
+        "altitudeM": 291.94662895891815,
+        "vxMps": 7.431963521828051,
+        "vyMps": 24.221037347920387,
+        "vzMps": 43.58857231867241,
+        "verticalSpeedMps": 50.416278631473475,
+        "horizontalSpeedMps": 0.23498453758225715,
+        "surfaceSpeedMps": 50.41682624659422,
+        "inertialSpeedMps": 411.1987050287774,
+        "accelerationMps2": 4.65907556950422,
+        "properG": 1.4734014329456275,
+        "thrustN": 7628131.661001223,
+        "massKg": 527599.4584178574,
+        "fuelMassKg": 485499.4584178574,
+        "pitchDeg": 0.9124994671807353,
+        "yawDeg": 46,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.21343080554057176,
+        "dynamicPressurePa": 1513.7165872011335,
+        "stageIndex": 0,
+        "periapsisM": -6362508.37237793,
+        "apoapsisM": 421.7229022262618
+      },
+      "orbit": {
+        "simulationTimeS": 497.9999999997114,
+        "xM": 1872799.58412549,
+        "yM": 4042555.5032354943,
+        "zM": 4848621.65534323,
+        "groundDistanceM": 1497676.9536412065,
+        "altitudeM": 213737.29435757454,
+        "vxMps": 4167.000096640988,
+        "vyMps": 3886.3725324114966,
+        "vzMps": -4857.886655749336,
+        "verticalSpeedMps": -5.956459605346026,
+        "horizontalSpeedMps": 7487.7772767881515,
+        "surfaceSpeedMps": 7487.779645942849,
+        "inertialSpeedMps": 7777.144929765514,
+        "accelerationMps2": 8.549645828563731,
+        "properG": 2.173101308914433e-7,
+        "thrustN": 0,
+        "massKg": 25815.130555320575,
+        "fuelMassKg": 9315.130555320575,
+        "pitchDeg": 88.93951437125342,
+        "yawDeg": 46,
+        "rollDeg": 0,
+        "pitchRateDegS": -0.1744389995413445,
+        "dynamicPressurePa": 0.017430171804087034,
+        "stageIndex": 1,
+        "periapsisM": 200889.95437771454,
+        "apoapsisM": 215713.72749099135
+      },
+      "measuredPeak": {
+        "timeS": 62.999999999997065,
+        "altitudeM": 10890.716289146803,
+        "pressurePa": 34916.393311346255
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 153.3333333333582
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 25600,
+            "parts": [
+              "falcon9_stage_1",
+              "falcon9_interstage"
+            ],
+            "physicsTime": 153.3333333333582
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 497.9083333330448
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 200889.95494835172,
+            "apoapsisM": 215713.72757996526,
+            "physicsTime": 497.9083333330448
+          }
+        }
+      ],
+      "source": "https://www.spacex.com/assets/media/falcon-users-guide-2025-05-09.pdf",
+      "assumptions": "Published thrust; approximate stage dry/propellant masses and guidance"
+    },
+    {
+      "id": "voyager_2",
+      "vehicle": "Titan IIIE / Centaur",
+      "initialMassKg": 637010,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913161.0040930815,
+        "yM": 3050744.356226229,
+        "zM": 5518469.974036977,
+        "groundDistanceM": 1.0381953589770616,
+        "altitudeM": 374.6555033279583,
+        "vxMps": 9.765983931854219,
+        "vyMps": 32.39727707392894,
+        "vzMps": 58.9531123882254,
+        "verticalSpeedMps": 67.97351119509565,
+        "horizontalSpeedMps": 0.17099716692500644,
+        "surfaceSpeedMps": 67.97372627876811,
+        "inertialSpeedMps": 413.52091486420096,
+        "accelerationMps2": 7.121478190476159,
+        "properG": 1.724729016374165,
+        "thrustN": 10002768.561593657,
+        "massKg": 590610.6767275713,
+        "fuelMassKg": 508600.6767275713,
+        "pitchDeg": 0.47414095792920935,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.5751232235828203,
+        "dynamicPressurePa": 2729.6135973180853,
+        "stageIndex": 0,
+        "periapsisM": -6362516.49593396,
+        "apoapsisM": 610.567764067091
+      },
+      "orbit": {
+        "simulationTimeS": 568.9999999996469,
+        "xM": 2953638.9986204123,
+        "yM": 3020281.092859069,
+        "zM": 5069400.711050728,
+        "groundDistanceM": 2049704.1338938384,
+        "altitudeM": 227856.3238833286,
+        "vxMps": 6514.528487620631,
+        "vyMps": -942.2084440260562,
+        "vzMps": -3234.9989650496673,
+        "verticalSpeedMps": -0.5569152978773673,
+        "horizontalSpeedMps": 7334.306794901104,
+        "surfaceSpeedMps": 7334.306816045205,
+        "inertialSpeedMps": 7757.901248695327,
+        "accelerationMps2": 8.200462808614565,
+        "properG": 1.9282697058630245e-7,
+        "thrustN": 0,
+        "massKg": 15705.902555218536,
+        "fuelMassKg": 11495.902555218536,
+        "pitchDeg": 89.28315732028284,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": -0.22182547323759894,
+        "dynamicPressurePa": 0.006099957427858701,
+        "stageIndex": 2,
+        "periapsisM": 180079.61586308572,
+        "apoapsisM": 227860.98677620012
+      },
+      "measuredPeak": {
+        "timeS": 49.999999999997804,
+        "altitudeM": 10091.018559176475,
+        "pressurePa": 49521.31873467191
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "boostersSeparated",
+          "detail": {
+            "releasedMassKg": 66000,
+            "parts": [
+              "titan_srb_l",
+              "titan_srb_r"
+            ],
+            "physicsTime": 116.08333333337178
+          }
+        },
+        {
+          "type": "fairingSeparated",
+          "detail": {
+            "releasedMassKg": 2500,
+            "physicsTime": 132.4916666667105
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 252.86666666660102
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 6500,
+            "parts": [
+              "titan_stage_1"
+            ],
+            "physicsTime": 252.86666666660102
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 2,
+            "physicsTime": 457.10833333308193
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 2,
+            "releasedMassKg": 2800,
+            "parts": [
+              "titan_stage_2"
+            ],
+            "physicsTime": 457.10833333308193
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 568.9083333329803
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 180079.6164462082,
+            "apoapsisM": 227860.9867764376,
+            "physicsTime": 568.9083333329803
+          }
+        }
+      ],
+      "source": "https://www1.grc.nasa.gov/wp-content/uploads/Centaur-D-1A-pamphlet-1973.pdf",
+      "assumptions": "Approximate Titan/Centaur mass and propulsion model; no claim of a reconstructed flown trajectory"
+    },
+    {
+      "id": "custom-engineering",
+      "vehicle": "JUGRE engineering vehicle",
+      "initialMassKg": 43400,
+      "at12": {
+        "simulationTimeS": 11.99999999999996,
+        "xM": 913157.560951926,
+        "yM": 3050730.0666030557,
+        "zM": 5518443.98289021,
+        "groundDistanceM": 1.2274033267412112,
+        "altitudeM": 344.8080210443586,
+        "vxMps": 9.086882378609994,
+        "vyMps": 28.234085676375546,
+        "vzMps": 51.32700578130173,
+        "verticalSpeedMps": 59.277522566915856,
+        "horizontalSpeedMps": 0.609808286406351,
+        "surfaceSpeedMps": 59.28065913784519,
+        "inertialSpeedMps": 412.7478838374233,
+        "accelerationMps2": 5.402164389895255,
+        "properG": 1.5489924267605129,
+        "thrustN": 622409.1831462608,
+        "massKg": 40738.303050673814,
+        "fuelMassKg": 37838.303050673814,
+        "pitchDeg": 1.1023441416654438,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": 0.21824058825014608,
+        "dynamicPressurePa": 2082.0909244111012,
+        "stageIndex": 0,
+        "periapsisM": -6362492.688947615,
+        "apoapsisM": 524.2179726595059
+      },
+      "orbit": {
+        "simulationTimeS": 398.99999999980145,
+        "xM": 2145059.7546154577,
+        "yM": 3101252.6433004476,
+        "zM": 5389497.6814296525,
+        "groundDistanceM": 1204777.6258327584,
+        "altitudeM": 206669.38714500517,
+        "vxMps": 6913.935431688865,
+        "vyMps": -500.5513884600812,
+        "vzMps": -2467.667027037138,
+        "verticalSpeedMps": -3.1952650040502704,
+        "horizontalSpeedMps": 7358.153653781625,
+        "surfaceSpeedMps": 7358.154347550635,
+        "inertialSpeedMps": 7779.962294154625,
+        "accelerationMps2": 8.258492029702612,
+        "properG": 0.000002362745514244126,
+        "thrustN": 0,
+        "massKg": 2067.699665128737,
+        "fuelMassKg": 967.6996651287368,
+        "pitchDeg": 88.96805704346488,
+        "yawDeg": 0,
+        "rollDeg": 0,
+        "pitchRateDegS": -1.1730169025829034,
+        "dynamicPressurePa": 0.02788605870171435,
+        "stageIndex": 1,
+        "periapsisM": 190767.48039635364,
+        "apoapsisM": 207127.24720438756
+      },
+      "measuredPeak": {
+        "timeS": 59.999999999997236,
+        "altitudeM": 10776.02494843211,
+        "pressurePa": 34405.330898389366
+      },
+      "events": [
+        {
+          "type": "liftoff",
+          "detail": {
+            "physicsTime": 0
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "stage": 1,
+            "physicsTime": 159.58333333335253
+          }
+        },
+        {
+          "type": "stage",
+          "detail": {
+            "stage": 1,
+            "releasedMassKg": 1800,
+            "parts": [],
+            "physicsTime": 159.58333333335253
+          }
+        },
+        {
+          "type": "engineCutoff",
+          "detail": {
+            "final": true,
+            "exhausted": false,
+            "physicsTime": 398.44999999980195
+          }
+        },
+        {
+          "type": "orbitInsertion",
+          "detail": {
+            "periapsisM": 190767.52213853132,
+            "apoapsisM": 207127.24840521906,
+            "physicsTime": 398.44999999980195
+          }
+        }
+      ],
+      "source": null,
+      "assumptions": "Hypothetical engineering example"
+    }
+  ],
+  "historicalComparison": {
+    "source": "https://www.nasa.gov/wp-content/uploads/static/history/SP-4029/Apollo_11d_Ascent_Phase.htm",
+    "comparison": [
+      {
+        "reference": {
+          "event": "Maximum dynamic pressure",
+          "timeS": 83,
+          "altitudeM": 13567.751999999999,
+          "surfaceSpeedMps": 503.95632000000006
+        },
+        "simulated": {
+          "simulationTimeS": 83.00000000001212,
+          "xM": 917968.4832459993,
+          "yM": 3057581.0266107474,
+          "zM": 5528446.677842919,
+          "groundDistanceM": 3238.344623036463,
+          "altitudeM": 12979.208947613835,
+          "vxMps": 224.66140720587887,
+          "vyMps": 243.76030412641362,
+          "vzMps": 306.6014683975484,
+          "verticalSpeedMps": 414.5657050118981,
+          "horizontalSpeedMps": 178.9736584166736,
+          "surfaceSpeedMps": 451.54877275778335,
+          "inertialSpeedMps": 714.8373976222813,
+          "accelerationMps2": 11.82878457351967,
+          "properG": 2.0616263711888125,
+          "thrustN": 37823046.58665849,
+          "massKg": 1838512.7146496752,
+          "fuelMassKg": 1615512.7146496752,
+          "pitchDeg": 22.841781984468035,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.4640401874209104,
+          "dynamicPressurePa": 27154.396991545636,
+          "stageIndex": 0,
+          "periapsisM": -6353615.671467971,
+          "apoapsisM": 21825.616407537833
+        },
+        "altitudeErrorPercent": -4.337808152641376,
+        "speedErrorPercent": -10.399224131610593
+      },
+      {
+        "reference": {
+          "event": "S-IC / S-II separation",
+          "timeS": 162.3,
+          "altitudeM": 66725.70800000001,
+          "surfaceSpeedMps": 2402.70792
+        },
+        "simulated": {
+          "simulationTimeS": 162.000000000017,
+          "xM": 987878.1234393497,
+          "yM": 3104776.4327318086,
+          "zM": 5563829.585235263,
+          "groundDistanceM": 68485.85691537487,
+          "altitudeM": 76615.02708994783,
+          "vxMps": 1951.615287697539,
+          "vyMps": 1036.8132377906702,
+          "vzMps": 398.449601588894,
+          "verticalSpeedMps": 1142.1179776597392,
+          "horizontalSpeedMps": 1933.4199055935821,
+          "surfaceSpeedMps": 2245.5614011286953,
+          "inertialSpeedMps": 2595.8737285546176,
+          "accelerationMps2": 42.03708485782427,
+          "properG": 4.375132651465991,
+          "thrustN": 35293403.44077034,
+          "massKg": 822550.6757639756,
+          "fuelMassKg": 599550.6757639756,
+          "pitchDeg": 79.30008478587071,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 1.4999999999999674,
+          "dynamicPressurePa": 68.22243122246938,
+          "stageIndex": 0,
+          "periapsisM": -6074756.408525428,
+          "apoapsisM": 152023.14265923668
+        },
+        "altitudeErrorPercent": 14.820852991095755,
+        "speedErrorPercent": -6.540392095236636
+      },
+      {
+        "reference": {
+          "event": "S-II / S-IVB separation",
+          "timeS": 549,
+          "altitudeM": 187376.1,
+          "surfaceSpeedMps": 6515.7096
+        },
+        "simulated": {
+          "simulationTimeS": 548.9999999996651,
+          "xM": 2397651.1553490465,
+          "yM": 3473781.4211965706,
+          "zM": 5018105.151378555,
+          "groundDistanceM": 1593028.3863820347,
+          "altitudeM": 186230.18776137475,
+          "vxMps": 5770.299133687254,
+          "vyMps": 1066.0471596617165,
+          "vzMps": -3511.078918652421,
+          "verticalSpeedMps": -12.289336248966265,
+          "horizontalSpeedMps": 6838.152731847593,
+          "surfaceSpeedMps": 6838.163774863844,
+          "inertialSpeedMps": 7237.106456118753,
+          "accelerationMps2": 8.84011612085021,
+          "properG": 0.6561601865657933,
+          "thrustN": 1032999.9994594053,
+          "massKg": 160534.64825639283,
+          "fuelMassKg": 103534.64825639283,
+          "pitchDeg": 71.92486468056732,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.5031953610950208,
+          "dynamicPressurePa": 0.10369873386921637,
+          "stageIndex": 2,
+          "periapsisM": -1408069.6620367812,
+          "apoapsisM": 186289.04781948868
+        },
+        "altitudeErrorPercent": -0.611557311004582,
+        "speedErrorPercent": 4.948872719309712
+      },
+      {
+        "reference": {
+          "event": "Earth orbit insertion",
+          "timeS": 709.33,
+          "altitudeM": 191081.952,
+          "surfaceSpeedMps": 7389.540720000001
+        },
+        "simulated": {
+          "simulationTimeS": 708.9999999995196,
+          "xM": 3333742.8639274715,
+          "yM": 3601732.7701925854,
+          "zM": 4348386.503898867,
+          "groundDistanceM": 2719539.76779305,
+          "altitudeM": 186040.91934435908,
+          "vxMps": 5678.061884954239,
+          "vyMps": 438.81812814750793,
+          "vzMps": -4717.183550011619,
+          "verticalSpeedMps": -0.37110689196515523,
+          "horizontalSpeedMps": 7394.915051962454,
+          "surfaceSpeedMps": 7394.91506127428,
+          "inertialSpeedMps": 7793.511154530319,
+          "accelerationMps2": 8.369752267319146,
+          "properG": 0.0000021536587442349814,
+          "thrustN": 0,
+          "massKg": 139890.57628694313,
+          "fuelMassKg": 82890.57628694313,
+          "pitchDeg": 67.74287592217826,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": -0.3999713910632967,
+          "dynamicPressurePa": 0.12292271385698536,
+          "stageIndex": 2,
+          "periapsisM": 175067.68072552048,
+          "apoapsisM": 186049.78857350536
+        },
+        "altitudeErrorPercent": -2.638152166061666,
+        "speedErrorPercent": 0.07272902982634591
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+<section id="main-menu" class="main-menu" aria-label="Main menu">
+  <div class="menu-art" aria-hidden="true"></div>
+  <div class="menu-stars menu-stars-a" aria-hidden="true"></div>
+  <div class="menu-stars menu-stars-b" aria-hidden="true"></div>
+  <div class="menu-shade" aria-hidden="true"></div>
+  <div class="menu-content">
+    <div class="menu-brand">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="10" stroke="currentColor" stroke-width="1.5"/><ellipse cx="20" cy="20" rx="18" ry="5.5" transform="rotate(-35 20 20)" stroke="currentColor" stroke-width="1.5"/><circle cx="32" cy="11" r="2.5" fill="currentColor"/></svg>
+      <div><strong>JUGRE</strong><span>SPACE PROJECT</span></div>
+    </div>
+    <div class="menu-heading"><span class="menu-kicker" data-i18n="menuKicker">YOUR JOURNEY STARTS HERE</span><h1 data-i18n="menuTitle">Beyond the horizon.</h1><p data-i18n="menuIntro">Build. Explore. Discover.</p></div>
+    <nav class="menu-nav" aria-label="Main menu navigation">
+      <button type="button" data-menu-action="continue" disabled><span data-i18n="continue">Continue</span><small data-i18n="resume">RESUME FLIGHT</small><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="new" disabled><span data-i18n="newMission">New mission</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="missions" disabled><span data-i18n="missions">Missions</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="assembly" disabled><span data-i18n="assembly">Spacecraft assembly</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="projects" disabled><span data-i18n="projects">Projects</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="settings" disabled><span data-i18n="settings">Settings</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="credits" disabled><span data-i18n="credits">Credits</span><b aria-hidden="true">↗</b></button>
+      <button type="button" data-menu-action="exit" disabled><span data-i18n="exit">Exit game</span><b aria-hidden="true">↗</b></button>
+    </nav>
+    <div class="menu-footer"><div><i></i><span id="menu-save-status" role="status">INITIALIZING FLIGHT SYSTEMS</span></div><span>JUGRE SPACE PROJECT <em>·</em> 0.1.0 TEST</span></div>
+  </div>
+  <div class="menu-scene-caption" aria-hidden="true"><span>01 / EARTH ORBIT</span><strong>THE NEXT FRONTIER</strong><i></i></div>
+</section>
+
+<dialog id="game-settings" class="game-settings" aria-labelledby="settings-title">
+  <div class="settings-top"><div><span class="settings-overline">JUGRE / SYSTEMS</span><h2 id="settings-title" data-i18n="settings">Settings</h2><p data-i18n="settingsIntro">Configure your experience.</p></div><button type="button" class="settings-close" data-settings-cancel aria-label="Close settings">×</button></div>
+  <div class="settings-layout">
+    <div class="settings-tabs" role="tablist" aria-label="Settings categories">
+      <button type="button" role="tab" data-tab="general" aria-selected="true" data-i18n="general">General</button>
+      <button type="button" role="tab" data-tab="graphics" aria-selected="false" data-i18n="graphics">Graphics</button>
+      <button type="button" role="tab" data-tab="audio" aria-selected="false" data-i18n="audio">Audio</button>
+      <button type="button" role="tab" data-tab="controls" aria-selected="false" data-i18n="controls">Controls</button>
+      <button type="button" role="tab" data-tab="gameplay" aria-selected="false" data-i18n="gameplay">Gameplay</button>
+    </div>
+    <div class="settings-body">
+      <section class="settings-panel" data-panel="general" role="tabpanel">
+        <h3 data-i18n="general">General</h3><p class="panel-intro" data-i18n="generalIntro">Make the interface feel like yours.</p>
+        <label class="setting-row"><span><strong data-i18n="language">Menu language</strong><small data-i18n="languageHint">The rest of the simulator retains its existing language.</small></span><select data-setting="language"><option value="en">English</option><option value="ru">Русский</option></select></label>
+        <label class="setting-row"><span><strong data-i18n="scale">Interface scale</strong><small data-i18n="scaleHint">Scale the simulator interface.</small></span><span class="range-wrap"><input type="range" min="85" max="120" step="5" data-setting="scale"><output data-value="scale"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="fullscreen">Fullscreen</strong><small data-i18n="fullscreenHint">May require a click after restarting.</small></span><input type="checkbox" class="setting-toggle" data-setting="fullscreen"></label>
+        <label class="setting-row"><span><strong data-i18n="animations">Interface animations</strong><small data-i18n="animationsHint">Menu movement and transitions.</small></span><input type="checkbox" class="setting-toggle" data-setting="animations"></label>
+        <label class="setting-row"><span><strong data-i18n="hints">Interface hints</strong><small data-i18n="hintsHint">Show camera and control hints.</small></span><input type="checkbox" class="setting-toggle" data-setting="hints"></label>
+      </section>
+      <section class="settings-panel" data-panel="graphics" role="tabpanel" hidden>
+        <h3 data-i18n="graphics">Graphics</h3><p class="panel-intro" data-i18n="graphicsIntro">Balance image quality and performance.</p>
+        <label class="setting-row"><span><strong data-i18n="quality">Render quality</strong><small data-i18n="qualityHint">Controls render resolution and preset shadows.</small></span><select data-setting="quality"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option><option value="ultra">Ultra</option></select></label>
+        <label class="setting-row"><span><strong data-i18n="shadows">Shadows</strong><small data-i18n="shadowsHint">Render scene shadows.</small></span><input type="checkbox" class="setting-toggle" data-setting="shadows"></label>
+        <label class="setting-row"><span><strong data-i18n="antialias">Anti-aliasing</strong><small data-i18n="restartHint">Takes effect after restarting the application.</small></span><input type="checkbox" class="setting-toggle" data-setting="antialias"></label>
+        <label class="setting-row"><span><strong data-i18n="ambience">Background effects</strong><small data-i18n="ambienceHint">Animated stars and orbital movement.</small></span><input type="checkbox" class="setting-toggle" data-setting="ambience"></label>
+        <div class="settings-note"><strong data-i18n="display">Display</strong><span id="settings-resolution"></span><p data-i18n="graphicsNote">Window resolution and V-Sync are managed by the browser or operating system. Texture quality is fixed by the existing assets.</p></div>
+      </section>
+      <section class="settings-panel" data-panel="audio" role="tabpanel" hidden>
+        <h3 data-i18n="audio">Audio</h3><p class="panel-intro" data-i18n="audioIntro">Adjust the simulator's sound channels.</p>
+        <label class="setting-row"><span><strong data-i18n="master">Master volume</strong></span><span class="range-wrap"><input type="range" min="0" max="100" data-audio="master"><output data-audio-value="master"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="music">Music</strong></span><span class="range-wrap"><input type="range" min="0" max="100" data-audio="music"><output data-audio-value="music"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="effects">Sound effects</strong></span><span class="range-wrap"><input type="range" min="0" max="100" data-audio="effects"><output data-audio-value="effects"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="voices">Radio / voices</strong><small data-i18n="voicesHint">Radio communication and voices share one channel.</small></span><span class="range-wrap"><input type="range" min="0" max="100" data-audio="voices"><output data-audio-value="voices"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="interfaceSound">Interface sounds</strong></span><span class="range-wrap"><input type="range" min="0" max="100" data-audio="interface"><output data-audio-value="interface"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="subtitles">Radio subtitles</strong></span><input type="checkbox" class="setting-toggle" data-audio="subtitles"></label>
+        <label class="setting-row"><span><strong data-i18n="mute">Mute all</strong></span><input type="checkbox" class="setting-toggle" data-setting="mute"></label>
+      </section>
+      <section class="settings-panel" data-panel="controls" role="tabpanel" hidden>
+        <h3 data-i18n="controls">Controls</h3><p class="panel-intro" data-i18n="controlsIntro">Select a vehicle profile and action, then press a new key.</p>
+        <label class="setting-row"><span><strong data-i18n="profile">Vehicle profile</strong></span><select id="settings-profile"></select></label>
+        <label class="setting-row"><span><strong data-i18n="action">Action</strong></span><select id="settings-action"></select></label>
+        <div class="setting-row"><span><strong data-i18n="binding">Current key</strong><small data-i18n="bindingHint">Escape cancels key capture.</small></span><button type="button" class="settings-key" id="settings-key"></button></div>
+        <div class="settings-inline"><button type="button" class="settings-secondary" id="settings-controls-reset" data-i18n="restoreControls">Restore profile defaults</button><output id="settings-controls-status" role="status"></output></div>
+        <div class="settings-note" data-i18n="cameraControls">Camera: drag to orbit · scroll to zoom · right-drag to pan.</div>
+      </section>
+      <section class="settings-panel" data-panel="gameplay" role="tabpanel" hidden>
+        <h3 data-i18n="gameplay">Gameplay</h3><p class="panel-intro" data-i18n="gameplayIntro">Tune the camera and flight assistance.</p>
+        <label class="setting-row"><span><strong data-i18n="sensitivity">Camera sensitivity</strong><small data-i18n="sensitivityHint">Orbit, pan and zoom speed.</small></span><span class="range-wrap"><input type="range" min="25" max="200" step="5" data-setting="sensitivity"><output data-value="sensitivity"></output></span></label>
+        <label class="setting-row"><span><strong data-i18n="damping">Smooth camera movement</strong></span><input type="checkbox" class="setting-toggle" data-setting="damping"></label>
+        <label class="setting-row"><span><strong data-i18n="tracking">Launch camera guidance</strong><small data-i18n="trackingHint">Automatically follows the vehicle during ascent.</small></span><input type="checkbox" class="setting-toggle" data-setting="tracking"></label>
+        <label class="setting-row"><span><strong data-i18n="assistance">Default flight assistance</strong><small data-i18n="assistanceHint">Used for new flights; saved flights keep their own mode.</small></span><select data-setting="assistance"><option value="arcade">Arcade</option><option value="standard">Standard</option><option value="realism">Realism</option></select></label>
+      </section>
+    </div>
+  </div>
+  <div class="settings-bottom"><output id="settings-status" role="status"></output><div class="settings-actions"><button type="button" class="settings-secondary" id="settings-reset" data-i18n="reset">Reset to defaults</button><button type="button" class="settings-secondary" data-settings-cancel data-i18n="cancel">Cancel</button><button type="button" class="settings-secondary" id="settings-apply" data-i18n="apply">Apply</button><button type="button" class="settings-primary" id="settings-save" data-i18n="save">Save</button></div></div>
+</dialog>
+
+<dialog id="game-credits" class="game-credits" aria-labelledby="credits-title"><span class="settings-overline">JUGRE / SPACE PROJECT</span><h2 id="credits-title" data-i18n="credits">Credits</h2><p data-i18n="creditsBody">Created by the JUGRE Space Project team. Built with Three.js and PhysX. Planetary textures: Solar System Scope / INOVE (CC BY 4.0); Earth imagery: USDA / USGS The National Map. Radio voices use Kokoro-82M. Menu artwork is AI-generated. Detailed notices are included with the project.</p><button type="button" class="settings-primary" id="credits-close" data-i18n="close">Close</button></dialog>
+<dialog id="game-missions" class="game-credits" aria-labelledby="missions-title"><span class="settings-overline">JUGRE / MISSION ARCHIVE</span><h2 id="missions-title" data-i18n="missions">Missions</h2><p data-i18n="missionIntro">Choose a mission collection to explore.</p><div class="mission-choices"><button type="button" id="mission-historical"><strong data-i18n="historical">Historical missions</strong><span data-i18n="historicalHint">Explore the available missions at the launch pad.</span><b aria-hidden="true">↗</b></button><button type="button" id="mission-custom"><strong data-i18n="customMissions">Custom missions</strong><span data-i18n="customMissionsHint">Open your saved mission projects.</span><b aria-hidden="true">↗</b></button></div><button type="button" class="settings-secondary" id="missions-close" data-i18n="close">Close</button></dialog>

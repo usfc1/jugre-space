@@ -1,0 +1,31 @@
+{
+  "before": false,
+  "errors": [],
+  "images": [
+    {
+      "name": "Kennedy aerial florida",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "name": "Kennedy aerial region",
+      "width": 3072,
+      "height": 3072
+    },
+    {
+      "name": "Kennedy aerial campus",
+      "width": 3072,
+      "height": 3072
+    },
+    {
+      "name": "Kennedy aerial facilities",
+      "width": 4000,
+      "height": 4000
+    },
+    {
+      "name": "Kennedy aerial pad39a",
+      "width": 4000,
+      "height": 4000
+    }
+  ]
+}

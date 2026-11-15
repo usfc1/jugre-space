@@ -1,0 +1,48 @@
+
+> verify:lunar
+> node verify-lunar-flight.mjs
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.click: Timeout 90000ms exceeded.
+Call log:
+  - waiting for locator('[data-view=launch]')
+    - locator resolved to <button type="button" data-view="launch" aria-pressed="false">Launch Pad</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is inert
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is inert
+    - retrying click action
+      - waiting 100ms
+    174 × waiting for element to be visible, enabled and stable
+        - element is inert
+      - retrying click action
+        - waiting 500ms
+
+    at C:\Users\Yusuf\Downloads\JUGRE SPACE PROJECT\assembly_hangar\source\verify-lunar-flight.mjs:24:14 {
+  log: [
+    "  - waiting for locator('[data-view=launch]')",
+    '    - locator resolved to <button type="button" data-view="launch" aria-pressed="false">Launch Pad</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is inert',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is inert',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    174 × waiting for element to be visible, enabled and stable',
+    '        - element is inert',
+    '      - retrying click action',
+    '        - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.17.1

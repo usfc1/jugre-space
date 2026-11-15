@@ -1,0 +1,5 @@
+
+> build
+> node build.mjs
+
+Exported the assembly hangar, 4 animated scientists, 7 ready rockets and the offline viewer.

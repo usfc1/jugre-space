@@ -1,0 +1,32 @@
+{
+  "name": "jugre-space-project-desktop",
+  "version": "0.1.0-test.1",
+  "description": "Offline JUGRE Space Project Windows test build",
+  "private": true,
+  "author": "JUGRE Space Project",
+  "main": "main.cjs",
+  "scripts": {
+    "build:win": "node build.cjs",
+    "test:exe": "node test-exe.cjs",
+    "test:menu": "node test-menu.cjs"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "space.jugre.testing",
+    "productName": "JUGRE Space Project",
+    "directories": { "output": "../release" },
+    "files": [
+      "main.cjs", "preload.cjs", "smoke-test.cjs", "build-info.json", "resources/icon.ico", "package.json",
+      { "from": "../assembly_hangar", "to": "game", "filter": ["index.html"] },
+      { "from": "../assembly_hangar", "to": "docs", "filter": ["LAUNCH_PHYSICS_AUDIT.md", "LUNAR_FLIGHT.md", "MISSION_TIMELINE.md", "PHYSX_INTEGRATION.md"] },
+      { "from": "../assembly_hangar/assets/audio", "to": "docs/audio", "filter": ["CREDITS.md"] },
+      { "from": "../assembly_hangar/assets/earth-flight", "to": "docs/earth-flight", "filter": ["CREDITS.md"] },
+      { "from": "../assembly_hangar/assets/space", "to": "docs/space", "filter": ["CREDITS.md"] }
+    ],
+    "win": { "icon": "resources/icon.ico", "target": "portable", "signAndEditExecutable": false },
+    "artifactName": "JUGRE-Space-Project-${version}-win-x64.${ext}"
+  }
+}

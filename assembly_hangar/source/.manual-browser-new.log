@@ -1,0 +1,24 @@
+
+> test:browser
+> playwright test tests/manual-control.spec.mjs tests/manual-profiles.spec.mjs tests/launch-rendering.spec.mjs
+
+[WebServer] (node:28000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 11 tests using 1 worker
+
+(node:25044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\launch-rendering.spec.mjs:6:3 › apollo_11: actual renderer and HUD match physical launch at T+12 (12.1s)
+  ok  2 tests\launch-rendering.spec.mjs:6:3 › artemis_ii: actual renderer and HUD match physical launch at T+12 (9.9s)
+  ok  3 tests\launch-rendering.spec.mjs:6:3 › mars_2020: actual renderer and HUD match physical launch at T+12 (9.7s)
+  ok  4 tests\launch-rendering.spec.mjs:6:3 › mars_science_laboratory: actual renderer and HUD match physical launch at T+12 (9.2s)
+  ok  5 tests\launch-rendering.spec.mjs:6:3 › dart: actual renderer and HUD match physical launch at T+12 (9.4s)
+  ok  6 tests\launch-rendering.spec.mjs:6:3 › iss_resupply: actual renderer and HUD match physical launch at T+12 (9.3s)
+  ok  7 tests\launch-rendering.spec.mjs:6:3 › voyager_2: actual renderer and HUD match physical launch at T+12 (9.8s)
+  ok  8 tests\manual-control.spec.mjs:14:1 › manual controls load a legacy flight, remap cutoff, block time warp, and survive a reload (20.1s)
+  ok  9 tests\manual-control.spec.mjs:78:1 › orbital takeover suspends automatic warp and the Moon landing explains the manual control lock (9.9s)
+  ok 10 tests\manual-profiles.spec.mjs:21:1 › P66 takeover exposes a real local model, alarm choice, throttle and a stable save (8.4s)
+  ok 11 tests\manual-profiles.spec.mjs:30:1 › EVA switches astronauts, advances resources only when running, and saves the active actor (8.7s)
+
+  11 passed (2.0m)

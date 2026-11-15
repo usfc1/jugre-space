@@ -1,355 +1,284 @@
-import {
-  BufferGeometry, DoubleSide, ExtrudeGeometry, Float32BufferAttribute, Group, MeshStandardMaterial, Path, Shape,
-} from 'three';
-import { box, mesh, node, ring, rod, rot, X } from '../../original_parts/source/geometry.mjs';
-import { readAsset } from '../../constructor_kit/source/model-io.mjs';
-import { buildCraft, example, standPosition, standRotation } from './assembly.mjs';
+import { BoxGeometry, CylinderGeometry, Quaternion, Vector3 } from 'three';
+import { mesh, node, seal } from '../../original_parts/source/geometry.mjs';
+import { MeshStandardMaterial } from 'three';
+import { deckY, equipmentStand } from './vab-layout.mjs';
 
-const material = (name, color, properties = {}) => new MeshStandardMaterial({ name, color, roughness: 0.72, ...properties });
-const m = {
-  concrete: [0x4d575d, 0x505a60, 0x535d62, 0x565e62, 0x50575c].map((color, index) => material(`Floor bay ${index + 1}`, color)),
-  seam: material('Concrete joints', 0x28323a),
-  pit: material('Assembly floor coating', 0x344047),
-  wall: material('Cool grey wall enamel', 0x829098),
-  panel: material('Light grey composite panels', 0x9aa5a6),
-  graphite: material('Graphite structure', 0x2c3b45, { metalness: 0.23 }),
-  black: material('Rubber and cable ducts', 0x141d23),
-  navy: material('Blue equipment enamel', 0x264a5c),
-  steel: material('Galvanized steel', 0x718795, { metalness: 0.62, roughness: 0.48 }),
-  amber: material('Safety orange enamel', 0xc97524, { metalness: 0.14 }),
-  yellow: material('Safety lane paint', 0xe3ad51),
-  white: material('Warm white stenciling', 0xe9e2cf),
-  glass: material('Smoke-blue observation glazing', 0x315366, { metalness: 0.46, roughness: 0.26 }),
-  lit: material('Overhead diffusers', 0xe7f4ff, { emissive: 0xbcdfff, emissiveIntensity: 1.9 }),
-  status: material('Control screen cyan', 0x53d9db, { emissive: 0x41c1c5, emissiveIntensity: 0.75 }),
-  hot: material('Amber indicator', 0xec963d, { emissive: 0xe68533, emissiveIntensity: 0.7 }),
-  cloth: [0xb31933, 0xf5f0e6, 0x202c62].map((color, index) =>
-    material(['Flag red', 'Flag ivory', 'Flag canton blue'][index], color, { side: DoubleSide })),
+const finish = (name, color, metalness = 0, roughness = .78) =>
+  new MeshStandardMaterial({ name, color, metalness, roughness });
+const concrete = [0x62666a, 0x66696b, 0x686b6e, 0x64696b].map((color, i) => finish(`Concrete ${i + 1}`, color));
+const enamel = [0x73808a, 0x7c878e, 0x697781].map((color, i) => finish(`Galvanized cladding ${i + 1}`, color, .18));
+const steel = finish('Painted steel', 0x324451, .3);
+const iron = finish('Graphite steel', 0x233039, .3);
+const zinc = finish('Satin zinc', 0x8799a2, .55, .54);
+const navy = finish('JUGRE equipment enamel', 0x294759, .24);
+const amber = finish('Amber safety enamel', 0xba7431, .18);
+const yellow = finish('Ochre floor paint', 0xcaa055);
+const ivory = finish('Ivory floor paint', 0xc8ccc0);
+const glass = finish('Workshop glazing', 0x567889, .48, .36);
+const rubber = finish('Cable insulation', 0x192127);
+const diffuser = new MeshStandardMaterial({
+  name: 'Industrial strip diffuser', color: 0xa4b5bc, emissive: 0xbad7e5, emissiveIntensity: .68,
+});
+const cube = new BoxGeometry(1, 1, 1);
+const cylinder = new CylinderGeometry(.5, .5, 1, 12);
+const octagon = new CylinderGeometry(.5, .5, 1, 8);
+const up = new Vector3(0, 1, 0);
+const block = (parent, material, size, position, rotation) => mesh(parent, cube, material, position, rotation, size);
+const slab = (parent, material, [x, z], [w, d], level = .025) =>
+  block(parent, material, [w, .015, d], [x, level, z]);
+const rail = (parent, material, start, end, thickness) => {
+  const from = new Vector3(...start);
+  const to = new Vector3(...end);
+  const axis = to.clone().sub(from);
+  return block(parent, material, [thickness, axis.length(), thickness], from.lerp(to, .5).toArray(),
+    new Quaternion().setFromUnitVectors(up, axis.normalize()));
 };
+const section = (parent, name, position) => node(name, parent, position, { occluder: true });
+const west = -27, east = 35, back = -19, front = 53, roofY = 136;
+const levels = [3.3, 7.7, 14, 23, 35, 49, 65, 82, 99, 115, 126];
 
-const glyphs = {
-  A: '0e111f1111', B: '1e111e111e', C: '0f1010100f', E: '1f101e101f', G: '0f1013170f',
-  H: '11111f1111', I: '1f0404041f', J: '070101110e', K: '1112141211', L: '101010101f',
-  M: '111b151111', N: '1119151311',
-  O: '0e1111110e', R: '1e111e1211', S: '0f100e011e', T: '1f04040404', U: '111111110e',
-  Y: '11110a0404', '0': '0e1315190e', '1': '040c04040e', '2': '0e1102041f',
-  '3': '1e0106011e', '4': '060a121f02', '5': '1f101e011e', '6': '0e101e110e',
-  '7': '1f01020404', '8': '0e110e110e', '9': '0e110f010e', '/': '0102040810', ' ': '0000000000',
-};
+function placard(parent, name, position, width, height, lines, rotation = 0, floor = false) {
+  const sign = node(name, parent, position, { sign: { width, height, lines } });
+  if (floor) sign.rotation.x = -Math.PI / 2;
+  else sign.rotation.y = rotation;
+  return sign;
+}
 
-function stencil(parent, label, height, position, finish = m.white, angle = 0) {
-  const sign = new Group();
-  sign.position.set(...position);
-  sign.rotation.y = angle;
-  parent.add(sign);
-  const unit = height / 5;
-  const offset = (label.length * 6 - 2) / 2;
-  Array.from(label).forEach((letter, index) => {
-    for (const [row, bits] of glyphs[letter].match(/../g).entries()) {
-      const mask = parseInt(bits, 16);
-      for (let column = 0; column < 5; column++) {
-        if (mask & (16 >> column)) {
-          box(sign, finish, [unit, unit, 0.013], [(index * 6 + column - offset) * unit, (2 - row) * unit, 0]);
+function buildFloor(root) {
+  const floor = node('concrete_slab', root);
+  const span = east - west;
+  block(floor, iron, [span + 1, .32, front - back + 1], [(west + east) / 2, -.42, (back + front) / 2]);
+  for (let ix = 0; ix < 8; ix++) {
+    for (let iz = 0; iz < 9; iz++) {
+      const width = span / 8, depth = (front - back) / 9;
+      block(floor, concrete[(ix + iz * 3 + (ix * iz) % 3) % 4], [width - .035, .25, depth - .035],
+        [west + width * (ix + .5), -.125, back + depth * (iz + .5)]);
+    }
+  }
+  // Recessed transporter tracks and pedestrian boundaries.
+  for (const x of [-8.8, 8.8]) {
+    slab(floor, steel, [x, 32.5], [.22, 39]);
+    slab(floor, zinc, [x, 32.5], [.045, 39], .036);
+  }
+  for (const x of [-11, 11]) slab(floor, yellow, [x, 15], [.11, 70]);
+  for (const z of [-9.25, 9.25]) slab(floor, yellow, [0, z], [22, .11]);
+  for (const sign of [-1, 1]) {
+    for (const z of [-7.8, 0, 7.8]) {
+      slab(floor, ivory, [sign * 10.5, z], [.55, .16]);
+      slab(floor, ivory, [sign * 10.8, z], [.14, 1.35]);
+    }
+  }
+  for (let i = 0; i < 32; i++) {
+    const x = -22 + (i * 7.47) % 49;
+    const z = 11 + (i * 5.21) % 37;
+    slab(floor, concrete[i % 4], [x, z], [.07 + (i % 3) * .065, .15 + (i % 7) * .11], .011);
+  }
+  placard(floor, 'vehicle_lane', [0, .045, 12.25], 7.5, 2.3, ['VAB / 01', 'VEHICLE ASSEMBLY'], 0, true);
+  placard(floor, 'equipment_lane', [19, .045, 15.7], 7, 2, ['02', 'PAYLOAD LAB'], 0, true);
+}
+
+function buildShell(root) {
+  const shell = node('shell', root);
+  for (let level = 0; level < 8; level++) {
+    const base = level * 17;
+    for (let i = 0; i < 7; i++) {
+      const span = (east - west) / 7, x = west + (i + .5) * span;
+      const panel = section(shell, `rear_${level}_${i}`, [x, base, back]);
+      block(panel, enamel[(i + level) % 3], [span - .03, 16.97, .56], [0, 8.5, 0]);
+      block(panel, steel, [.72, 17, 1.4], [-span / 2 + .36, 8.5, .73]);
+      for (const y of [1, 5.1, 9.2, 13.3, 16.7]) block(panel, iron, [span, .095, .10], [0, y, .31]);
+      if (level === 0) {
+        block(panel, navy, [span - .06, 3.45, .14], [0, 1.73, .35]);
+        block(panel, amber, [span - .06, .10, .16], [0, 3.46, .36]);
+      }
+      if (i === 3 && level === 0) {
+        block(panel, iron, [8.65, 3.45, .21], [-2.2, 6.7, .48]);
+        placard(panel, 'brand', [-2.2, 6.72, .60], 8.4, 3.2, ['JUGRE', 'VEHICLE ASSEMBLY BUILDING'])
+          .userData.wordmark = true;
+      }
+      if (i === 3 && (level === 2 || level === 5)) {
+        placard(panel, 'level', [-1.4, 9, .32], 6, 4, [String(level * 17).padStart(2, '0'), 'SERVICE LEVEL']);
+      }
+    }
+    for (const x of [west, east]) {
+      for (let i = 0; i < 6; i++) {
+        const z = back + 6 + i * 12;
+        const panel = section(shell, `side_${x}_${level}_${i}`, [x, base, z]);
+        block(panel, enamel[(i + level + 1) % 3], [.58, 16.97, 11.97], [0, 8.5, 0]);
+        block(panel, steel, [1.8, 17, .68], [0, 8.5, -5.72]);
+        for (const y of [1, 6, 11, 16.7]) block(panel, iron, [.13, .115, 11.9], [x === west ? .32 : -.32, y, 0]);
+      }
+    }
+  }
+  for (let i = 0; i < 6; i++) {
+    const z = back + 6 + i * 12;
+    const bay = section(shell, `roof_bay_${i}`, [0, roofY, z]);
+    block(bay, steel, [east - west, .55, 11.98], [(east + west) / 2, .28, 0]);
+    for (const x of [-24, -12, 0, 12, 24, 34]) {
+      block(bay, iron, [.26, .9, 11.9], [x, -.5, 0]);
+      block(bay, diffuser, [.36, .14, 4.7], [x, -1.04, 1.4]);
+    }
+    for (let x = west; x < east; x += 6.2) {
+      rail(bay, zinc, [x, -4.1, -5.85], [x + 6.2, -.7, -5.85], .27);
+    }
+    block(bay, zinc, [62, .35, .36], [4, -4.1, -5.85]);
+  }
+}
+
+function buildGate(root) {
+  const gate = node('sectional_gate', root);
+  for (let level = 0; level < 9; level++) {
+    const y = level * 15;
+    const jamb = section(gate, `jamb_${level}`, [0, y, front]);
+    for (const x of [west + 1, -14.6, 14.6, east - 1]) {
+      block(jamb, steel, [1.6, 15, 2.25], [x, 7.5, 0]);
+    }
+    for (const [x, width] of [[-20.6, 12.8], [24.7, 20.6]]) {
+      const wing = section(gate, `facade_${x}_${level}`, [x, y, front]);
+      block(wing, enamel[level % 3], [width, 14.96, .7], [0, 7.5, 0]);
+      block(wing, iron, [width, .14, .78], [0, 1.3, 0]);
+    }
+    for (const side of [-1, 1]) {
+      const leaf = section(gate, `leaf_${level}_${side}`, [side * 7.2, y, front]);
+      leaf.userData.gateSlide = side * 14.6;
+      block(leaf, navy, [14.35, 14.96, .66], [0, 7.5, 0]);
+      for (let dy = 1.2; dy < 15; dy += 1.48) block(leaf, steel, [14.34, .16, .84], [0, dy, 0]);
+      block(leaf, amber, [.16, 14.98, .88], [-side * 7.08, 7.5, 0]);
+    }
+  }
+}
+
+function buildPlatform(root) {
+  const platform = node('mounting_platform', root, [0, 0, 0], { rocketDeck: true });
+  for (const [material, diameter, height, y] of [
+    [iron, 7.85, .16, .08], [steel, 7.45, .54, .41], [yellow, 7.49, .07, .69], [navy, 7.36, .075, deckY - .0375],
+  ]) mesh(platform, octagon, material, [0, y, 0], undefined, [diameter, height, diameter]);
+  for (let i = 0; i < 8; i++) {
+    const angle = (i + .5) * Math.PI / 4;
+    const x = Math.sin(angle), z = Math.cos(angle);
+    mesh(platform, cylinder, zinc, [x * 3.24, deckY + .018, z * 3.24], undefined, [.19, .036, .19]);
+    block(platform, diffuser, [.18, .09, .29], [x * 3.45, .39, z * 3.45]);
+  }
+}
+
+function guardrail(parent, x1, x2, y, z) {
+  for (const dy of [.51, 1.03]) block(parent, amber, [x2 - x1, .075, .075], [(x1 + x2) / 2, y + dy, z]);
+  for (let x = x1 + .09; x < x2; x += 1.32) block(parent, amber, [.075, 1.06, .075], [x, y + .52, z]);
+}
+
+function buildService(root) {
+  const towers = node('service_platforms', root);
+  const bridges = node('retractable_bridges', root);
+  for (const side of [-1, 1]) {
+    for (let i = 0; i < levels.length; i++) {
+      const y = levels[i], previous = levels[i - 1] ?? 0;
+      const tower = section(towers, `tower_${side}_${i}`, [side * 14, y, -4.3]);
+      const tier = y - previous;
+      for (const x of [-1.65, 1.65]) {
+        for (const z of [-3, 1.4]) {
+          block(tower, steel, [.52, tier + .02, .56], [x, -tier / 2, z]);
+          block(tower, zinc, [.75, .18, .78], [x, -.22, z]);
         }
+        rail(tower, steel, [x, -tier, -3], [x, 0, 1.4], .19);
       }
-    }
-  });
-}
-
-function floor(root) {
-  const base = node('floor', root);
-  box(base, m.seam, [30, 0.276, 35], [0, -0.162, 0]);
-  for (let x = 0; x < 10; x++) {
-    for (let z = 0; z < 10; z++) {
-      box(base, m.concrete[(x * x + 3 * x * z + z * z) % m.concrete.length],
-        [2.983, 0.022, 3.478], [3 * x - 13.5, -0.011, 3.5 * z - 15.75]);
-    }
-  }
-  box(base, m.pit, [19.8, 0.02, 7.8], [0, 0.01, -4.4]);
-  for (const z of [-8.27, -0.53]) {
-    box(base, m.yellow, [19.8, 0.012, 0.07], [0, 0.025, z]);
-    for (let x = -9; x < 10; x += 2) {
-      box(base, m.yellow, [0.5, 0.012, 0.11], [x, 0.025, z + 0.14 * Math.sign(z + 4.4)]);
-    }
-  }
-  for (const x of [-9.88, 9.88]) box(base, m.yellow, [0.07, 0.012, 7.8], [x, 0.025, -4.4]);
-  for (const x of [-11.9, 11.9]) {
-    for (const dx of [-0.8, 0.8]) box(base, m.white, [0.045, 0.013, 33], [x + dx, 0.014, 0]);
-    for (let z = -15; z <= 15; z += 1.6) box(base, m.yellow, [0.055, 0.016, 0.68], [x, 0.014, z]);
-  }
-  for (const z of [4.5, 5.2]) {
-    box(base, m.graphite, [19.4, 0.019, 0.15], [0, 0.011, z]);
-    for (let x = -9.6; x < 9.7; x += 0.24) box(base, m.steel, [0.03, 0.014, 0.12], [x, 0.025, z]);
-  }
-  for (let x = -4; x <= 4; x += 0.58) box(base, m.white, [0.27, 0.015, 1.15], [x, 0.017, 9.7]);
-  const id = node('floor_bay_id', base, [-7.8, 0.025, 2.5]);
-  id.rotation.x = -Math.PI / 2;
-  stencil(id, '01', 0.85, [0, 0, 0]);
-  stencil(id, 'BAY', 0.25, [0, -0.78, 0]);
-}
-
-function door(parent, x, label) {
-  box(parent, m.graphite, [3.25, 3.8, 0.28], [x, 1.9, -16.18]);
-  box(parent, m.navy, [2.9, 3.37, 0.19], [x, 1.76, -16.01]);
-  for (let i = 1; i <= 12; i++) box(parent, m.steel, [2.88, 0.026, 0.022], [x, i * 0.255, -15.91]);
-  box(parent, m.black, [1.44, 0.28, 0.06], [x, 2.55, -15.87]);
-  box(parent, m.glass, [1.28, 0.16, 0.018], [x, 2.55, -15.833]);
-  box(parent, m.status, [0.14, 0.11, 0.07], [x + 1.78, 2.43, -16.01]);
-  stencil(parent, label, 0.24, [x, 4.13, -16.13]);
-}
-
-function structure(root) {
-  const back = node('rear_wall', root);
-  box(back, m.graphite, [30, 11.8, 0.42], [0, 5.9, -16.68]);
-  for (let i = 0; i < 12; i++) {
-    const x = 2.5 * i - 13.75;
-    box(back, m.navy, [2.46, 4.65, 0.14], [x, 2.325, -16.39]);
-    box(back, m.panel, [2.46, 5.69, 0.14], [x, 7.55, -16.39]);
-    box(back, m.steel, [2.46, 0.34, 0.19], [x, 10.66, -16.35]);
-  }
-  box(back, m.graphite, [30, 0.16, 0.27], [0, 4.65, -16.24]);
-  box(back, m.steel, [30, 0.09, 0.35], [0, 4.5, -16.28]);
-  door(back, -10.3, 'LAB 01');
-  door(back, 10.3, 'AIRLOCK');
-  box(back, m.graphite, [12.0, 2.75, 0.24], [0, 2.17, -16.14]);
-  for (let i = 0; i < 6; i++) {
-    const x = (i - 2.5) * 1.94;
-    box(back, m.glass, [1.83, 2.37, 0.12], [x, 2.17, -15.98]);
-    box(back, m.status, [1.52, 0.036, 0.026], [x, 3.11, -15.91]);
-    box(back, m.steel, [1.88, 0.06, 0.09], [x, 1.53, -15.88]);
-  }
-  for (const side of [-1, 1]) {
-    const wall = node(side < 0 ? 'left_wall' : 'right_wall', root);
-    box(wall, m.graphite, [0.31, 11.8, 33.4], [side * 14.91, 5.9, -0.04]);
-    for (let index = 0; index < 8; index++) {
-      const z = -14.35 + 4.08 * index;
-      box(wall, m.wall, [0.16, 3.64, 3.94], [side * 14.69, 1.95, z]);
-      box(wall, m.panel, [0.16, 5.25, 3.94], [side * 14.69, 7.31, z]);
-      box(wall, m.glass, [0.13, 0.68, 3.72], [side * 14.57, 4.28, z]);
-      for (let offset = -1.24; offset <= 1.25; offset += 1.24) {
-        box(wall, m.lit, [0.04, 0.075, 1.05], [side * 14.494, 4.49, z + offset]);
+      block(tower, steel, [4.2, .27, 5.4], [0, -.11, -.65]);
+      block(tower, iron, [3.9, .06, 5.1], [0, .04, -.65]);
+      guardrail(tower, -2.05, 2.05, 0, 1.9);
+      guardrail(tower, -2.05, 2.05, 0, -3.25);
+      block(tower, diffuser, [1.8, .11, .21], [0, -.31, 1.51]);
+      block(tower, navy, [1.03, 1.5, .4], [side * 1.29, .82, -2.72]);
+      if (i < 3) {
+        block(tower, iron, [1.42, .61, .13], [0, -.05, 2.01]);
+        placard(tower, 'access_level', [0, -.05, 2.085], 1.32, .53, [`L${i + 1}`]);
       }
-      box(wall, m.graphite, [0.68, 11.8, 0.37], [side * 14.37, 5.9, z - 2.04]);
-      box(wall, m.steel, [0.12, 2.9, 0.38], [side * 13.99, 1.45, z - 2.04]);
-      box(wall, m.yellow, [0.13, 0.42, 0.38], [side * 13.92, 0.28, z - 2.04]);
-    }
-    box(wall, m.black, [0.27, 0.24, 33.1], [side * 14.46, 0.12, -0.05]);
-    box(wall, m.graphite, [0.46, 0.46, 33.05], [side * 14.48, 8.9, -0.05]);
-    rod(wall, m.steel, [side * 14.31, 7.9, -16.4], [side * 14.31, 7.9, 16.3], 0.14);
-  }
-  const roof = node('roof', root);
-  box(roof, m.graphite, [29.95, 0.22, 33.7], [0, 11.87, -0.05]);
-  for (let z = -15; z <= 16; z += 3.9) {
-    box(roof, m.steel, [29, 0.21, 0.28], [0, 11.48, z]);
-    box(roof, m.graphite, [28.7, 0.18, 0.19], [0, 10.79, z]);
-    for (let x = -13.4; x <= 12; x += 2.42) {
-      rod(roof, m.steel, [x, 10.86, z], [x + 1.17, 11.42, z], 0.056, 6);
-      rod(roof, m.steel, [x + 1.17, 11.42, z], [x + 2.34, 10.86, z], 0.056, 6);
-    }
-    for (const x of [-8.7, -2.9, 2.9, 8.7]) {
-      box(roof, m.black, [3.55, 0.15, 0.44], [x, 10.69, z]);
-      box(roof, m.lit, [3.44, 0.06, 0.3], [x, 10.594, z]);
+
+      const bridge = section(bridges, `bridge_${side}_${i}`, [side * 11.65, y, -4.25]);
+      bridge.userData.bridgeSlide = side * 6.1;
+      block(bridge, iron, [7.05, .23, 1.62], [-side * 3.25, -.12, 0]);
+      block(bridge, zinc, [6.88, .06, 1.48], [-side * 3.25, .025, 0]);
+      for (const z of [-.78, .78]) guardrail(bridge, -side * 3.25 - 3.48, -side * 3.25 + 3.48, 0, z);
+      block(bridge, amber, [1.07, .13, 1.68], [-side * 6.21, -.07, 0]);
     }
   }
 }
 
-function flag(root) {
-  const group = node('us_flag', root, [-4.55, 7.48, -16.08], { canton: 'upper left from the assembly floor' });
-  const width = 6.3;
-  const height = width / 1.9;
-  const stripe = height / 13;
-  const cantonWidth = 0.76 * height;
-  const wave = (x, y) => 0.06 * Math.sin((x + width / 2) * 3.8) * (0.55 + 0.45 * (0.5 - y / height));
-  const face = (positions, finish) => {
-    const geometry = new BufferGeometry();
-    geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
-    geometry.computeVertexNormals();
-    mesh(group, geometry, finish);
-  };
-  function fabric(left, top, w, h, finish) {
-    const positions = [];
-    for (let i = 0; i < 42; i++) {
-      const x = left + w * i / 42;
-      const right = left + w * (i + 1) / 42;
-      const bottom = top - h;
-      const corners = [[x, top], [x, bottom], [right, bottom], [right, top]];
-      for (const index of [0, 1, 2, 0, 2, 3]) {
-        const [u, v] = corners[index];
-        positions.push(u, v, wave(u, v));
-      }
-    }
-    face(positions, finish);
+function buildCrane(root) {
+  const rails = section(root, 'crane_runway', [0, 130, 0]);
+  for (const x of [west + 2.3, east - 2.3]) {
+    block(rails, steel, [.9, .75, 70.8], [x, 0, 17]);
+    block(rails, zinc, [.27, .18, 70.8], [x, .44, 17]);
   }
-  for (let row = 0; row < 13; row++) {
-    const offset = row < 7 ? cantonWidth : 0;
-    fabric(-width / 2 + offset, height / 2 - row * stripe, width - offset, stripe, m.cloth[row % 2]);
+  const crane = section(root, 'bridge_crane', [4, 130.85, 17]);
+  for (const z of [-1.75, 1.75]) {
+    block(crane, amber, [57.6, 1.5, .72], [0, .48, z]);
+    block(crane, iron, [57.6, .2, 1.02], [0, -.3, z]);
   }
-  fabric(-width / 2, height / 2, cantonWidth, 7 * stripe, m.cloth[2]);
-  const positions = [];
-  for (let row = 0; row < 9; row++) {
-    const count = row % 2 ? 5 : 6;
-    for (let column = 0; column < count; column++) {
-      const x = -width / 2 + (column + (count === 6 ? 0.5 : 1)) * cantonWidth / 6;
-      const y = height / 2 - (row + 1) * 7 * stripe / 10;
-      const star = Array.from({ length: 10 }, (_, index) => {
-        const angle = index * Math.PI / 5;
-        const radius = height * 0.0308 * (index % 2 ? 0.382 : 1);
-        const u = x - radius * Math.sin(angle);
-        const v = y + radius * Math.cos(angle);
-        return [u, v, wave(u, v) + 0.006];
-      });
-      for (let point = 0; point < star.length; point++) {
-        positions.push(x, y, wave(x, y) + 0.006, ...star[point], ...star[(point + 1) % star.length]);
-      }
+  for (const x of [-28.3, 28.3]) block(crane, iron, [1.5, .83, 5.6], [x, -.18, 0]);
+  const carriage = node('trolley', crane, [-1, 1.1, 0]);
+  block(carriage, amber, [2.73, .86, 4.2], [0, .2, 0]);
+  const hook = node('hoist_hook', carriage, [0, -5, 0]);
+  for (const x of [-.25, .25]) block(hook, rubber, [.07, 4.8, .07], [x, 2.4, 0]);
+  block(hook, iron, [1.02, .46, .58], [0, 0, 0]);
+  for (const [a, b] of [[[0, 0, 0], [0, -.75, 0]], [[0, -.75, 0], [.46, -.89, 0]], [[.46, -.89, 0], [.65, -.53, 0]]]) {
+    rail(hook, amber, a, b, .16);
+  }
+}
+
+function buildEquipment(root) {
+  const utilities = section(root, 'ventilation_and_cable_trays', [0, 0, -17.3]);
+  block(utilities, zinc, [37.5, .91, 1.04], [1.7, 9.75, 0]);
+  block(utilities, iron, [1.35, 4.2, .9], [20.5, 7.7, 0]);
+  for (let x = -15; x <= 18; x += 3.3) {
+    block(utilities, steel, [.09, 1.02, 1.12], [x, 9.75, 0]);
+    block(utilities, iron, [.18, .22, .66], [x, 3.73, .38]);
+  }
+  for (const y of [3.62, 3.76]) block(utilities, rubber, [37, .075, .14], [1.7, y, .51]);
+
+  for (const [x, z] of [[-8.6, -12.1], [7.9, -12.1], [22, -10], [22, 1.8]]) {
+    const cabinets = section(root, `technical_cabinets_${x}_${z}`, [x, 0, z]);
+    block(cabinets, iron, [4.05, .19, 1.04], [0, .095, 0]);
+    for (const dx of [-1.31, 0, 1.31]) {
+      block(cabinets, steel, [1.28, 2.09, 1], [dx, 1.2, 0]);
+      block(cabinets, navy, [1.15, 1.93, .1], [dx, 1.23, .525]);
+      block(cabinets, glass, [.56, .36, .034], [dx, 1.71, .586]);
+      block(cabinets, zinc, [.07, .26, .05], [dx + .43, 1.22, .595]);
+      for (let i = 0; i < 4; i++) block(cabinets, iron, [.63, .037, .04], [dx, .42 + i * .11, .59]);
     }
   }
-  face(positions, m.cloth[1]);
-  rod(group, m.steel, [-3.28, 1.72, -0.01], [3.28, 1.72, -0.01], 0.033);
+  const lab = node('payload_lab', root);
+  const [x, y, z] = equipmentStand;
+  block(lab, navy, [11.1, .1, 9], [x, .062, z]);
+  for (const dx of [-5.44, 5.44]) slab(lab, yellow, [x + dx, z], [.11, 8.87], .12);
+  for (const dz of [-4.4, 4.4]) slab(lab, yellow, [x, z + dz], [10.91, .11], .12);
+  const stand = node('equipment_stand', lab, equipmentStand);
+  for (const [material, diameter, height, offset] of [[iron, 5.9, .16, -.97], [steel, 4.7, .72, -.56], [zinc, 5.75, .19, -.095]]) {
+    mesh(stand, octagon, material, [0, offset, 0], undefined, [diameter, height, diameter]);
+  }
+  for (const dx of [-1, 1]) {
+    block(stand, amber, [1.08, .085, .36], [dx * 1.87, -.12, 2.09]);
+    block(stand, zinc, [1.54, .18, .12], [dx * 1.02, -.49, 2.26]);
+  }
+  placard(lab, 'stand_label', [x, y - .45, z + 2.36], 2, .43, ['PAYLOAD / 02']);
+  const booth = section(lab, 'service_room', [x, 0, z - 5.2]);
+  block(booth, steel, [10.9, 4.72, .31], [0, 2.37, 0]);
+  for (const dx of [-3.5, 3.5]) {
+    block(booth, glass, [2.28, 1.42, .07], [dx, 2.35, .17]);
+    block(booth, zinc, [.055, 1.43, .075], [dx, 2.35, .23]);
+  }
+  block(booth, iron, [2.03, 2.74, .075], [0, 1.4, .17]);
+  block(booth, navy, [1.8, 2.6, .15], [0, 1.36, .20]);
+  block(booth, diffuser, [9.35, .105, .21], [0, 3.65, .32]);
+  placard(booth, 'payload_lab_sign', [0, 4.17, .18], 5.6, .72, ['PAYLOAD LAB']);
 }
 
-const wordmarkContours = [
-  [[0, 0.31], [0.18, 0.31], [0.18, 0.23], [0.23, 0.18], [0.59, 0.18], [0.65, 0.24], [0.65, 1],
-    [0.83, 1], [0.83, 0.17], [0.66, 0], [0.17, 0], [0, 0.17]],
-  [[0, 1], [0.18, 1], [0.18, 0.25], [0.25, 0.18], [0.58, 0.18], [0.65, 0.25], [0.65, 1],
-    [0.83, 1], [0.83, 0.18], [0.65, 0], [0.18, 0], [0, 0.18]],
-  [[0, 0.82], [0.18, 1], [0.83, 1], [0.83, 0.82], [0.25, 0.82], [0.18, 0.75], [0.18, 0.25],
-    [0.25, 0.18], [0.65, 0.18], [0.65, 0.39], [0.42, 0.39], [0.42, 0.57], [0.83, 0.57], [0.83, 0], [0.18, 0], [0, 0.18]],
-  [[0, 1], [0.68, 1], [0.83, 0.85], [0.83, 0.60], [0.67, 0.44], [0.59, 0.44], [0.83, 0.08],
-    [0.83, 0], [0.67, 0], [0.37, 0.44], [0.18, 0.44], [0.18, 0], [0, 0]],
-  [[0, 1], [0.83, 1], [0.83, 0.82], [0.18, 0.82], [0.18, 0.60], [0.69, 0.60],
-    [0.69, 0.42], [0.18, 0.42], [0.18, 0.18], [0.83, 0.18], [0.83, 0], [0, 0]],
-];
-
-function outline(path, points) {
-  const [first, ...rest] = points;
-  path.moveTo(...first);
-  for (const point of rest) path.lineTo(...point);
-  path.closePath();
-  return path;
-}
-
-function branding(root) {
-  const frame = node('brand_frame', root, [4.05, 7.48, -16.07]);
-  box(frame, m.graphite, [7.0, 3.315, 0.17], [0, 0, 0]);
-  box(frame, m.navy, [6.91, 3.22, 0.035], [0, 0, 0.104]);
-  for (const x of [-3.14, 3.14]) {
-    box(frame, m.steel, [0.06, 0.18, 0.018], [x, 1.35, 0.134]);
-    box(frame, m.steel, [0.06, 0.18, 0.018], [x, -1.35, 0.134]);
-  }
-  box(frame, m.yellow, [5.73, 0.042, 0.02], [0, -0.69, 0.137]);
-  stencil(frame, 'ASSEMBLY BAY 01', 0.27, [0, -1.08, 0.149]);
-  const name = node('hangar_brand', frame, [0, 0.24, 0.15], {
-    role: 'editableWordmark', text: 'JUGRE', printableSizeM: [5.7, 1.45],
-  });
-  for (const [index, contour] of wordmarkContours.entries()) {
-    const shape = outline(new Shape(), contour);
-    if (index === 3) shape.holes.push(outline(new Path(),
-      [[0.18, 0.82], [0.18, 0.62], [0.59, 0.62], [0.65, 0.68], [0.65, 0.76], [0.59, 0.82]]));
-    mesh(name, new ExtrudeGeometry(shape, { depth: 0.023, bevelEnabled: false }),
-      m.white, [-2.395 + index * 0.99, -0.5, 0]);
-  }
-}
-
-function crane(root) {
-  const group = node('bridge_crane', root);
-  for (const x of [-12.8, 12.8]) {
-    box(group, m.graphite, [0.62, 0.45, 32.9], [x, 9.32, 0]);
-    box(group, m.steel, [0.16, 0.12, 32.9], [x, 9.59, 0]);
-    box(group, m.amber, [0.94, 0.36, 2.75], [x, 9.86, -4.85]);
-  }
-  for (const z of [-5.42, -4.48]) {
-    box(group, m.amber, [26.5, 0.53, 0.42], [0, 10.06, z]);
-    box(group, m.yellow, [26.5, 0.08, 0.51], [0, 9.83, z]);
-  }
-  const x = -9.9;
-  box(group, m.graphite, [2.05, 0.38, 1.63], [x, 9.69, -4.95]);
-  box(group, m.amber, [1.18, 0.42, 0.84], [x, 9.38, -4.95]);
-  for (const dx of [-0.18, 0.18]) rod(group, m.black, [x + dx, 9.25, -4.95], [x + dx, 6.7, -4.95], 0.017);
-  box(group, m.yellow, [0.6, 0.25, 0.32], [x, 6.64, -4.95]);
-  ring(group, m.steel, 0.16, 0.099, -0.035, 0.035, {
-    position: [x, 6.42, -4.95], quaternion: rot(X, Math.PI / 2), start: -Math.PI / 2, sweep: 5.2,
-  });
-  stencil(group, 'CRANE 01', 0.26, [8.8, 10.07, -4.264], m.black);
-}
-
-function trestle(parent, x, z) {
-  const group = node(`stand_${x}`, parent, [x, 0.025, z]);
-  box(group, m.graphite, [1.6, 0.22, 2.8], [0, 0.14, 0]);
-  box(group, m.amber, [1.57, 0.08, 2.73], [0, 0.28, 0]);
-  for (const side of [-1, 1]) {
-    rod(group, m.steel, [0, 0.27, side * 1.28], [0, 1.5, side * 0.99], 0.13, 8);
-    rod(group, m.amber, [-0.62, 0.29, side * 1.25], [0, 1.22, side * 1.055], 0.087, 8);
-    rod(group, m.amber, [0.62, 0.29, side * 1.25], [0, 1.22, side * 1.055], 0.087, 8);
-    box(group, m.black, [0.48, 0.18, 0.31], [0, 1.51, side * 0.99], rot(X, -side * 0.9));
-  }
-}
-
-function consoleStation(parent, label, x, z, angle) {
-  const group = node(label, parent, [x, 0, z]);
-  group.rotation.y = angle;
-  box(group, m.graphite, [1.8, 0.1, 0.66], [0, 0.05, 0]);
-  box(group, m.navy, [1.58, 0.94, 0.56], [0, 0.55, 0]);
-  box(group, m.steel, [1.82, 0.08, 0.79], [0, 1.05, 0.04]);
-  box(group, m.black, [0.9, 0.49, 0.075], [0, 1.38, -0.17], rot(X, -0.16));
-  box(group, m.glass, [0.82, 0.41, 0.015], [0, 1.38, -0.128], rot(X, -0.16));
-  for (let i = 0; i < 6; i++) {
-    box(group, m.status, [0.25 + (i * 7 % 5) * 0.084, 0.014, 0.018], [-0.018, 1.23 + 0.045 * i, -0.09 - i * 0.007]);
-  }
-  box(group, m.black, [0.55, 0.025, 0.21], [0, 1.105, 0.17]);
-  box(group, m.hot, [0.07, 0.033, 0.07], [0.65, 1.109, 0.19]);
-  for (let i = 0; i < 3; i++) {
-    box(group, m.graphite, [1.28, 0.035, 0.031], [0, 0.35 + i * 0.22, 0.287]);
-    box(group, m.steel, [0.19, 0.033, 0.04], [0, 0.46 + i * 0.22, 0.3]);
-  }
-}
-
-function equipment(root) {
-  const group = node('workstations', root);
-  for (const [index, x, z, angle] of [[1, -8.3, -8.9, 0], [2, 7.5, -9.5, 0], [3, -13.7, 1, Math.PI / 2], [4, 13.7, 2, -Math.PI / 2]]) {
-    consoleStation(group, `console_${index}`, x, z, angle);
-  }
-  for (const x of [-5.3, -1.15, 2.72]) trestle(group, x, -4.42);
-  const rack = node('equipment_rack', group, [11.3, 0, -12.6]);
-  for (const x of [-1.38, 1.38]) {
-    for (const z of [-0.52, 0.52]) box(rack, m.amber, [0.1, 2.28, 0.1], [x, 1.14, z]);
-  }
-  for (const y of [0.22, 1.05, 1.88]) {
-    box(rack, m.steel, [2.85, 0.11, 1.15], [0, y, 0]);
-    for (const x of [-0.9, 0, 0.9]) {
-      box(rack, m.navy, [0.74, 0.47, 0.9], [x, y + 0.29, 0]);
-      box(rack, m.steel, [0.27, 0.05, 0.03], [x, y + 0.34, 0.462]);
-      box(rack, m.yellow, [0.11, 0.05, 0.02], [x - 0.22, y + 0.46, 0.463]);
-    }
-  }
-  const stair = node('mobile_access_steps', group, [5.9, 0, -1.45]);
-  for (let i = 0; i < 6; i++) {
-    box(stair, m.graphite, [1.13, 0.11, 0.35], [0, 0.19 * (i + 1), 1 - 0.31 * i]);
-    box(stair, m.yellow, [1.13, 0.06, 0.035], [0, 0.19 * (i + 1), 1.18 - 0.31 * i]);
-  }
-  for (const x of [-0.55, 0.55]) {
-    rod(stair, m.amber, [x, 0.15, 1.09], [x, 1.11, -0.55], 0.048);
-    rod(stair, m.amber, [x, 0.98, 1.09], [x, 2, -0.55], 0.035);
-    for (const [y, z] of [[0.2, 1.09], [0.57, 0.45], [1.13, -0.55]]) {
-      rod(stair, m.amber, [x, y, z], [x, y + 0.82, z], 0.03);
-    }
-  }
-}
-
-async function sampleRocket(root, specs) {
-  const demo = node('example_rocket', root, standPosition, { role: 'replaceableDemoAssembly' });
-  demo.quaternion.copy(standRotation);
-  const ids = [...new Set(example.map(({ part }) => part))];
-  const models = new Map(await Promise.all(ids.map(async (id) => [id, await readAsset({ pack: 'original_parts', id })])));
-  demo.add(buildCraft(example, specs, models).group);
-}
-
-export async function buildHangar() {
-  const root = node('assembly_hangar', null, [0, 0, 0], { units: 'meter', up: '+Y' });
-  floor(root);
-  structure(root);
-  flag(root);
-  branding(root);
-  crane(root);
-  equipment(root);
-  return { root, addDemo: (specs) => sampleRocket(root, specs) };
+export function buildHangar() {
+  const root = node('jugre_vab');
+  buildFloor(root);
+  buildShell(root);
+  buildGate(root);
+  buildPlatform(root);
+  buildService(root);
+  buildCrane(root);
+  buildEquipment(root);
+  return seal(root);
 }

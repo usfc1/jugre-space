@@ -1,0 +1,24 @@
+
+> test:browser
+> playwright test
+
+[WebServer] (node:33232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 62 tests using 1 worker
+
+(node:48792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 tests\assembly-workflow.spec.mjs:23:1 › lesson is isolated, resumes, checks actual assembly, repairs a fault and restores user project (1.6m)
+(node:21120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 tests\assembly-workflow.spec.mjs:51:1 › symmetry, undo, redo, dependent removal and live payload configuration share the flight layout (1.5m)
+(node:17680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 tests\broadcast-hud.spec.mjs:5:3 › HUD layout and fixtures at 1920×1080 (8.8s)
+  ok  4 tests\broadcast-hud.spec.mjs:5:3 › HUD layout and fixtures at 2560×1440 (9.2s)
+  ok  5 tests\broadcast-hud.spec.mjs:5:3 › HUD layout and fixtures at 1366×768 (6.7s)
+  ok  6 tests\broadcast-hud.spec.mjs:5:3 › HUD layout and fixtures at 390×844 (7.1s)
+  x   7 tests\broadcast-hud.spec.mjs:37:1 › live game: countdown, hold, save/load, abort, restart, liftoff and staging (1.6m)
+(node:23756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

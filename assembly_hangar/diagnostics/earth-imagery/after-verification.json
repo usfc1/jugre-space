@@ -1,0 +1,131 @@
+{
+  "results": [
+    {
+      "time": 60,
+      "altitudeM": 5599.268760379404,
+      "imagery": {
+        "projection": "EPSG:4326",
+        "regions": [
+          {
+            "id": "southeast",
+            "bounds": [
+              -91,
+              19,
+              -71,
+              39
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "florida",
+            "bounds": [
+              -85,
+              23,
+              -76,
+              32
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "space_coast",
+            "bounds": [
+              -82.5,
+              26,
+              -78.5,
+              30
+            ],
+            "width": 3072,
+            "height": 3072
+          }
+        ]
+      }
+    },
+    {
+      "time": 128,
+      "altitudeM": 41600.91732726339,
+      "imagery": {
+        "projection": "EPSG:4326",
+        "regions": [
+          {
+            "id": "southeast",
+            "bounds": [
+              -91,
+              19,
+              -71,
+              39
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "florida",
+            "bounds": [
+              -85,
+              23,
+              -76,
+              32
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "space_coast",
+            "bounds": [
+              -82.5,
+              26,
+              -78.5,
+              30
+            ],
+            "width": 3072,
+            "height": 3072
+          }
+        ]
+      }
+    },
+    {
+      "time": 200,
+      "altitudeM": 116516.31733850855,
+      "imagery": {
+        "projection": "EPSG:4326",
+        "regions": [
+          {
+            "id": "southeast",
+            "bounds": [
+              -91,
+              19,
+              -71,
+              39
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "florida",
+            "bounds": [
+              -85,
+              23,
+              -76,
+              32
+            ],
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "id": "space_coast",
+            "bounds": [
+              -82.5,
+              26,
+              -78.5,
+              30
+            ],
+            "width": 3072,
+            "height": 3072
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

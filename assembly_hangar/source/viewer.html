@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Сборочный ангар · JUGRE Space Project</title>
+<title>JUGRE Space Project</title>
 <style>
   :root{color-scheme:dark;--page:#0d151c;--panel:#14202a;--border:#2d3e4a;--ink:#f0f2ec;--muted:#a7b4bd;--amber:#efb570;--mint:#8bd6bd;--mono:Consolas,"Courier New",monospace;font:15px "Segoe UI",Arial,sans-serif}
   *{box-sizing:border-box}
@@ -25,26 +25,156 @@
   nav button[aria-pressed=true]{background:#243440;color:var(--ink)}
   nav button:hover:not(:disabled){color:var(--ink);background:#273b48}
   #work-area{display:grid;grid-template-columns:minmax(0,1fr);min-width:0;min-height:0;gap:12px}
-  #work-area.building{grid-template-columns:minmax(0,1fr) 290px}
+  #work-area:is(.building,.ready,.launching){grid-template-columns:minmax(0,1fr) 290px}
+  #work-area.flying{grid-template-columns:minmax(0,1fr) 310px}
   #viewport{position:relative;background:#283b49;border:1px solid #3b505e;border-radius:10px;overflow:hidden;isolation:isolate;min-width:0;min-height:0}
   canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
   canvas:active{cursor:grabbing}
   .view-tag{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:9px;background:#0e1922eb;border:1px solid #536573;padding:8px 10px;border-radius:5px;font:700 10px var(--mono);letter-spacing:.09em;text-transform:uppercase;pointer-events:none}
   .view-tag b{color:var(--amber);font-weight:700}
   .view-tag i{width:1px;height:13px;background:#536573}
-  #catalog{display:flex;flex-direction:column;min-width:0;min-height:0;gap:14px;background:#111e27;border:1px solid #334652;border-radius:10px;padding:16px}
+  #catalog,#ready-rockets,#launch-panel{display:flex;flex-direction:column;min-width:0;min-height:0;gap:14px;background:#111e27;border:1px solid #334652;border-radius:10px;padding:16px}
+  #launch-rocket{width:100%;padding:10px 9px;border:1px solid #506a78;border-radius:5px;background:#0e202a;color:#e5ece8;font-size:13px}
+  #launch-panel{overflow-y:auto}
+  #launch-flight-mode,#launch-flight-length,#standard-flight-length,#flight-assistance,#flight-bind-action,#flight-warp,#flight-planet{width:100%;min-width:0;background:#0d202a;border:1px solid #466573;border-radius:5px;padding:7px;color:#e2eeeb;font:inherit;font-size:12px}
+  #launch-mission-brief{padding:9px 10px;border-left:2px solid #d6ac74;background:#1e3035;color:#dce5dc;font-size:12px;line-height:1.45}
+  #flight-start{padding:12px;background:#ad7b40;border-color:#d6aa6c;color:#fff6e9;font-weight:700}
+  #mission-details{font-size:12px;color:#c0d2d8}
+  #mission-details summary{cursor:pointer;padding:7px 0}
+  #mission-index{font-size:11px;line-height:1.5;padding-left:18px;margin:4px 0}
+  #mission-index li{margin-bottom:5px}
+  #flight-panel{display:flex;flex-direction:column;gap:11px;padding:15px;border:1px solid #385461;border-radius:10px;background:#0f1e28;overflow-y:auto;min-height:0}
+  #flight-panel>*{flex-shrink:0}
+  #flight-title{font-size:20px;line-height:1.15}
+  #flight-destination{margin:4px 0 0;font-size:12px;color:#c4d0c6}
+  #flight-status{font-size:12px;color:#a6deca;line-height:1.4;min-height:31px}
+  .flight-telemetry{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .flight-number{padding:8px;background:#192e3b;border:1px solid #304a58;border-radius:5px;min-width:0}
+  .flight-number small{font-size:10px;color:#aac4cc;display:block;line-height:1.2}
+  .flight-number output{font:700 16px var(--mono);display:block;margin-top:3px;color:#e3eee9;overflow-wrap:anywhere}
+  .flight-progress{height:3px;background:#2e434c;border-radius:2px;overflow:hidden}
+  #flight-progress{height:100%;background:#dcab69;transition:width .1s}
+  .flight-row{display:flex;align-items:center;gap:7px;font-size:12px}
+  .flight-row label{margin:0;flex:none;font-size:11px;color:#b6ced6}
+  #flight-throttle{padding:0;accent-color:#e8b372}
+  #flight-throttle-value{font:11px var(--mono);white-space:nowrap}
+  #flight-map{width:100%;height:auto;aspect-ratio:2;display:block;border:1px solid #48616d;border-radius:5px;cursor:default}
+  .flight-map-title{display:flex;justify-content:space-between;align-items:center;gap:5px;color:#a8c2cf;font-size:10px;margin-bottom:5px}
+  #flight-map-toggle{padding:3px 5px;font-size:10px;min-width:68px}
+  .flight-camera-buttons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+  .flight-camera-buttons button{padding:6px 4px;font-size:11px}
+  .flight-camera-buttons button[aria-pressed=true]{border-color:#c99961;color:#f6d3a3;background:#304044}
+  .flight-inputs{display:flex;gap:5px}
+  .flight-inputs button{flex:1;touch-action:none;padding:7px}
+  .flight-key-hint{font-size:10px;line-height:1.45;color:#8faebd}
+  #manual-control-panel{display:grid;gap:7px;padding:9px;background:#192e3b;border:1px solid #304a58;border-radius:6px}
+  #flight-control-profile{font-size:12px;color:#e2eeeb}
+  .manual-instruments{display:flex;align-items:center;gap:9px;min-width:0}
+  #flight-navball{flex:none;width:78px;height:78px}
+  .manual-instruments small{display:block;color:#8faebd;font-size:10px;line-height:1.5}
+  .manual-instruments output{display:block;margin-bottom:3px;font-size:11px;color:#e2eeeb;overflow-wrap:anywhere}
+  #flight-banner{position:absolute;left:16px;top:58px;pointer-events:none;color:#fff7df;font:700 clamp(17px,2vw,28px) var(--mono);text-shadow:0 1px 8px #000b;max-width:80%}
+  #flight-notices{position:absolute;left:16px;bottom:16px;max-width:min(530px,calc(100% - 32px));display:grid;justify-items:start;gap:5px;pointer-events:none}
+  #flight-event,#radio-subtitle{padding:8px 10px;border:1px solid #60757b;background:#10202bf0;border-radius:5px;color:#e6ddbc;font-size:12px}
+  #flight-event:empty{display:none}
+  #radio-subtitle{border-left:3px solid var(--mint);color:var(--ink);min-width:min(240px,100%);line-height:1.38}
+  #radio-speaker{display:block;color:var(--mint);font:700 10px var(--mono);letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  #cockpit-hud{position:absolute;top:16px;right:16px;pointer-events:none;color:var(--mint);background:#10202be0;border:1px solid #526d72;border-radius:5px;padding:8px;font:700 10px var(--mono)}
+  .flight-health{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8px;margin:0;color:#aac4cc;font-size:11px}
+  .flight-health div{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:3px 4px}
+  .flight-health dd{margin:0;color:#e2eeeb;font:11px var(--mono);white-space:nowrap}
+  .flight-health dd[data-warning=true]{color:#ffaf8e}
+  #flight-stop{position:sticky;top:0;z-index:2;font-size:12px;padding:8px}
+  #flight-diagnostics summary{font-size:11px;cursor:pointer;color:#c4d3dc}
+  #flight-diagnostics .flight-row{flex-wrap:wrap;margin-top:7px}
+  #flight-diagnostics button{max-width:100%;white-space:normal}
+  #flight-module-health{overflow-wrap:anywhere;white-space:normal}
+  .physics-values{font:9px/1.55 var(--mono);white-space:pre-wrap;color:#c4d3dc;max-height:280px;overflow:auto}
+  .physics-chart{width:100%;height:auto!important;aspect-ratio:26/15;background:#101b24;margin:8px 0}
+  /* BROADCAST_HUD_START */
+  #viewport{container-type:inline-size}
+  #broadcast-hud{--hud-height:clamp(146px,18cqw,215px);position:absolute;inset:auto 0 0;z-index:8;height:var(--hud-height);padding:14px clamp(12px,3cqw,64px) 10px;color:#fff;background:linear-gradient(0deg,rgba(3,6,10,.93) 0%,rgba(3,6,10,.74) 47%,rgba(3,6,10,.30) 80%,transparent 100%);font-family:"Segoe UI",Arial,sans-serif;pointer-events:none;font-weight:300;-webkit-font-smoothing:antialiased}
+  .broadcast-rail{position:relative;height:58px;margin:0 -1cqw}
+  .broadcast-line,.broadcast-progress{position:absolute;left:0;top:33px;height:1px;background:rgba(255,255,255,.30);width:100%}
+  .broadcast-progress{background:rgba(255,255,255,.95);width:0;transition:width .16s linear}
+  .broadcast-markers{position:absolute;inset:0}
+  .broadcast-marker{position:absolute;top:0;transform:translateX(-50%);height:56px;width:clamp(70px,12cqw,180px);background:transparent;border:0;border-radius:0;padding:0;color:rgba(255,255,255,.58);pointer-events:auto;cursor:pointer;font:inherit;white-space:nowrap;text-align:center}
+  .broadcast-marker:focus-visible{outline:1px solid white;outline-offset:2px}
+  .broadcast-label{display:block;position:absolute;top:7px;left:50%;transform:translateX(-50%);font-size:clamp(8px,.83cqw,13px);font-weight:400;letter-spacing:.065em}
+  .broadcast-dot{position:absolute;left:50%;top:30px;width:7px;height:7px;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:#14181d;transform:translateX(-50%)}
+  .broadcast-event-state{position:absolute;left:50%;top:43px;transform:translateX(-50%);font-size:clamp(7px,.55cqw,9px);letter-spacing:.15em;opacity:.6}
+  .broadcast-marker[data-status=COMPLETE]{color:#fff}
+  .broadcast-marker[data-status=COMPLETE] .broadcast-dot{background:#fff;border-color:#fff}
+  .broadcast-marker[aria-current=step]{color:#fff}
+  .broadcast-marker[aria-current=step] .broadcast-dot{width:9px;height:9px;top:29px;box-shadow:0 0 0 4px #ffffff1c;border-color:#fff}
+  .broadcast-marker[data-status=SKIPPED] .broadcast-dot{border-radius:0;width:7px;height:1px;top:33px;background:#fff7;border:0}
+  .broadcast-marker[data-status=FAILED] .broadcast-dot{border-radius:0;transform:translateX(-50%) rotate(45deg);background:#fff}
+  .broadcast-bottom{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-top:5px}
+  .broadcast-clock{text-align:center;min-width:clamp(215px,32cqw,600px)}
+  .broadcast-clock>output{display:block;font-size:clamp(27px,3.7cqw,66px);font-weight:300;line-height:1.1;letter-spacing:.035em;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .broadcast-state{height:15px;font-size:clamp(8px,.65cqw,11px);font-weight:500;letter-spacing:.24em;line-height:15px}
+  #broadcast-hud[data-mission-status=LIVE] .broadcast-state{visibility:hidden}
+  .broadcast-mission{font-size:clamp(9px,.87cqw,15px);font-weight:400;letter-spacing:.25em;margin-top:7px}
+  .broadcast-metric>span{font-size:clamp(8px,.68cqw,12px);letter-spacing:.18em;font-weight:400}
+  .broadcast-metric>div{font-size:clamp(21px,2.4cqw,42px);line-height:1.35;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .broadcast-metric small{font-size:clamp(8px,.7cqw,12px);font-weight:400;letter-spacing:.03em}
+  .broadcast-altitude{text-align:right}
+  .broadcast-footnote{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:clamp(6px,.53cqw,9px);letter-spacing:.12em;color:#ffffff70;font-weight:400}
+  #viewport:has(#broadcast-hud:not([hidden])) #flight-notices{bottom:calc(clamp(146px,18cqw,215px) + 12px);z-index:9}
+  #viewport:has(#broadcast-hud:not([hidden])) #flight-banner{font-size:clamp(12px,1.2cqw,19px);font-weight:400;color:#fff;max-width:70%}
+  .timeline-controls{display:flex;gap:5px;align-items:center}
+  .timeline-controls button{padding:5px 8px;font-size:11px}
+  #timeline-zoom{background:#14232d;color:inherit;border:1px solid #466573;min-width:0;padding:4px;font:inherit;font-size:11px;flex:1}
+  #timeline-details{white-space:pre-line;color:#afc0ca;font-size:10px;line-height:1.6;min-height:64px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+  @container(max-width:650px){#broadcast-hud{--hud-height:146px;padding-inline:12px}.broadcast-marker{width:65px}.broadcast-label{max-width:75px;white-space:normal;line-height:1.15;top:3px}.broadcast-metric>div{font-size:18px}.broadcast-clock{min-width:190px}.broadcast-clock>output{font-size:25px}.broadcast-footnote{letter-spacing:.04em}.broadcast-mission{letter-spacing:.15em}}
+  @container(max-width:390px){.broadcast-metric>div{font-size:14px}.broadcast-clock{min-width:155px}.broadcast-clock>output{font-size:20px}.broadcast-metric small{display:block}.broadcast-bottom{gap:4px}.broadcast-footnote>span:last-child{max-width:130px;text-align:right}.broadcast-marker{width:49px}.broadcast-label{max-width:54px;font-size:7px}}
+  @media(prefers-reduced-motion:reduce){.broadcast-progress{transition:none}}
+  /* BROADCAST_HUD_END */
+  #launch-panel label{font-size:12px;color:#bdcfd4;margin:0}
+  #launch-rocket-info{font-size:12px;color:#c3d7dd;line-height:1.4;min-height:34px}
+  #launch-status{color:var(--mint);font-size:12px;line-height:1.4}
+  .launch-controls{display:grid;gap:7px}
+  .launch-controls .control{justify-content:flex-start;padding:10px 11px}
+  .launch-controls .control[aria-pressed=true]{background:#29483e;border-color:#679c86}
+  .launch-cameras{display:flex;gap:4px;flex-wrap:wrap}
+  .launch-cameras button{flex:1;background:#192d38;color:#b9cdd5;border:1px solid #3c5664;border-radius:5px;font-size:12px;padding:7px}
+  .launch-cameras button[aria-pressed=true]{background:#344944;border-color:#ad8c61;color:#f2d6ab}
+  #kennedy-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  #kennedy-labels span{position:absolute;transform:translate(-50%,-112%);white-space:nowrap;padding:4px 7px;border:1px solid #86a0ad;border-radius:4px;background:#112432e8;color:#e8f1ef;font-size:11px;box-shadow:0 2px 5px #0005}
+  #kennedy-labels span::after{content:"";position:absolute;top:100%;left:50%;width:1px;height:7px;background:#ddc694}
+  .launch-description{font-size:12px;color:#aabfc8;line-height:1.5;margin:0}
+  .launch-card{margin-top:auto;padding:12px;border:1px solid #405965;border-radius:6px;background:#182d36}
+  .launch-card p{margin:4px 0 0;color:#a9bec6;font-size:12px;line-height:1.5}
+  .launch-card strong{font-weight:600;font-size:13px;color:#e2c392}
   .catalog-title{display:flex;align-items:start;justify-content:space-between;gap:8px}
   .catalog-title h2{font-size:20px;line-height:1.12}
   .catalog-total{padding:5px 6px;background:#213341;border:1px solid #364c5a;border-radius:4px;font:700 11px var(--mono);color:#b9d0d7}
   .catalog-guide{color:var(--muted);font-size:12px;line-height:1.4;margin:6px 0 0}
-  #part-filters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:3px;background:#0b151d;border:1px solid #2d414d;border-radius:6px}
+  #ready-list{display:grid;align-content:start;gap:6px;flex:1;min-height:0;overflow:auto;padding:2px}
+  .ready-card{display:grid;grid-template-columns:27px minmax(0,1fr);align-items:center;gap:9px;min-width:0;padding:7px 8px;text-align:left;background:#182a35;border:1px solid #324a58;border-radius:6px}
+  .ready-card:hover,.ready-card[aria-pressed=true]{border-color:#bc905e;background:#343a36}
+  .ready-card strong,.ready-card small{display:block;line-height:1.18}
+  .ready-card strong{font-size:13px}
+  .ready-card small{font-size:11px;color:#a9bfca;margin-top:3px}
+  .ready-number{align-self:stretch;display:grid;place-items:center;background:#101d25;border-radius:3px;color:#efb570;font:700 11px var(--mono)}
+  .ready-details{padding:10px;background:#142832;border:1px solid #3a5362;border-radius:6px}
+  #ready-status{margin:0 0 7px;font:700 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--mint)}
+  .ready-details dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 10px;font-size:11px;margin:0}
+  .ready-details dt{color:#adc2cc}
+  .ready-details dd{margin:0;color:#e9eeeb}
+  .ready-note{color:var(--muted);font-size:11px;line-height:1.35;margin:9px 0}
+  #ready-download{width:100%;font-size:12px;padding:7px 8px}
+  #part-filters{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;padding:3px;background:#0b151d;border:1px solid #2d414d;border-radius:6px}
   #part-filters button{padding:7px 2px;border:0;border-radius:4px;background:none;font-size:11px;color:#b5c5ce}
+  #part-filters button{grid-column:span 3}
+  #part-filters button:nth-child(-n+3){grid-column:span 4}
   #part-filters button:hover{background:#22343f}
   #part-filters button[aria-pressed=true]{background:#2b414d;color:#f1f4ef}
   #part-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:8px;min-height:0;overflow:auto;flex:1;padding:2px}
-  .part-card{display:grid;align-content:start;justify-items:start;grid-template-columns:minmax(0,1fr);min-width:0;padding:8px 9px 9px;gap:2px;border:1px solid #304652;border-radius:6px;background:linear-gradient(145deg,#203340,#15232e);text-align:left;touch-action:none;user-select:none;cursor:grab}
+  .part-card{display:grid;align-content:start;justify-items:start;grid-template-columns:minmax(0,1fr);min-width:0;padding:6px 9px 7px;gap:2px;border:1px solid #304652;border-radius:6px;background:linear-gradient(145deg,#203340,#15232e);text-align:left;touch-action:none;user-select:none;cursor:grab}
   .part-card:hover,.part-card[aria-pressed=true]{border-color:#ce9a61;background:linear-gradient(145deg,#394039,#222d32)}
-  .part-card svg{justify-self:center;width:51px;height:44px;margin:0 0 2px;fill:#6e91a357;stroke:#c4e3ed;stroke-width:1.3;stroke-linejoin:round}
+  .part-card svg{justify-self:center;width:47px;height:36px;margin:0 0 2px;fill:#6e91a357;stroke:#c4e3ed;stroke-width:1.3;stroke-linejoin:round}
   .part-code{font:700 10px var(--mono);color:#efb570;line-height:1.2}
   .part-name{font-weight:650;font-size:13px;line-height:1.13}
   .part-detail{font-size:10px;color:#9fb3bf}
@@ -54,6 +184,13 @@
   .catalog-actions #assembly-undo:disabled{cursor:default;opacity:.4}
   #assembly-remove{border:1px dashed #a98565;color:#edbd8c}
   #assembly-remove.over{background:#533c2c;border-color:#f5c286}
+  #assembly-cargo-example{justify-self:start;border-color:#62523d;color:#efb570}
+  #payload-systems{display:grid;gap:7px;padding:9px;border:1px solid #395362;border-radius:6px;background:#142832}
+  #systems-part{min-width:0;width:100%;padding:5px 7px;border:1px solid #3c5968;border-radius:4px;background:#0c1a22;color:#e0eceb;font:inherit;font-size:12px}
+  #systems-detail{font-size:11px;color:#a4c4ca}
+  #systems-buttons{display:flex;flex-wrap:wrap;gap:5px}
+  #systems-buttons button{font-size:11px;padding:5px 7px}
+  .gripping #payload-systems,.choosing #payload-systems{pointer-events:none;opacity:.65}
   #assembly-hud{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);display:flex;gap:8px;align-items:center;padding:8px 10px;color:#e7ece9;background:#111c25ed;border:1px solid #536573;border-radius:5px;pointer-events:none;font-size:12px}
   .assembly-label{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:#afc1cb;flex:none}
   #assembly-count{color:var(--amber);font-weight:700}
@@ -83,6 +220,11 @@
   #feedback{font-size:12px;color:var(--mint)}
   dialog{width:min(440px,calc(100vw - 30px));padding:24px;border:1px solid #496170;border-radius:12px;background:#17242e;color:var(--ink);box-shadow:0 16px 58px #0009}
   dialog::backdrop{background:#050a1180}
+  .audio-slider{display:grid;grid-template-columns:1fr 56px;gap:5px 12px;align-items:center;margin:0 0 12px;font-size:13px}
+  .audio-slider input{grid-column:1/-1;width:100%;padding:0;accent-color:var(--mint)}
+  .audio-slider output{text-align:right;color:var(--mint);font:12px var(--mono)}
+  .audio-check{display:flex;align-items:center;gap:8px;margin:13px 0 17px;font-size:13px}
+  .audio-check input{accent-color:var(--mint)}
   h2{margin:0;font-size:23px;letter-spacing:-.025em}
   dialog p{color:var(--muted);margin:6px 0 20px;line-height:1.4}
   label{display:block;margin-bottom:7px;font-size:13px}
@@ -93,7 +235,7 @@
     .shell{padding:0 12px;grid-template-rows:auto minmax(480px,1fr) auto;height:auto}
     header{padding:13px 0;gap:12px;flex-wrap:wrap}
     .tile{width:36px;height:36px}
-    nav{flex:1;min-width:min(100%,280px)}
+    nav{flex:1;min-width:min(100%,280px);flex-wrap:wrap}
     nav button{flex:1;padding:7px 6px;font-size:12px}
     .hint{display:none}
     footer{min-height:59px;gap:6px;flex-wrap:wrap;padding:8px 0}
@@ -102,8 +244,20 @@
     .control{padding:7px 8px;font-size:12px}
     .view-tag{top:10px;left:10px}
     #work-area{min-height:490px}
-    #work-area.building{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(295px,47svh) auto;gap:8px}
-    #catalog{padding:10px;gap:7px}
+    #work-area:is(.building,.ready,.launching){grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(295px,47svh) auto;gap:8px}
+    #work-area.flying{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(320px,49svh) auto;gap:8px}
+    #flight-panel{padding:10px;gap:8px}
+    .flight-telemetry{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .flight-number{padding:5px}
+    .flight-number output{font-size:12px}
+    .flight-number small{font-size:9px}
+    #catalog,#ready-rockets,#launch-panel{padding:10px;gap:7px}
+    .launch-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .launch-controls .control{font-size:11px;padding:8px 7px;white-space:normal}
+    .launch-card{margin-top:0}
+    #ready-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+    .ready-card{grid-template-columns:21px minmax(0,1fr);gap:6px;padding:5px}
+    .ready-card strong{font-size:12px}
     .catalog-title h2{font-size:16px}
     .catalog-title .eyebrow,.catalog-guide,.part-detail{display:none}
     #part-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
@@ -114,81 +268,711 @@
     .catalog-actions{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px;padding-top:7px}
     .catalog-actions .row{display:contents}
     #assembly-remove{grid-column:1/-1}
+    #assembly-cargo-example{grid-column:1/-1;justify-self:stretch}
     #assembly-hud{left:8px;bottom:8px;max-width:calc(100% - 16px);font-size:11px}
   }
+  #mission-designer{width:min(1080px,94vw);max-height:90vh;overflow:auto;padding:22px;color:#e3eced;background:#15222b;border:1px solid #476272}
+  #mission-designer::backdrop{background:#080e15c9}
+  .design-header,.design-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .design-header{justify-content:space-between;margin-bottom:14px}
+  .design-header h2{margin:0}
+  .design-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+  .design-grid fieldset{border:1px solid #334952;margin:0;padding:10px;min-width:0}
+  .design-grid legend{font-size:13px;color:#9cd9da;padding:0 5px}
+  .design-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .design-fields label{display:grid;gap:4px;font-size:12px;color:#c1d2d9}
+  .design-fields input:not([type=checkbox]),.design-fields select,.design-fields textarea,#design-candidate{width:100%;min-width:0;background:#101c25;color:#e3eced;border:1px solid #405762;border-radius:4px;padding:6px;box-sizing:border-box}
+  .design-fields textarea{resize:vertical}
+  .design-span{grid-column:1/-1}
+  .design-actions{margin:12px 0}
+  #design-status{font-size:13px;min-height:1.4em;display:block}
+  #design-library{border:1px solid #334952;padding:9px 12px;margin-bottom:12px}
+  #design-library select{max-width:100%;background:#101c25;color:#e3eced;border:1px solid #405762;border-radius:4px;padding:6px}
+  #design-compare-table{overflow:auto;font-size:12px}
+  #design-compare-table table{border-collapse:collapse;width:100%;text-align:left}
+  #design-compare-table :is(th,td){padding:6px 9px;border-bottom:1px solid #334952;vertical-align:top}
+  #design-spacecraft{border:1px solid #334952;padding:9px 12px;margin:12px 0}
+  #design-spacecraft-controls{margin-top:8px}
+  #design-instruments{max-height:240px;overflow:auto;display:grid;gap:5px;margin:8px 0}
+  #design-instruments label{display:grid;grid-template-columns:auto 1fr;gap:8px;padding:5px;background:#101c25;font-size:12px}
+  #design-instruments small{display:block;color:#acc4cc}
+  #satellite-chart{width:100%;height:76px;display:block;background:#101c25}
+  #satellite-readings{white-space:pre-line;margin:6px 0;font-size:12px}
+  #design-report,#design-phases,#design-flight{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+  #design-report ul,#design-phases,#design-flight ul,#design-flight ol{padding-left:18px}
+  #design-flight{border-top:1px solid #405762;padding:8px 0}
+  #crew-life-panel{font-size:12px;border-top:1px solid #405762;padding:8px 0}
+  #crew-life-readings{white-space:pre-line;line-height:1.6;margin:6px 0}
+  #crew-life-controls{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  #crew-life-controls input[type=number],#crew-life-controls select{width:100%;min-width:0}
+  [data-check=FAIL]{color:#ffb0a6}
+  [data-check=UNKNOWN],[data-check=WARNING]{color:#f4d29b}
+  [data-check=PASS]{color:#a4dfca}
+  @media(max-width:680px){.design-grid{grid-template-columns:1fr}#mission-designer{padding:12px}}
+  /* STANDARD_DESIGN_STYLES */
+  #vab-cameras{position:absolute;top:58px;left:16px;right:16px;display:flex;flex-wrap:wrap;align-items:center;gap:5px;pointer-events:none}
+  #vab-cameras>*{pointer-events:auto}
+  #vab-cameras button,#vab-cameras label{font-size:11px;background:#11222ded;border:1px solid #49606c;border-radius:5px;padding:6px 9px}
+  #vab-cameras button[aria-pressed=true]{color:var(--amber);border-color:#a57c4f}
+  #vab-cameras label{display:flex;gap:7px;align-items:center}
+  #vab-altitude{width:90px;accent-color:var(--amber)}
+  #vab-altitude-value{min-width:44px}
+  #vab-equipment-panel{position:absolute;left:16px;bottom:16px;display:grid;gap:9px;width:min(300px,calc(100% - 32px));padding:14px;background:#11222df2;border:1px solid #536573;border-radius:7px;font-size:12px}
+  #vab-equipment-model{max-width:100%;padding:8px;background:#162c39;color:var(--ink);border:1px solid #526b78;border-radius:4px}
+  #vab-equipment-status{line-height:1.5;color:var(--muted)}
+  #catalog{overflow-y:auto}
+  #catalog>*{flex-shrink:0}
+  .assembly-flow{display:grid;gap:9px;padding-bottom:12px;border-bottom:1px solid var(--border);font-size:12px}
+  #assembly-workflow{max-height:25svh;overflow:auto;padding-right:5px;min-height:160px}
+  .assembly-flow .row{display:flex;gap:5px;flex-wrap:wrap}
+  #part-cards{flex:1 1 180px!important;min-height:170px}
+  .mount-point{width:auto!important;min-width:58px!important;height:26px!important;padding:2px 6px!important;border-radius:5px!important;font-size:10px!important}
+  .assembly-flow p{margin:0;line-height:1.5;color:var(--muted)}
+  .assembly-flow select,.assembly-flow input:not([type=checkbox]){max-width:100%;min-width:0;background:#152a36;color:var(--ink);border:1px solid #4a6471;border-radius:4px;padding:6px;font:inherit}
+  #assembly-route{display:flex;gap:4px;flex-wrap:wrap}
+  #assembly-route button{font-size:11px;padding:6px;background:#172a35;border:1px solid #415a68;border-radius:4px}
+  #assembly-route button[aria-current=step]{color:var(--amber);border-color:var(--amber)}
+  #assembly-checks{display:grid;gap:6px}
+  #assembly-checks button{text-align:left;white-space:normal;font-size:11px;line-height:1.4}
+  #assembly-checks [data-severity=error]{border-color:#bb6c65;color:#ffc2b9}
+  #assembly-summary{font:10px/1.5 var(--mono);white-space:pre-line;padding:8px;background:#1b2d37;border:1px solid #3e5764;border-radius:5px}
+  #assembly-tree{max-height:150px;overflow:auto;display:grid;gap:4px}
+  #assembly-tree button{text-align:left;font-size:11px}
+  #assembly-tree button[aria-pressed=true]{border-color:var(--amber)}
+  .part-card{grid-template-columns:64px minmax(0,1fr)!important}
+  .part-purpose,.part-compatibility{grid-column:1/-1;font-size:10px;line-height:1.4}
+  .part-card img{width:64px;height:54px;object-fit:contain;grid-row:span 2}
+  .part-compatibility[data-compatible=false]{color:#efb7a3}
+  .part-compatibility[data-compatible=true]{color:var(--mint)}
+  .tutorial-focus{outline:2px solid var(--amber)!important;outline-offset:3px}
+  #assembly-tutorial{padding:12px;border:1px solid #b0834e;border-radius:6px;background:#2c2b23}
+  #assembly-tutorial p{color:#eee0c8}
+  #assembly-confirm{max-width:480px;background:var(--panel);color:var(--ink);border:1px solid #7b6753;border-radius:9px}
+  #equipment-config{max-height:34svh;overflow:auto;display:grid;gap:7px}
+  #vab-equipment-panel{max-height:calc(100% - 110px);overflow:auto}
+  #equipment-config label{display:flex;gap:7px;align-items:center;font-size:11px}
+  #equipment-instruments{display:grid;gap:6px}
+  #vab-equipment-panel{left:auto;right:14px;top:108px;bottom:14px;width:328px;max-height:none;align-content:start;padding:13px;font-size:12px;gap:9px}
+  #equipment-config{max-height:none;overflow:visible;gap:8px}
+  #equipment-config p{font-size:11px;line-height:1.5;margin:0;color:#b6c9ce}
+  #equipment-config input,#equipment-config select,#equipment-library{width:100%;min-width:0;background:#11232e;color:var(--ink);padding:7px;border:1px solid #415e6b;border-radius:4px;font:inherit}
+  .lab-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:9px;border-bottom:1px solid #3d5763}
+  .lab-heading strong{font:700 13px var(--mono);letter-spacing:.09em;color:var(--amber)}
+  .lab-heading span{font-size:10px;color:#a9c4cc}
+  .lab-view-controls,.lab-tools{display:flex;gap:5px;align-items:center}
+  .lab-view-controls label{flex:1;min-width:0}
+  .lab-tools button{flex:1;padding:7px 4px;font-size:11px}
+  #equipment-totals{font:11px/1.5 var(--mono);color:#a5decc;background:#18313a;padding:8px;border-radius:4px}
+  #lab-mount-points{position:absolute;inset:0;pointer-events:none}
+  .lab-mount{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;border:1px solid #9ed8c1;background:#173b38ed;color:#d5ffed;min-width:28px;min-height:25px;border-radius:5px;font:11px var(--mono)}
+  .lab-mount[data-valid=false]{color:#f8c3a6;background:#49342be8;border-color:#bb8464}
+  #lab-placement{padding:10px;border:1px solid #81b8a7;background:#18363c;border-radius:5px;display:grid;gap:8px}
+  #lab-placement strong{color:#d4f3e9;font-size:12px}
+  #lab-mount-list{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+  #lab-mount-list button{padding:4px;font-size:10px}
+  #equipment-instruments{max-height:292px;overflow:auto;align-content:start;padding:3px}
+  .lab-part-card{display:grid;grid-template-columns:60px minmax(0,1fr);gap:3px 6px;text-align:left;border:1px solid #3c5867;border-radius:5px;background:#172d39;padding:7px;touch-action:none}
+  .lab-part-card img{width:58px;height:50px;object-fit:contain;grid-row:span 3}
+  .lab-part-card strong{font-size:11px;line-height:1.35}
+  .lab-part-card span{font-size:10px;color:#b3c9cd;line-height:1.4}
+  .lab-part-card small{font:10px/1.4 var(--mono);color:#ddbc8a}
+  .lab-part-card[aria-pressed=true]{border-color:#a1ddc8;background:#24473f}
+  #lab-installed{display:grid;gap:4px;margin:8px 0}
+  #lab-installed button{font-size:10px;text-align:left;line-height:1.4;white-space:normal}
+  #lab-installed button[aria-pressed=true]{border-color:var(--amber)}
+  @media(max-width:680px){#vab-equipment-panel{top:auto;bottom:8px;right:8px;left:8px;width:auto;max-height:45%;padding:9px;gap:6px}#equipment-instruments{max-height:180px}.lab-heading span{font-size:9px}}
+  @media(max-width:680px){#vab-cameras{top:50px;left:8px;right:8px;gap:3px}#vab-cameras button,#vab-cameras label{font-size:10px;padding:4px 6px}#vab-altitude{width:60px}#vab-equipment-panel{font-size:11px;gap:6px;padding:10px}}
+/* CONSOLE_STYLES */
+/* MAIN_MENU_STYLES */
 </style>
 </head>
 <body>
-<main class="shell">
+<!-- MAIN_MENU -->
+<main class="shell" inert>
   <header>
     <div class="title">
-      <div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9m-4-11.2 8-4.5"/></svg></div>
-      <div><div class="eyebrow">JUGRE Space Project / 01</div><h1>Сборочный ангар</h1></div>
+      <svg class="jugre-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <ellipse cx="20" cy="20" rx="18" ry="5.5" transform="rotate(-35 20 20)" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="32" cy="11" r="2.5" fill="currentColor"/>
+      </svg>
+      <h1>JUGRE<span>SPACE PROJECT</span></h1>
     </div>
-    <nav aria-label="Ракурсы камеры">
-      <button type="button" data-view="overview" aria-pressed="false" disabled>Общий вид</button>
-      <button type="button" data-view="rocket" aria-pressed="true" disabled>Сборка</button>
-      <button type="button" data-view="crew" aria-pressed="false" disabled>Сотрудники</button>
+    <nav aria-label="Game navigation">
+      <button type="button" data-view="overview" aria-pressed="false" disabled>Hangar</button>
+      <button type="button" data-view="rocket" aria-pressed="true" disabled>Build</button>
+      <button type="button" data-view="ready" aria-pressed="false" disabled>Fleet</button>
+      <button type="button" data-view="equipment" aria-pressed="false" disabled>Payload Lab</button>
+      <button type="button" data-view="launch" aria-pressed="false" disabled>Launch Pad</button>
+      <button type="button" id="design-open" aria-haspopup="dialog" disabled>Mission Planner</button>
     </nav>
+    <div class="header-tools">
+      <button class="control" id="open-main-menu" type="button">Main menu</button>
+      <button class="control" id="audio-settings" type="button" aria-haspopup="dialog">Audio</button>
+      <details class="camera-help"><summary aria-label="Camera help" title="Camera help">?</summary>
+        <div class="console-panel"><b>Camera</b><span>Drag to orbit</span><span>Scroll to zoom</span><span>Right drag to pan</span></div>
+      </details>
+    </div>
   </header>
   <div id="work-area">
-    <section id="viewport" aria-label="Интерактивная 3D-модель сборочного ангара">
-      <canvas aria-label="Сцена сборочного ангара"></canvas>
-      <div class="view-tag"><b>Цех 01</b><i></i><span id="current-view">Сборка ракеты</span></div>
-      <div id="mount-points" aria-label="Свободные крепления"></div>
-      <div id="assembly-hud" hidden><span class="assembly-label">Детали <span id="assembly-count">0</span></span><span id="assembly-message" role="status">Перетащите деталь из каталога к креплению.</span></div>
-      <div id="loading" role="status">Загрузка 3D-сцены…</div>
-    </section>
-    <aside id="catalog" aria-label="Каталог деталей" hidden>
-      <div class="catalog-title">
-        <div><div class="eyebrow">Конструктор / JUGRE</div><h2>Детали ракеты</h2><p class="catalog-guide">Зажмите карточку и перенесите деталь к зелёной точке на ракете.</p></div>
-        <span id="catalog-total" class="catalog-total"></span>
+    <section id="viewport" tabindex="0" aria-label="Interactive 3D scene">
+      <canvas aria-label="3D viewport"></canvas>
+      <div id="kennedy-labels" hidden aria-hidden="true"></div>
+      <div class="view-tag"><b id="location-tag">Hangar</b><i></i><span id="current-view">Build</span></div>
+      <div id="mount-points" aria-label="Attachment points"></div>
+      <div id="vab-cameras" hidden role="group" aria-label="Rocket cameras">
+        <button type="button" data-vab-view="whole" aria-pressed="true">Full rocket</button>
+        <button type="button" data-vab-view="engines" aria-pressed="false">Engines</button>
+        <button type="button" data-vab-view="stages" aria-pressed="false">Stages</button>
+        <button type="button" data-vab-view="payload" aria-pressed="false">Payload</button>
+        <label>Altitude <input id="vab-altitude" type="range" min="0.8" max="132" step="0.1" aria-label="Camera altitude"><output id="vab-altitude-value"></output></label>
+        <button type="button" id="vab-zone">Payload Lab</button>
+        <button type="button" id="vab-gate" aria-pressed="false">Open doors</button>
       </div>
-      <div id="part-filters" role="group" aria-label="Категории деталей"></div>
-      <div id="part-cards" aria-label="Доступные детали"></div>
-      <div class="catalog-actions">
-        <button class="control" id="assembly-undo" type="button" title="Ctrl+Z" disabled>Отменить</button>
-        <div class="row">
-          <button class="control" id="assembly-new" type="button">Новая сборка</button>
-          <button class="control" id="assembly-example" type="button">Пример</button>
-        </div>
-        <button class="control" id="assembly-remove" type="button" hidden>Вернуть узел в каталог</button>
+      <div id="lab-mount-points" hidden aria-label="Payload attachment points"></div>
+      <section id="vab-equipment-panel" hidden aria-label="Payload assembly workbench">
+        <div class="lab-heading"><strong>Payload Lab</strong></div>
+        <label for="vab-equipment-model">Payload bus</label>
+        <select id="vab-equipment-model"></select>
+        <label for="equipment-library" class="sr-only">Saved payloads</label>
+        <select id="equipment-library"><option value="">Open saved payload…</option></select>
+        <section id="equipment-config" hidden>
+          <p id="lab-mission-request"></p>
+          <div class="lab-view-controls">
+            <label>View <select id="lab-face"><option value="front">Front</option><option value="rear">Rear</option><option value="left">Left</option><option value="right">Right</option><option value="top">Top</option><option value="all">All faces</option></select></label>
+            <button class="control" id="lab-focus" type="button">Focus bus</button>
+          </div>
+          <output id="equipment-totals" aria-live="polite"></output>
+          <p id="lab-missing"></p>
+          <div class="lab-tools">
+            <button class="control" id="lab-undo" type="button" aria-label="Undo" disabled>↶</button>
+            <button class="control" id="lab-redo" type="button" aria-label="Redo" disabled>↷</button>
+          </div>
+          <section id="lab-placement" hidden aria-label="Component placement">
+            <strong id="lab-selection">Select hardware</strong>
+            <p id="lab-placement-status">Choose an attachment point.</p>
+            <div class="lab-tools">
+              <button class="control" id="lab-rotate" type="button" disabled>Rotate 90°</button>
+              <button class="control" id="lab-cancel" type="button" disabled>Cancel</button>
+            </div>
+            <div id="lab-mount-list" aria-label="Attachment points on the selected face"></div>
+          </section>
+          <label for="lab-search" class="sr-only">Find hardware</label>
+          <input id="lab-search" type="search" placeholder="Find cameras, sensors, systems…">
+          <label for="lab-category" class="sr-only">Hardware category</label>
+          <select id="lab-category"><option value="all">All hardware</option><option value="optical">Cameras &amp; optics</option><option value="science">Science instruments</option><option value="systems">Bus systems</option></select>
+          <div id="equipment-instruments"></div>
+          <p id="lab-empty-search" hidden>No matching hardware.</p>
+          <details id="lab-installed-section"><summary>Installed hardware</summary><div id="lab-installed"></div>
+            <div class="lab-tools"><button class="control" id="lab-move" type="button" disabled>Move selected</button>
+              <button class="control" id="lab-remove" type="button" disabled>Remove selected</button></div>
+          </details>
+          <label for="lab-name">Payload name</label>
+          <input id="lab-name" type="text" maxlength="100" placeholder="My payload">
+          <button class="control" id="equipment-save" type="button">Save payload</button>
+        </section>
+        <output id="vab-equipment-status" aria-live="polite"></output>
+        <button class="control" id="vab-equipment-test" type="button" aria-pressed="false">Test deployment</button>
+        <button class="control emphasis" id="vab-equipment-install" type="button">Install in rocket</button>
+        <button class="control emphasis" id="vab-equipment-apollo" type="button" hidden>Use Saturn V assembly</button>
+      </section>
+      <div id="assembly-hud" hidden><span class="assembly-label">Parts <span id="assembly-count">0</span></span><span id="assembly-message" role="status">Drag a part to a mount.</span></div>
+      <div id="loading" role="status">Loading scene…</div>
+      <div id="flight-scene-tools" hidden aria-label="Flight actions">
+        <button type="button" class="control" id="flight-pause" aria-pressed="false">Pause</button>
+        <label class="scene-warp">Time <select id="flight-warp" aria-label="Time warp"><option value="1">×1</option><option value="10">×10</option><option value="50">×50</option><option value="100">×100</option><option value="300">×300</option><option value="500">×500</option></select></label>
+        <button type="button" class="control" id="flight-skip-maneuver">Skip phase</button>
+        <details id="flight-camera-menu"><summary class="control">Camera</summary>
+          <div class="flight-camera-buttons" id="flight-camera-options" role="group" aria-label="Flight cameras">
+            <button type="button" class="control" data-flight-camera="ship">Ship</button>
+            <button type="button" class="control" data-flight-camera="cabin">Onboard</button>
+            <button type="button" class="control" data-flight-camera="earth">Earth</button>
+            <button type="button" class="control" data-flight-camera="moon">Moon</button>
+          </div>
+        </details>
+        <button type="button" class="control" id="flight-journal-open" aria-haspopup="dialog">Log <kbd>Tab</kbd></button>
+        <button type="button" class="control" id="flight-hold">Hold</button>
       </div>
-    </aside>
-  </div>
-  <footer>
-    <div class="crew-state">
+      <div id="flight-banner" hidden></div>
+      <div id="cockpit-hud" hidden>ONBOARD CAMERA</div>
+      <section id="broadcast-hud" hidden aria-label="Mission Timeline & Launch Telemetry"></section>
+      <div id="timeline-live" class="sr-only" role="status" aria-live="polite"></div>
+      <div id="flight-notices">
+        <div id="radio-subtitle" hidden aria-live="polite"><strong id="radio-speaker"></strong><span id="radio-text"></span></div>
+        <div id="flight-event"></div>
+      </div>
+  <footer class="scene-tools">
+    <div class="scene-activity">
       <span id="activity" aria-hidden="true"></span>
-      <span id="crew-status" aria-live="polite">04 сотрудника</span>
-      <button class="control" id="pause" type="button" aria-pressed="false" disabled><span>Пауза</span></button>
+      <button class="control" id="pause" type="button" aria-pressed="false" disabled><span>Pause</span></button>
     </div>
-    <div class="hint">Пустая область — поворот камеры · Колесо или щипок — масштаб</div>
     <div class="tools">
       <output id="feedback" role="status"></output>
       <button class="control emphasis" id="edit-brand" type="button" disabled>
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="m3 10-.7 3.7L6 13l7.1-7.1-3-3L3 10Zm5.8-5.8 3 3"/></svg>
-        Изменить вывеску
+        Hangar sign
       </button>
     </div>
   </footer>
+    </section>
+    <aside id="catalog" class="console-panel" aria-label="Parts catalog" hidden>
+      <div class="assembly-toolbar">
+        <div class="parts-heading"><h2>Parts</h2><span id="catalog-total" class="catalog-total"></span></div>
+        <div id="part-filters" role="group" aria-label="Part categories"></div>
+        <div class="assembly-tools">
+          <button class="control" id="assembly-undo" type="button" aria-label="Undo" title="Ctrl+Z" disabled>Undo</button>
+          <button class="control" id="assembly-redo" type="button" aria-label="Redo" title="Ctrl+Y" disabled>Redo</button>
+        <button class="control" id="assembly-verify" type="button">Check build</button>
+          <details id="assembly-settings">
+            <summary class="control">Build setup</summary>
+            <div class="console-panel assembly-options">
+      <section id="assembly-workflow" class="assembly-flow" aria-label="Build settings">
+        <p id="assembly-mission"></p>
+        <label>Mission goal <select id="assembly-purpose"><option value="orbit">Orbit test</option><option value="deployment">Deploy a satellite</option><option value="science">Earth observation</option></select></label>
+        <div class="row"><button class="control emphasis" id="assembly-learn" type="button">Tutorial</button><button class="control" id="assembly-projects" type="button">Projects</button></div>
+        <p id="assembly-learn-offer" hidden>New here? Try the guided build.</p>
+        <section id="assembly-tutorial" hidden>
+          <strong id="assembly-tutorial-title"></strong><p id="assembly-tutorial-text"></p>
+          <div class="row"><button class="control" id="tutorial-back" type="button">Back</button><button class="control" id="tutorial-skip" type="button">Skip</button><button class="control" id="tutorial-exit" type="button">Exit</button></div>
+          <button class="control" id="tutorial-keep" type="button" hidden>Save tutorial rocket</button>
+        </section>
+        <div id="assembly-route" aria-label="Build steps"></div>
+        <p id="assembly-step-help"></p>
+        <label>Symmetry <select id="assembly-symmetry"><option value="1">Single</option><option value="2">Pair</option><option value="3">Triple</option><option value="4">Quad</option></select></label>
+        <label>Fuel <input id="assembly-fuel" type="range" min="5" max="100" step="5" value="100"><output id="assembly-fuel-value">100%</output></label>
+        <details><summary>Parts & staging</summary><div id="assembly-tree"></div><output id="assembly-staging"></output></details>
+        <div class="row"><button class="control" id="assembly-selected-remove" type="button" disabled>Remove selected</button><button class="control" id="assembly-replace" type="button" disabled>Replace</button></div>
+        <button class="control" id="assembly-edit-payload" type="button" hidden>Edit subassembly</button>
+        <div id="assembly-checks" aria-live="polite"></div>
+        <p id="assembly-workflow-status" role="status"></p>
+      </section>
+      <section id="payload-systems" aria-label="Rocket systems" hidden>
+        <select id="systems-part" aria-label="Rocket system"></select>
+        <div id="systems-detail" aria-live="polite"></div>
+        <div id="systems-buttons">
+          <button class="control" id="systems-hatch" type="button"></button>
+          <button class="control emphasis" id="systems-release" type="button">Test deployment</button>
+          <button class="control" id="systems-unload" type="button">Remove payload</button>
+        </div>
+      </section>
+      <div class="catalog-actions">
+        <button class="control" id="assembly-cargo-example" type="button">Cargo example</button>
+        <div class="row">
+          <button class="control" id="assembly-new" type="button">New build</button>
+          <button class="control" id="assembly-example" type="button">Load example</button>
+        </div>
+      </div>
+            </div>
+          </details>
+          <button class="control emphasis" id="assembly-to-pad" type="button" disabled>To Launch Pad</button>
+        </div>
+      </div>
+      <div id="part-cards" aria-label="Available parts"></div>
+      <div class="assembly-dock-footer"><output id="assembly-summary" aria-live="polite"></output><button class="control" id="assembly-remove" type="button" hidden>Remove assembly</button></div>
+    </aside>
+    <aside id="ready-rockets" aria-label="Fleet" hidden>
+      <div class="catalog-title">
+        <h2>Fleet</h2>
+      </div>
+      <div id="ready-list" role="group" aria-label="Missions"></div>
+      <div class="ready-details">
+        <p id="ready-status" role="status"></p>
+        <dl>
+          <dt>Launcher</dt><dd id="ready-vehicle"></dd>
+          <dt>Payload</dt><dd id="ready-payload"></dd>
+          <dt>Height</dt><dd id="ready-length"></dd>
+        </dl>
+        <button class="control emphasis" id="ready-download" type="button" disabled>Export GLB</button>
+      </div>
+    </aside>
+    <aside id="launch-panel" class="console-panel" aria-label="Launch setup" hidden>
+      <div class="launch-heading"><h2>Launch setup</h2><span>LC-39A</span></div>
+      <div class="launch-fields">
+        <label class="launch-vehicle" for="launch-rocket">Vehicle<select id="launch-rocket"></select></label>
+        <label for="launch-flight-mode">Control<select id="launch-flight-mode"><option value="command">Autopilot</option><option value="manual">Manual</option></select></label>
+        <label for="launch-flight-length">Flight<select id="launch-flight-length"><option value="full">Full</option><option value="short">Short</option></select></label>
+      </div>
+      <div class="launch-status-line"><div id="launch-status" role="status"></div><output id="launch-rocket-info"></output></div>
+      <div class="launch-actions">
+        <details id="launch-options">
+          <summary class="control">Options</summary>
+          <div class="console-panel launch-option-content">
+            <div id="launch-mission-brief"></div>
+            <div id="launch-objective-options"></div>
+            <div id="launch-rover"></div>
+            <button class="control" id="design-resume" type="button">Resume saved flight</button>
+            <details id="mission-details"><summary>Mission objectives</summary><ol id="mission-index"></ol></details>
+            <div class="launch-cameras" role="group" aria-label="Pad cameras">
+              <button type="button" data-launch-view="pad" aria-pressed="true">Pad 39A</button>
+              <button type="button" data-launch-view="padTop" aria-pressed="false">Top</button>
+              <button type="button" data-launch-view="tower" aria-pressed="false">Tower</button>
+              <button type="button" data-launch-view="overview" aria-pressed="false">Complex</button>
+              <button type="button" data-launch-view="vab" aria-pressed="false">Hangar</button>
+              <button type="button" data-launch-view="pad39b" aria-pressed="false">Pad 39B</button>
+              <button type="button" data-launch-view="coast" aria-pressed="false">Coast</button>
+            </div>
+            <div class="launch-controls">
+              <button class="control" id="launch-arms" type="button" aria-pressed="false">Retract arms</button>
+              <button class="control" id="launch-water" type="button" aria-pressed="false">Test water</button>
+              <button class="control" id="launch-evening" type="button" aria-pressed="false">Dusk</button>
+            </div>
+          </div>
+        </details>
+        <button class="control emphasis" id="flight-start" type="button" disabled>Launch <span aria-hidden="true">↗</span></button>
+      </div>
+    </aside>
+    <aside id="flight-panel" aria-label="Flight controls" hidden>
+      <div><h2 id="flight-title"></h2><p id="flight-destination"></p></div>
+      <button type="button" class="control" id="flight-stop">Back to pad</button>
+      <div id="flight-status" role="status"></div>
+      <details id="satellite-panel" hidden><summary>Satellite operations</summary>
+        <p id="satellite-readings"></p>
+        <canvas id="satellite-chart" width="360" height="76" aria-label="Battery charge and load over the last 60 minutes"></canvas>
+        <small>Battery (blue) and load (yellow) · last 60 min</small>
+        <div class="design-actions">
+          <label><input id="satellite-science" type="checkbox" checked> Science</label>
+          <label><input id="satellite-radio" type="checkbox" checked> Downlink</label>
+          <select id="satellite-instrument" aria-label="Instrument"></select>
+          <button id="satellite-queue" type="button" class="control">Queue task</button>
+        </div>
+        <output id="satellite-command-status" role="status"></output>
+        <details id="satellite-forecast"><summary>Contact windows · next 3 h</summary><ul id="satellite-windows"></ul></details>
+      </details>
+      <div class="flight-telemetry">
+        <button type="button" class="flight-number" data-chart="altitude"><small id="flight-altitude-label">Altitude</small><output id="flight-altitude">0 km</output></button>
+        <button type="button" class="flight-number" data-chart="speed"><small>Speed</small><output id="flight-speed">0 km/s</output></button>
+        <button type="button" class="flight-number" data-chart="acceleration"><small>Acceleration</small><output id="flight-acceleration">0 m/s²</output></button>
+        <button type="button" class="flight-number" data-chart="gforce"><small>G-force</small><output id="flight-gforce">1 g</output></button>
+        <button type="button" class="flight-number" data-chart="fuel"><small>Fuel</small><output id="flight-fuel">100 %</output></button>
+        <button type="button" class="flight-number" data-chart="pitch"><small>Pitch / roll</small><output id="flight-angle">0° / 0°</output></button>
+      </div>
+      <dl class="flight-health" aria-label="Systems health">
+        <div role="button" tabindex="0" data-chart="pressure"><dt>Dynamic pressure</dt><dd id="flight-pressure">0 kPa</dd></div>
+        <div role="button" tabindex="0" data-chart="heat"><dt title="Engine heat as a percentage of the limit">Heat</dt><dd id="flight-heat">23 %</dd></div>
+        <div role="button" tabindex="0" data-chart="hull"><dt>Hull</dt><dd id="flight-integrity">100 %</dd></div>
+        <div role="button" tabindex="0" data-chart="link"><dt>Radio link</dt><dd id="flight-link">Linked</dd></div>
+        <div role="button" tabindex="0" data-chart="cabin"><dt>Cabin</dt><dd id="flight-cabin-pressure">101.3 kPa</dd></div>
+        <div role="button" tabindex="0" data-chart="modules"><dt>Modules</dt><dd id="flight-module-health">Nominal</dd></div>
+      </dl>
+      <div class="flight-progress"><div id="flight-progress"></div></div>
+      <div id="manual-control-panel">
+        <strong id="flight-control-profile"></strong>
+        <button type="button" class="control" id="flight-take-control">Take control</button>
+        <div class="flight-row"><label for="flight-assistance">Assist</label><select id="flight-assistance"><option value="arcade">Arcade</option><option value="standard" selected>Standard</option><option value="realism">Realism</option></select></div>
+        <div class="manual-instruments">
+          <canvas id="flight-navball" width="84" height="84" role="img" aria-label="Navball. Prograde in green, retrograde in orange."></canvas>
+
+        </div>
+      </div>
+      <div id="flight-throttle-row" class="flight-row" hidden><label for="flight-throttle">Throttle</label><input type="range" id="flight-throttle" min="0" max="100" value="100"><output id="flight-throttle-value">100 %</output></div>
+      <div class="flight-inputs" role="group" hidden aria-label="Flight attitude">
+        <button type="button" class="control" data-flight-input="up" aria-label="Pitch forward">↑</button>
+        <button type="button" class="control" data-flight-input="down" aria-label="Pitch back">↓</button>
+        <button type="button" class="control" data-flight-input="left" aria-label="Roll left">↶</button>
+        <button type="button" class="control" data-flight-input="right" aria-label="Roll right">↷</button>
+      </div>
+      <button type="button" class="control" id="flight-stage" hidden disabled>Separate stage</button>
+      <button type="button" class="control" id="flight-dart-replay" hidden>Replay impact</button>
+      <div>
+        <div class="flight-map-title"><span id="flight-map-title">Florida · launch and ground track</span><button type="button" class="control" id="flight-map-toggle">World map</button></div>
+        <canvas id="flight-map" width="512" height="256" aria-label="Earth map and Florida launch site"></canvas>
+      </div>
+    </aside>
+  </div>
+
 </main>
+<dialog id="flight-journal" aria-labelledby="journal-title">
+  <header class="journal-header"><div><h2 id="journal-title">Flight log</h2><p id="journal-mission"></p></div><output id="journal-time"></output><button type="button" class="control" id="journal-close">Close <kbd>Tab</kbd></button></header>
+  <div class="journal-layout">
+    <section class="journal-feed" aria-label="Flight events">
+      <h3>Events</h3><p id="journal-empty">Awaiting flight events</p><ol id="journal-events"></ol>
+      <details id="design-flight" hidden><summary id="design-flight-summary"></summary>
+        <ol id="design-flight-goals"></ol>
+        <details><summary>Preflight limits</summary><ul id="design-flight-warnings"></ul></details>
+      </details>
+      <details id="crew-life-panel" hidden><summary>Life support</summary>
+        <div id="crew-life-readings"></div>
+        <details><summary>Systems & tests</summary><div id="crew-life-controls"></div></details>
+      </details>
+      <details id="flight-diagnostics"></details>
+    </section>
+    <section class="journal-plots" aria-label="Telemetry charts">
+      <article class="journal-chart trajectory-chart"><h3>Ascent path</h3><span>Altitude / ground distance</span><canvas id="journal-trajectory" width="940" height="220" role="img" aria-label="Altitude versus ground distance"></canvas></article>
+      <div id="journal-charts"></div>
+    </section>
+  </div>
+</dialog>
 <dialog id="branding" aria-labelledby="brand-title">
   <form id="brand-form">
-    <h2 id="brand-title">Вывеска ангара</h2>
-    <p>Введите текст, который будет виден на задней стене рядом с флагом.</p>
-    <label for="wordmark">Надпись</label>
+    <h2 id="brand-title">Hangar sign</h2>
+    <p>Text on the hangar wall.</p>
+    <label for="wordmark">Sign text</label>
     <input id="wordmark" maxlength="22" placeholder="JUGRE" autocomplete="off" spellcheck="false">
     <div class="actions">
-      <button class="control" id="reset-brand" type="button">Сбросить</button>
+      <button class="control" id="reset-brand" type="button">Reset</button>
       <div>
-        <button class="control" id="cancel-brand" type="button">Отмена</button>
-        <button class="control emphasis" type="submit">Сохранить</button>
+        <button class="control" id="cancel-brand" type="button">Cancel</button>
+        <button class="control emphasis" type="submit">Save</button>
       </div>
     </div>
   </form>
 </dialog>
+<dialog id="mission-designer" aria-labelledby="design-title">
+  <header class="design-header">
+    <div class="designer-brand"><span class="designer-orbit" aria-hidden="true"></span><div><span>JUGRE</span><h2 id="design-title">Mission Planner</h2></div></div>
+    <div class="designer-modes" role="group" aria-label="Planning mode">
+      <button type="button" data-designer-mode="standard" aria-pressed="true">Standard</button>
+      <button type="button" data-designer-mode="engineering" aria-pressed="false">Engineering</button>
+    </div>
+    <button type="button" class="control" id="design-close">Close</button>
+  </header>
+  <section id="standard-mode" aria-label="Guided mission planning">
+    <nav id="standard-steps" class="standard-steps" aria-label="Mission steps"></nav>
+    <div class="standard-layout">
+      <div class="standard-main">
+        <div class="standard-heading"><p id="standard-context"></p><h3 id="standard-title" tabindex="-1"></h3><p id="standard-subtitle"></p></div>
+        <div id="standard-choices"></div>
+        <div id="standard-extra"></div>
+        <div id="standard-problems" role="status" hidden></div>
+        <div id="standard-flight-format" class="standard-footnote" hidden>
+          <label for="standard-flight-length">Flight length</label>
+          <select id="standard-flight-length"><option value="full">Full mission</option><option value="short">Short · reduced distances</option></select>
+        </div>
+        <div id="standard-overview" hidden></div>
+      </div>
+      <aside class="standard-preview" aria-label="Mission preview">
+        <div class="standard-preview-top"><span id="standard-preview-title">Earth orbit</span><div id="standard-preview-tabs" role="group" aria-label="Preview model" hidden><button type="button" data-preview="rocket" aria-pressed="true">Rocket</button><button type="button" data-preview="craft" aria-pressed="false">Spacecraft</button></div></div>
+        <canvas id="standard-preview-canvas" aria-label="Interactive 3D mission preview"></canvas>
+        <div class="standard-preview-bottom"><span id="standard-preview-caption"></span><small id="standard-preview-hint">Drag to orbit</small></div>
+        <output id="standard-preview-error" role="status"></output>
+      </aside>
+    </div>
+    <footer class="standard-footer">
+      <button type="button" id="standard-back" class="standard-back">← Back</button>
+      <span id="standard-save-status" role="status"></span>
+      <button type="button" id="standard-next" class="standard-primary">Continue <span aria-hidden="true">→</span></button>
+    </footer>
+  </section>
+  <section id="engineering-mode" aria-label="Engineering planner" hidden>
+    <nav id="engineering-steps" class="standard-steps" aria-label="Engineering steps"></nav>
+    <div class="engineering-layout standard-layout">
+      <div class="engineering-main standard-main">
+        <div class="standard-heading">
+          <p id="engineering-context">ENGINEERING <span id="design-category"></span></p>
+          <h3 id="engineering-title" tabindex="-1">Mission setup</h3>
+          <p id="engineering-subtitle">Choose an origin, destination, and objective.</p>
+        </div>
+  <form id="design-form" novalidate>
+    <section data-engineering-step="0" aria-label="Mission setup">
+      <div class="design-fields">
+        <label class="design-span">Mission name <input name="name" maxlength="100"></label>
+        <label>Origin <select name="origin"></select></label>
+        <label>Destination <select name="destination"></select></label>
+        <label class="design-span">Objective <select name="type"></select></label>
+      </div>
+      <details class="engineering-details">
+        <summary>Project notes <small>Optional</small></summary>
+        <div class="design-fields"><label class="design-span">Notes <textarea name="description" maxlength="1000" rows="3" placeholder="What will you test?"></textarea></label></div>
+      </details>
+      <div class="engineering-presets">
+        <span class="engineering-section-label">Start from a preset</span>
+        <div class="engineering-preset-grid">
+          <button type="button" id="design-new"><strong>Earth orbit</strong><span>Blank test project</span><b aria-hidden="true">↗</b></button>
+          <button type="button" id="design-earth-science"><strong>Earth observation</strong><span>Science satellite</span><b aria-hidden="true">↗</b></button>
+          <button type="button" id="design-staging-example"><strong>Two-stage satellite</strong><span>Manual assembly example</span><b aria-hidden="true">↗</b></button>
+          <button type="button" id="design-lunar"><strong>Lunar expedition</strong><span>Lunar landing & return</span><b aria-hidden="true">↗</b></button>
+        </div>
+      </div>
+  <details id="design-library">
+    <summary>My projects <small>Open, import, or compare</small></summary>
+    <div class="design-actions">
+      <label>Project <select id="design-project"></select></label>
+      <label><input id="design-show-archive" type="checkbox"> Include archived</label>
+      <button id="design-project-open" class="control" type="button">Open</button>
+      <button id="design-project-copy" class="control" type="button">Duplicate</button>
+      <button id="design-project-archive" class="control" type="button">Archive</button>
+      <button id="design-project-delete" class="control" type="button">Delete</button>
+      <button id="design-project-export" class="control" type="button">Export JSON</button>
+      <button id="design-project-import" class="control" type="button">Import JSON</button>
+      <input id="design-project-file" type="file" accept=".json,application/json" hidden>
+    </div>
+    <details><summary>Compare 2–4 projects</summary>
+      <div class="design-actions">
+        <select id="design-compare" aria-label="Projects to compare" multiple size="4"></select>
+        <label><input id="design-compare-results" type="checkbox"> Include flight results</label>
+        <button id="design-compare-run" class="control" type="button">Compare</button>
+      </div>
+      <div id="design-compare-table"></div>
+    </details>
+  </details>
+    </section>
+    <section data-engineering-step="1" aria-label="Orbit & flight" hidden>
+      <div class="engineering-note">For a circular orbit, set both altitudes to the same value.</div>
+      <div class="design-fields">
+        <label>Periapsis altitude, km <input type="number" name="periapsisKm" min="0.001" step="any"><small>Low point</small></label>
+        <label>Apoapsis altitude, km <input type="number" name="apoapsisKm" min="0.001" step="any"><small>High point</small></label>
+        <label>Inclination, ° <input type="number" name="inclinationDeg" min="0" max="180" step="any"></label>
+        <label>Altitude tolerance, km <input type="number" name="toleranceKm" min="0.001" step="any"></label>
+        <label class="design-span">Mission duration, h <input type="number" name="durationHours" min="0" step="any" placeholder="Unset"></label>
+        <label class="design-span engineering-checkbox"><input type="checkbox" name="returnRequired"> Return to Earth</label>
+      </div>
+      <details class="engineering-details" id="design-launch-settings">
+        <summary>Launch & transfer <small>Site, UTC date</small></summary>
+        <div class="design-fields">
+          <label>Departure <select name="start"></select></label>
+          <label>Launch site <select name="site"></select></label>
+          <label>Launch time, UTC <input name="launchUtc" type="datetime-local" step="1"></label>
+          <label>Transfer duration, h <input type="number" name="transferHours" min="0" step="any" placeholder="Auto for planetary transfers"></label>
+        </div>
+      </details>
+    </section>
+    <section data-engineering-step="2" aria-label="Payload" hidden>
+      <div class="design-fields">
+        <label>Payload mass, kg <input type="number" name="payloadMassKg" min="0" step="any"></label>
+        <label>Payload type <select name="payloadType"></select></label>
+        <label>People aboard <input type="number" name="crewCount" min="0" max="64" step="1"><small>0 for an uncrewed flight</small></label>
+        <label>Mass per person, kg <input type="number" name="crewMassKgEach" min="1" step="any" placeholder="If carrying crew"></label>
+      </div>
+      <details class="engineering-details">
+        <summary>Equipment requirements <small>Optional</small></summary>
+        <div class="design-fields"><label class="design-span">Required equipment <input name="equipment" maxlength="300"></label></div>
+      </details>
+    <details id="design-cabin">
+      <summary>Life support <small>Cabin systems & supplies</small></summary>
+      <p>Enter known values. Required fields have an asterisk.</p>
+      <div class="design-fields" id="design-cabin-fields"></div>
+    </details>
+    <details id="design-expedition" hidden>
+      <summary>Expedition spacecraft <small>Lunar profile</small></summary>
+      <div class="design-fields">
+        <label class="design-span">Profile <select name="expeditionHardware"><option value="">Preliminary plan with UTC date</option></select></label>
+      </div>
+      <fieldset id="design-expedition-settings" class="design-fields">
+        <legend>Flight settings</legend>
+        <label>Service module fuel, % <input type="number" name="lunarFuelPercent" min="0" max="100" step="any"></label>
+        <label>Lunar orbit duration, h <input type="number" name="lunarOperationsHours" step="any"></label>
+        <label>Return transfer, h <input type="number" name="lunarReturnHours" step="any"></label>
+      </fieldset>
+    </details>
+    <details id="design-interplanetary" class="engineering-details" hidden>
+      <summary>Interplanetary probe <small>Mass, fuel & propulsion</small></summary>
+      <p>Leave launch time and transfer duration blank to search for a launch window.</p>
+      <div class="design-fields">
+        <label>Dry mass, kg <input type="number" name="probeDryKg" min="1" step="any"></label>
+        <label>Fuel mass, kg <input type="number" name="probeFuelKg" min="0" step="any"></label>
+        <label>Specific impulse, s <input type="number" name="probeIspS" min="50" max="1000" step="any"></label>
+      </div>
+    </details>
+    <details id="design-spacecraft" hidden>
+      <summary>Science spacecraft <small>Systems & instruments</small></summary>
+      <details class="engineering-details" id="design-spacecraft-hardware">
+        <summary>Onboard systems <small>Power, radio, memory & attitude</small></summary>
+      <div id="design-spacecraft-controls" class="design-fields">
+        <label>Solar arrays <select name="panels"></select></label>
+        <label>Battery <select name="battery"></select></label>
+        <label>Radio <select name="radio"></select></label>
+        <label>Computer & memory <select name="computer"></select></label>
+        <label>Attitude control <select name="attitude"></select></label>
+      </div>
+      </details>
+      <details class="engineering-details">
+        <summary>Science goals & budget <small>Data, coordinates & cost</small></summary>
+      <div class="design-fields">
+        <label>Spacecraft budget, M <input name="budgetM" type="number" step="any"></label>
+        <label>Downlink goal, MB <input name="downlinkGoalMB" type="number" step="any"></label>
+        <label>Target latitude, ° <input name="targetLatDeg" type="number" step="any"></label>
+        <label>Target longitude, ° <input name="targetLonDeg" type="number" step="any"></label>
+      </div>
+      </details>
+      <div class="design-fields engineering-catalog-filters">
+        <label>Find an instrument <input id="design-instrument-search" type="search"></label>
+        <label>Category <select id="design-instrument-category"><option value="">All categories</option></select></label>
+        <label>Sort by <select id="design-instrument-sort"><option value="name">Name</option><option value="massKg">Mass</option><option value="peakW">Peak power</option><option value="costM">Cost</option></select></label>
+      </div>
+      <div id="design-instruments"></div>
+      <output id="design-spacecraft-total"></output>
+    </details>
+    </section>
+    <section data-engineering-step="3" aria-label="Launcher" hidden>
+      <div class="design-fields">
+        <label class="design-span">Assembly method <select name="assembly"></select></label>
+        <label class="design-span">Optimize for <select name="optimization"></select></label>
+        <label>Fuel load, % <input type="number" name="propellantPercent" min="0" max="100" step="any"></label>
+        <label>Δv margin, % <input type="number" name="marginPercent" min="0" max="100" step="any"></label>
+      </div>
+      <div class="engineering-note" id="engineering-assembly-hint"></div>
+      <details class="engineering-details">
+        <summary>Launcher limits <small>Mass, thrust & parts</small></summary>
+        <div class="design-fields">
+          <label>Max mass, kg <input type="number" name="maxMassKg" min="1" step="any" placeholder="Unlimited"></label>
+          <label>Upper-stage throttle limit, % <input type="number" name="upperThrottlePercent" min="10" max="100" step="any"></label>
+          <label class="design-span">Available parts <select name="availableParts" multiple size="5"></select><small>Leave empty to use all parts.</small></label>
+        </div>
+      </details>
+    </section>
+  </form>
+  <section data-engineering-step="4" aria-label="Review" hidden>
+    <div class="design-fields"><label class="design-span">Flight length <select name="flightLength" form="design-form"><option value="full">Full mission</option><option value="short">Short · reduced distances</option></select></label></div>
+    <div id="engineering-empty" class="engineering-note">Calculate to select a launcher and check the mission.</div>
+    <div id="engineering-results" hidden>
+    <section aria-labelledby="design-report-title"><h3 id="design-report-title">Engineering report</h3>
+      <label for="design-candidate">Configuration</label><select id="design-candidate"></select>
+      <div id="design-report"></div>
+    </section>
+    <details class="engineering-details"><summary id="design-plan-title">Flight plan & requirements</summary><ol id="design-phases"></ol></details>
+    <details class="engineering-details engineering-risk"><summary>Test override</summary><p>Generate a flight configuration with failed checks.</p><label class="engineering-checkbox"><input type="checkbox" id="design-risk"> Allow flight with failed checks</label></details>
+    </div>
+    <div class="engineering-review-actions">
+      <button type="submit" form="design-form" id="engineering-recalculate" class="standard-edit">Recalculate</button>
+      <button type="button" class="standard-edit" id="design-cancel" disabled hidden>Cancel calculation</button>
+    </div>
+  </section>
+      </div>
+      <aside class="engineering-aside" aria-label="Your mission">
+        <div id="engineering-preview-slot"></div>
+        <div class="engineering-summary">
+          <span class="engineering-section-label">Your mission</span>
+          <h4 id="engineering-summary-name"></h4>
+          <div id="engineering-route" class="standard-route"></div>
+          <dl id="engineering-summary-values"></dl>
+          <div class="engineering-tip"><span id="engineering-tip-title"></span><p id="engineering-tip"></p></div>
+        </div>
+      </aside>
+    </div>
+    <footer class="standard-footer engineering-footer">
+      <button type="button" id="engineering-back" class="standard-back">My projects</button>
+      <div class="engineering-footer-status"><button type="button" id="design-save">Save project</button><output id="design-status" role="status"></output></div>
+      <button type="button" id="engineering-next" class="standard-primary">Continue →</button>
+      <button type="submit" form="design-form" id="engineering-calculate" class="standard-primary" hidden>Calculate</button>
+      <button type="button" id="design-apply" class="standard-primary" disabled hidden>Prepare launch ↗</button>
+    </footer>
+  </section>
+</dialog>
+<dialog id="audio-dialog" aria-labelledby="audio-title">
+  <form method="dialog">
+    <h2 id="audio-title">Audio</h2>
+    <p>Voice, music, and effects.</p>
+    <label class="audio-slider" for="audio-master">Master volume <output id="audio-master-value" for="audio-master"></output><input type="range" id="audio-master" min="0" max="100"></label>
+    <label class="audio-slider" for="audio-effects">Effects <output id="audio-effects-value" for="audio-effects"></output><input type="range" id="audio-effects" min="0" max="100"></label>
+    <label class="audio-slider" for="audio-voices">Radio voices <output id="audio-voices-value" for="audio-voices"></output><input type="range" id="audio-voices" min="0" max="100"></label>
+    <label class="audio-slider" for="audio-music">Music <output id="audio-music-value" for="audio-music"></output><input type="range" id="audio-music" min="0" max="100"></label>
+    <label class="audio-slider" for="audio-interface">Interface sounds <output id="audio-interface-value" for="audio-interface"></output><input type="range" id="audio-interface" min="0" max="100"></label>
+    <label class="audio-check"><input type="checkbox" id="audio-subtitles" checked> Subtitles</label>
+    <div class="actions"><button type="button" class="control" id="audio-reset">Defaults</button><button type="submit" class="control emphasis">Done</button></div>
+  </form>
+</dialog>
 <script>/* ASSET_DATA */</script>
+<!-- READY_ROCKET_DATA -->
+<!-- FLIGHT_DATA -->
+<!-- RADIO_DATA -->
 <script>/* VIEWER_SCRIPT */</script>
+<!-- PHYSX_DATA -->
 <!-- THREE_LICENSE -->
+  <dialog id="assembly-confirm" aria-labelledby="assembly-confirm-title">
+    <h2 id="assembly-confirm-title">Remove attached assembly?</h2>
+    <p id="assembly-confirm-message"></p>
+    <button class="control" id="assembly-confirm-cancel" type="button">Keep</button>
+    <button class="control" id="assembly-confirm-accept" type="button">Remove parts</button>
+  </dialog>
 </body>
 </html>

@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: Mars and Voyager departures consume stage budgets using the correct reference frame
+ok 1 - Mars and Voyager departures consume stage budgets using the correct reference frame
+  ---
+  duration_ms: 7024.5227
+  type: 'test'
+  ...
+# Subtest: Dragon deorbit and aerodynamic return measure the corridor, both parachute stages and touchdown
+not ok 2 - Dragon deorbit and aerodynamic return measure the corridor, both parachute stages and touchdown
+  ---
+  duration_ms: 49.7693
+  type: 'test'
+  location: 'C:\\Users\\Yusuf\\Downloads\\JUGRE SPACE PROJECT\\assembly_hangar\\source\\tests\\historical-operations.test.mjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + null
+    - undefined
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual: ~
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/Yusuf/Downloads/JUGRE%20SPACE%20PROJECT/assembly_hangar/source/tests/historical-operations.test.mjs:30:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: DRACO resolves the secondary in its window and restores a corrected aim without inventing an impact
+ok 3 - DRACO resolves the secondary in its window and restores a corrected aim without inventing an impact
+  ---
+  duration_ms: 1.8466
+  type: 'test'
+  ...
+# Subtest: Curiosity discovery follows physical inventories and both laboratory results in manual operation
+ok 4 - Curiosity discovery follows physical inventories and both laboratory results in manual operation
+  ---
+  duration_ms: 2.231
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7391.1774

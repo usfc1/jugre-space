@@ -1,6 +1,26 @@
 {
   "name": "jugre-assembly-hangar",
   "private": true,
-  "scripts": { "build": "node build.mjs" },
-  "dependencies": { "esbuild": "0.27.7", "three": "0.187.0" }
+  "scripts": {
+    "build": "node build.mjs",
+    "build:hud-preview": "node build-timeline-preview.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify:launches": "node verify-launches.mjs",
+    "test:physx": "node tests/probe-physx.mjs",
+    "verify:physx": "node verify-rigid-game.mjs",
+    "verify:earth-imagery": "node verify-earth-imagery.mjs",
+    "verify:lunar": "node verify-lunar-flight.mjs",
+    "fetch:earth-imagery": "node fetch-earth-imagery.mjs",
+    "fetch:kennedy-imagery": "node fetch-kennedy-imagery.mjs",
+    "verify:kennedy-imagery": "node verify-kennedy-imagery.mjs",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "esbuild": "0.27.7",
+    "physx-js-webidl": "2.9.1",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
 }

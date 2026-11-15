@@ -1,0 +1,29 @@
+apollo_11 moonTransfer 9856 false undefined fuel 82890.57628694313 flags {"enabled":true}
+goals [
+  [ '1-1-1', 'COMPLETED' ],
+  [ '1-2-1', 'ACTIVE' ],
+  [ '1-2-2', 'ACTIVE' ]
+]
+artemis_ii moonTransfer 90000 false undefined fuel 534.0700290121979 flags {"enabled":true,"icpsArmed":true,"exerciseDone":true,"icpsBurnDone":true}
+goals [
+  [ '2-1-1', 'COMPLETED' ],
+  [ '2-1-2', 'COMPLETED' ],
+  [ '2-2-1', 'ACTIVE' ]
+]
+mars_2020 marsTransfer 4320 false undefined fuel 10203.441522205256 flags {"enabled":true}
+goals [ [ '3-1-1', 'ACTIVE' ], [ '3-2-1', 'ACTIVE' ] ]
+mars_science_laboratory marsTransfer 4340 false undefined fuel 10146.581709723418 flags {"enabled":true}
+goals [ [ 'msl-3-1-1', 'ACTIVE' ], [ 'msl-3-2-1', 'ACTIVE' ] ]
+voyager_2 jupiterTransfer 4200 false undefined fuel 11495.902555218536 flags {"enabled":true}
+goals [
+  [ '6-1-1', 'ACTIVE' ],
+  [ '6-1-2', 'ACTIVE' ],
+  [ '6-1-3', 'ACTIVE' ],
+  [ '6-2-1', 'ACTIVE' ]
+]
+iss_resupply stationApproach 65370 false undefined fuel 9315.130555320575 flags {"enabled":true,"phasing":true}
+goals [
+  [ '7-1-1', 'ACTIVE' ],
+  [ '7-2-1', 'ACTIVE' ],
+  [ '7-2-2', 'COMPLETED' ]
+]

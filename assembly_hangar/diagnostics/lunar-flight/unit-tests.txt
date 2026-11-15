@@ -1,0 +1,400 @@
+TAP version 13
+# Subtest: satellite footprints cover LC-39A at every level and map north upward without stretching a tangent plane
+ok 1 - satellite footprints cover LC-39A at every level and map north upward without stretching a tangent plane
+  ---
+  duration_ms: 3.7071
+  type: 'test'
+  ...
+# Subtest: missing geographic tiles preserve the base globe; decoded maps share the same shader in both views
+ok 2 - missing geographic tiles preserve the base globe; decoded maps share the same shader in both views
+  ---
+  duration_ms: 0.8683
+  type: 'test'
+  ...
+# Subtest: apollo_11: physical initial climb stays near the pad and reaches a bound orbit
+ok 3 - apollo_11: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 711.9301
+  type: 'test'
+  ...
+# Subtest: artemis_ii: physical initial climb stays near the pad and reaches a bound orbit
+ok 4 - artemis_ii: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 496.6374
+  type: 'test'
+  ...
+# Subtest: mars_2020: physical initial climb stays near the pad and reaches a bound orbit
+ok 5 - mars_2020: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 732.1638
+  type: 'test'
+  ...
+# Subtest: mars_science_laboratory: physical initial climb stays near the pad and reaches a bound orbit
+ok 6 - mars_science_laboratory: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 516.5764
+  type: 'test'
+  ...
+# Subtest: dart: physical initial climb stays near the pad and reaches a bound orbit
+ok 7 - dart: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 358.5558
+  type: 'test'
+  ...
+# Subtest: iss_resupply: physical initial climb stays near the pad and reaches a bound orbit
+ok 8 - iss_resupply: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 360.6282
+  type: 'test'
+  ...
+# Subtest: voyager_2: physical initial climb stays near the pad and reaches a bound orbit
+ok 9 - voyager_2: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 497.1025
+  type: 'test'
+  ...
+# Subtest: engines off: ground support prevents motion and fuel consumption
+ok 10 - engines off: ground support prevents motion and fuel consumption
+  ---
+  duration_ms: 65.3114
+  type: 'test'
+  ...
+# Subtest: a vehicle below liftoff thrust-to-weight remains supported on the pad
+ok 11 - a vehicle below liftoff thrust-to-weight remains supported on the pad
+  ---
+  duration_ms: 19.8191
+  type: 'test'
+  ...
+# Subtest: coordinates integrate the same measured velocity and altitude integrates radial speed
+ok 12 - coordinates integrate the same measured velocity and altitude integrates radial speed
+  ---
+  duration_ms: 35.038
+  type: 'test'
+  ...
+# Subtest: manual and automatic flight use identical forces when both point vertically
+ok 13 - manual and automatic flight use identical forces when both point vertically
+  ---
+  duration_ms: 14.8428
+  type: 'test'
+  ...
+# Subtest: cutoff removes thrust acceleration and the vehicle continues ballistically
+ok 14 - cutoff removes thrust acceleration and the vehicle continues ballistically
+  ---
+  duration_ms: 41.745
+  type: 'test'
+  ...
+# Subtest: stage separation removes exactly the detached dry mass and remaining propellant
+ok 15 - stage separation removes exactly the detached dry mass and remaining propellant
+  ---
+  duration_ms: 16.2219
+  type: 'test'
+  ...
+# Subtest: orbital cutoff immediately reports free fall and coasting conserves orbital energy
+ok 16 - orbital cutoff immediately reports free fall and coasting conserves orbital energy
+  ---
+  duration_ms: 1060.0013
+  type: 'test'
+  ...
+# Subtest: failed separation keeps attached mass, prevents upper-stage ignition and can be retried
+ok 17 - failed separation keeps attached mass, prevents upper-stage ignition and can be retried
+  ---
+  duration_ms: 176.891
+  type: 'test'
+  ...
+# Subtest: fixed stepping gives the same result at 30, 60, 144 FPS and ×100 warp
+ok 18 - fixed stepping gives the same result at 30, 60, 144 FPS and ×100 warp
+  ---
+  duration_ms: 459.9375
+  type: 'test'
+  ...
+# Subtest: mode switches never teleport the rocket or rewrite its clock/velocity
+ok 19 - mode switches never teleport the rocket or rewrite its clock/velocity
+  ---
+  duration_ms: 81.7615
+  type: 'test'
+  ...
+# Subtest: engine failure changes the trajectory rather than preserving a scheduled animation
+ok 20 - engine failure changes the trajectory rather than preserving a scheduled animation
+  ---
+  duration_ms: 151.856
+  type: 'test'
+  ...
+# Subtest: HUD, diagnostics, pressure and simulation read one physical state
+ok 21 - HUD, diagnostics, pressure and simulation read one physical state
+  ---
+  duration_ms: 72.0045
+  type: 'test'
+  ...
+# Subtest: restart returns to the exact geographical pad without residual momentum
+ok 22 - restart returns to the exact geographical pad without residual momentum
+  ---
+  duration_ms: 75.2583
+  type: 'test'
+  ...
+# Subtest: custom craft uses actual assembled mass, tanks and engine ratings
+ok 23 - custom craft uses actual assembled mass, tanks and engine ratings
+  ---
+  duration_ms: 1.2176
+  type: 'test'
+  ...
+# Subtest: rotating/floating rendering frame cannot move emission points in the physical world
+ok 24 - rotating/floating rendering frame cannot move emission points in the physical world
+  ---
+  duration_ms: 2.6707
+  type: 'test'
+  ...
+# Subtest: exhaust selects every active engine including radial boosters, and ignores an unlit core
+ok 25 - exhaust selects every active engine including radial boosters, and ignores an unlit core
+  ---
+  duration_ms: 9.8367
+  type: 'test'
+  ...
+# Subtest: universal Kepler conserves energy, momentum and reverses a multi-day coast
+ok 26 - universal Kepler conserves energy, momentum and reverses a multi-day coast
+  ---
+  duration_ms: 3.6387
+  type: 'test'
+  ...
+# Subtest: Apollo TLI and lunar arrival use hours/days with continuous physical state
+ok 27 - Apollo TLI and lunar arrival use hours/days with continuous physical state
+  ---
+  duration_ms: 1478.929
+  type: 'test'
+  ...
+# Subtest: ×1, ×300 and ×500 advance one shared clock and identical states
+ok 28 - ×1, ×300 and ×500 advance one shared clock and identical states
+  ---
+  duration_ms: 759.1528
+  type: 'test'
+  ...
+# Subtest: parking orbit at ×500 agrees with the rotating-frame force integrator
+ok 29 - parking orbit at ×500 agrees with the rotating-frame force integrator
+  ---
+  duration_ms: 928.293
+  type: 'test'
+  ...
+# Subtest: compressed Apollo save migrates to physical time and survives another save
+ok 30 - compressed Apollo save migrates to physical time and survives another save
+  ---
+  duration_ms: 1275.9939
+  type: 'test'
+  ...
+# Subtest: Artemis physical transfer reaches the configured lunar flyby without discontinuity
+ok 31 - Artemis physical transfer reaches the configured lunar flyby without discontinuity
+  ---
+  duration_ms: 948.2829
+  type: 'test'
+  ...
+# Subtest: countdown, elapsed time, multi-day formatting and nonwrapping days
+ok 32 - countdown, elapsed time, multi-day formatting and nonwrapping days
+  ---
+  duration_ms: 2.4889
+  type: 'test'
+  ...
+# Subtest: preflight and countdown share simulation time and ignore time warp
+ok 33 - preflight and countdown share simulation time and ignore time warp
+  ---
+  duration_ms: 11.6645
+  type: 'test'
+  ...
+# Subtest: clock switches to T+ only on physical liftoff, not countdown expiry
+ok 34 - clock switches to T+ only on physical liftoff, not countdown expiry
+  ---
+  duration_ms: 41.5221
+  type: 'test'
+  ...
+# Subtest: countdown holds, pauses and resumes without accumulating hidden time
+ok 35 - countdown holds, pauses and resumes without accumulating hidden time
+  ---
+  duration_ms: 2.5559
+  type: 'test'
+  ...
+# Subtest: postlaunch pause freezes MET; time warp advances MET with simulation
+ok 36 - postlaunch pause freezes MET; time warp advances MET with simulation
+  ---
+  duration_ms: 32.5384
+  type: 'test'
+  ...
+# Subtest: frame partition does not change countdown, simulation time or navigation
+ok 37 - frame partition does not change countdown, simulation time or navigation
+  ---
+  duration_ms: 127.7095
+  type: 'test'
+  ...
+# Subtest: abort freezes T− and never produces a liftoff
+ok 38 - abort freezes T− and never produces a liftoff
+  ---
+  duration_ms: 3.5874
+  type: 'test'
+  ...
+# Subtest: structural failure before Max Q cannot complete future events
+ok 39 - structural failure before Max Q cannot complete future events
+  ---
+  duration_ms: 15.5922
+  type: 'test'
+  ...
+# Subtest: repaired recoverable failure resumes the timeline
+ok 40 - repaired recoverable failure resumes the timeline
+  ---
+  duration_ms: 163.9257
+  type: 'test'
+  ...
+# Subtest: separation requires a signal, records failure, and can be retried
+ok 41 - separation requires a signal, records failure, and can be retried
+  ---
+  duration_ms: 4.6141
+  type: 'test'
+  ...
+# Subtest: elapsed schedules cannot complete missing separation hardware
+ok 42 - elapsed schedules cannot complete missing separation hardware
+  ---
+  duration_ms: 347.745
+  type: 'test'
+  ...
+# Subtest: orbit requires a safe periapsis, not merely high altitude
+ok 43 - orbit requires a safe periapsis, not merely high altitude
+  ---
+  duration_ms: 1.3428
+  type: 'test'
+  ...
+# Subtest: unsafe touchdown and scheduled surface phase never grant landing
+ok 44 - unsafe touchdown and scheduled surface phase never grant landing
+  ---
+  duration_ms: 1.4968
+  type: 'test'
+  ...
+# Subtest: DART impact is the intended goal despite loss of integrity and radio
+ok 45 - DART impact is the intended goal despite loss of integrity and radio
+  ---
+  duration_ms: 533.0891
+  type: 'test'
+  ...
+# Subtest: save/load round trip preserves clocks, vectors, systems and event history
+ok 46 - save/load round trip preserves clocks, vectors, systems and event history
+  ---
+  duration_ms: 274.435
+  type: 'test'
+  ...
+# Subtest: held countdown can be saved and restored; restart resets mission history
+ok 47 - held countdown can be saved and restored; restart resets mission history
+  ---
+  duration_ms: 5.9513
+  type: 'test'
+  ...
+# Subtest: corrupt save clocks and unknown schema versions are rejected
+ok 48 - corrupt save clocks and unknown schema versions are rejected
+  ---
+  duration_ms: 1.2958
+  type: 'test'
+  ...
+# Subtest: every registered mission has independent unique event definitions
+ok 49 - every registered mission has independent unique event definitions
+  ---
+  duration_ms: 4.2498
+  type: 'test'
+  ...
+# Subtest: future profiles can be registered without changing renderer
+ok 50 - future profiles can be registered without changing renderer
+  ---
+  duration_ms: 0.5714
+  type: 'test'
+  ...
+# Subtest: mission-control hooks emit once per completion and do not replay on load
+ok 51 - mission-control hooks emit once per completion and do not replay on load
+  ---
+  duration_ms: 14.3827
+  type: 'test'
+  ...
+# Subtest: trajectory changes update forecasts without changing completion
+ok 52 - trajectory changes update forecasts without changing completion
+  ---
+  duration_ms: 11.9167
+  type: 'test'
+  ...
+# Subtest: presentation time advances the mission clock while trajectory time is suspended
+ok 53 - presentation time advances the mission clock while trajectory time is suspended
+  ---
+  duration_ms: 8.4559
+  type: 'test'
+  ...
+# Subtest: surface mission cannot declare success without contact confirmation
+ok 54 - surface mission cannot declare success without contact confirmation
+  ---
+  duration_ms: 645.8659
+  type: 'test'
+  ...
+# Subtest: a custom crewed Mars architecture uses crew descent, orbit and ascent without a rover sky crane
+ok 55 - a custom crewed Mars architecture uses crew descent, orbit and ascent without a rover sky crane
+  ---
+  duration_ms: 1.2552
+  type: 'test'
+  ...
+# Subtest: unknown condition names cannot silently complete future events
+ok 56 - unknown condition names cannot silently complete future events
+  ---
+  duration_ms: 3.736
+  type: 'test'
+  ...
+# Subtest: a safe return cannot conceal a missed required lunar objective
+ok 57 - a safe return cannot conceal a missed required lunar objective
+  ---
+  duration_ms: 0.7191
+  type: 'test'
+  ...
+# Subtest: all mission path types continue identically after save/load
+ok 58 - all mission path types continue identically after save/load
+  ---
+  duration_ms: 6299.8644
+  type: 'test'
+  ...
+# Subtest: descent and ascent have no visibility step at the former 2 km boundary
+ok 59 - descent and ascent have no visibility step at the former 2 km boundary
+  ---
+  duration_ms: 9.7196
+  type: 'test'
+  ...
+# Subtest: touchdown and EVA stay level; surrounding surfaces differ and remain continuous
+ok 60 - touchdown and EVA stay level; surrounding surfaces differ and remain continuous
+  ---
+  duration_ms: 2.7251
+  type: 'test'
+  ...
+# Subtest: curved terrain has a closed ring seam, finite normals and a 65 km extent
+ok 61 - curved terrain has a closed ring seam, finite normals and a 65 km extent
+  ---
+  duration_ms: 1583.6684
+  type: 'test'
+  ...
+# Subtest: Apollo solid hull excludes the probe beyond its capture plane
+ok 62 - Apollo solid hull excludes the probe beyond its capture plane
+  ---
+  duration_ms: 168.3657
+  type: 'test'
+  ...
+# Subtest: port alignment measures both anchors before translating the moving model
+ok 63 - port alignment measures both anchors before translating the moving model
+  ---
+  duration_ms: 3.5757
+  type: 'test'
+  ...
+# Subtest: light contact is harmless; a localized heavy impact breaches the crew module and survives a save
+ok 64 - light contact is harmless; a localized heavy impact breaches the crew module and survives a save
+  ---
+  duration_ms: 22.7506
+  type: 'test'
+  ...
+# Subtest: scheduled docking phase cannot complete without physical capture or spin forever at its end
+ok 65 - scheduled docking phase cannot complete without physical capture or spin forever at its end
+  ---
+  duration_ms: 7.2254
+  type: 'test'
+  ...
+1..65
+# tests 65
+# suites 0
+# pass 65
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9034.5793

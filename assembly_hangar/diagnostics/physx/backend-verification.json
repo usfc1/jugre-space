@@ -1,0 +1,365 @@
+{
+  "rigid": {
+    "version": 84672512,
+    "results": [
+      {
+        "scenario": "CCD 100 m/s against 0.1 m wall",
+        "position": [
+          -2.0002505779266357,
+          0,
+          0
+        ],
+        "impulseNs": 122
+      },
+      {
+        "scenario": "dock speed/angle gates and native fixed joint",
+        "separationM": 1.150008702155339
+      },
+      {
+        "scenario": "separation, inheritance, overlap suppression, 32-body cap plus cabin",
+        "combinedPhysicsMs": 47.69999999552965,
+        "exteriorActors": 33,
+        "interiorActors": 103
+      },
+      {
+        "scenario": "interior drift, acceleration, wall, single impulse, reset",
+        "fixed": 6
+      },
+      {
+        "scenario": "analytic warp drift with native CCD wall contact",
+        "positionM": [
+          1.8849999904632568,
+          1,
+          -1.404423244366626e-10
+        ],
+        "nativeSteps": 90,
+        "contacts": 1
+      }
+    ]
+  },
+  "surface": {
+    "controller": 2,
+    "x": 8.06210515415296,
+    "y": 5.9604645663569045e-9,
+    "vehicle": {
+      "p": [
+        -0.00005544579471461475,
+        0.04444446563720705,
+        2.9907712936401367
+      ],
+      "v": [
+        -0.000017411801309208386,
+        -1.7486108561115543e-7,
+        0.6878625750541687
+      ],
+      "trace": [
+        {
+          "p": [
+            5.39721126948875e-14,
+            0.0005830168724060281,
+            0.00007377479050774127
+          ],
+          "tilt": 0.000010018778857276709,
+          "status": "ready"
+        },
+        {
+          "p": [
+            0.0000028179254059068626,
+            0.043825829029083274,
+            0.3108349144458771
+          ],
+          "tilt": 0.001207588740649944,
+          "status": "ready"
+        },
+        {
+          "p": [
+            -0.00000848807849251898,
+            0.04443826675415041,
+            0.9453505873680115
+          ],
+          "tilt": 0.000408791686270382,
+          "status": "ready"
+        },
+        {
+          "p": [
+            -0.000022895066649653018,
+            0.04444422721862795,
+            1.627220630645752
+          ],
+          "tilt": 0.00032300834669371796,
+          "status": "ready"
+        },
+        {
+          "p": [
+            -0.00003877322524203919,
+            0.04444446563720705,
+            2.3144280910491943
+          ],
+          "tilt": 0.0003133650220560669,
+          "status": "ready"
+        }
+      ],
+      "roads": [
+        {
+          "hit": true,
+          "point": [
+            -0.800000011920929,
+            -0.10000000149011612,
+            1
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.05524331331253052
+        },
+        {
+          "hit": true,
+          "point": [
+            0.800000011920929,
+            -0.10000000149011612,
+            1
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.055243223905563354
+        },
+        {
+          "hit": true,
+          "point": [
+            -0.800000011920929,
+            -0.10000000149011612,
+            0
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.055555522441864014
+        },
+        {
+          "hit": true,
+          "point": [
+            0.800000011920929,
+            -0.10000000149011612,
+            0
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.05555558204650879
+        },
+        {
+          "hit": true,
+          "point": [
+            -0.800000011920929,
+            -0.10000000149011612,
+            -1
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.0558677613735199
+        },
+        {
+          "hit": true,
+          "point": [
+            0.800000011920929,
+            -0.10000000149011612,
+            -1
+          ],
+          "q": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "jounce": 0.055867791175842285
+        }
+      ]
+    },
+    "trials": [
+      {
+        "id": "barkhan_4",
+        "wheels": 4,
+        "position": [
+          0.0000010214400845143246,
+          0.01666667461395266,
+          7.109585285186768
+        ],
+        "energyJ": 8639492.749296056
+      },
+      {
+        "id": "barkhan_6",
+        "wheels": 6,
+        "position": [
+          8.247892147039693e-9,
+          0.04444440603256228,
+          4.725163459777832
+        ],
+        "energyJ": 34559752.53028209
+      }
+    ]
+  },
+  "assembly": {
+    "complete": true,
+    "captured": true,
+    "fuelKg": 116.6740248619902,
+    "distance": 0.000004872777008977971,
+    "angle": 0,
+    "events": [
+      {
+        "t": "dock",
+        "d": {
+          "target": "eagle",
+          "fixedJoint": true
+        }
+      },
+      {
+        "t": "eagleExtracted",
+        "d": {
+          "distanceM": 3.0013600921630896,
+          "fixedJoint": true,
+          "rcsKg": 3.3259751380097953
+        }
+      }
+    ]
+  },
+  "manual": [
+    {
+      "mission": "artemis_ii",
+      "complete": true,
+      "rcsKg": 97.84402154702613,
+      "waypoints": 5,
+      "holdPoints": [],
+      "events": [
+        {
+          "type": "icpsHold",
+          "detail": {
+            "driftM": 0.3622913360595703,
+            "holdS": 60.00833333333057
+          }
+        },
+        {
+          "type": "icpsCircuit",
+          "detail": {
+            "waypoints": 5,
+            "rangeM": 48.81705394548724,
+            "rcsKg": 97.84402154702613
+          }
+        }
+      ]
+    },
+    {
+      "mission": "iss_resupply",
+      "complete": true,
+      "rcsKg": 0,
+      "holdPoints": [
+        400,
+        200,
+        20
+      ],
+      "events": [
+        {
+          "type": "issClearance",
+          "detail": {
+            "pointM": 400,
+            "speedMps": 0.39968612790107727,
+            "rangeM": 400.69580078125
+          }
+        },
+        {
+          "type": "issClearance",
+          "detail": {
+            "pointM": 200,
+            "speedMps": 0.39966529607772827,
+            "rangeM": 200.6957244873047
+          }
+        },
+        {
+          "type": "issClearance",
+          "detail": {
+            "pointM": 20,
+            "speedMps": 0.39919692277908325,
+            "rangeM": 20.693981170654297
+          }
+        },
+        {
+          "type": "issHoldClearances",
+          "detail": {
+            "validated": true,
+            "count": 3
+          }
+        },
+        {
+          "type": "dock",
+          "detail": {
+            "target": "iss"
+          }
+        },
+        {
+          "type": "hardCapture",
+          "detail": {}
+        },
+        {
+          "type": "dockingComplete",
+          "detail": {}
+        },
+        {
+          "type": "idaCaptured",
+          "detail": {
+            "fixedJoint": true,
+            "speedMps": 0.1800002157688141,
+            "lateralM": 2.9778502051908996e-22,
+            "angleRad": 0,
+            "corridorViolated": false
+          }
+        }
+      ]
+    }
+  ]
+}

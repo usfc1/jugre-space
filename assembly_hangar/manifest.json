@@ -1,27 +1,35 @@
 {
   "version": 1,
-  "name": "JUGRE Assembly Hangar",
+  "name": "JUGRE Vehicle Assembly Building",
   "units": "meter",
   "up": "+Y",
   "visitorForward": "+Z",
   "hangar": {
     "file": "models/assembly_hangar.glb",
-    "exampleAssembly": "assembly_hangar.example_rocket",
+    "rocketDeck": [
+      0,
+      0.8,
+      0
+    ],
+    "equipmentStand": [
+      19,
+      1.06,
+      8
+    ],
     "bounds": {
       "min": [
-        -15.0649995803833,
-        -0.29999998211860657,
-        -17.5
+        -27.899999976158142,
+        -0.5799999833106995,
+        -20
       ],
       "max": [
-        15.0649995803833,
-        11.979999542236328,
-        17.5
+        35.89999997615814,
+        136.55500000715256,
+        54.125
       ]
     }
   },
   "wordmark": {
-    "node": "assembly_hangar.brand_frame.hangar_brand",
     "default": "JUGRE"
   },
   "locomotionMps": {
@@ -40,24 +48,24 @@
         "runOffset": null,
         "points": [
           [
-            -7,
-            3
+            -8,
+            11.3
           ],
           [
             0,
-            2.8
+            11.3
           ],
           [
-            6.8,
-            3.1
+            8,
+            11.3
           ],
           [
-            7,
-            8.7
+            8,
+            16.7
           ],
           [
-            -6.9,
-            8.7
+            -8,
+            16.7
           ]
         ]
       }
@@ -74,15 +82,15 @@
         "points": [
           [
             -7,
-            -11.2
+            -10
           ],
           [
             0,
-            -11.1
+            -10
           ],
           [
             6.6,
-            -10.9
+            -10
           ],
           [
             6.4,
@@ -106,28 +114,28 @@
         "runOffset": 3,
         "points": [
           [
-            -9.45,
-            5.8
+            -17,
+            7
           ],
           [
-            -9.55,
+            -18,
             -2
           ],
           [
-            -10.55,
+            -17.4,
             -9.5
           ],
           [
-            -12.25,
+            -22,
             -8
           ],
           [
-            -12.12,
+            -22,
             7.4
           ],
           [
-            -11.5,
-            9.8
+            -19,
+            10
           ]
         ]
       }
@@ -143,31 +151,1805 @@
         "runOffset": 12,
         "points": [
           [
-            9.25,
-            -7.6
+            22,
+            14.5
           ],
           [
-            9.25,
-            0
+            28,
+            14.5
           ],
           [
-            9.3,
-            7.5
+            28,
+            6
           ],
           [
-            11.85,
-            9
+            25.5,
+            5
           ],
           [
-            12,
-            -7.6
-          ],
-          [
-            10.9,
-            -10.2
+            25.5,
+            13
           ]
         ]
       }
     }
-  ]
+  ],
+  "stagingParts": {
+    "is_125": {
+      "id": "is_125",
+      "code": "IS-125",
+      "name": "Interstage",
+      "group": "structure",
+      "massKg": 145,
+      "detail": "Stage separation · Ø 1.25 m",
+      "dimensionsM": [
+        1.31,
+        2.15,
+        1.31
+      ],
+      "stats": {
+        "mountDiameterM": 1.25,
+        "heightM": 2.15,
+        "staging": "integratedInterstage"
+      },
+      "mounts": {
+        "is_125.mount_aft": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865476,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "is_125.mount_forward": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            2.15,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "is_125.mount_engine": {
+          "profile": "jugre_stack_125",
+          "attachmentRole": "engineReceiver",
+          "translation": [
+            0,
+            2.15,
+            0
+          ],
+          "rotation": [
+            0.7071067811865476,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "file": "models/staging/is_125.glb"
+    },
+    "is_250": {
+      "id": "is_250",
+      "code": "IS-250",
+      "name": "Interstage",
+      "group": "structure",
+      "massKg": 340,
+      "detail": "Stage separation · Ø 2.5 m",
+      "dimensionsM": [
+        2.56,
+        2.95,
+        2.56
+      ],
+      "stats": {
+        "mountDiameterM": 2.5,
+        "heightM": 2.95,
+        "staging": "integratedInterstage"
+      },
+      "mounts": {
+        "is_250.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865476,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "is_250.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            2.95,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "is_250.mount_engine": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "engineReceiver",
+          "translation": [
+            0,
+            2.95,
+            0
+          ],
+          "rotation": [
+            0.7071067811865476,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        }
+      },
+      "file": "models/staging/is_250.glb"
+    }
+  },
+  "payloadParts": {
+    "go_34_cargo_bay": {
+      "file": "models/payload/go_34_cargo_bay.glb",
+      "code": "GO-34",
+      "name": "Cargo bay",
+      "group": "payload",
+      "detail": "Doors · 1 payload",
+      "massKg": 480,
+      "massBasis": "JUGRE engineering estimate",
+      "system": "bay",
+      "clip": "bay_doors",
+      "mounts": {
+        "go_34_cargo_bay.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "go_34_cargo_bay.mount_forward": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "translation": [
+            0,
+            5.66,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ]
+        },
+        "go_34_cargo_bay.mount_payload": {
+          "profile": "jugre_cargo_bay_34",
+          "attachmentRole": "payloadReceiver",
+          "translation": [
+            0,
+            2.8299999999999996,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ],
+          "acceptsParts": [
+            "mayak_k",
+            "mayak_s",
+            "barkhan_4",
+            "barkhan_6"
+          ]
+        }
+      },
+      "stats": {
+        "mountDiameterM": 2.5
+      },
+      "dimensionsM": [
+        3.46,
+        5.66,
+        3.46
+      ]
+    },
+    "pk_2_kontur": {
+      "file": "models/payload/pk_2_kontur.glb",
+      "code": "PK-2",
+      "name": "Contour",
+      "group": "command",
+      "mounts": {
+        "pk_2_kontur.mount_aft": {
+          "profile": "jugre_stack_250",
+          "attachmentRole": "structure",
+          "nominalDiameterM": 2.5,
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ]
+        },
+        "pk_2_kontur.mount_recovery": {
+          "profile": "jugre_recovery",
+          "attachmentRole": "recoveryReceiver",
+          "translation": [
+            0,
+            2.06,
+            0
+          ],
+          "rotation": [
+            0,
+            0.7071067811865475,
+            0.7071067811865476,
+            0
+          ]
+        }
+      },
+      "stats": {
+        "mountDiameterM": 2.5,
+        "crewSeats": 2,
+        "batteryKWh": 2,
+        "oxygenPersonMinutes": 240
+      },
+      "dimensionsM": [
+        2.515955859426738,
+        2.059999942779541,
+        2.507999897003174
+      ],
+      "massKg": 1450,
+      "detail": "2 seats · Ø 2.5 m",
+      "system": "crew"
+    },
+    "mayak_k": {
+      "file": "models/payload/mayak_k.glb",
+      "code": "MK",
+      "name": "Mayak-K",
+      "group": "vehicles",
+      "detail": "Folding panels",
+      "system": "payload",
+      "vehicle": "satellite",
+      "clip": "deployment",
+      "stats": {
+        "massKg": 92,
+        "batteryKWh": 1.35,
+        "peakPowerKW": 0.46,
+        "purpose": "relay"
+      },
+      "dimensionsM": [
+        0.8400000112187069,
+        1.3937999692084668,
+        0.8475899844503403
+      ],
+      "releaseM": 4.181000001192093,
+      "mounts": {
+        "mayak_k.bay_payload": {
+          "profile": "jugre_cargo_bay_34",
+          "attachmentRole": "payload",
+          "translation": [
+            0,
+            0.6968999834717451,
+            0
+          ],
+          "rotation": [
+            -0.7071067811865476,
+            0,
+            0,
+            -0.7071067811865476
+          ]
+        }
+      }
+    },
+    "mayak_s": {
+      "file": "models/payload/mayak_s.glb",
+      "code": "MS",
+      "name": "Mayak-S",
+      "group": "vehicles",
+      "detail": "Folding panels",
+      "system": "payload",
+      "vehicle": "satellite",
+      "clip": "deployment",
+      "stats": {
+        "massKg": 410,
+        "batteryKWh": 4.8,
+        "peakPowerKW": 1.25,
+        "purpose": "mapping"
+      },
+      "dimensionsM": [
+        1.210000011218707,
+        2.1954999699519644,
+        1.7380699730587006
+      ],
+      "releaseM": 5.646000023841858,
+      "mounts": {
+        "mayak_s.bay_payload": {
+          "profile": "jugre_cargo_bay_34",
+          "attachmentRole": "payload",
+          "translation": [
+            0,
+            1.0977499838434939,
+            0
+          ],
+          "rotation": [
+            -0.7071067811865476,
+            0,
+            0,
+            -0.7071067811865476
+          ]
+        }
+      }
+    },
+    "barkhan_4": {
+      "file": "models/payload/barkhan_4.glb",
+      "code": "B-4",
+      "name": "Barkhan-4",
+      "group": "vehicles",
+      "detail": "Folding mast",
+      "system": "payload",
+      "vehicle": "rover",
+      "clip": "mast_deployment",
+      "stats": {
+        "massKg": 185,
+        "topSpeedKmh": 6,
+        "batteryKWh": 2.4,
+        "wheelCount": 4,
+        "tools": [
+          "stereoCamera",
+          "surfaceImaging"
+        ]
+      },
+      "dimensionsM": [
+        1.6632000148296355,
+        1.0869650106218103,
+        1.8379299986362456
+      ],
+      "releaseM": 2.7816000074148177,
+      "mounts": {
+        "barkhan_4.bay_payload": {
+          "profile": "jugre_cargo_bay_34",
+          "attachmentRole": "payload",
+          "translation": [
+            0,
+            0.71,
+            0
+          ],
+          "rotation": [
+            -1,
+            0,
+            0,
+            -1.1102230246251565e-16
+          ]
+        }
+      }
+    },
+    "barkhan_6": {
+      "file": "models/payload/barkhan_6.glb",
+      "code": "B-6",
+      "name": "Barkhan-6",
+      "group": "vehicles",
+      "detail": "Folding mast",
+      "system": "payload",
+      "vehicle": "rover",
+      "clip": "mast_deployment",
+      "stats": {
+        "massKg": 540,
+        "topSpeedKmh": 4.2,
+        "batteryKWh": 9.6,
+        "wheelCount": 6,
+        "tools": [
+          "stereoCamera",
+          "sampleDrill",
+          "sampleStorage"
+        ]
+      },
+      "dimensionsM": [
+        2.5655999982357027,
+        1.4270412243251496,
+        3.9534152686183375
+      ],
+      "releaseM": 3.2327999991178515,
+      "mounts": {
+        "barkhan_6.bay_payload": {
+          "profile": "jugre_cargo_bay_34",
+          "attachmentRole": "payload",
+          "translation": [
+            0,
+            0.71,
+            0.39951288340413194
+          ],
+          "rotation": [
+            -1,
+            0,
+            0,
+            -1.1102230246251565e-16
+          ]
+        }
+      }
+    }
+  },
+  "launchComplex": {
+    "file": "models/jugre_launch_complex.glb",
+    "units": "meter",
+    "rocketMount": "jugre_launch_complex.rocket_mount",
+    "rocketTranslation": [
+      0,
+      9.08,
+      0
+    ],
+    "towerHeightM": 134.1,
+    "name": "Kennedy Space Center",
+    "anchor": "LC-39A",
+    "shoreline": "east",
+    "landmarks": {
+      "pad39a": [
+        0,
+        0
+      ],
+      "pad39b": [
+        -1625,
+        -2110
+      ],
+      "vab": [
+        -4630,
+        2330
+      ],
+      "lcc": [
+        -4490,
+        2424
+      ],
+      "runway": [
+        -8875,
+        -745
+      ],
+      "basin": [
+        -3810,
+        2820
+      ],
+      "titusville": [
+        -21250,
+        1600
+      ]
+    },
+    "aerialTiles": [
+      {
+        "id": "florida",
+        "bounds": [
+          -53000,
+          -42000,
+          37000,
+          48000
+        ]
+      },
+      {
+        "id": "region",
+        "bounds": [
+          -24500,
+          -15500,
+          10500,
+          19500
+        ]
+      },
+      {
+        "id": "campus",
+        "bounds": [
+          -8900,
+          -5900,
+          2300,
+          5300
+        ]
+      },
+      {
+        "id": "facilities",
+        "bounds": [
+          -5600,
+          -3000,
+          1000,
+          3600
+        ],
+        "width": 4000,
+        "featherM": 600
+      },
+      {
+        "id": "pad39a",
+        "bounds": [
+          -675,
+          -675,
+          675,
+          675
+        ],
+        "width": 4000,
+        "featherM": 90
+      }
+    ]
+  },
+  "readyRockets": [
+    {
+      "id": "apollo_11",
+      "name": "Apollo 11",
+      "launcher": "Saturn V",
+      "payload": "Columbia and Eagle",
+      "file": "models/rockets/saturn_v_sa506.glb",
+      "root": "saturn_v_sa506",
+      "source": {
+        "pack": "apollo11",
+        "assembly": "saturn_v_sa506"
+      },
+      "bounds": {
+        "min": [
+          -7.399200009536743,
+          0,
+          -7.399200009536743
+        ],
+        "max": [
+          7.399200009536743,
+          110.6424002105713,
+          7.399200009536743
+        ]
+      }
+    },
+    {
+      "id": "artemis_ii",
+      "name": "Artemis II",
+      "launcher": "SLS Block 1",
+      "payload": "Orion Integrity",
+      "file": "models/rockets/artemis_ii_launch.glb",
+      "root": "artemis_ii_launch",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "artemis_ii_launch"
+      },
+      "bounds": {
+        "min": [
+          -8.384700078964233,
+          0,
+          -4.28000020980835
+        ],
+        "max": [
+          8.384700078964233,
+          98.1399998474121,
+          4.28000020980835
+        ]
+      }
+    },
+    {
+      "id": "mars_2020",
+      "name": "Mars 2020",
+      "launcher": "Atlas V 541",
+      "payload": "Perseverance and Ingenuity",
+      "file": "models/rockets/perseverance_atlas_v_541.glb",
+      "root": "perseverance_atlas_v_541",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "perseverance_atlas_v_541"
+      },
+      "bounds": {
+        "min": [
+          -3.749610910329805,
+          0.04999999999999982,
+          -3.749610910329805
+        ],
+        "max": [
+          3.748560056833178,
+          60.050000762939455,
+          3.3139460467081623
+        ]
+      }
+    },
+    {
+      "id": "mars_science_laboratory",
+      "name": "Mars Science Laboratory",
+      "launcher": "Atlas V 541",
+      "payload": "Curiosity",
+      "file": "models/rockets/curiosity_atlas_v_541.glb",
+      "root": "curiosity_atlas_v_541",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "curiosity_atlas_v_541"
+      },
+      "bounds": {
+        "min": [
+          -3.749610910329805,
+          0.04999999999999982,
+          -3.749610910329805
+        ],
+        "max": [
+          3.748560056833178,
+          60.050000762939455,
+          3.3139460467081623
+        ]
+      }
+    },
+    {
+      "id": "dart",
+      "name": "DART",
+      "launcher": "Falcon 9",
+      "payload": "DART and LICIACube",
+      "file": "models/rockets/dart_falcon9_launch.glb",
+      "root": "dart_falcon9_launch",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "dart_falcon9_launch"
+      },
+      "bounds": {
+        "min": [
+          -2.5999999046325684,
+          0,
+          -2.6285998821258545
+        ],
+        "max": [
+          2.5999999046325684,
+          69.99999961853027,
+          2.6285998821258545
+        ]
+      }
+    },
+    {
+      "id": "voyager_2",
+      "name": "Voyager 2",
+      "launcher": "Titan IIIE–Centaur",
+      "payload": "Voyager 2 probe",
+      "file": "models/rockets/voyager_2_launch.glb",
+      "root": "voyager_2_launch",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "voyager_2_launch"
+      },
+      "bounds": {
+        "min": [
+          -4.762800006866454,
+          0,
+          -2.163135051727295
+        ],
+        "max": [
+          4.762800006866454,
+          48.80000038146973,
+          2.163135051727295
+        ]
+      }
+    },
+    {
+      "id": "iss_resupply",
+      "name": "ISS Resupply",
+      "launcher": "Falcon 9",
+      "payload": "Cargo Dragon 2",
+      "file": "models/rockets/cargo_dragon_falcon9_launch.glb",
+      "root": "cargo_dragon_falcon9_launch",
+      "source": {
+        "pack": "historical_spacecraft",
+        "assembly": "cargo_dragon_falcon9_launch"
+      },
+      "bounds": {
+        "min": [
+          -2.01200008392334,
+          0,
+          -2.176839326049233
+        ],
+        "max": [
+          2.01200008392334,
+          64.95000002384185,
+          2.123389710062373
+        ]
+      }
+    }
+  ],
+  "flight": {
+    "launchLocation": {
+      "name": "Kennedy Space Center · LC-39A",
+      "latitude": 28.6084,
+      "longitude": -80.6042
+    },
+    "mode": "educational",
+    "missions": {
+      "apollo_11": {
+        "title": "01 · Apollo 11",
+        "destination": "Moon · Sea of Tranquility",
+        "payload": "apollo_docked",
+        "capsule": "columbia",
+        "crew": true,
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 710,
+            "timePrecision": "approximate",
+            "endGET": 710
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 9146.2,
+            "timePrecision": "documented",
+            "endGET": 9856.2
+          },
+          {
+            "label": "Translunar coast",
+            "kind": "moonTransfer",
+            "duration": 263134.2,
+            "timePrecision": "documented",
+            "endGET": 272990.4
+          },
+          {
+            "label": "Lunar orbit",
+            "kind": "moonOrbit",
+            "duration": 87729.59999999998,
+            "timePrecision": "documented",
+            "endGET": 360720
+          },
+          {
+            "label": "Eagle separation",
+            "kind": "separate",
+            "duration": 8465.200000000012,
+            "timePrecision": "documented",
+            "endGET": 369185.2
+          },
+          {
+            "label": "Lunar landing",
+            "kind": "moonLanding",
+            "duration": 754.7000000000116,
+            "timePrecision": "documented",
+            "endGET": 369939.9
+          },
+          {
+            "label": "Surface operations",
+            "kind": "moonSurface",
+            "duration": 77780.89999999997,
+            "timePrecision": "documented",
+            "endGET": 447720.8
+          },
+          {
+            "label": "Ascent and Columbia rendezvous",
+            "kind": "rendezvous",
+            "duration": 39701.5,
+            "timePrecision": "documented",
+            "endGET": 487422.3
+          },
+          {
+            "label": "Earth return",
+            "kind": "earthReturn",
+            "duration": 214764.10000000003,
+            "timePrecision": "documented",
+            "endGET": 702186.4
+          },
+          {
+            "label": "Entry and splashdown",
+            "kind": "reentry",
+            "duration": 928.5999999999767,
+            "timePrecision": "documented",
+            "endGET": 703115
+          }
+        ],
+        "history": {
+          "launchUtc": "1969-07-16T13:32:00.000Z",
+          "precision": "documented",
+          "source": "https://www.nasa.gov/wp-content/uploads/static/apollo50th/pdf/A11_MissionReport.pdf",
+          "endUtc": "1969-07-24T16:50:35.000Z",
+          "ends": {
+            "orbit": 9856.2,
+            "moonTransfer": 272990.4,
+            "moonOrbit": 360720,
+            "separate": 369185.2,
+            "moonLanding": 369939.9,
+            "moonSurface": 447720.8,
+            "rendezvous": 487422.3,
+            "earthReturn": 702186.4,
+            "reentry": 703115
+          },
+          "events": {
+            "tli": 9856.2,
+            "lm-extraction": 15420,
+            "lunar-orbit": 273347.9,
+            "landing": 369939.9,
+            "eva": 393855,
+            "rendezvous": 460980,
+            "splashdown": 703115
+          }
+        }
+      },
+      "artemis_ii": {
+        "title": "02 · Artemis II",
+        "destination": "Lunar flyby → Earth",
+        "payload": "orion",
+        "capsule": "orion",
+        "crew": true,
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 500,
+            "timePrecision": "approximate",
+            "endGET": 500
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 89500,
+            "timePrecision": "approximate",
+            "endGET": 90000
+          },
+          {
+            "label": "Translunar coast",
+            "kind": "moonTransfer",
+            "duration": 255600,
+            "timePrecision": "approximate",
+            "endGET": 345600
+          },
+          {
+            "label": "Lunar farside flyby",
+            "kind": "lunarFlyby",
+            "duration": 64800,
+            "timePrecision": "approximate",
+            "endGET": 410400
+          },
+          {
+            "label": "Earth return",
+            "kind": "earthReturn",
+            "duration": 345600,
+            "timePrecision": "approximate",
+            "endGET": 756000
+          },
+          {
+            "label": "Entry and splashdown",
+            "kind": "reentry",
+            "duration": 1500,
+            "timePrecision": "approximate",
+            "endGET": 757500
+          }
+        ],
+        "history": {
+          "launchUtc": null,
+          "endUtc": null,
+          "precision": "approximate",
+          "source": "https://www.nasa.gov/artemis-ii-press-kit/",
+          "approximate": {
+            "reentry": 1500
+          }
+        }
+      },
+      "mars_2020": {
+        "title": "03 · Mars 2020",
+        "destination": "Mars · Perseverance & Ingenuity",
+        "payload": "mars2020_ship",
+        "rover": "perseverance",
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 720,
+            "timePrecision": "approximate",
+            "endGET": 720
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 3600,
+            "timePrecision": "approximate",
+            "endGET": 4320
+          },
+          {
+            "label": "Mars transfer",
+            "kind": "marsTransfer",
+            "duration": 17566490,
+            "timePrecision": "documented-to-minute",
+            "endGET": 17570810
+          },
+          {
+            "label": "Mars descent",
+            "kind": "marsLanding",
+            "duration": 419,
+            "timePrecision": "documented-to-minute",
+            "endGET": 17571229
+          },
+          {
+            "label": "Perseverance on Mars",
+            "kind": "marsSurface",
+            "duration": 120,
+            "timePrecision": "approximate",
+            "endGET": 17571349
+          }
+        ],
+        "history": {
+          "launchUtc": "2020-07-30T11:50:00.000Z",
+          "endUtc": null,
+          "ongoing": true,
+          "precision": "documented-to-minute",
+          "source": "https://ntrs.nasa.gov/citations/20220000775",
+          "dates": {
+            "marsTransfer": "2021-02-18T20:36:50.000Z",
+            "marsLanding": "2021-02-18T20:43:49.000Z"
+          },
+          "references": {
+            "entry": "2021-02-18T20:36:50.000Z",
+            "touchdown": "2021-02-18T20:43:49.000Z"
+          },
+          "approximate": {
+            "orbit": 3600,
+            "marsSurface": 120
+          }
+        }
+      },
+      "mars_science_laboratory": {
+        "title": "04 · Mars Science Laboratory",
+        "destination": "Mars · Curiosity",
+        "payload": "msl_ship",
+        "rover": "curiosity",
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 740,
+            "timePrecision": "approximate",
+            "endGET": 740
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 3600,
+            "timePrecision": "approximate",
+            "endGET": 4340
+          },
+          {
+            "label": "Mars transfer",
+            "kind": "marsTransfer",
+            "duration": 21905797,
+            "timePrecision": "documented-to-minute",
+            "endGET": 21910137
+          },
+          {
+            "label": "Mars descent",
+            "kind": "marsLanding",
+            "duration": 420,
+            "timePrecision": "documented-to-minute",
+            "endGET": 21910557
+          },
+          {
+            "label": "Curiosity on Mars",
+            "kind": "marsSurface",
+            "duration": 120,
+            "timePrecision": "approximate",
+            "endGET": 21910677
+          }
+        ],
+        "history": {
+          "launchUtc": "2011-11-26T15:02:00.000Z",
+          "endUtc": null,
+          "ongoing": true,
+          "precision": "documented-to-minute",
+          "source": "https://ntrs.nasa.gov/api/citations/20205008340/downloads/HKN%202020%20Space%20Communications%20and%20Navigation%20Technology%20Revised.pdf",
+          "dates": {
+            "marsTransfer": "2012-08-06T05:10:57.000Z",
+            "marsLanding": "2012-08-06T05:17:57.000Z"
+          },
+          "references": {
+            "touchdown": "2012-08-06T05:17:57.000Z"
+          },
+          "approximate": {
+            "orbit": 3600,
+            "marsSurface": 120
+          },
+          "estimatedEvents": [
+            "entry"
+          ]
+        }
+      },
+      "dart": {
+        "title": "05 · DART",
+        "destination": "Dimorphos · Didymos system",
+        "payload": "dart",
+        "target": "didymos",
+        "phases": [
+          {
+            "label": "Falcon 9 launch",
+            "kind": "ascent",
+            "duration": 540,
+            "timePrecision": "approximate",
+            "endGET": 540
+          },
+          {
+            "label": "Insertion and ROSA deployment",
+            "kind": "orbit",
+            "duration": 3600,
+            "timePrecision": "approximate",
+            "endGET": 4140
+          },
+          {
+            "label": "Didymos transfer",
+            "kind": "asteroidTransfer",
+            "duration": 25199064,
+            "timePrecision": "documented-to-minute",
+            "endGET": 25203204
+          },
+          {
+            "label": "LICIACube separation",
+            "kind": "dartRelease",
+            "duration": 60,
+            "timePrecision": "approximate",
+            "endGET": 25203264
+          },
+          {
+            "label": "Dimorphos coast",
+            "kind": "dartCruise",
+            "duration": 1295933.4420000017,
+            "timePrecision": "documented-to-minute",
+            "endGET": 26499197.442
+          },
+          {
+            "label": "Dimorphos final approach",
+            "kind": "dartApproach",
+            "duration": 6.55799999833107,
+            "timePrecision": "documented-to-minute",
+            "endGET": 26499204
+          },
+          {
+            "label": "Impact ejecta",
+            "kind": "dartAftermath",
+            "duration": 8,
+            "timePrecision": "approximate",
+            "endGET": 26499212
+          }
+        ],
+        "history": {
+          "launchUtc": "2021-11-24T06:21:00.000Z",
+          "endUtc": "2022-09-26T23:14:24.000Z",
+          "precision": "documented-to-minute",
+          "source": "https://ntrs.nasa.gov/api/citations/20230015804/downloads/DART%20Final%20Technical%20Report.pdf",
+          "dates": {
+            "asteroidTransfer": "2022-09-11T23:14:24.000Z",
+            "dartApproach": "2022-09-26T23:14:24.000Z",
+            "dartCruise": "2022-09-26T23:14:17.442Z"
+          },
+          "references": {
+            "impact": "2022-09-26T23:14:24.000Z",
+            "liciacube": "2022-09-11T23:14:24.000Z"
+          },
+          "approximate": {
+            "orbit": 3600,
+            "dartRelease": 60,
+            "dartAftermath": 8
+          },
+          "estimatedEvents": [
+            "liciacube"
+          ]
+        }
+      },
+      "voyager_2": {
+        "title": "06 · Voyager 2",
+        "destination": "Jupiter → Saturn → deep space",
+        "payload": "voyager",
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 600,
+            "timePrecision": "approximate",
+            "endGET": 600
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 3600,
+            "timePrecision": "approximate",
+            "endGET": 4200
+          },
+          {
+            "label": "Jupiter transfer",
+            "kind": "jupiterTransfer",
+            "duration": 59467756,
+            "timePrecision": "documented-to-minute",
+            "endGET": 59471956
+          },
+          {
+            "label": "Jupiter flyby",
+            "kind": "jupiterFlyby",
+            "duration": 14400,
+            "timePrecision": "approximate",
+            "endGET": 59486356
+          },
+          {
+            "label": "Saturn transfer",
+            "kind": "saturnTransfer",
+            "duration": 67215120,
+            "timePrecision": "documented-to-minute",
+            "endGET": 126701476
+          },
+          {
+            "label": "Saturn flyby",
+            "kind": "saturnFlyby",
+            "duration": 14400,
+            "timePrecision": "approximate",
+            "endGET": 126715876
+          },
+          {
+            "label": "Outer solar system",
+            "kind": "escape",
+            "duration": 86400,
+            "timePrecision": "approximate",
+            "endGET": 126802276
+          }
+        ],
+        "history": {
+          "launchUtc": "1977-08-20T14:29:44.000Z",
+          "endUtc": null,
+          "ongoing": true,
+          "precision": "documented-to-minute",
+          "source": "https://science.nasa.gov/mission/voyager/voyager-2/",
+          "dates": {
+            "jupiterTransfer": "1979-07-09T22:29:00.000Z",
+            "saturnTransfer": "1981-08-26T01:21:00.000Z"
+          },
+          "references": {
+            "jupiter": "1979-07-09T22:29:00.000Z",
+            "saturn": "1981-08-26T01:21:00.000Z",
+            "uranus": "1986-01-24T18:00:00.000Z",
+            "neptune": "1989-08-25T03:56:00.000Z"
+          },
+          "approximate": {
+            "orbit": 3600,
+            "jupiterFlyby": 14400,
+            "saturnFlyby": 14400,
+            "escape": 86400
+          },
+          "estimatedEvents": [
+            "uranus",
+            "neptune"
+          ]
+        }
+      },
+      "iss_resupply": {
+        "title": "07 · ISS Resupply",
+        "destination": "Earth orbit · ISS",
+        "payload": "dragon",
+        "target": "iss",
+        "capsule": "dragon",
+        "phases": [
+          {
+            "label": "Launch",
+            "kind": "ascent",
+            "duration": 570,
+            "timePrecision": "approximate",
+            "endGET": 570
+          },
+          {
+            "label": "Earth orbit",
+            "kind": "orbit",
+            "duration": 64800,
+            "timePrecision": "approximate",
+            "endGET": 65370
+          },
+          {
+            "label": "ISS approach",
+            "kind": "stationApproach",
+            "duration": 21600,
+            "timePrecision": "approximate",
+            "endGET": 86970
+          },
+          {
+            "label": "Dragon docking",
+            "kind": "docking",
+            "duration": 900,
+            "timePrecision": "approximate",
+            "endGET": 87870
+          },
+          {
+            "label": "Earth return",
+            "kind": "earthReturn",
+            "duration": 43200,
+            "timePrecision": "approximate",
+            "endGET": 131070
+          },
+          {
+            "label": "Entry and splashdown",
+            "kind": "reentry",
+            "duration": 1500,
+            "timePrecision": "approximate",
+            "endGET": 132570
+          }
+        ],
+        "history": {
+          "launchUtc": null,
+          "endUtc": null,
+          "precision": "approximate",
+          "source": "https://www.nasa.gov/international-space-station/space-station-visiting-vehicles/",
+          "approximate": {
+            "orbit": 64800,
+            "stationApproach": 21600,
+            "docking": 900,
+            "earthReturn": 43200,
+            "reentry": 1500
+          }
+        }
+      }
+    },
+    "astronauts": [
+      {
+        "id": "apollo",
+        "title": "Apollo",
+        "model": "eva_apollo",
+        "walkSpeed": 0.512
+      },
+      {
+        "id": "artemis",
+        "title": "Artemis",
+        "model": "eva_artemis",
+        "walkSpeed": 0.512
+      },
+      {
+        "id": "iss",
+        "title": "ISS",
+        "model": "eva_iss",
+        "walkSpeed": 0.512
+      },
+      {
+        "id": "mars",
+        "title": "Mars",
+        "model": "eva_mars",
+        "walkSpeed": 0.512
+      }
+    ],
+    "earthImagery": {
+      "projection": "EPSG:4326",
+      "service": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+      "regions": [
+        {
+          "id": "southeast",
+          "file": "southeast.png",
+          "bounds": [
+            -91,
+            19,
+            -71,
+            39
+          ],
+          "width": 4096,
+          "height": 4096
+        },
+        {
+          "id": "florida",
+          "file": "florida.png",
+          "bounds": [
+            -85,
+            23,
+            -76,
+            32
+          ],
+          "width": 4096,
+          "height": 4096
+        },
+        {
+          "id": "space_coast",
+          "file": "space-coast.png",
+          "bounds": [
+            -82.5,
+            26,
+            -78.5,
+            30
+          ],
+          "width": 3072,
+          "height": 3072
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "apollo_docked",
+        "file": "models/flight/apollo_docked.glb"
+      },
+      {
+        "id": "columbia",
+        "file": "models/flight/columbia.glb"
+      },
+      {
+        "id": "eagle",
+        "file": "models/flight/eagle.glb"
+      },
+      {
+        "id": "icps",
+        "file": "models/flight/icps.glb"
+      },
+      {
+        "id": "orion",
+        "file": "models/flight/orion.glb"
+      },
+      {
+        "id": "mars2020_ship",
+        "file": "models/flight/mars2020_ship.glb"
+      },
+      {
+        "id": "msl_ship",
+        "file": "models/flight/msl_ship.glb"
+      },
+      {
+        "id": "mars_parachute",
+        "file": "models/flight/mars_parachute.glb"
+      },
+      {
+        "id": "perseverance",
+        "file": "models/flight/perseverance.glb"
+      },
+      {
+        "id": "curiosity",
+        "file": "models/flight/curiosity.glb"
+      },
+      {
+        "id": "ingenuity",
+        "file": "models/flight/ingenuity.glb"
+      },
+      {
+        "id": "dart",
+        "file": "models/flight/dart.glb"
+      },
+      {
+        "id": "liciacube",
+        "file": "models/flight/liciacube.glb"
+      },
+      {
+        "id": "voyager",
+        "file": "models/flight/voyager.glb"
+      },
+      {
+        "id": "dragon",
+        "file": "models/flight/dragon.glb"
+      },
+      {
+        "id": "iss",
+        "file": "models/flight/iss.glb"
+      },
+      {
+        "id": "didymos",
+        "file": "models/flight/didymos.glb"
+      },
+      {
+        "id": "science_satellite",
+        "file": "models/flight/science_satellite.glb"
+      },
+      {
+        "id": "barkhan_4",
+        "file": "models/flight/barkhan_4.glb"
+      },
+      {
+        "id": "barkhan_6",
+        "file": "models/flight/barkhan_6.glb"
+      },
+      {
+        "id": "eva_apollo",
+        "file": "models/flight/eva_apollo.glb"
+      },
+      {
+        "id": "eva_artemis",
+        "file": "models/flight/eva_artemis.glb"
+      },
+      {
+        "id": "eva_iss",
+        "file": "models/flight/eva_iss.glb"
+      },
+      {
+        "id": "eva_mars",
+        "file": "models/flight/eva_mars.glb"
+      }
+    ]
+  },
+  "audio": {
+    "voices": "en",
+    "subtitles": "en",
+    "recordings": [
+      {
+        "id": "count_1",
+        "file": "assets/audio/radio/count_1.mp3",
+        "speaker": "control",
+        "en": "One.",
+        "ru": "1.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_2",
+        "file": "assets/audio/radio/count_2.mp3",
+        "speaker": "control",
+        "en": "Two.",
+        "ru": "2.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_3",
+        "file": "assets/audio/radio/count_3.mp3",
+        "speaker": "control",
+        "en": "Three.",
+        "ru": "3.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_4",
+        "file": "assets/audio/radio/count_4.mp3",
+        "speaker": "control",
+        "en": "Four.",
+        "ru": "4.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_5",
+        "file": "assets/audio/radio/count_5.mp3",
+        "speaker": "control",
+        "en": "Five.",
+        "ru": "5.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_6",
+        "file": "assets/audio/radio/count_6.mp3",
+        "speaker": "control",
+        "en": "Six.",
+        "ru": "6.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_7",
+        "file": "assets/audio/radio/count_7.mp3",
+        "speaker": "control",
+        "en": "Seven.",
+        "ru": "7.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_8",
+        "file": "assets/audio/radio/count_8.mp3",
+        "speaker": "control",
+        "en": "Eight.",
+        "ru": "8.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_9",
+        "file": "assets/audio/radio/count_9.mp3",
+        "speaker": "control",
+        "en": "Nine.",
+        "ru": "9.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "count_10",
+        "file": "assets/audio/radio/count_10.mp3",
+        "speaker": "control",
+        "en": "T-minus ten.",
+        "ru": "До старта десять секунд.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "preflight",
+        "file": "assets/audio/radio/preflight.mp3",
+        "speaker": "control",
+        "en": "All stations go. Proceed to terminal count.",
+        "ru": "Все посты готовы. Разрешаю финальный отсчёт.",
+        "priority": 45,
+        "available": true
+      },
+      {
+        "id": "preflight_crew",
+        "file": "assets/audio/radio/preflight_crew.mp3",
+        "speaker": "crew",
+        "en": "Checklist complete. Crew is ready.",
+        "ru": "Проверка завершена. Экипаж готов к запуску.",
+        "priority": 45,
+        "available": true
+      },
+      {
+        "id": "preflight_auto",
+        "file": "assets/audio/radio/preflight_auto.mp3",
+        "speaker": "computer",
+        "en": "Vehicle checks complete. Telemetry nominal.",
+        "ru": "Проверка аппарата завершена. Телеметрия в норме.",
+        "priority": 45,
+        "available": true
+      },
+      {
+        "id": "ignition",
+        "file": "assets/audio/radio/ignition.mp3",
+        "speaker": "control",
+        "en": "Ignition.",
+        "ru": "Зажигание.",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "liftoff",
+        "file": "assets/audio/radio/liftoff.mp3",
+        "speaker": "control",
+        "en": "Liftoff!",
+        "ru": "Старт!",
+        "priority": 100,
+        "available": true
+      },
+      {
+        "id": "ascent_crew",
+        "file": "assets/audio/radio/ascent_crew.mp3",
+        "speaker": "crew",
+        "en": "We are clear of the tower. Guidance looks good.",
+        "ru": "Вышку прошли. Наведение в норме.",
+        "priority": 32,
+        "available": true
+      },
+      {
+        "id": "ascent_auto",
+        "file": "assets/audio/radio/ascent_auto.mp3",
+        "speaker": "computer",
+        "en": "Tower clear. Ascent guidance active.",
+        "ru": "Вышка пройдена. Наведение на подъёме активно.",
+        "priority": 32,
+        "available": true
+      },
+      {
+        "id": "maxq",
+        "file": "assets/audio/radio/maxq.mp3",
+        "speaker": "control",
+        "en": "We are past maximum dynamic pressure.",
+        "ru": "Пик скоростного напора пройден.",
+        "priority": 47,
+        "available": true
+      },
+      {
+        "id": "stage",
+        "file": "assets/audio/radio/stage.mp3",
+        "speaker": "computer",
+        "en": "Stage separation confirmed.",
+        "ru": "Разделение ступеней подтверждено.",
+        "priority": 52,
+        "available": true
+      },
+      {
+        "id": "stage_ignition",
+        "file": "assets/audio/radio/stage_ignition.mp3",
+        "speaker": "computer",
+        "en": "Next stage ignition confirmed.",
+        "ru": "Зажигание следующей ступени подтверждено.",
+        "priority": 38,
+        "available": true
+      },
+      {
+        "id": "orbit",
+        "file": "assets/audio/radio/orbit.mp3",
+        "speaker": "control",
+        "en": "Orbital insertion confirmed. You are in Earth orbit.",
+        "ru": "Выведение подтверждено. Аппарат на орбите Земли.",
+        "priority": 46,
+        "available": true
+      },
+      {
+        "id": "approach",
+        "file": "assets/audio/radio/approach.mp3",
+        "speaker": "control",
+        "en": "Range is closing. You are cleared for final approach to the station.",
+        "ru": "Дистанция сокращается. Разрешаю финальное сближение со станцией.",
+        "priority": 40,
+        "available": true
+      },
+      {
+        "id": "dock",
+        "file": "assets/audio/radio/dock.mp3",
+        "speaker": "computer",
+        "en": "Contact. Docking latches are secured.",
+        "ru": "Контакт. Замки стыковочного узла закрыты.",
+        "priority": 56,
+        "available": true
+      },
+      {
+        "id": "undock",
+        "file": "assets/audio/radio/undock.mp3",
+        "speaker": "computer",
+        "en": "Lander separation confirmed.",
+        "ru": "Отделение посадочного модуля подтверждено.",
+        "priority": 43,
+        "available": true
+      },
+      {
+        "id": "correction",
+        "file": "assets/audio/radio/correction.mp3",
+        "speaker": "computer",
+        "en": "Course correction burn in progress.",
+        "ru": "Выполняется импульс коррекции траектории.",
+        "priority": 43,
+        "available": true
+      },
+      {
+        "id": "lunar_descent",
+        "file": "assets/audio/radio/lunar_descent.mp3",
+        "speaker": "control",
+        "en": "Lander, you are go for powered descent.",
+        "ru": "Посадочный модуль, разрешаю управляемый спуск.",
+        "priority": 45,
+        "available": true
+      },
+      {
+        "id": "moon_touch",
+        "file": "assets/audio/radio/moon_touch.mp3",
+        "speaker": "crew",
+        "en": "Contact confirmed. We are on the lunar surface.",
+        "ru": "Контакт подтверждён. Мы на поверхности Луны.",
+        "priority": 58,
+        "available": true
+      },
+      {
+        "id": "moon_touch_auto",
+        "file": "assets/audio/radio/moon_touch_auto.mp3",
+        "speaker": "computer",
+        "en": "Lunar touchdown confirmed.",
+        "ru": "Посадка на Луну подтверждена.",
+        "priority": 58,
+        "available": true
+      },
+      {
+        "id": "mars_descent",
+        "file": "assets/audio/radio/mars_descent.mp3",
+        "speaker": "computer",
+        "en": "Mars descent sequence is active.",
+        "ru": "Начата последовательность спуска на Марс.",
+        "priority": 43,
+        "available": true
+      },
+      {
+        "id": "mars_touch",
+        "file": "assets/audio/radio/mars_touch.mp3",
+        "speaker": "computer",
+        "en": "Touchdown confirmed. The rover is on the surface.",
+        "ru": "Касание подтверждено. Марсоход на поверхности.",
+        "priority": 58,
+        "available": true
+      },
+      {
+        "id": "splash",
+        "file": "assets/audio/radio/splash.mp3",
+        "speaker": "computer",
+        "en": "Water contact confirmed. Recovery mode active.",
+        "ru": "Касание воды подтверждено. Включён режим эвакуации.",
+        "priority": 55,
+        "available": true
+      },
+      {
+        "id": "parachutes",
+        "file": "assets/audio/radio/parachutes.mp3",
+        "speaker": "computer",
+        "en": "Parachutes deployed.",
+        "ru": "Парашюты раскрыты.",
+        "priority": 39,
+        "available": true
+      },
+      {
+        "id": "probe_impact",
+        "file": "assets/audio/radio/probe_impact.mp3",
+        "speaker": "control",
+        "en": "Target impact confirmed. The test objective is complete.",
+        "ru": "Попадание подтверждено. Цель испытания достигнута.",
+        "priority": 58,
+        "available": true
+      },
+      {
+        "id": "hot",
+        "file": "assets/audio/radio/hot.mp3",
+        "speaker": "computer",
+        "en": "Engine temperature critical!",
+        "ru": "Критическая температура двигателя!",
+        "priority": 83,
+        "available": true
+      },
+      {
+        "id": "fuel",
+        "file": "assets/audio/radio/fuel.mp3",
+        "speaker": "computer",
+        "en": "Fuel level critical!",
+        "ru": "Критически низкий остаток топлива!",
+        "priority": 80,
+        "available": true
+      },
+      {
+        "id": "guidance",
+        "file": "assets/audio/radio/guidance.mp3",
+        "speaker": "computer",
+        "en": "Trajectory deviation detected!",
+        "ru": "Обнаружено отклонение от траектории!",
+        "priority": 79,
+        "available": true
+      },
+      {
+        "id": "structure",
+        "file": "assets/audio/radio/structure.mp3",
+        "speaker": "computer",
+        "en": "Structural failure imminent!",
+        "ru": "Угроза разрушения конструкции!",
+        "priority": 89,
+        "available": true
+      },
+      {
+        "id": "link_lost",
+        "file": "assets/audio/radio/link_lost.mp3",
+        "speaker": "computer",
+        "en": "Communication lost!",
+        "ru": "Связь потеряна!",
+        "priority": 82,
+        "available": true
+      },
+      {
+        "id": "link_restored",
+        "file": "assets/audio/radio/link_restored.mp3",
+        "speaker": "control",
+        "en": "Signal acquired. Telemetry is back.",
+        "ru": "Сигнал принят. Телеметрия восстановлена.",
+        "priority": 49,
+        "available": true
+      },
+      {
+        "id": "abort",
+        "file": "assets/audio/radio/abort.mp3",
+        "speaker": "control",
+        "en": "Launch aborted. Safing the vehicle.",
+        "ru": "Запуск отменён. Переводим ракету в безопасный режим.",
+        "priority": 120,
+        "available": true
+      },
+      {
+        "id": "failure",
+        "file": "assets/audio/radio/failure.mp3",
+        "speaker": "computer",
+        "en": "Critical failure. Mission aborted.",
+        "ru": "Критический отказ. Миссия прервана.",
+        "priority": 110,
+        "available": true
+      },
+      {
+        "id": "success",
+        "file": "assets/audio/radio/success.mp3",
+        "speaker": "control",
+        "en": "Mission accomplished!",
+        "ru": "Миссия выполнена!",
+        "priority": 54,
+        "available": true
+      },
+      {
+        "id": "success_auto",
+        "file": "assets/audio/radio/success_auto.mp3",
+        "speaker": "computer",
+        "en": "Mission accomplished!",
+        "ru": "Миссия выполнена!",
+        "priority": 54,
+        "available": true
+      }
+    ]
+  }
 }

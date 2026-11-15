@@ -1,0 +1,10 @@
+ascent-board {"phase":"rendezvous","clock":360756.4876999917,"cameraError":1.7555826044599154,"distance":2.8500000000000005}
+ascent-ship {"phase":"rendezvous","clock":360758.18479998916,"cameraError":1.0334060935386067e-15,"distance":14.727018091275294}
+ascent-ship-moving {"phase":"rendezvous","clock":360759.61049998726,"cameraError":1.137978682878143e-15,"distance":14.727018091275303}
+ascent-moon {"phase":"rendezvous","clock":360760.65379998554,"cameraError":0.9835614089140344,"distance":84.99999999999997}
+ascent-ship {"phase":"rendezvous","clock":360761.06399998494,"cameraError":1.1278637897670841e-15,"distance":14.727018091275307}
+ascent-cabin {"phase":"rendezvous","clock":360761.6760999838,"cameraError":1.7523713428625385,"distance":2.85}
+ascent-ship {"phase":"rendezvous","clock":360762.0863999831,"cameraError":4.577566798522237e-16,"distance":14.727018091275294}
+ascent-earth {"phase":"rendezvous","clock":360763.5677999828,"cameraError":1.000533485508943,"distance":84.99999999999997}
+ascent-ship {"phase":"rendezvous","clock":360764.50659998204,"cameraError":3.4219371797089426e-16,"distance":14.727018091275292}
+after-rendezvous {"phase":"rendezvous","clock":360836.2340344515,"cameraError":1.2212453270887048e-15,"distance":14.727018091275301}

@@ -1,0 +1,47 @@
+{
+  "verifiedAt": "2026-11-14T11:47:16.886Z",
+  "scope": "browser only",
+  "gameBytes": 159235251,
+  "gameSHA256": "43cee64f617dd42f500ba96ea72988e4a3b323f1e813d61fb9f766e4dd881567",
+  "unitTests": {
+    "passed": 101,
+    "failed": 0
+  },
+  "browserTests": {
+    "successfulScenarios": 33,
+    "initialRun": {
+      "passed": 32,
+      "failed": 1
+    },
+    "resolvedFailure": "Lunar checkpoint test now pauses at the existing physical lunar-orbit event instead of waiting for a rendered DOM update.",
+    "lunarRerun": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "nativePhysX": {
+    "passed": 5,
+    "failed": 0
+  },
+  "offline": {
+    "passed": true,
+    "protocol": "file:",
+    "offline": true,
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "checks": [
+      "offline startup",
+      "five authoring steps",
+      "automatic engineering",
+      "3D preview"
+    ],
+    "pageErrors": []
+  },
+  "desktop": {
+    "updated": false,
+    "previousPackagedGameSHA256": "92e44ea35dc90008df450322434100f1eaf37da4875401851b28a90b001c1950",
+    "portableExeBytes": 163348519
+  }
+}

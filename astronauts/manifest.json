@@ -1,0 +1,2098 @@
+{
+  "name": "JUGRE / EVA Crew",
+  "version": 1,
+  "units": "meter",
+  "up": "+Y",
+  "forward": "+Z",
+  "rig": "jugre_eva_v1",
+  "mounts": {
+    "helmet": {
+      "node": "helmet",
+      "parent": "head",
+      "interface": "neck_eva_v1"
+    },
+    "visor": {
+      "node": "visor",
+      "parent": "helmet",
+      "openAngleRad": -1.76
+    },
+    "head": {
+      "node": "head",
+      "parent": "torso",
+      "interface": "neck_eva_v1"
+    },
+    "backpack": {
+      "node": "backpack",
+      "parent": "torso",
+      "interface": "back_eva_v1"
+    },
+    "hand": {
+      "nodes": [
+        "grip_L",
+        "grip_R"
+      ],
+      "interface": "grip_eva_v1",
+      "pinRadiusM": 0.033,
+      "pinAxis": "+Z"
+    },
+    "seat": {
+      "node": "seat_mount"
+    },
+    "tether": {
+      "node": "tether_mount"
+    }
+  },
+  "clips": {
+    "idle": {
+      "duration": 3.6,
+      "loop": true
+    },
+    "walk": {
+      "duration": 1.12,
+      "loop": true,
+      "speedMps": 0.512
+    },
+    "pilot": {
+      "duration": 3.2,
+      "loop": true
+    },
+    "eva": {
+      "duration": 4,
+      "loop": true
+    },
+    "visor_open": {
+      "duration": 0.52,
+      "loop": false
+    },
+    "visor_close": {
+      "duration": 0.52,
+      "loop": false
+    }
+  },
+  "suits": {
+    "apollo": {
+      "title": "Apollo",
+      "code": "A7",
+      "role": "Лунная экспедиция",
+      "era": "01 / RETRO EVA",
+      "note": "Тёплый белый корпус, золотой светофильтр LEVA, цветные разъёмы и высокий ранец PLSS.",
+      "expression": "Улыбка",
+      "accent": 13255739,
+      "toolName": "Лунный совок",
+      "file": "models/apollo.glb",
+      "triangles": 9366,
+      "drawCalls": 40,
+      "bounds": {
+        "min": [
+          -0.4628,
+          0,
+          -0.4565
+        ],
+        "max": [
+          0.4628,
+          1.735,
+          0.3359
+        ]
+      },
+      "accessory": {
+        "file": "models/accessories/sample_scoop.glb",
+        "triangles": 388,
+        "drawCalls": 3,
+        "bounds": {
+          "min": [
+            -0.0775,
+            -0.148,
+            -0.062
+          ],
+          "max": [
+            0.0775,
+            0.3707,
+            0.1561
+          ]
+        }
+      },
+      "physics": {
+        "bodies": {
+          "pelvis": {
+            "mass": 11,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.12,
+                0.27
+              ],
+              "center": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "torso": {
+            "mass": 27,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.47,
+                0.47,
+                0.31
+              ],
+              "center": [
+                0,
+                0.248,
+                0
+              ]
+            }
+          },
+          "head": {
+            "mass": 5,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.4,
+                0.33,
+                0.4
+              ],
+              "center": [
+                0,
+                0.224,
+                0
+              ]
+            }
+          },
+          "helmet": {
+            "mass": 2.2,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.598,
+                0.608,
+                0.596
+              ],
+              "center": [
+                0,
+                0.224,
+                0.016
+              ]
+            }
+          },
+          "backpack": {
+            "mass": 8.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.49,
+                0.24
+              ],
+              "center": [
+                0,
+                0,
+                -0.1552
+              ]
+            }
+          },
+          "upper_arm_L": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_L": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_L": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_L": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_L": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_L": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          },
+          "upper_arm_R": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                -0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_R": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_R": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_R": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_R": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_R": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          }
+        },
+        "links": [
+          {
+            "a": "pelvis",
+            "b": "torso",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 22,
+            "twistDeg": 25
+          },
+          {
+            "a": "torso",
+            "b": "head",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 52
+          },
+          {
+            "a": "head",
+            "b": "helmet",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "backpack",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_L",
+            "b": "forearm_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_L",
+            "b": "glove_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_L",
+            "b": "shin_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_L",
+            "b": "boot_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_R",
+            "b": "forearm_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_R",
+            "b": "glove_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_R",
+            "b": "shin_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_R",
+            "b": "boot_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          }
+        ]
+      }
+    },
+    "artemis": {
+      "title": "Artemis",
+      "code": "AX",
+      "role": "Южный полюс Луны",
+      "era": "02 / LUNAR EVA",
+      "note": "Панорамный визор, открытые шарниры, защитные щитки и плоский ранец с задним люком.",
+      "expression": "Сосредоточенность",
+      "accent": 4048330,
+      "toolName": "Сканер грунта",
+      "file": "models/artemis.glb",
+      "triangles": 9854,
+      "drawCalls": 42,
+      "bounds": {
+        "min": [
+          -0.4628,
+          0,
+          -0.394
+        ],
+        "max": [
+          0.4628,
+          1.718,
+          0.3417
+        ]
+      },
+      "accessory": {
+        "file": "models/accessories/survey_scanner.glb",
+        "triangles": 336,
+        "drawCalls": 2,
+        "bounds": {
+          "min": [
+            -0.0825,
+            -0.073,
+            -0.062
+          ],
+          "max": [
+            0.0825,
+            0.2237,
+            0.1645
+          ]
+        }
+      },
+      "physics": {
+        "bodies": {
+          "pelvis": {
+            "mass": 11,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.12,
+                0.27
+              ],
+              "center": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "torso": {
+            "mass": 27,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.47,
+                0.47,
+                0.31
+              ],
+              "center": [
+                0,
+                0.248,
+                0
+              ]
+            }
+          },
+          "head": {
+            "mass": 5,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.4,
+                0.33,
+                0.4
+              ],
+              "center": [
+                0,
+                0.224,
+                0
+              ]
+            }
+          },
+          "helmet": {
+            "mass": 2.2,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.594,
+                0.574,
+                0.608
+              ],
+              "center": [
+                0,
+                0.224,
+                0.016
+              ]
+            }
+          },
+          "backpack": {
+            "mass": 8.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.42,
+                0.397,
+                0.165
+              ],
+              "center": [
+                0,
+                0,
+                -0.11545000000000001
+              ]
+            }
+          },
+          "upper_arm_L": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_L": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_L": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_L": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_L": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_L": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          },
+          "upper_arm_R": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                -0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_R": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_R": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_R": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_R": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_R": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          }
+        },
+        "links": [
+          {
+            "a": "pelvis",
+            "b": "torso",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 22,
+            "twistDeg": 25
+          },
+          {
+            "a": "torso",
+            "b": "head",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 52
+          },
+          {
+            "a": "head",
+            "b": "helmet",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "backpack",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_L",
+            "b": "forearm_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_L",
+            "b": "glove_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_L",
+            "b": "shin_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_L",
+            "b": "boot_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_R",
+            "b": "forearm_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_R",
+            "b": "glove_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_R",
+            "b": "shin_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_R",
+            "b": "boot_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          }
+        ]
+      }
+    },
+    "iss": {
+      "title": "ISS",
+      "code": "EV",
+      "role": "Орбитальное обслуживание",
+      "era": "03 / ORBITAL EVA",
+      "note": "Широкий шлем с камерой и фонарями, жёсткий торс, пульт DCM и узел страховки.",
+      "expression": "Удивление",
+      "accent": 4155554,
+      "toolName": "Катушка страховки",
+      "file": "models/iss.glb",
+      "triangles": 9780,
+      "drawCalls": 40,
+      "bounds": {
+        "min": [
+          -0.4628,
+          0,
+          -0.4815
+        ],
+        "max": [
+          0.4628,
+          1.75,
+          0.3569
+        ]
+      },
+      "accessory": {
+        "file": "models/accessories/tether_reel.glb",
+        "triangles": 428,
+        "drawCalls": 3,
+        "bounds": {
+          "min": [
+            -0.095,
+            -0.0395,
+            -0.062
+          ],
+          "max": [
+            0.1622,
+            0.2252,
+            0.151
+          ]
+        }
+      },
+      "physics": {
+        "bodies": {
+          "pelvis": {
+            "mass": 11,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.12,
+                0.27
+              ],
+              "center": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "torso": {
+            "mass": 27,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.47,
+                0.47,
+                0.31
+              ],
+              "center": [
+                0,
+                0.248,
+                0
+              ]
+            }
+          },
+          "head": {
+            "mass": 5,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.4,
+                0.33,
+                0.4
+              ],
+              "center": [
+                0,
+                0.224,
+                0
+              ]
+            }
+          },
+          "helmet": {
+            "mass": 2.2,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.638,
+                0.638,
+                0.638
+              ],
+              "center": [
+                0,
+                0.224,
+                0.016
+              ]
+            }
+          },
+          "backpack": {
+            "mass": 8.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.48,
+                0.265
+              ],
+              "center": [
+                0,
+                0,
+                -0.16845000000000002
+              ]
+            }
+          },
+          "upper_arm_L": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_L": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_L": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_L": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_L": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_L": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          },
+          "upper_arm_R": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                -0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_R": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_R": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_R": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_R": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_R": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.224,
+                0.125,
+                0.302
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.04
+              ]
+            }
+          }
+        },
+        "links": [
+          {
+            "a": "pelvis",
+            "b": "torso",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 22,
+            "twistDeg": 25
+          },
+          {
+            "a": "torso",
+            "b": "head",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 52
+          },
+          {
+            "a": "head",
+            "b": "helmet",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "backpack",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_L",
+            "b": "forearm_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_L",
+            "b": "glove_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_L",
+            "b": "shin_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_L",
+            "b": "boot_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_R",
+            "b": "forearm_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_R",
+            "b": "glove_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_R",
+            "b": "shin_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_R",
+            "b": "boot_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          }
+        ]
+      }
+    },
+    "mars": {
+      "title": "Mars",
+      "code": "M4",
+      "role": "Марсианская разведка",
+      "era": "04 / SURFACE EVA",
+      "note": "Проектный скафандр с медным визором, пылезащитными манжетами и широкими протекторами.",
+      "expression": "Подмигивание",
+      "accent": 15035441,
+      "toolName": "Щётка реголита",
+      "file": "models/mars.glb",
+      "triangles": 9764,
+      "drawCalls": 42,
+      "bounds": {
+        "min": [
+          -0.4628,
+          0,
+          -0.4285
+        ],
+        "max": [
+          0.4628,
+          1.71,
+          0.345
+        ]
+      },
+      "accessory": {
+        "file": "models/accessories/dust_brush.glb",
+        "triangles": 528,
+        "drawCalls": 2,
+        "bounds": {
+          "min": [
+            -0.096,
+            -0.059,
+            -0.062
+          ],
+          "max": [
+            0.096,
+            0.236,
+            0.1125
+          ]
+        }
+      },
+      "physics": {
+        "bodies": {
+          "pelvis": {
+            "mass": 11,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.46,
+                0.12,
+                0.27
+              ],
+              "center": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "torso": {
+            "mass": 27,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.47,
+                0.47,
+                0.31
+              ],
+              "center": [
+                0,
+                0.248,
+                0
+              ]
+            }
+          },
+          "head": {
+            "mass": 5,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.4,
+                0.33,
+                0.4
+              ],
+              "center": [
+                0,
+                0.224,
+                0
+              ]
+            }
+          },
+          "helmet": {
+            "mass": 2.2,
+            "collider": {
+              "kind": "ellipsoid",
+              "size": [
+                0.604,
+                0.558,
+                0.614
+              ],
+              "center": [
+                0,
+                0.224,
+                0.016
+              ]
+            }
+          },
+          "backpack": {
+            "mass": 8.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.43,
+                0.44,
+                0.212
+              ],
+              "center": [
+                0,
+                0,
+                -0.14036
+              ]
+            }
+          },
+          "upper_arm_L": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_L": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_L": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_L": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_L": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_L": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.252,
+                0.125,
+                0.346
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.053
+              ]
+            }
+          },
+          "upper_arm_R": {
+            "mass": 3.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.178,
+                0.207,
+                0.18
+              ],
+              "center": [
+                -0.034,
+                -0.1,
+                0
+              ]
+            }
+          },
+          "forearm_R": {
+            "mass": 2.5,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.166,
+                0.161,
+                0.176
+              ],
+              "center": [
+                0,
+                -0.083,
+                0.014
+              ]
+            }
+          },
+          "glove_R": {
+            "mass": 0.7,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.143,
+                0.149,
+                0.085
+              ],
+              "center": [
+                0,
+                -0.082,
+                0.022
+              ]
+            }
+          },
+          "thigh_R": {
+            "mass": 5.3,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.211,
+                0.209,
+                0.223
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "shin_R": {
+            "mass": 4.1,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.206,
+                0.181,
+                0.224
+              ],
+              "center": [
+                0,
+                -0.108,
+                0
+              ]
+            }
+          },
+          "boot_R": {
+            "mass": 1.9,
+            "collider": {
+              "kind": "box",
+              "size": [
+                0.252,
+                0.125,
+                0.346
+              ],
+              "center": [
+                0,
+                -0.05,
+                0.053
+              ]
+            }
+          }
+        },
+        "links": [
+          {
+            "a": "pelvis",
+            "b": "torso",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 22,
+            "twistDeg": 25
+          },
+          {
+            "a": "torso",
+            "b": "head",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 52
+          },
+          {
+            "a": "head",
+            "b": "helmet",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "backpack",
+            "type": "fixed"
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_L",
+            "b": "forearm_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_L",
+            "b": "glove_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_L",
+            "b": "shin_L",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_L",
+            "b": "boot_L",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          },
+          {
+            "a": "torso",
+            "b": "upper_arm_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 85,
+            "twistDeg": 40
+          },
+          {
+            "a": "upper_arm_R",
+            "b": "forearm_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -137,
+              9
+            ]
+          },
+          {
+            "a": "forearm_R",
+            "b": "glove_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 32,
+            "twistDeg": 50
+          },
+          {
+            "a": "pelvis",
+            "b": "thigh_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 70,
+            "twistDeg": 28
+          },
+          {
+            "a": "thigh_R",
+            "b": "shin_R",
+            "type": "hinge",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "limitsDeg": [
+              -5,
+              136
+            ]
+          },
+          {
+            "a": "shin_R",
+            "b": "boot_R",
+            "type": "coneTwist",
+            "axis": [
+              0,
+              -1,
+              0
+            ],
+            "swingDeg": 34,
+            "twistDeg": 15
+          }
+        ]
+      }
+    }
+  }
+}

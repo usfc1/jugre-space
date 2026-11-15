@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JUGRE EVA Crew — скафандры</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a1018; --panel: #101a26; --line: #273744; --text: #edf2f6;
+      --dim: #9aaebd; --amber: #ffc472; --accent: #ffc472;
+      --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--text); background: var(--bg); }
+    button, select, a { -webkit-tap-highlight-color: transparent; }
+    button, select { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    button:disabled, select:disabled { opacity: .42; cursor: default; }
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    a { color: inherit; }
+    .shell { width: min(1420px, calc(100% - 72px)); margin: auto; }
+    .masthead { height: 67px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .wordmark { font-weight: 850; font-size: 19px; letter-spacing: .18em; display: flex; gap: 10px; align-items: center; }
+    .wordmark svg { width: 31px; height: 28px; color: var(--amber); }
+    .tag, .kicker, .hud, .foot, .deck-label, .num, .stat dt { font: 11px/1.4 var(--mono); letter-spacing: .095em; text-transform: uppercase; }
+    .tag { color: var(--dim); }
+    .heading { margin: 27px 0 19px; display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+    .kicker { color: var(--amber); }
+    h1 { margin: 4px 0 0; font-size: clamp(42px, 6.7vw, 86px); font-weight: 750; line-height: .95; letter-spacing: -.082em; }
+    .subtitle { color: var(--dim); margin: 10px 0 0; font-size: 14px; }
+    .view-switch { display: flex; padding: 3px; background: #0c141e; border: 1px solid var(--line); border-radius: 7px; flex-shrink: 0; }
+    .view-switch button { border: 0; padding: 8px 14px; background: transparent; border-radius: 4px; color: var(--dim); font-size: 13px; }
+    .view-switch button[aria-pressed="true"] { background: #273746; color: var(--text); }
+    .deck { display: grid; grid-template-columns: minmax(0, 1fr) 320px; border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+    .stage { position: relative; overflow: hidden; min-height: 554px; isolation: isolate;
+      background: radial-gradient(ellipse at 49% 44%, #344757, #1a2735 48%, #0d1621 87%);
+    }
+    .stage::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .27;
+      background: linear-gradient(90deg, #809cad28 1px, transparent 1px), linear-gradient(#809cad28 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: radial-gradient(ellipse, transparent 25%, black 90%);
+    }
+    canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+    canvas:active { cursor: grabbing; }
+    .hud { display: flex; align-items: center; gap: 8px; color: #c3d1db; pointer-events: none; position: absolute; z-index: 1; }
+    .hud.top { top: 20px; left: 23px; }
+    .hud.bottom { bottom: 17px; left: 23px; right: 23px; justify-content: space-between; }
+    .signal { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .stage-status { position: absolute; z-index: 1; inset: 46% 10% auto; color: var(--dim); text-align: center; pointer-events: none; }
+    .details { border-left: 1px solid var(--line); background: var(--panel); padding: 20px 20px 17px; min-width: 0; }
+    .deck-label { color: var(--accent); }
+    h2 { font-size: 39px; margin: 2px 0 0; letter-spacing: -.058em; line-height: 1; }
+    .role { font-size: 14px; margin: 6px 0 0; color: var(--text); }
+    .note { font-size: 13px; margin: 8px 0 11px; min-height: 55px; color: var(--dim); line-height: 1.4; }
+    .stats { margin: 0 0 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #0b131e; border: 1px solid var(--line); border-radius: 6px; }
+    .stat { padding: 7px 8px; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat dt { font-size: 8px; color: var(--dim); }
+    .stat dd { margin: 4px 0 0; font: 14px/1.1 var(--mono); white-space: nowrap; }
+    .label { color: var(--dim); font-size: 11px; font-weight: 600; margin: 10px 0 5px; }
+    .row, .motion { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+    .control { text-align: center; background: #172431; border: 1px solid #354653; padding: 6px 5px; border-radius: 5px; font-size: 12px; line-height: 1.25; text-decoration: none; }
+    .control:hover:not(:disabled) { background: #263849; }
+    .control[aria-pressed="true"] { color: var(--amber); border-color: #8d693f; background: #302719; }
+    .control.impact { color: #ffc6ad; border-color: #784d41; }
+    .modules { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 6px; }
+    .modules label { display: grid; gap: 3px; color: var(--dim); font-size: 10px; min-width: 0; }
+    select { width: 100%; background: #0c1620; border: 1px solid #354653; border-radius: 5px; font-size: 11px; padding: 4px 3px; }
+    .download { display: flex; justify-content: space-between; margin-top: 10px; gap: 10px; align-items: center; font-size: 11px; color: var(--dim); }
+    .download a { text-decoration-color: #6d8395; text-underline-offset: 3px; }
+    .download a:hover { color: var(--amber); }
+    .lineup .details { display: none; }
+    .lineup .stage { grid-column: 1 / -1; }
+    .suits { margin-top: 11px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+    .suit { display: grid; grid-template-columns: 31px minmax(0, 1fr); align-items: center; text-align: left; gap: 10px;
+      border: 1px solid var(--line); border-radius: 7px; background: #101924; padding: 10px; min-width: 0;
+    }
+    .suit:hover { background: #1b2836; }
+    .suit[aria-pressed="true"] { border-color: var(--suit); background: #182331; }
+    .num { display: grid; place-content: center; aspect-ratio: 1; border: 1px solid var(--suit); border-radius: 50%; color: var(--suit); font-size: 10px; }
+    .suit b { display: block; font-size: 15px; letter-spacing: -.022em; }
+    .suit small { color: var(--dim); font-size: 11px; line-height: 1.2; display: block; }
+    .foot { margin: 14px 0 19px; color: var(--dim); display: flex; justify-content: space-between; gap: 16px; }
+    @media (max-width: 900px) {
+      .shell { width: calc(100% - 28px); }
+      .deck { grid-template-columns: minmax(0, 1fr) 275px; }
+      .details { padding-inline: 14px; }
+      .suit { grid-template-columns: 25px minmax(0, 1fr); gap: 6px; padding: 7px; }
+    }
+    @media (max-width: 650px) {
+      .heading { flex-wrap: wrap; align-items: start; gap: 12px; margin-top: 17px; }
+      .masthead { height: 54px; }
+      .tag { font-size: 9px; }
+      .deck { grid-template-columns: 1fr; }
+      .stage { min-height: 385px; }
+      .lineup .stage { min-height: 405px; }
+      .details { border-left: none; border-top: 1px solid var(--line); }
+      .suits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hud.top { left: 13px; top: 13px; }
+      .hud.bottom { left: 13px; right: 13px; bottom: 11px; font-size: 9px; }
+      .foot { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="wordmark">
+        <svg viewBox="0 0 34 30" fill="none" aria-hidden="true">
+          <circle cx="17" cy="15" r="8.5" stroke="currentColor" stroke-width="1.5"/>
+          <ellipse cx="17" cy="15" rx="16" ry="5.7" transform="rotate(-30 17 15)" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="27.5" cy="7" r="2.1" fill="currentColor"/>
+        </svg>
+        JUGRE
+      </div>
+      <span class="tag">SPACE APPS / ASSET KIT 01</span>
+    </header>
+    <section class="heading" aria-label="Экипаж">
+      <div>
+        <div class="kicker">Персонажи · 04 скафандра</div>
+        <h1>EVA CREW</h1>
+        <p class="subtitle">Модульные минифигурки для космического симулятора JUGRE</p>
+      </div>
+      <div class="view-switch" aria-label="Вид">
+        <button type="button" id="single" aria-pressed="true">Персонаж</button>
+        <button type="button" id="lineup" aria-pressed="false">Весь экипаж</button>
+      </div>
+    </section>
+    <div class="deck">
+      <div class="stage" id="stage" aria-label="Интерактивная 3D-модель">
+        <div class="hud top"><span class="signal"></span><span id="hudMode">STUDIO / 01</span></div>
+        <div class="stage-status" id="status" role="status">Подготовка моделей…</div>
+        <div class="hud bottom"><span>Вращение · перетаскивание</span><span>Масштаб · колесо</span></div>
+      </div>
+      <aside class="details" aria-label="Управление моделью">
+        <div class="deck-label" id="era"></div>
+        <h2 id="title"></h2>
+        <p class="role" id="role"></p>
+        <p class="note" id="note"></p>
+        <dl class="stats">
+          <div class="stat"><dt>Треугольники</dt><dd id="triangles">—</dd></div>
+          <div class="stat"><dt>Тела</dt><dd id="bodies">—</dd></div>
+          <div class="stat"><dt>Высота</dt><dd id="height">—</dd></div>
+        </dl>
+        <div class="label">Анимация</div>
+        <div class="motion">
+          <button class="control" type="button" data-motion="idle">Стойка</button>
+          <button class="control" type="button" data-motion="walk">Ходьба</button>
+          <button class="control" type="button" data-motion="pilot">Пилотирование</button>
+          <button class="control" type="button" data-motion="eva">Невесомость</button>
+        </div>
+        <div class="label">Экипировка</div>
+        <div class="row">
+          <button class="control" type="button" id="visor" aria-pressed="false">Поднять визор</button>
+          <button class="control" type="button" id="tool" aria-pressed="false">Взять инструмент</button>
+        </div>
+        <div class="modules">
+          <label>Шлем<select id="helmet"></select></label>
+          <label>Ранец<select id="backpack"></select></label>
+          <label>Лицо<select id="head"></select></label>
+        </div>
+        <div class="label">Физика</div>
+        <div class="row">
+          <button class="control" type="button" id="ragdoll" aria-pressed="false">Ragdoll</button>
+          <button class="control impact" type="button" id="impact" aria-pressed="false">Авария</button>
+          <button class="control" type="button" id="reset" style="grid-column: 1 / -1">Сбросить позу</button>
+        </div>
+        <div class="download"><a id="modelFile" download>Скафандр GLB ↓</a><a id="toolFile" download>Инструмент GLB ↓</a></div>
+      </aside>
+    </div>
+    <nav class="suits" id="suits" aria-label="Выбор скафандра"></nav>
+    <footer class="foot"><span>JUGRE / Мастерская экипажа</span><span>GLTF 2.0 · PBR · +Y UP</span></footer>
+  </main>
+  <!-- VIEWER_SCRIPT -->
+</body>
+</html>

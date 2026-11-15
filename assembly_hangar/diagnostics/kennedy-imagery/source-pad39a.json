@@ -1,0 +1,13 @@
+{
+  "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer/exportImage?bbox=-8973587.368883546%2C3325129.0506110988%2C-8972049.630714819%2C3326666.7887798245&bboxSR=3857&imageSR=3857&size=4000%2C4000&format=jpg&compressionQuality=96&interpolation=RSP_BilinearInterpolation&f=pjson",
+  "extent": {
+    "xmin": -8973587.368883546,
+    "ymin": 3325129.0506110988,
+    "xmax": -8972049.630714819,
+    "ymax": 3326666.7887798245,
+    "spatialReference": {
+      "wkid": 3857
+    }
+  },
+  "downloadedAt": "2026-11-14T12:51:13.552Z"
+}

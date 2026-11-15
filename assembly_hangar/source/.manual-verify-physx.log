@@ -1,0 +1,28 @@
+
+> verify:physx
+> node verify-rigid-game.mjs
+
+Checking launch apollo_11
+apollo_11 12 {"backend":"NVIDIA PhysX 5.12.0 / WASM","loaded":true,"fixedStepS":0.008333333333333333,"actors":1,"debris":0,"joints":0,"contacts":0,"dockingRejected":false,"dockingActive":false,"stepMs":0,"steps":0,"hostOffsetM":[0,0,0],"hostMassKg":2765519.6896688095,"freeModule":false,"assemblyCaptured":false,"docking":null,"lastContact":null,"separations":[]}
+apollo_11 60 {"backend":"NVIDIA PhysX 5.12.0 / WASM","loaded":true,"fixedStepS":0.008333333333333333,"actors":1,"debris":0,"joints":0,"contacts":0,"dockingRejected":false,"dockingActive":false,"stepMs":0,"steps":0,"hostOffsetM":[0,0,0],"hostMassKg":2137484.996759447,"freeModule":false,"assemblyCaptured":false,"docking":null,"lastContact":null,"separations":[]}
+apollo_11 165 {"backend":"NVIDIA PhysX 5.12.0 / WASM","loaded":true,"fixedStepS":0.008333333333333333,"actors":1,"debris":0,"joints":0,"contacts":0,"dockingRejected":false,"dockingActive":false,"stepMs":0,"steps":0,"hostOffsetM":[0,0,0],"hostMassKg":787419.9486353409,"freeModule":false,"assemblyCaptured":false,"docking":null,"lastContact":null,"separations":[]}
+Checking launch artemis_ii
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 90000ms exceeded.
+Call log:
+  - waiting for locator('#loading') to be hidden
+    170 × locator resolved to visible <div id="loading" role="status">Не удалось открыть 3D-сцену. Перезагрузите страни…</div>
+
+    at start (C:\Users\Yusuf\Downloads\JUGRE SPACE PROJECT\assembly_hangar\source\verify-rigid-game.mjs:18:34)
+    at async file:///C:/Users/Yusuf/Downloads/JUGRE%20SPACE%20PROJECT/assembly_hangar/source/verify-rigid-game.mjs:51:5 {
+  log: [
+    "  - waiting for locator('#loading') to be hidden",
+    '    170 × locator resolved to visible <div id="loading" role="status">Не удалось открыть 3D-сцену. Перезагрузите страни…</div>'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.17.1

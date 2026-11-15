@@ -1,0 +1,71 @@
+[
+  {
+    "id": "facilities",
+    "bounds": [
+      -5600,
+      -3000,
+      1000,
+      3600
+    ],
+    "width": 4000,
+    "height": 4000,
+    "sampleSpacingM": 1.65,
+    "service": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer",
+    "attribution": "USDA / USGS The National Map: NAIP and high resolution orthoimagery",
+    "projection": "EPSG:3857",
+    "anchor": {
+      "latitude": 28.6084,
+      "longitude": -80.6042
+    },
+    "featherM": 600,
+    "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer/exportImage?bbox=-8979197.26553612%2C3321797.2845788584%2C-8971679.434489015%2C3329315.1156259645&bboxSR=3857&imageSR=3857&size=4000%2C4000&format=jpg&compressionQuality=96&interpolation=RSP_BilinearInterpolation&f=pjson",
+    "extent": {
+      "xmin": -8979197.26553612,
+      "ymin": 3321797.2845788584,
+      "xmax": -8971679.434489014,
+      "ymax": 3329315.1156259645,
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+      }
+    },
+    "downloadedAt": "2026-11-14T12:52:49.843Z",
+    "sourceSHA256": "de614c3b1de91fa1b4c6db2b7a54e9dba0b12388769c4b698072a748a96f9f8c",
+    "sha256": "dbb8ccb8b623ae5e24407d0b165cafffcf0d1673fb98e0cbafdf0879f87e412c",
+    "bytes": 7530718
+  },
+  {
+    "id": "pad39a",
+    "bounds": [
+      -675,
+      -675,
+      675,
+      675
+    ],
+    "width": 4000,
+    "height": 4000,
+    "sampleSpacingM": 0.3375,
+    "service": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer",
+    "attribution": "USDA / USGS The National Map: NAIP and high resolution orthoimagery",
+    "projection": "EPSG:3857",
+    "anchor": {
+      "latitude": 28.6084,
+      "longitude": -80.6042
+    },
+    "featherM": 90,
+    "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer/exportImage?bbox=-8973587.368883546%2C3325129.0506110988%2C-8972049.630714819%2C3326666.7887798245&bboxSR=3857&imageSR=3857&size=4000%2C4000&format=jpg&compressionQuality=96&interpolation=RSP_BilinearInterpolation&f=pjson",
+    "extent": {
+      "xmin": -8973587.368883546,
+      "ymin": 3325129.0506110988,
+      "xmax": -8972049.630714819,
+      "ymax": 3326666.7887798245,
+      "spatialReference": {
+        "wkid": 3857
+      }
+    },
+    "downloadedAt": "2026-11-14T12:51:13.552Z",
+    "sourceSHA256": "a3cdc22a5b8fe1ce46dd759b42ee3ce0922e4ba8c77254e0de5c092a48efc2b1",
+    "sha256": "5cfa70a942f84b5530b6833ba2ea48803e9922169454b1b30c0d31d7aa1fee91",
+    "bytes": 6168725
+  }
+]

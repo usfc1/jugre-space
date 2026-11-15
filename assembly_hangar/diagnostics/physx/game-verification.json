@@ -1,0 +1,1133 @@
+{
+  "results": [
+    {
+      "scenario": "launch-checkpoint",
+      "id": "apollo_11",
+      "t": 12,
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 11.99999999999996,
+          "xM": 913128.0845318467,
+          "yM": 3050634.0630845996,
+          "zM": 5518270.450873661,
+          "groundDistanceM": 1.0275987022680708,
+          "altitudeM": 144.31280584353954,
+          "vxMps": 3.6386568878807495,
+          "vyMps": 12.022811249040192,
+          "vzMps": 22.102926016865247,
+          "verticalSpeedMps": 25.422384565331054,
+          "horizontalSpeedMps": 0.1718016216617014,
+          "surfaceSpeedMps": 25.42296506674208,
+          "inertialSpeedMps": 408.6436089589657,
+          "accelerationMps2": 2.4721093225094126,
+          "properG": 1.2507597443475587,
+          "thrustN": 33930592.95022361,
+          "massKg": 2765519.6896688095,
+          "fuelMassKg": 2542519.6896688095,
+          "pitchDeg": 0,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0,
+          "dynamicPressurePa": 390.4197503012146,
+          "stageIndex": 0,
+          "periapsisM": -6362518.939493706,
+          "apoapsisM": 177.30856810230762
+        },
+        "rendering": {
+          "frame": "launchpad",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.14332246135715218,
+            0.4788204307665761,
+            0.8661349012428942
+          ],
+          "thrustDirectionECEF": [
+            0.1433224613571522,
+            0.4788204307665761,
+            0.8661349012428944
+          ],
+          "attitudeErrorDeg": 0,
+          "padLocalM": [
+            -0.07211409026099602,
+            144.3128057611366,
+            1.0250885274901265
+          ],
+          "phase": "ascent",
+          "modelId": "eaa1f91d-a9a5-426c-84de-f67f29d14e3e",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            -0.32605341502863483,
+            -0.06330198633325751,
+            0.9432295738972719
+          ],
+          "spaceCamera": {
+            "near": 0.05,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "earthPosition": [
+              0,
+              0,
+              0
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            195.83815094570394,
+            -86.1825421013076,
+            85.91198764908322
+          ],
+          "cameraTargetErrorM": 208.71653564573464,
+          "cameraDistanceM": 230.56643630566052,
+          "missionTimeS": 11.99999999999996,
+          "phaseTimeS": 11.99999999999996,
+          "positionKm": [
+            913.1280845318468,
+            3050.6340630846,
+            5518.270450873661
+          ],
+          "velocityKmS": [
+            0.0036386568878807495,
+            0.012022811249040193,
+            0.022102926016865247
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 1,
+            "debris": 0,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0,
+            "steps": 0,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 2765519.6896688095,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": []
+          },
+          "interior": {},
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.32395780888181
+        }
+      }
+    },
+    {
+      "scenario": "launch-checkpoint",
+      "id": "apollo_11",
+      "t": 60,
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 59.999999999997236,
+          "xM": 914614.2504409282,
+          "yM": 3053423.3077550763,
+          "zM": 5522780.559727485,
+          "groundDistanceM": 756.3585660638088,
+          "altitudeM": 5599.268760379404,
+          "vxMps": 85.0056994270932,
+          "vyMps": 126.48176140363695,
+          "vzMps": 188.0093536003867,
+          "verticalSpeedMps": 235.59331896728895,
+          "horizontalSpeedMps": 55.37968943636599,
+          "surfaceSpeedMps": 242.014714313182,
+          "inertialSpeedMps": 518.2649503665864,
+          "accelerationMps2": 7.381341171605837,
+          "properG": 1.70685104080227,
+          "thrustN": 36263318.41289167,
+          "massKg": 2137484.996759447,
+          "fuelMassKg": 1914484.9967594468,
+          "pitchDeg": 11.145469728544219,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.4294705742865151,
+          "dynamicPressurePa": 20193.929114976352,
+          "stageIndex": 0,
+          "periapsisM": -6360112.630635714,
+          "apoapsisM": 8441.193864974193
+        },
+        "rendering": {
+          "frame": "floating-origin",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.3186765524296236,
+            0.519431887257548,
+            0.7928655430977131
+          ],
+          "thrustDirectionECEF": [
+            0.3186765524296236,
+            0.5194318872575482,
+            0.792865543097713
+          ],
+          "attitudeErrorDeg": 0,
+          "padLocalM": [
+            729.8638909050508,
+            5599.22382386557,
+            -200.9551768845913
+          ],
+          "phase": "ascent",
+          "modelId": "545b506f-8bbc-4aa2-bd8a-9d0729be130f",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            0.6476082659683139,
+            0.34871214321370747,
+            0.6774978782437746
+          ],
+          "spaceCamera": {
+            "near": 0.0038184428252088765,
+            "position": [
+              0.0010773094321607354,
+              -0.0018956432857678567,
+              0.0010336009257135793
+            ],
+            "earthPosition": [
+              -9.146142504409282,
+              -30.534233077550763,
+              -55.22780559727486
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            107.73094321607354,
+            -189.56432857678564,
+            103.36009257135792
+          ],
+          "cameraTargetErrorM": 0,
+          "cameraDistanceM": 240.45883569649433,
+          "missionTimeS": 59.999999999997236,
+          "phaseTimeS": 59.999999999997236,
+          "positionKm": [
+            914.6142504409281,
+            3053.423307755076,
+            5522.7805597274855
+          ],
+          "velocityKmS": [
+            0.08500569942709321,
+            0.12648176140363696,
+            0.1880093536003867
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 1,
+            "debris": 0,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0,
+            "steps": 0,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 2137484.996759447,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": []
+          },
+          "interior": {},
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.319789044409
+        }
+      }
+    },
+    {
+      "scenario": "launch-checkpoint",
+      "id": "apollo_11",
+      "t": 165,
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 165.00000000001427,
+          "xM": 993906.8804122481,
+          "yM": 3107930.38420056,
+          "zM": 5564957.491774696,
+          "groundDistanceM": 74403.01885002194,
+          "altitudeM": 80033.56410638802,
+          "vxMps": 2067.9799983107855,
+          "vyMps": 1065.438547409763,
+          "vzMps": 352.28806868804674,
+          "verticalSpeedMps": 1135.811252129591,
+          "horizontalSpeedMps": 2060.519413787666,
+          "surfaceSpeedMps": 2352.8296697933865,
+          "inertialSpeedMps": 2707.9616769037593,
+          "accelerationMps2": 43.470819496990345,
+          "properG": 4.47170800344845,
+          "thrustN": 34531281.659767464,
+          "massKg": 787419.9486353409,
+          "fuelMassKg": 564419.9486353409,
+          "pitchDeg": 82.43744804148497,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.2581566748773002,
+          "dynamicPressurePa": 43.21960848936339,
+          "stageIndex": 0,
+          "periapsisM": -6039519.05373255,
+          "apoapsisM": 155504.55541706458
+        },
+        "rendering": {
+          "frame": "floating-origin",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.9289469800461965,
+            0.31738110957547405,
+            -0.19059574902839008
+          ],
+          "thrustDirectionECEF": [
+            0.9289469800461961,
+            0.31738110957547405,
+            -0.19059574902838994
+          ],
+          "attitudeErrorDeg": 0,
+          "padLocalM": [
+            72073.17657840431,
+            79593.65771292843,
+            -21930.926081797512
+          ],
+          "phase": "ascent",
+          "modelId": "84bc6446-5cfa-4e0c-8ed8-4a891197d94a",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            0.6476082659683139,
+            0.34871214321370747,
+            0.6774978782437745
+          ],
+          "spaceCamera": {
+            "near": 0.005803284916196389,
+            "position": [
+              0.0011550996223743813,
+              -0.0017538406710512864,
+              0.0013004532407431123
+            ],
+            "earthPosition": [
+              -9.939068804122481,
+              -31.079303842005604,
+              -55.64957491774696
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            115.50996223743813,
+            -175.38406710512862,
+            130.04532407431122
+          ],
+          "cameraTargetErrorM": 5.551115123125783e-16,
+          "cameraDistanceM": 244.8973992445939,
+          "missionTimeS": 165.00000000001427,
+          "phaseTimeS": 165.00000000001427,
+          "positionKm": [
+            993.9068804122481,
+            3107.93038420056,
+            5564.957491774696
+          ],
+          "velocityKmS": [
+            2.0679799983107854,
+            1.065438547409763,
+            0.35228806868804674
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 1,
+            "debris": 0,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0,
+            "steps": 0,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 787419.9486353409,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": []
+          },
+          "interior": {},
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.31066987212472
+        }
+      }
+    },
+    {
+      "scenario": "live-staging",
+      "id": "apollo_11",
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 165.85833333334682,
+          "xM": 995696.3721937248,
+          "yM": 3108848.3159372197,
+          "zM": 5565253.849800878,
+          "groundDistanceM": 76165.21745754853,
+          "altitudeM": 81007.40311330743,
+          "vxMps": 2101.7457333876832,
+          "vyMps": 1073.437637753933,
+          "vzMps": 338.23321314974703,
+          "verticalSpeedMps": 1133.323108477288,
+          "horizontalSpeedMps": 2097.5185167785894,
+          "surfaceSpeedMps": 2384.1151810341876,
+          "inertialSpeedMps": 2740.5720219092864,
+          "accelerationMps2": 43.76402753795505,
+          "properG": 4.499992784860803,
+          "thrustN": 34312241.09475173,
+          "massKg": 777509.7613280888,
+          "fuelMassKg": 554509.7613280888,
+          "pitchDeg": 82.57579797588964,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.09365435513966891,
+          "dynamicPressurePa": 37.81051220543332,
+          "stageIndex": 0,
+          "periapsisM": -6028829.766894062,
+          "apoapsisM": 156417.67035056558
+        },
+        "rendering": {
+          "frame": "floating-origin",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.9288048455486826,
+            0.3163106320804715,
+            -0.19305217667289018
+          ],
+          "thrustDirectionECEF": [
+            0.9288040502514232,
+            0.31630630761393186,
+            -0.19306308813492132
+          ],
+          "attitudeErrorDeg": 0.0006740325299804155,
+          "padLocalM": [
+            73790.2792460395,
+            80546.34268283447,
+            -22456.908368321958
+          ],
+          "phase": "ascent",
+          "modelId": "84bc6446-5cfa-4e0c-8ed8-4a891197d94a",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            0.6476082659683138,
+            0.3487121432137075,
+            0.6774978782437748
+          ],
+          "spaceCamera": {
+            "near": 0.007361449252698549,
+            "position": [
+              0.0011552172191564953,
+              -0.001753764638625774,
+              0.0013004768043082292
+            ],
+            "earthPosition": [
+              -9.95696372193725,
+              -31.0884831593722,
+              -55.65253849800878
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            115.52172191564952,
+            -175.3764638625774,
+            130.0476804308229
+          ],
+          "cameraTargetErrorM": 1.047382306668854e-15,
+          "cameraDistanceM": 244.89739924459388,
+          "missionTimeS": 165.85833333334682,
+          "phaseTimeS": 165.85833333334682,
+          "positionKm": [
+            995.6963721937249,
+            3108.84831593722,
+            5565.253849800878
+          ],
+          "velocityKmS": [
+            2.1017457333876832,
+            1.073437637753933,
+            0.338233213149747
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 1,
+            "debris": 0,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0.09999999900658925,
+            "steps": 103,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 777509.7613280888,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": []
+          },
+          "interior": {
+            "apollo_cm": {
+              "actors": 95,
+              "fixed": 93,
+              "contacts": 6,
+              "loose": [
+                {
+                  "positionM": [
+                    -0.44913816452026367,
+                    0.059999991208314896,
+                    0.25746726989746094
+                  ],
+                  "velocityMps": [
+                    3.0588239496864844e-8,
+                    -8.344650268554688e-7,
+                    -9.317454896518029e-8
+                  ]
+                },
+                {
+                  "positionM": [
+                    0.1617184728384018,
+                    0.05999999865889549,
+                    0.27938389778137207
+                  ],
+                  "velocityMps": [
+                    -3.163823976137792e-7,
+                    -4.172325134277344e-7,
+                    -3.955524334742222e-7
+                  ]
+                }
+              ]
+            }
+          },
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.31066987212472
+        }
+      }
+    },
+    {
+      "scenario": "separated-independent-body",
+      "id": "apollo_11",
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 166.71666666667937,
+          "xM": 997510.4730226065,
+          "yM": 3109771.6137810075,
+          "zM": 5565539.028929502,
+          "groundDistanceM": 77953.90043511466,
+          "altitudeM": 81978.48409596458,
+          "vxMps": 2116.54564216247,
+          "vyMps": 1074.9606136259993,
+          "vzMps": 328.0815368545988,
+          "verticalSpeedMps": 1128.1781061028166,
+          "horizontalSpeedMps": 2114.274682234847,
+          "surfaceSpeedMps": 2396.443880216894,
+          "inertialSpeedMps": 2753.760506321275,
+          "accelerationMps2": 9.289611995077864,
+          "properG": 0.00012392919462313968,
+          "thrustN": 0,
+          "massKg": 643000,
+          "fuelMassKg": 550000,
+          "pitchDeg": 82.29248903258531,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": -1.1150819928808002,
+          "dynamicPressurePa": 32.512576884828775,
+          "stageIndex": 1,
+          "periapsisM": -6023853.595874984,
+          "apoapsisM": 156835.88164809905
+        },
+        "rendering": {
+          "frame": "floating-origin",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.9289002201978706,
+            0.31848130474635916,
+            -0.18898158493198483
+          ],
+          "thrustDirectionECEF": [
+            0.9289012971829843,
+            0.3184995391532431,
+            -0.1889455573728604
+          ],
+          "attitudeErrorDeg": 0.002314379421456387,
+          "padLocalM": [
+            75533.48580507588,
+            81495.44165197079,
+            -22990.958834486682
+          ],
+          "phase": "ascent",
+          "modelId": "84bc6446-5cfa-4e0c-8ed8-4a891197d94a",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            0.6476082659683141,
+            0.34871214321370747,
+            0.6774978782437745
+          ],
+          "spaceCamera": {
+            "near": 0.008915131264434422,
+            "position": [
+              0.0011739974797207763,
+              -0.0017027906042553344,
+              0.0012682132695285954
+            ],
+            "earthPosition": [
+              -9.975104730226064,
+              -31.097716137810075,
+              -55.65539028929502
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            117.39974797207765,
+            -170.27906042553346,
+            126.82132695285951
+          ],
+          "cameraTargetErrorM": 18.216628991207948,
+          "cameraDistanceM": 240.1886202633375,
+          "missionTimeS": 166.71666666667937,
+          "phaseTimeS": 166.71666666667937,
+          "positionKm": [
+            997.5104730226064,
+            3109.7716137810075,
+            5565.539028929502
+          ],
+          "velocityKmS": [
+            2.1165456421624698,
+            1.0749606136259993,
+            0.32808153685459884
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 2,
+            "debris": 1,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0.10000000149011612,
+            "steps": 206,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 643000,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": [
+              {
+                "id": "debris:",
+                "time": 1.2416666666666647,
+                "positionM": [
+                  -29.162801098747554,
+                  -11.230131926130124,
+                  5.672558163079951
+                ],
+                "worldVelocityMps": [
+                  2116.1715680051775,
+                  1076.51341345053,
+                  331.9695318375767
+                ],
+                "angularVelocityRadS": [
+                  0.01597107996869861,
+                  -0.002451747575543766,
+                  -0.10429141832243032
+                ]
+              }
+            ]
+          },
+          "interior": {
+            "apollo_cm": {
+              "actors": 95,
+              "fixed": 93,
+              "contacts": 6,
+              "loose": [
+                {
+                  "positionM": [
+                    -0.44887349009513855,
+                    0.06284046173095703,
+                    0.2573873698711395
+                  ],
+                  "velocityMps": [
+                    0.0014649442164227366,
+                    0.01445383857935667,
+                    -0.0004142469260841608
+                  ]
+                },
+                {
+                  "positionM": [
+                    0.16190385818481445,
+                    0.06000130623579025,
+                    0.27938252687454224
+                  ],
+                  "velocityMps": [
+                    0.0011386559344828129,
+                    -0.0005415339837782085,
+                    -0.00015824729052837938
+                  ]
+                }
+              ]
+            }
+          },
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.31058302286489
+        }
+      }
+    },
+    {
+      "scenario": "live-pad-frame-handoff",
+      "id": "apollo_11",
+      "cameraDeltaM": 0.25381907861779796,
+      "snapshot": {
+        "physics": {
+          "simulationTimeS": 24.083333333332607,
+          "xM": 913209.918777874,
+          "yM": 3050876.7286617607,
+          "zM": 5518708.073730974,
+          "groundDistanceM": 9.286880230945115,
+          "altitudeM": 651.2751646740362,
+          "vxMps": 10.809904327510653,
+          "vyMps": 29.131268049575954,
+          "vzMps": 51.56746163924737,
+          "verticalSpeedMps": 60.16232997657288,
+          "horizontalSpeedMps": 2.276392200695633,
+          "surfaceSpeedMps": 60.20538106898276,
+          "inertialSpeedMps": 414.53834717626216,
+          "accelerationMps2": 3.3257525974879676,
+          "properG": 1.3359439172403302,
+          "thrustN": 34205223.91006362,
+          "massKg": 2607035.4223435363,
+          "fuelMassKg": 2384035.4223435363,
+          "pitchDeg": 1.73936839437829,
+          "yawDeg": 17,
+          "rollDeg": 0,
+          "pitchRateDegS": 0.16831474068259267,
+          "dynamicPressurePa": 2084.5932947579226,
+          "stageIndex": 0,
+          "periapsisM": -6362421.631567038,
+          "apoapsisM": 836.1030575772747
+        },
+        "rendering": {
+          "frame": "floating-origin",
+          "modelUnitM": 1,
+          "activeNozzles": 5,
+          "bodyDirectionECEF": [
+            0.17118822803176123,
+            0.48638736590599096,
+            0.8568091507858544
+          ],
+          "thrustDirectionECEF": [
+            0.17120148355813694,
+            0.4863907210468917,
+            0.8568045976224554
+          ],
+          "attitudeErrorDeg": 0.0008257302176085218,
+          "padLocalM": [
+            9.220729038987074,
+            651.2751579049075,
+            1.1144210747190755
+          ],
+          "phase": "ascent",
+          "modelId": "351a3810-f00d-455b-87b1-cb697bf57e06",
+          "ports": [
+            true,
+            false
+          ],
+          "maneuver": null,
+          "earthBackdropBlend": 1,
+          "sunlightWorld": [
+            0.6476082659683139,
+            0.3487121432137074,
+            0.6774978782437746
+          ],
+          "spaceCamera": {
+            "near": 0.0011369004228834,
+            "position": [
+              0.001955615448913336,
+              -0.0008710664473146046,
+              0.0008424038555815174
+            ],
+            "earthPosition": [
+              -9.13209918777874,
+              -30.50876728661761,
+              -55.18708073730974
+            ]
+          },
+          "modelPositionErrorM": 0,
+          "cameraOffsetM": [
+            195.5615448913336,
+            -87.10664473146045,
+            84.24038555815174
+          ],
+          "cameraTargetErrorM": 1.6646554437495948,
+          "cameraDistanceM": 230.06157427011587,
+          "missionTimeS": 24.083333333332607,
+          "phaseTimeS": 24.083333333332607,
+          "positionKm": [
+            913.209918777874,
+            3050.876728661761,
+            5518.708073730974
+          ],
+          "velocityKmS": [
+            0.010809904327510653,
+            0.029131268049575956,
+            0.05156746163924737
+          ],
+          "actualRate": 1,
+          "rails": false,
+          "rigid": {
+            "backend": "NVIDIA PhysX 5.12.0 / WASM",
+            "loaded": true,
+            "fixedStepS": 0.008333333333333333,
+            "actors": 1,
+            "debris": 0,
+            "joints": 0,
+            "contacts": 0,
+            "dockingRejected": false,
+            "dockingActive": false,
+            "stepMs": 0.16666666666666666,
+            "steps": 82,
+            "hostOffsetM": [
+              0,
+              0,
+              0
+            ],
+            "hostMassKg": 2607035.4223435363,
+            "freeModule": false,
+            "assemblyCaptured": false,
+            "docking": null,
+            "lastContact": null,
+            "separations": []
+          },
+          "interior": {
+            "apollo_cm": {
+              "actors": 95,
+              "fixed": 93,
+              "contacts": 5,
+              "loose": [
+                {
+                  "positionM": [
+                    -0.43947699666023254,
+                    0.10802153497934341,
+                    0.1809062957763672
+                  ],
+                  "velocityMps": [
+                    -0.14138919115066528,
+                    -0.36987417936325073,
+                    0.7830861806869507
+                  ]
+                },
+                {
+                  "positionM": [
+                    0.1596115529537201,
+                    0.0599999763071537,
+                    0.2801358997821808
+                  ],
+                  "velocityMps": [
+                    0.000016097284969873726,
+                    -0.000016771256923675537,
+                    0.000023352436983259395
+                  ]
+                }
+              ]
+            }
+          },
+          "earthImagery": {
+            "projection": "EPSG:4326",
+            "regions": [
+              {
+                "id": "southeast",
+                "bounds": [
+                  -91,
+                  19,
+                  -71,
+                  39
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "florida",
+                "bounds": [
+                  -85,
+                  23,
+                  -76,
+                  32
+                ],
+                "width": 4096,
+                "height": 4096
+              },
+              {
+                "id": "space_coast",
+                "bounds": [
+                  -82.5,
+                  26,
+                  -78.5,
+                  30
+                ],
+                "width": 3072,
+                "height": 3072
+              }
+            ]
+          },
+          "damage": {},
+          "cabinPressureKPa": 101.3229156177636
+        }
+      }
+    }
+  ],
+  "errors": []
+}

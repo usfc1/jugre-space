@@ -1,0 +1,1046 @@
+
+> test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: 65% shorter Apollo extraction still requires and achieves aligned physical ports
+ok 1 - 65% shorter Apollo extraction still requires and achieves aligned physical ports
+  ---
+  duration_ms: 536.5183
+  type: 'test'
+  ...
+# Subtest: short extraction forecast advances by 65% and stays pending until a docking event
+ok 2 - short extraction forecast advances by 65% and stays pending until a docking event
+  ---
+  duration_ms: 1968.6505
+  type: 'test'
+  ...
+# Subtest: skipping Apollo from any progress completes the actual capture in full and short missions
+ok 3 - skipping Apollo from any progress completes the actual capture in full and short missions
+  ---
+  duration_ms: 1411.6279
+  type: 'test'
+  ...
+# Subtest: skip advances the passive route, clock and crew, keeps pause and produces a valid save
+ok 4 - skip advances the passive route, clock and crew, keeps pause and produces a valid save
+  ---
+  duration_ms: 1357.2069
+  type: 'test'
+  ...
+# Subtest: skip completes generic deployment and separation callbacks while their phase stays suspended
+ok 5 - skip completes generic deployment and separation callbacks while their phase stays suspended
+  ---
+  duration_ms: 5.1885
+  type: 'test'
+  ...
+# Subtest: the real training rocket is ready and its deliberate fuel shortage fails the same validator
+ok 6 - the real training rocket is ready and its deliberate fuel shortage fails the same validator
+  ---
+  duration_ms: 11.0964
+  type: 'test'
+  ...
+# Subtest: payload equipment survives project import, changes stage mass once and reaches flight telemetry
+ok 7 - payload equipment survives project import, changes stage mass once and reaches flight telemetry
+  ---
+  duration_ms: 12.6974
+  type: 'test'
+  ...
+# Subtest: partial pressures follow ideal gas law and sum to cabin pressure
+ok 8 - partial pressures follow ideal gas law and sum to cabin pressure
+  ---
+  duration_ms: 1.4968
+  type: 'test'
+  ...
+# Subtest: nominal crew use finite oxygen, food and water and add respiratory CO₂
+ok 9 - nominal crew use finite oxygen, food and water and add respiratory CO₂
+  ---
+  duration_ms: 9.0278
+  type: 'test'
+  ...
+# Subtest: scrubber and power failures change actual cabin readings and readiness
+ok 10 - scrubber and power failures change actual cabin readings and readiness
+  ---
+  duration_ms: 110.2727
+  type: 'test'
+  ...
+# Subtest: electrolysis, wastewater processing and leakage close the resource mass balance
+ok 11 - electrolysis, wastewater processing and leakage close the resource mass balance
+  ---
+  duration_ms: 15.8827
+  type: 'test'
+  ...
+# Subtest: timestep partition, battery depletion, reserve activation and serialized state are consistent
+ok 12 - timestep partition, battery depletion, reserve activation and serialized state are consistent
+  ---
+  duration_ms: 22.7128
+  type: 'test'
+  ...
+# Subtest: life-support shortage is visible preflight and a selected cabin follows flight clock and mass
+ok 13 - life-support shortage is visible preflight and a selected cabin follows flight clock and mass
+  ---
+  duration_ms: 528.2989
+  type: 'test'
+  ...
+# Subtest: satellite footprints cover LC-39A at every level and map north upward without stretching a tangent plane
+ok 14 - satellite footprints cover LC-39A at every level and map north upward without stretching a tangent plane
+  ---
+  duration_ms: 2.9965
+  type: 'test'
+  ...
+# Subtest: missing geographic tiles preserve the base globe; decoded maps share the same shader in both views
+ok 15 - missing geographic tiles preserve the base globe; decoded maps share the same shader in both views
+  ---
+  duration_ms: 0.9629
+  type: 'test'
+  ...
+# Subtest: all seven Appendix B configurations contain primary goals with explicit evidence rules
+ok 16 - all seven Appendix B configurations contain primary goals with explicit evidence rules
+  ---
+  duration_ms: 24.5642
+  type: 'test'
+  ...
+# Subtest: valid evidence completes a goal, unvalidated timestamps do not, and old saves use defaults
+ok 17 - valid evidence completes a goal, unvalidated timestamps do not, and old saves use defaults
+  ---
+  duration_ms: 14.3912
+  type: 'test'
+  ...
+# Subtest: Mars and Voyager departures consume stage budgets using the correct reference frame
+ok 18 - Mars and Voyager departures consume stage budgets using the correct reference frame
+  ---
+  duration_ms: 12785.3407
+  type: 'test'
+  ...
+# Subtest: Dragon deorbit and aerodynamic return measure the corridor, both parachute stages and touchdown
+ok 19 - Dragon deorbit and aerodynamic return measure the corridor, both parachute stages and touchdown
+  ---
+  duration_ms: 54.5122
+  type: 'test'
+  ...
+# Subtest: DRACO resolves the secondary in its window and restores a corrected aim without inventing an impact
+ok 20 - DRACO resolves the secondary in its window and restores a corrected aim without inventing an impact
+  ---
+  duration_ms: 1.7806
+  type: 'test'
+  ...
+# Subtest: Curiosity discovery follows physical inventories and both laboratory results in manual operation
+ok 21 - Curiosity discovery follows physical inventories and both laboratory results in manual operation
+  ---
+  duration_ms: 1.9579
+  type: 'test'
+  ...
+# Subtest: mercury flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 22 - mercury flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 1163.7305
+  type: 'test'
+  ...
+# Subtest: mercury orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 23 - mercury orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 866.9674
+  type: 'test'
+  ...
+# Subtest: venus flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 24 - venus flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 813.6596
+  type: 'test'
+  ...
+# Subtest: venus orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 25 - venus orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 739.945
+  type: 'test'
+  ...
+# Subtest: mars flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 26 - mars flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 769.289
+  type: 'test'
+  ...
+# Subtest: mars orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 27 - mars orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 591.8608
+  type: 'test'
+  ...
+# Subtest: jupiter flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 28 - jupiter flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 622.6272
+  type: 'test'
+  ...
+# Subtest: jupiter orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 29 - jupiter orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 578.1024
+  type: 'test'
+  ...
+# Subtest: saturn flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 30 - saturn flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 448.0795
+  type: 'test'
+  ...
+# Subtest: saturn orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 31 - saturn orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 606.3589
+  type: 'test'
+  ...
+# Subtest: uranus flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 32 - uranus flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 608.5389
+  type: 'test'
+  ...
+# Subtest: uranus orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 33 - uranus orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 472.1944
+  type: 'test'
+  ...
+# Subtest: neptune flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 34 - neptune flyby: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 556.2928
+  type: 'test'
+  ...
+# Subtest: neptune orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+ok 35 - neptune orbit: launch, ballistic cruise, finite fuel, encounter and save restoration
+  ---
+  duration_ms: 419.5684
+  type: 'test'
+  ...
+# Subtest: planet drafts round trip; unavailable crew, landing, dates and impossible transfers remain explicit
+ok 36 - planet drafts round trip; unavailable crew, landing, dates and impossible transfers remain explicit
+  ---
+  duration_ms: 136.7621
+  type: 'test'
+  ...
+# Subtest: probe contact, engine cutoff and touchdown survive a round trip
+ok 37 - probe contact, engine cutoff and touchdown survive a round trip
+  ---
+  duration_ms: 16.8814
+  type: 'test'
+  ...
+# Subtest: landing outcomes and fuel failures are physical
+ok 38 - landing outcomes and fuel failures are physical
+  ---
+  duration_ms: 0.381
+  type: 'test'
+  ...
+# Subtest: apollo_11: physical initial climb stays near the pad and reaches a bound orbit
+ok 39 - apollo_11: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 845.8933
+  type: 'test'
+  ...
+# Subtest: artemis_ii: physical initial climb stays near the pad and reaches a bound orbit
+ok 40 - artemis_ii: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 920.3422
+  type: 'test'
+  ...
+# Subtest: mars_2020: physical initial climb stays near the pad and reaches a bound orbit
+ok 41 - mars_2020: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 885.9885
+  type: 'test'
+  ...
+# Subtest: mars_science_laboratory: physical initial climb stays near the pad and reaches a bound orbit
+ok 42 - mars_science_laboratory: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 804.5803
+  type: 'test'
+  ...
+# Subtest: dart: physical initial climb stays near the pad and reaches a bound orbit
+ok 43 - dart: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 386.7302
+  type: 'test'
+  ...
+# Subtest: iss_resupply: physical initial climb stays near the pad and reaches a bound orbit
+ok 44 - iss_resupply: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 552.0396
+  type: 'test'
+  ...
+# Subtest: voyager_2: physical initial climb stays near the pad and reaches a bound orbit
+ok 45 - voyager_2: physical initial climb stays near the pad and reaches a bound orbit
+  ---
+  duration_ms: 664.437
+  type: 'test'
+  ...
+# Subtest: engines off: ground support prevents motion and fuel consumption
+ok 46 - engines off: ground support prevents motion and fuel consumption
+  ---
+  duration_ms: 101.0436
+  type: 'test'
+  ...
+# Subtest: a vehicle below liftoff thrust-to-weight remains supported on the pad
+ok 47 - a vehicle below liftoff thrust-to-weight remains supported on the pad
+  ---
+  duration_ms: 61.5536
+  type: 'test'
+  ...
+# Subtest: coordinates integrate the same measured velocity and altitude integrates radial speed
+ok 48 - coordinates integrate the same measured velocity and altitude integrates radial speed
+  ---
+  duration_ms: 56.3876
+  type: 'test'
+  ...
+# Subtest: manual and automatic flight use identical forces when both point vertically
+ok 49 - manual and automatic flight use identical forces when both point vertically
+  ---
+  duration_ms: 10.1573
+  type: 'test'
+  ...
+# Subtest: cutoff removes thrust acceleration and the vehicle continues ballistically
+ok 50 - cutoff removes thrust acceleration and the vehicle continues ballistically
+  ---
+  duration_ms: 55.8273
+  type: 'test'
+  ...
+# Subtest: stage separation removes exactly the detached dry mass and remaining propellant
+ok 51 - stage separation removes exactly the detached dry mass and remaining propellant
+  ---
+  duration_ms: 11.002
+  type: 'test'
+  ...
+# Subtest: orbital cutoff immediately reports free fall and coasting conserves orbital energy
+ok 52 - orbital cutoff immediately reports free fall and coasting conserves orbital energy
+  ---
+  duration_ms: 1795.9584
+  type: 'test'
+  ...
+# Subtest: failed separation keeps attached mass, prevents upper-stage ignition and can be retried
+ok 53 - failed separation keeps attached mass, prevents upper-stage ignition and can be retried
+  ---
+  duration_ms: 207.0675
+  type: 'test'
+  ...
+# Subtest: fixed stepping gives the same result at 30, 60, 144 FPS and ×100 warp
+ok 54 - fixed stepping gives the same result at 30, 60, 144 FPS and ×100 warp
+  ---
+  duration_ms: 604.2964
+  type: 'test'
+  ...
+# Subtest: mode switches never teleport the rocket or rewrite its clock/velocity
+ok 55 - mode switches never teleport the rocket or rewrite its clock/velocity
+  ---
+  duration_ms: 96.0469
+  type: 'test'
+  ...
+# Subtest: engine failure changes the trajectory rather than preserving a scheduled animation
+ok 56 - engine failure changes the trajectory rather than preserving a scheduled animation
+  ---
+  duration_ms: 217.6481
+  type: 'test'
+  ...
+# Subtest: long flights keep checkpoints below browser quota and preserve the sampled history endpoints
+ok 57 - long flights keep checkpoints below browser quota and preserve the sampled history endpoints
+  ---
+  duration_ms: 130.812
+  type: 'test'
+  ...
+# Subtest: HUD, diagnostics, pressure and simulation read one physical state
+ok 58 - HUD, diagnostics, pressure and simulation read one physical state
+  ---
+  duration_ms: 68.3621
+  type: 'test'
+  ...
+# Subtest: restart returns to the exact geographical pad without residual momentum
+ok 59 - restart returns to the exact geographical pad without residual momentum
+  ---
+  duration_ms: 131.2298
+  type: 'test'
+  ...
+# Subtest: custom craft uses actual assembled mass, tanks and engine ratings
+ok 60 - custom craft uses actual assembled mass, tanks and engine ratings
+  ---
+  duration_ms: 1.4061
+  type: 'test'
+  ...
+# Subtest: rotating/floating rendering frame cannot move emission points in the physical world
+ok 61 - rotating/floating rendering frame cannot move emission points in the physical world
+  ---
+  duration_ms: 1.7801
+  type: 'test'
+  ...
+# Subtest: exhaust selects every active engine including radial boosters, and ignores an unlit core
+ok 62 - exhaust selects every active engine including radial boosters, and ignores an unlit core
+  ---
+  duration_ms: 8.7341
+  type: 'test'
+  ...
+# Subtest: fixed thrust lunar ascent measures orbit and sample mass affects the fuel reserve
+ok 63 - fixed thrust lunar ascent measures orbit and sample mass affects the fuel reserve
+  ---
+  duration_ms: 113.1411
+  type: 'test'
+  ...
+# Subtest: mid ascent state resumes continuously and the ignition window is enforced
+ok 64 - mid ascent state resumes continuously and the ignition window is enforced
+  ---
+  duration_ms: 23.5926
+  type: 'test'
+  ...
+# Subtest: four crew complete physical lunar capture and return with measured mass, consumables and splashdown
+ok 65 - four crew complete physical lunar capture and return with measured mass, consumables and splashdown
+  ---
+  duration_ms: 4914.3587
+  type: 'test'
+  ...
+# Subtest: insufficient service-module fuel blocks capture and prevents recovery evidence
+ok 66 - insufficient service-module fuel blocks capture and prevents recovery evidence
+  ---
+  duration_ms: 2166.8807
+  type: 'test'
+  ...
+# Subtest: dated lunar missions use the existing departure solver and preserve their geometry on restore
+ok 67 - dated lunar missions use the existing departure solver and preserve their geometry on restore
+  ---
+  duration_ms: 2155.7071
+  type: 'test'
+  ...
+# Subtest: entry rejects escape geometry and the impulse uses the rocket equation
+ok 68 - entry rejects escape geometry and the impulse uses the rocket equation
+  ---
+  duration_ms: 1.2426
+  type: 'test'
+  ...
+# Subtest: mid-entry checkpoint resumes the same measured descent and rejects invalid recovery state
+ok 69 - mid-entry checkpoint resumes the same measured descent and rejects invalid recovery state
+  ---
+  duration_ms: 2115.6472
+  type: 'test'
+  ...
+# Subtest: an interrupted power supply degrades the cabin and prevents the lunar mission from succeeding
+ok 70 - an interrupted power supply degrades the cabin and prevents the lunar mission from succeeding
+  ---
+  duration_ms: 1300.7629
+  type: 'test'
+  ...
+# Subtest: universal Kepler conserves energy, momentum and reverses a multi-day coast
+ok 71 - universal Kepler conserves energy, momentum and reverses a multi-day coast
+  ---
+  duration_ms: 5.4311
+  type: 'test'
+  ...
+# Subtest: Apollo TLI and lunar arrival use hours/days with continuous physical state
+ok 72 - Apollo TLI and lunar arrival use hours/days with continuous physical state
+  ---
+  duration_ms: 2715.9215
+  type: 'test'
+  ...
+# Subtest: ×1, ×300 and ×500 advance one shared clock and identical states
+ok 73 - ×1, ×300 and ×500 advance one shared clock and identical states
+  ---
+  duration_ms: 1316.7551
+  type: 'test'
+  ...
+# Subtest: parking orbit at ×500 agrees with the rotating-frame force integrator
+ok 74 - parking orbit at ×500 agrees with the rotating-frame force integrator
+  ---
+  duration_ms: 1705.1691
+  type: 'test'
+  ...
+# Subtest: compressed Apollo save migrates to physical time and survives another save
+ok 75 - compressed Apollo save migrates to physical time and survives another save
+  ---
+  duration_ms: 978.559
+  type: 'test'
+  ...
+# Subtest: Artemis physical transfer reaches the configured lunar flyby without discontinuity
+ok 76 - Artemis physical transfer reaches the configured lunar flyby without discontinuity
+  ---
+  duration_ms: 1246.7601
+  type: 'test'
+  ...
+# Subtest: a manual frame is routed to exactly one owner and expires on phase changes
+ok 77 - a manual frame is routed to exactly one owner and expires on phase changes
+  ---
+  duration_ms: 1511.4241
+  type: 'test'
+  ...
+# Subtest: orbital takeover and handback preserve pose, trajectory, phase, time and resources
+ok 78 - orbital takeover and handback preserve pose, trajectory, phase, time and resources
+  ---
+  duration_ms: 1133.2551
+  type: 'test'
+  ...
+# Subtest: manual rocket commands use the original thrust and steering solver and are gated by tempo and pause
+ok 79 - manual rocket commands use the original thrust and steering solver and are gated by tempo and pause
+  ---
+  duration_ms: 100.8639
+  type: 'test'
+  ...
+# Subtest: v1 checkpoints use control defaults and round-trip a live manual orbital attitude
+ok 80 - v1 checkpoints use control defaults and round-trip a live manual orbital attitude
+  ---
+  duration_ms: 810.2545
+  type: 'test'
+  ...
+# Subtest: binding conflicts include aliases, while remaps and controller edges survive their expected lifecycle
+ok 81 - binding conflicts include aliases, while remaps and controller edges survive their expected lifecycle
+  ---
+  duration_ms: 31.4215
+  type: 'test'
+  ...
+# Subtest: assistance levels change the actual docking tolerance and standard preserves the previous threshold
+ok 82 - assistance levels change the actual docking tolerance and standard preserves the previous threshold
+  ---
+  duration_ms: 0.3848
+  type: 'test'
+  ...
+# Subtest: both Mars EDL profiles reach contact and clear the rover; reconstruction preserves the remaining descent
+ok 83 - both Mars EDL profiles reach contact and clear the rover; reconstruction preserves the remaining descent
+  ---
+  duration_ms: 35.893
+  type: 'test'
+  ...
+# Subtest: out of window parachute and hard crane touchdown do not grant contact
+ok 84 - out of window parachute and hard crane touchdown do not grant contact
+  ---
+  duration_ms: 0.4742
+  type: 'test'
+  ...
+# Subtest: mission definitions round trip, migrate hours and reject invalid physical inputs
+ok 85 - mission definitions round trip, migrate hours and reject invalid physical inputs
+  ---
+  duration_ms: 5.2666
+  type: 'test'
+  ...
+# Subtest: stage Δv includes the upper stack and removes lower stage dry mass only after burning
+ok 86 - stage Δv includes the upper stack and removes lower stage dry mass only after burning
+  ---
+  duration_ms: 1.061
+  type: 'test'
+  ...
+# Subtest: circular and escaping Earth orbits report physical elements
+ok 87 - circular and escaping Earth orbits report physical elements
+  ---
+  duration_ms: 5.1692
+  type: 'test'
+  ...
+# Subtest: automatic candidates use the assembly joints and the same report as manual craft
+ok 88 - automatic candidates use the assembly joints and the same report as manual craft
+  ---
+  duration_ms: 43.3621
+  type: 'test'
+  ...
+# Subtest: four-person lunar expedition stays unsupported and its estimate depends on date and orbit
+ok 89 - four-person lunar expedition stays unsupported and its estimate depends on date and orbit
+  ---
+  duration_ms: 35.5975
+  type: 'test'
+  ...
+# Subtest: designed flight validates physical orbit and restores objective progress mid-ascent
+ok 90 - designed flight validates physical orbit and restores objective progress mid-ascent
+  ---
+  duration_ms: 1955.834
+  type: 'test'
+  ...
+# Subtest: an exhausted rocket and an out-of-tolerance orbit cannot complete the mission
+ok 91 - an exhausted rocket and an out-of-tolerance orbit cannot complete the mission
+  ---
+  duration_ms: 828.1679
+  type: 'test'
+  ...
+# Subtest: legacy mission migrates, three projects persist, and export preserves the exact valid assembly
+ok 92 - legacy mission migrates, three projects persist, and export preserves the exact valid assembly
+  ---
+  duration_ms: 7.8533
+  type: 'test'
+  ...
+# Subtest: an invalid import or an unsuccessful storage write cannot alter the library
+ok 93 - an invalid import or an unsuccessful storage write cannot alter the library
+  ---
+  duration_ms: 1.4743
+  type: 'test'
+  ...
+# Subtest: countdown, elapsed time, multi-day formatting and nonwrapping days
+ok 94 - countdown, elapsed time, multi-day formatting and nonwrapping days
+  ---
+  duration_ms: 5.8104
+  type: 'test'
+  ...
+# Subtest: preflight and countdown share simulation time and ignore time warp
+ok 95 - preflight and countdown share simulation time and ignore time warp
+  ---
+  duration_ms: 37.9628
+  type: 'test'
+  ...
+# Subtest: clock switches to T+ only on physical liftoff, not countdown expiry
+ok 96 - clock switches to T+ only on physical liftoff, not countdown expiry
+  ---
+  duration_ms: 67.9318
+  type: 'test'
+  ...
+# Subtest: countdown holds, pauses and resumes without accumulating hidden time
+ok 97 - countdown holds, pauses and resumes without accumulating hidden time
+  ---
+  duration_ms: 4.3264
+  type: 'test'
+  ...
+# Subtest: postlaunch pause freezes MET; time warp advances MET with simulation
+ok 98 - postlaunch pause freezes MET; time warp advances MET with simulation
+  ---
+  duration_ms: 25.9675
+  type: 'test'
+  ...
+# Subtest: frame partition does not change countdown, simulation time or navigation
+ok 99 - frame partition does not change countdown, simulation time or navigation
+  ---
+  duration_ms: 242.0241
+  type: 'test'
+  ...
+# Subtest: abort freezes T− and never produces a liftoff
+ok 100 - abort freezes T− and never produces a liftoff
+  ---
+  duration_ms: 5.2184
+  type: 'test'
+  ...
+# Subtest: structural failure before Max Q cannot complete future events
+ok 101 - structural failure before Max Q cannot complete future events
+  ---
+  duration_ms: 27.3701
+  type: 'test'
+  ...
+# Subtest: repaired recoverable failure resumes the timeline
+ok 102 - repaired recoverable failure resumes the timeline
+  ---
+  duration_ms: 235.3761
+  type: 'test'
+  ...
+# Subtest: separation requires a signal, records failure, and can be retried
+ok 103 - separation requires a signal, records failure, and can be retried
+  ---
+  duration_ms: 13.0971
+  type: 'test'
+  ...
+# Subtest: elapsed schedules cannot complete missing separation hardware
+ok 104 - elapsed schedules cannot complete missing separation hardware
+  ---
+  duration_ms: 569.886
+  type: 'test'
+  ...
+# Subtest: orbit requires a safe periapsis, not merely high altitude
+ok 105 - orbit requires a safe periapsis, not merely high altitude
+  ---
+  duration_ms: 1.9039
+  type: 'test'
+  ...
+# Subtest: unsafe touchdown and scheduled surface phase never grant landing
+ok 106 - unsafe touchdown and scheduled surface phase never grant landing
+  ---
+  duration_ms: 30.4051
+  type: 'test'
+  ...
+# Subtest: DART impact is the intended goal despite loss of integrity and radio
+ok 107 - DART impact is the intended goal despite loss of integrity and radio
+  ---
+  duration_ms: 5188.3969
+  type: 'test'
+  ...
+# Subtest: save/load round trip preserves clocks, vectors, systems and event history
+ok 108 - save/load round trip preserves clocks, vectors, systems and event history
+  ---
+  duration_ms: 386.6241
+  type: 'test'
+  ...
+# Subtest: held countdown can be saved and restored; restart resets mission history
+ok 109 - held countdown can be saved and restored; restart resets mission history
+  ---
+  duration_ms: 8.7846
+  type: 'test'
+  ...
+# Subtest: corrupt save clocks and unknown schema versions are rejected
+ok 110 - corrupt save clocks and unknown schema versions are rejected
+  ---
+  duration_ms: 2.1368
+  type: 'test'
+  ...
+# Subtest: every registered mission has independent unique event definitions
+ok 111 - every registered mission has independent unique event definitions
+  ---
+  duration_ms: 12.3183
+  type: 'test'
+  ...
+# Subtest: future profiles can be registered without changing renderer
+ok 112 - future profiles can be registered without changing renderer
+  ---
+  duration_ms: 0.4979
+  type: 'test'
+  ...
+# Subtest: mission-control hooks emit once per completion and do not replay on load
+ok 113 - mission-control hooks emit once per completion and do not replay on load
+  ---
+  duration_ms: 16.0959
+  type: 'test'
+  ...
+# Subtest: trajectory changes update forecasts without changing completion
+ok 114 - trajectory changes update forecasts without changing completion
+  ---
+  duration_ms: 7.7232
+  type: 'test'
+  ...
+# Subtest: presentation time advances the mission clock while trajectory time is suspended
+ok 115 - presentation time advances the mission clock while trajectory time is suspended
+  ---
+  duration_ms: 20.5277
+  type: 'test'
+  ...
+# Subtest: surface mission cannot declare success without contact confirmation
+ok 116 - surface mission cannot declare success without contact confirmation
+  ---
+  duration_ms: 3414.7803
+  type: 'test'
+  ...
+# Subtest: a custom crewed Mars architecture uses crew descent, orbit and ascent without a rover sky crane
+ok 117 - a custom crewed Mars architecture uses crew descent, orbit and ascent without a rover sky crane
+  ---
+  duration_ms: 0.7074
+  type: 'test'
+  ...
+# Subtest: unknown condition names cannot silently complete future events
+ok 118 - unknown condition names cannot silently complete future events
+  ---
+  duration_ms: 4.555
+  type: 'test'
+  ...
+# Subtest: a safe return cannot conceal a missed required lunar objective
+ok 119 - a safe return cannot conceal a missed required lunar objective
+  ---
+  duration_ms: 1.1792
+  type: 'test'
+  ...
+# Subtest: all mission path types continue identically after save/load
+ok 120 - all mission path types continue identically after save/load
+  ---
+  duration_ms: 61703.8936
+  type: 'test'
+  ...
+# Subtest: universal variables agree with RK4 and preserve integrals: circular
+ok 121 - universal variables agree with RK4 and preserve integrals: circular
+  ---
+  duration_ms: 45.2871
+  type: 'test'
+  ...
+# Subtest: universal variables agree with RK4 and preserve integrals: eccentric elliptic
+ok 122 - universal variables agree with RK4 and preserve integrals: eccentric elliptic
+  ---
+  duration_ms: 10.4722
+  type: 'test'
+  ...
+# Subtest: universal variables agree with RK4 and preserve integrals: near parabolic
+ok 123 - universal variables agree with RK4 and preserve integrals: near parabolic
+  ---
+  duration_ms: 11.0835
+  type: 'test'
+  ...
+# Subtest: universal variables agree with RK4 and preserve integrals: hyperbolic
+ok 124 - universal variables agree with RK4 and preserve integrals: hyperbolic
+  ---
+  duration_ms: 9.2829
+  type: 'test'
+  ...
+# Subtest: universal variables agree with RK4 and preserve integrals: retrograde
+ok 125 - universal variables agree with RK4 and preserve integrals: retrograde
+  ---
+  duration_ms: 27.8929
+  type: 'test'
+  ...
+# Subtest: nine months of solar propagation compose with daily samples
+ok 126 - nine months of solar propagation compose with daily samples
+  ---
+  duration_ms: 1.5977
+  type: 'test'
+  ...
+# Subtest: descent and ascent have no visibility step at the former 2 km boundary
+ok 127 - descent and ascent have no visibility step at the former 2 km boundary
+  ---
+  duration_ms: 9.8164
+  type: 'test'
+  ...
+# Subtest: touchdown and EVA stay level; surrounding surfaces differ and remain continuous
+ok 128 - touchdown and EVA stay level; surrounding surfaces differ and remain continuous
+  ---
+  duration_ms: 1.9059
+  type: 'test'
+  ...
+# Subtest: curved terrain has a closed ring seam, finite normals and a 65 km extent
+ok 129 - curved terrain has a closed ring seam, finite normals and a 65 km extent
+  ---
+  duration_ms: 1648.7327
+  type: 'test'
+  ...
+# Subtest: Apollo solid hull excludes the probe beyond its capture plane
+ok 130 - Apollo solid hull excludes the probe beyond its capture plane
+  ---
+  duration_ms: 134.3759
+  type: 'test'
+  ...
+# Subtest: port alignment measures both anchors before translating the moving model
+ok 131 - port alignment measures both anchors before translating the moving model
+  ---
+  duration_ms: 1.5417
+  type: 'test'
+  ...
+# Subtest: light contact is harmless; a localized heavy impact breaches the crew module and survives a save
+ok 132 - light contact is harmless; a localized heavy impact breaches the crew module and survives a save
+  ---
+  duration_ms: 17.431
+  type: 'test'
+  ...
+# Subtest: scheduled docking phase cannot complete without physical capture or spin forever at its end
+ok 133 - scheduled docking phase cannot complete without physical capture or spin forever at its end
+  ---
+  duration_ms: 12.247
+  type: 'test'
+  ...
+# Subtest: measured circularization consumes stage fuel and resumes the same mid-burn trajectory
+ok 134 - measured circularization consumes stage fuel and resumes the same mid-burn trajectory
+  ---
+  duration_ms: 70.3897
+  type: 'test'
+  ...
+# Subtest: SAS directions slew with the vehicle rate limit and reach their educational tolerance
+ok 135 - SAS directions slew with the vehicle rate limit and reach their educational tolerance
+  ---
+  duration_ms: 1695.9684
+  type: 'test'
+  ...
+# Subtest: unflyable stages retain a failed trajectory and empty stage has zero available delta-v
+ok 136 - unflyable stages retain a failed trajectory and empty stage has zero available delta-v
+  ---
+  duration_ms: 102.4224
+  type: 'test'
+  ...
+# Subtest: axial staging derives separate tanks, reserves ignition delay and accounts for every kilogram
+ok 137 - axial staging derives separate tanks, reserves ignition delay and accounts for every kilogram
+  ---
+  duration_ms: 273.3342
+  type: 'test'
+  ...
+# Subtest: an upper stage cannot borrow tanks from below its interstage
+ok 138 - an upper stage cannot borrow tanks from below its interstage
+  ---
+  duration_ms: 2.2616
+  type: 'test'
+  ...
+# Subtest: separating a lower subtree preserves the world poses and keys of both upper branches
+ok 139 - separating a lower subtree preserves the world poses and keys of both upper branches
+  ---
+  duration_ms: 21.5727
+  type: 'test'
+  ...
+# Subtest: the two-stage example releases a satellite and transfers measured data
+ok 140 - the two-stage example releases a satellite and transfers measured data
+  ---
+  duration_ms: 936.9501
+  type: 'test'
+  ...
+# Subtest: every mission shortens launch distances by 40% while preserving powered launch physics
+ok 141 - every mission shortens launch distances by 40% while preserving powered launch physics
+  ---
+  duration_ms: 939.7796
+  type: 'test'
+  ...
+# Subtest: short launch preserves stage events and save continuation without shortening countdown
+ok 142 - short launch preserves stage events and save continuation without shortening countdown
+  ---
+  duration_ms: 795.2421
+  type: 'test'
+  ...
+# Subtest: short interplanetary flight uses ordinary resource and hardware seconds while MET follows the route
+ok 143 - short interplanetary flight uses ordinary resource and hardware seconds while MET follows the route
+  ---
+  duration_ms: 915.2602
+  type: 'test'
+  ...
+# Subtest: crew resources advance one second for one second of short flight and checkpoint continuation is deterministic
+ok 144 - crew resources advance one second for one second of short flight and checkpoint continuation is deterministic
+  ---
+  duration_ms: 1182.0636
+  type: 'test'
+  ...
+# Subtest: short route arrival is independent of frame rate and transfers to the existing landing phase
+ok 145 - short route arrival is independent of frame rate and transfers to the existing landing phase
+  ---
+  duration_ms: 736.0451
+  type: 'test'
+  ...
+# Subtest: active legacy cinematic saves restore at the same state on pause
+ok 146 - active legacy cinematic saves restore at the same state on pause
+  ---
+  duration_ms: 495.4596
+  type: 'test'
+  ...
+# Subtest: always available skip reaches liftoff, MAX Q and MECO with actual launch state and valid saves
+ok 147 - always available skip reaches liftoff, MAX Q and MECO with actual launch state and valid saves
+  ---
+  duration_ms: 2409.6898
+  type: 'test'
+  ...
+# Subtest: skip stops at phase transition and respects cancellation and terminal state
+ok 148 - skip stops at phase transition and respects cancellation and terminal state
+  ---
+  duration_ms: 4.1232
+  type: 'test'
+  ...
+# Subtest: historical interplanetary flights leave parking orbit forwards and gain distance from Earth
+ok 149 - historical interplanetary flights leave parking orbit forwards and gain distance from Earth
+  ---
+  duration_ms: 2859.3788
+  type: 'test'
+  ...
+# Subtest: short Voyager skips to Saturn without reusing the old coast clock
+ok 150 - short Voyager skips to Saturn without reusing the old coast clock
+  ---
+  duration_ms: 539.0453
+  type: 'test'
+  ...
+# Subtest: near plane preserves Earth surface at Apollo short-flight extraction distance
+ok 151 - near plane preserves Earth surface at Apollo short-flight extraction distance
+  ---
+  duration_ms: 1.968
+  type: 'test'
+  ...
+# Subtest: near plane uses the nearest visible rendered body across route scales
+ok 152 - near plane uses the nearest visible rendered body across route scales
+  ---
+  duration_ms: 0.7089
+  type: 'test'
+  ...
+# Subtest: near plane also preserves the nearby cloud shell above the Earth surface
+ok 153 - near plane also preserves the nearby cloud shell above the Earth surface
+  ---
+  duration_ms: 0.2983
+  type: 'test'
+  ...
+# Subtest: RCS fuel limits impulse, changes mass budget and resumes mid approach
+ok 154 - RCS fuel limits impulse, changes mass budget and resumes mid approach
+  ---
+  duration_ms: 3.3116
+  type: 'test'
+  ...
+# Subtest: manual capture requires lateral alignment and low angular rate; pointing is geometric
+ok 155 - manual capture requires lateral alignment and low angular rate; pointing is geometric
+  ---
+  duration_ms: 1.5517
+  type: 'test'
+  ...
+# Subtest: catalog changes mass, budget, peak demand, memory and launch margin through a single design
+ok 156 - catalog changes mass, budget, peak demand, memory and launch margin through a single design
+  ---
+  duration_ms: 4.8182
+  type: 'test'
+  ...
+# Subtest: Earth limb blocks the Sun and the ground link, with full rate overhead
+ok 157 - Earth limb blocks the Sun and the ground link, with full rate overhead
+  ---
+  duration_ms: 0.8835
+  type: 'test'
+  ...
+# Subtest: eclipse consumes the battery by delivered Wh; a weak bus enters safe mode
+ok 158 - eclipse consumes the battery by delivered Wh; a weak bus enters safe mode
+  ---
+  duration_ms: 22.622
+  type: 'test'
+  ...
+# Subtest: science and downlink close the data budget; storage fills and checkpoint partition agrees
+ok 159 - science and downlink close the data budget; storage fills and checkpoint partition agrees
+  ---
+  duration_ms: 52.6745
+  type: 'test'
+  ...
+# Subtest: the default science project physically reaches orbit, releases mass, sends data and restores its result
+ok 160 - the default science project physically reaches orbit, releases mass, sends data and restores its result
+  ---
+  duration_ms: 1340.3055
+  type: 'test'
+  ...
+# Subtest: an allowed engineering drill records power problems and cannot pass the science goal
+ok 161 - an allowed engineering drill records power problems and cannot pass the science goal
+  ---
+  duration_ms: 604.5585
+  type: 'test'
+  ...
+# Subtest: short science flight waits for data objectives after the shortened orbit interval
+ok 162 - short science flight waits for data objectives after the shortened orbit interval
+  ---
+  duration_ms: 422.8136
+  type: 'test'
+  ...
+# Subtest: Standard drafts persist selections and reject unavailable destinations or broken state
+ok 163 - Standard drafts persist selections and reject unavailable destinations or broken state
+  ---
+  duration_ms: 2.9058
+  type: 'test'
+  ...
+# Subtest: Standard authoring produces the existing mission schema and keeps the selected payload
+ok 164 - Standard authoring produces the existing mission schema and keeps the selected payload
+  ---
+  duration_ms: 2.2324
+  type: 'test'
+  ...
+# Subtest: automatic engineering resolves pointing and power using the shared assessment
+ok 165 - automatic engineering resolves pointing and power using the shared assessment
+  ---
+  duration_ms: 46.8224
+  type: 'test'
+  ...
+# Subtest: an unaffordable payload fails its real budget check and a simpler payload fixes it
+ok 166 - an unaffordable payload fails its real budget check and a simpler payload fixes it
+  ---
+  duration_ms: 89.9389
+  type: 'test'
+  ...
+# Subtest: lunar Standard mission uses the existing four-seat expedition and real resource requirements
+ok 167 - lunar Standard mission uses the existing four-seat expedition and real resource requirements
+  ---
+  duration_ms: 5.2537
+  type: 'test'
+  ...
+# Subtest: EVA resource, sample mass, interaction and restoration use actual objects
+ok 168 - EVA resource, sample mass, interaction and restoration use actual objects
+  ---
+  duration_ms: 50.8315
+  type: 'test'
+  ...
+# Subtest: EVA autopilot physically visits the objects and returns the required sample mass
+ok 169 - EVA autopilot physically visits the objects and returns the required sample mass
+  ---
+  duration_ms: 214.7092
+  type: 'test'
+  ...
+# Subtest: rover terrain, battery, drill inventory, delayed queue and drive save are consistent
+ok 170 - rover terrain, battery, drill inventory, delayed queue and drive save are consistent
+  ---
+  duration_ms: 65.3179
+  type: 'test'
+  ...
+# Subtest: automated Mars operations transport real samples, heat the battery at night, and fly the first sortie
+ok 171 - automated Mars operations transport real samples, heat the battery at night, and fly the first sortie
+  ---
+  duration_ms: 1486.8324
+  type: 'test'
+  ...
+# Subtest: Ingenuity lift follows rho and rpm squared; standard hover and depleted descent are physical
+ok 172 - Ingenuity lift follows rho and rpm squared; standard hover and depleted descent are physical
+  ---
+  duration_ms: 23.3257
+  type: 'test'
+  ...
+1..172
+# tests 172
+# suites 0
+# pass 172
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 77311.5273

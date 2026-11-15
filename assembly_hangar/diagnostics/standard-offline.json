@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "protocol": "file:",
+  "offline": true,
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "checks": [
+    "offline startup",
+    "five authoring steps",
+    "automatic engineering",
+    "3D preview"
+  ],
+  "pageErrors": []
+}
