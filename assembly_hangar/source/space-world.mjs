@@ -1,12 +1,13 @@
 import {
   AdditiveBlending, BackSide, BufferGeometry, CanvasTexture, Color, DirectionalLight,
   Float32BufferAttribute, Group, HemisphereLight, Line, LineBasicMaterial, MathUtils, Mesh, MeshBasicMaterial,
-  Matrix4, MeshStandardMaterial, PerspectiveCamera, Points, PointsMaterial, RingGeometry, Scene, ShaderMaterial,
+  Matrix4, MeshStandardMaterial, PerspectiveCamera, Points, RingGeometry, Scene, ShaderMaterial,
   SphereGeometry, Sprite, SpriteMaterial, SRGBColorSpace, TextureLoader, Vector2, Vector3, RepeatWrapping,
 } from 'three';
 import { EARTH_RADIUS, FLORIDA, geoVector, JUPITER, launchUp, MARS, MOON, MOON_RADIUS, moonUp, SATURN } from './flight-missions.mjs';
 import { earthImageryRegions } from './earth-imagery-config.mjs';
 import { earthImageryShader } from './earth-imagery.mjs';
+import { earthSurfaceShader } from './earth-surface.mjs';
 import { bodyNames, nominalTransferS, planetPosition, planets } from './mission-planets.mjs';
 import { schematicPlanetMap } from './planet-appearance.mjs';
 import { cloudFieldShader, createEarthCloudLayer } from './earth-clouds.mjs';
@@ -44,27 +45,41 @@ async function loadMap(loader, dataUrl) {
   }
 }
 
-export function starField() {
+export function starField(skyMap = null) {
   const group = new Group();
   const coordinates = [];
   const colors = [];
+  const sizes = [];
   for (let i = 0; i < 12500; i++) {
     const phi = noise(i, 7) * Math.PI * 2;
-    const band = i > 6500;
-    const y = band ? (noise(i, 9) - 0.5) * 0.21 : noise(i, 8) * 2 - 1;
+    const y = noise(i, 8) * 2 - 1;
     const r = Math.sqrt(1 - y * y);
     coordinates.push(Math.cos(phi) * r * 35000, y * 35000, Math.sin(phi) * r * 35000);
-    const brightness = band ? 0.15 + noise(i, 4) * 0.35 : 0.28 + noise(i, 4) * 0.72;
+    const magnitude = noise(i, 4);
+    const brightness = 0.16 + Math.pow(magnitude, 2.7) * 0.84;
     const tint = noise(i, 1);
-    colors.push(brightness * (tint > 0.6 ? 0.70 : 1), brightness * 0.88, brightness * (tint < 0.2 ? 0.63 : 1));
+    colors.push(brightness * (tint > 0.78 ? 0.70 : 1), brightness * (tint < 0.18 ? 0.78 : 0.92), brightness * (tint < 0.18 ? 0.58 : 1));
+    sizes.push(1.15 + Math.pow(magnitude, 8) * 2.6);
   }
   const geometry = new BufferGeometry();
   geometry.setAttribute('position', new Float32BufferAttribute(coordinates, 3));
   geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
-  const stars = new Points(geometry, new PointsMaterial({ size: 1.15, sizeAttenuation: false, vertexColors: true, toneMapped: false, depthWrite: false }));
+  geometry.setAttribute('starSize', new Float32BufferAttribute(sizes, 1));
+  const stars = new Points(geometry, new ShaderMaterial({
+    transparent: true, blending: AdditiveBlending, toneMapped: false, depthWrite: false,
+    vertexShader: `attribute float starSize;attribute vec3 color;varying vec3 starColor;
+      void main(){starColor=color;gl_PointSize=starSize;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader: `varying vec3 starColor;void main(){float r=length(gl_PointCoord-.5);
+      float core=1.-smoothstep(.06,.32,r);float halo=1.-smoothstep(.12,.5,r);
+      gl_FragColor=vec4(starColor,halo*(.4+.6*core));
+      #include <colorspace_fragment>
+    }`,
+  }));
   stars.rotation.set(0.54, -0.21, 0.38);
   group.add(stars);
-  const haze = new Mesh(new SphereGeometry(36000, 32, 20), new ShaderMaterial({
+  const haze = new Mesh(new SphereGeometry(36000, 64, 40), skyMap ? new MeshBasicMaterial({
+    map: skyMap, side: BackSide, depthWrite: false, toneMapped: false,
+  }) : new ShaderMaterial({
     side: BackSide, depthWrite: false,
     vertexShader: 'varying vec3 d; void main(){d=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader: `varying vec3 d;void main(){vec3 n=normalize(d);float band=exp(-pow(n.y*8.+sin(n.x*3.)*.5,2.));float dust=.7+.3*sin(n.x*55.+sin(n.z*19.));gl_FragColor=vec4(vec3(.003,.004,.009)+vec3(.018,.014,.025)*band*dust,1.);}`,
@@ -93,8 +108,8 @@ export async function createSpaceWorld(textures) {
   const scene = new Scene();
   scene.background = new Color(0x010208);
   const loader = new TextureLoader();
-  const [day, lights, moonMap, marsMap, jupiterMap, saturnMap, ringMap] = await Promise.all(
-    ['earth', 'lights', 'moon', 'mars', 'jupiter', 'saturn', 'rings'].map(async key => {
+  const [day, lights, moonMap, mercuryMap, venusMap, marsMap, jupiterMap, saturnMap, uranusMap, neptuneMap, ringMap, skyMap] = await Promise.all(
+    ['earth', 'lights', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'rings', 'stars'].map(async key => {
       try { return await loadMap(loader, textures[key]); }
       catch (error) {
         if (key === 'earth' || key === 'lights') throw error;
@@ -103,29 +118,32 @@ export async function createSpaceWorld(textures) {
       }
     }),
   );
-  for (const texture of [day, lights, moonMap, marsMap, jupiterMap, saturnMap]) if (texture) texture.wrapS = RepeatWrapping;
+  for (const texture of [day, lights, moonMap, mercuryMap, venusMap, marsMap, jupiterMap, saturnMap, uranusMap, neptuneMap, skyMap]) if (texture) texture.wrapS = RepeatWrapping;
   const earthPhotoMaps=Object.fromEntries(await Promise.all(earthImageryRegions.map(async({id})=>[id,await loadMap(loader,textures[`earth_${id}`])])));
   const earthPhotos=earthImageryShader(earthPhotoMaps);
   const clouds=createEarthCloudLayer();
   const cloudViewport=new Vector2();
   const camera = new PerspectiveCamera(48, 1, 0.05, 100000);
-  const stars = starField();
+  const stars = starField(skyMap);
   scene.add(stars);
   const sun = new DirectionalLight(0xfff1df, 3.1);
   sun.position.copy(sunDirection).multiplyScalar(50000);
   scene.add(sun, new HemisphereLight(0x6c7a99, 0x11131b, 0.16));
   const earth = new Mesh(new SphereGeometry(EARTH_RADIUS * SPACE_SCALE, 192, 128), new ShaderMaterial({
     uniforms: { ...earthPhotos.uniforms, ...clouds.uniforms, day: { value: day }, lights: { value: lights }, sun: { value: sunDirection } },
-    vertexShader: 'varying vec2 st;varying vec3 n;varying vec3 localN;void main(){st=uv;localN=normal;n=normalize(mat3(modelMatrix)*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+    vertexShader: 'varying vec2 st;varying vec3 n;varying vec3 localN;varying vec3 worldPoint;void main(){st=uv;localN=normal;n=normalize(mat3(modelMatrix)*normal);worldPoint=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader: `
-      varying vec2 st;varying vec3 n;varying vec3 localN;uniform sampler2D day;uniform sampler2D lights;uniform vec3 sun;
+      varying vec2 st;varying vec3 n;varying vec3 localN;varying vec3 worldPoint;uniform sampler2D day;uniform sampler2D lights;uniform vec3 sun;
       uniform mat3 earthFrame;
       ${earthPhotos.shader}
+      ${earthSurfaceShader}
       ${cloudFieldShader}
       void main(){
         float facing=dot(normalize(n),sun);
         float daylight=smoothstep(-.12,.18,facing);
-        vec3 surface=applyEarthImagery(texture2D(day,st).rgb,localN)*(.10+1.2*max(facing,0.));
+        vec3 base=texture2D(day,st).rgb;
+        vec3 surface=applyEarthImagery(base,localN)*(.10+1.2*max(facing,0.));
+        surface+=earthOceanLight(base,n,cameraPosition-worldPoint,sun);
         vec3 night=texture2D(lights,st).rgb*vec3(1.15,.91,.63)*1.45;
         vec3 col=surface*mix(.1,1.,daylight)+night*(1.-daylight);
         col*=cloudSurfaceShadow(normalize(localN)*6371.,normalize(earthFrame*sun),normalize(localN));
@@ -164,18 +182,48 @@ export async function createSpaceWorld(textures) {
   scene.add(shipMarker);
 
   const bodies = [];
+  // Thin, sunlit limbs make the atmospheric planets read as volumes while
+  // leaving their photographic cloud and surface maps visible.
+  const atmosphericRims = {
+    Venus: { color: 0xeac489, thickness: .015, strength: .30 },
+    Mars: { color: 0xd98050, thickness: .006, strength: .20 },
+    Jupiter: { color: 0xe9d4b5, thickness: .006, strength: .18 },
+    Saturn: { color: 0xe5d19a, thickness: .007, strength: .20 },
+    Uranus: { color: 0x89d7e5, thickness: .008, strength: .25 },
+    Neptune: { color: 0x5595ee, thickness: .008, strength: .26 },
+  };
   const planet = (name, origin, radius, map, fallback, flatten = 1, relief = 0) => {
     const material = new MeshStandardMaterial({ map, color: map ? 0xffffff : fallback,
       bumpMap: relief ? map : null, bumpScale: relief, roughness: 1 });
     const mesh = new Mesh(new SphereGeometry(radius * SPACE_SCALE, 160, 96), material);
     mesh.scale.y = flatten;
     mesh.position.copy(origin).multiplyScalar(SPACE_SCALE);
+    const rim = atmosphericRims[name];
+    if (rim) {
+      const halo = new Mesh(new SphereGeometry(radius * SPACE_SCALE * (1 + rim.thickness), 80, 56), new ShaderMaterial({
+        side: BackSide, transparent: true, depthWrite: false, blending: AdditiveBlending,
+        uniforms: { sun: { value: sunDirection }, tint: { value: new Color(rim.color) }, strength: { value: rim.strength } },
+        vertexShader: `varying vec3 n;varying vec3 v;void main(){vec4 p=modelMatrix*vec4(position,1.);
+          n=normalize(mat3(modelMatrix)*normal);v=cameraPosition-p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}`,
+        fragmentShader: `varying vec3 n;varying vec3 v;uniform vec3 sun;uniform vec3 tint;uniform float strength;
+          void main(){vec3 normal=normalize(n);float edge=pow(1.-abs(dot(normal,normalize(v))),3.);
+            float lit=.10+.90*smoothstep(-.15,.25,dot(normal,sun));gl_FragColor=vec4(tint,edge*lit*strength);
+            #include <tonemapping_fragment>
+            #include <colorspace_fragment>
+          }`,
+      }));
+      halo.name = `${name.toLowerCase()}_atmospheric_rim`;
+      halo.renderOrder = 2;
+      mesh.add(halo);
+    }
     scene.add(mesh);
-    bodies.push({ id: Object.keys(bodyNames).find(id => bodyNames[id] === name), name, origin, baseOrigin: origin.clone(), radius, mesh, image: map?.image });
+    bodies.push({ id: Object.keys(bodyNames).find(id => bodyNames[id] === name), name, origin, baseOrigin: origin.clone(), radius,
+      clipRadii: rim ? [radius * (1 + rim.thickness)] : [], mesh, image: map?.image });
     return mesh;
   };
   const moon = planet('Moon', MOON.clone(), MOON_RADIUS, moonMap, 0x8b8680, 1, .018);
   moon.quaternion.setFromUnitVectors(geoVector(0.674, 23.473), moonUp);
+  const mapByPlanet = { mercury: mercuryMap, venus: venusMap, uranus: uranusMap, neptune: neptuneMap };
   planet('Mars', MARS, 3389.5, marsMap, 0xb66445, .994, .035);
   const jupiter = planet('Jupiter', JUPITER, 69911, jupiterMap, 0xb99a7c, .935);
   jupiter.rotation.z = MathUtils.degToRad(3.1);
@@ -200,7 +248,11 @@ export async function createSpaceWorld(textures) {
     saturn.add(rings);
   }
   for (const [id, body] of Object.entries(planets)) if (!bodies.some(item => item.id === id)) {
-    planet(body.name, planetPosition(id, 0, nominalTransferS(id)), body.radiusKm, schematicPlanetMap(id), body.color);
+    const flatten = id === 'uranus' ? .977 : id === 'neptune' ? .983 : 1;
+    const mesh = planet(body.name, planetPosition(id, 0, nominalTransferS(id)), body.radiusKm,
+      mapByPlanet[id] || schematicPlanetMap(id), body.color, flatten, id === 'mercury' ? .018 : 0);
+    if (id === 'uranus') mesh.rotation.z = MathUtils.degToRad(97.8);
+    if (id === 'neptune') mesh.rotation.z = MathUtils.degToRad(28.3);
   }
   bodies.push({ id: 'earth', name: 'Earth', origin: new Vector3(), baseOrigin: new Vector3(), radius: EARTH_RADIUS,
     clipRadii: [EARTH_RADIUS + 8, EARTH_RADIUS * 1.012], mesh: earth, image: day.image });
@@ -228,7 +280,7 @@ export async function createSpaceWorld(textures) {
     }
   }
   return {
-    scene, camera, dayTexture: day, nightTexture: lights, earthPhotoMaps, imageryInfo:earthPhotos.info, bodies, sunDirection, updateBodyOrigins,
+    scene, camera, dayTexture: day, nightTexture: lights, skyTexture: skyMap, earthPhotoMaps, imageryInfo:earthPhotos.info, bodies, sunDirection, updateBodyOrigins,
     renderClouds(renderer) {
       if(!earth.visible)return;
       renderer.getDrawingBufferSize(cloudViewport);

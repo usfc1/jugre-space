@@ -46,8 +46,10 @@ export async function collectFlightAssets() {
   const textures = {};
   for (const [id, file, mime] of [
     ['earth', 'earth.jpg', 'image/jpeg'], ['lights', 'earth_lights.png', 'image/png'], ['moon', 'moon.jpg', 'image/jpeg'],
+    ['mercury', 'mercury.jpg', 'image/jpeg'], ['venus', 'venus.jpg', 'image/jpeg'],
     ['mars', 'mars.jpg', 'image/jpeg'], ['jupiter', 'jupiter.jpg', 'image/jpeg'], ['saturn', 'saturn.jpg', 'image/jpeg'],
-    ['rings', 'saturn-ring.png', 'image/png'],
+    ['uranus', 'uranus.jpg', 'image/jpeg'], ['neptune', 'neptune.jpg', 'image/jpeg'],
+    ['rings', 'saturn-ring.png', 'image/png'], ['stars', 'stars.jpg', 'image/jpeg'],
   ]) {
     const bytes = await readFile(new URL(`../assets/space/${file}`, import.meta.url));
     textures[id] = `data:${mime};base64,${bytes.toString('base64')}`;

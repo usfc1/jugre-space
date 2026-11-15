@@ -1259,7 +1259,7 @@ export function setupFlightView({ launch, camera, controls, loader, decode, audi
       if (dartEncounter) flight.dartImpactOrigin.copy(dartEncounter.impactOrigin);
       dartRelease = undefined;
       if (!ascentView) {
-        ascentView = createAscentView(space.dayTexture, launch.terrainMaps, space.earthPhotoMaps, space.nightTexture);
+        ascentView = createAscentView(space.dayTexture, launch.terrainMaps, space.earthPhotoMaps, space.nightTexture, space.skyTexture);
       }
       space.reset();
       state = flight;

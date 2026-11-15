@@ -52,7 +52,7 @@ export function earthCloudTextures() {
     const warp = sample(3.7, 17) * 2.8;
     const front = noise(nx * 7 + warp, ny * 9 + 23, nz * 7 - warp);
     const regional = front * .62 + sample(23, 11) * .26 + sample(71, 5) * .12;
-    const coverage = Math.max(0, Math.min(1, (regional - .32) / .40));
+    const coverage = Math.max(0, Math.min(1, (regional - .34) / .41));
     weatherData[index++] = Math.round(255 * coverage);
     weatherData[index++] = Math.round(255 * sample(14, 43));
     weatherData[index++] = Math.round(255 * Math.max(0, (sample(18, 61) - .52) * 2.8));
@@ -92,12 +92,12 @@ export const cloudFieldShader = `
     threshold+=smoothstep(.40,.68,broad)*.13;
     float billows=mix(shape.r,largeShape,smoothstep(.30,.74,weather.g));
     float density=max(0.,billows-threshold);
-    if(detail&&density>0.)density=max(0.,density-(1.-shape.g)*.10*(1.-profile*.4));
+    if(detail&&density>0.)density=max(0.,density-(1.-shape.g)*.14*(1.-profile*.4));
     density=min(1.,density*4.2)*smoothstep(.17,.36,weather.r);
     // Individual kilometre-wide billows become subpixel from the globe camera.
     // Integrate their coverage into smooth weather fronts instead of aliasing
     // thousands of bright specks. The regional field remains Earth-fixed.
-    float regional=smoothstep(.43,.75,weather.r)*profile*.32;
+    float regional=smoothstep(.46,.78,weather.r)*profile*(.24+.05*weather.g);
     return mix(density,regional,cloudLod);
   }
   float cloudSurfaceShadow(vec3 p,vec3 light,vec3 normal) {
@@ -153,6 +153,9 @@ const rayShader = `
       float altitude=length(local)-CLOUD_R;
       vec3 p=earthFrame*local;
       float density=cloudDensity(p,altitude,true);
+      // From above, leave slightly more of the surface visible while keeping
+      // the same weather field at the pad and during the climb.
+      density*=mix(1.,.84,smoothstep(8.,55.,eyeAltitude)*smoothstep(.05,.5,-dot(ray,normalize(local))));
       if(density<.002)continue;
       float shadow=0.;
       for(int j=0;j<3;j++) {
@@ -205,7 +208,7 @@ export function createEarthCloudLayer() {
       const lod=Math.max(0,Math.min(1,(uniforms.height.value-250)/2250));
       uniforms.cloudLod.value=fade(lod);
       renderer.getDrawingBufferSize(size);
-      const scale = Math.min(.5, 960 / size.x, 540 / size.y);
+      const scale = Math.min(.6, 1200 / size.x, 675 / size.y);
       const width = Math.max(1, Math.ceil(size.x * scale)), height = Math.max(1, Math.ceil(size.y * scale));
       if (target.width !== width || target.height !== height) target.setSize(width, height);
       const previousTarget = renderer.getRenderTarget(), autoClear = renderer.autoClear;

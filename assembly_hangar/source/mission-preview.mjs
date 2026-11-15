@@ -1,7 +1,7 @@
 import {
-  ACESFilmicToneMapping, Box3, BoxGeometry, BufferGeometry, Color, CylinderGeometry, DirectionalLight, Float32BufferAttribute,
+  ACESFilmicToneMapping, Box3, BoxGeometry, BufferGeometry, Color, CylinderGeometry, DirectionalLight, DoubleSide, Float32BufferAttribute,
   Group, HemisphereLight, Mesh, MeshPhysicalMaterial, MeshStandardMaterial, PerspectiveCamera, Points, PointsMaterial,
-  Scene, SphereGeometry, SRGBColorSpace, TextureLoader, Vector3, WebGLRenderer,
+  RingGeometry, Scene, SphereGeometry, SRGBColorSpace, TextureLoader, Vector3, WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { instruments } from './spacecraft-design.mjs';
@@ -96,6 +96,25 @@ export function createMissionPreview({ canvas, loader, decode, textures, environ
           const material = new MeshStandardMaterial({ map: texture, roughness: .92, metalness: 0 });
           const sphere = new Mesh(new SphereGeometry(1.8, 80, 64), material);
           sphere.rotation.y = id === 'earth' ? -1.05 : .5;
+          if (id === 'saturn' && textures.rings) {
+            const ringMap = await new TextureLoader().loadAsync(textures.rings);
+            ringMap.colorSpace = SRGBColorSpace;
+            ringMap.anisotropy = 4;
+            const inner = 2.3, outer = 4.3;
+            const geometry = new RingGeometry(inner, outer, 160);
+            const position = geometry.getAttribute('position'), uv = geometry.getAttribute('uv');
+            for (let i = 0; i < position.count; i++) {
+              uv.setXY(i, (Math.hypot(position.getX(i), position.getY(i)) - inner) / (outer - inner), .5);
+            }
+            const rings = new Mesh(geometry, new MeshStandardMaterial({ map: ringMap, side: DoubleSide,
+              transparent: true, depthWrite: false, roughness: 1 }));
+            rings.rotation.x = Math.PI / 2;
+            const planet = new Group();
+            sphere.scale.y = .902;
+            planet.rotation.set(.38, 0, -.22);
+            planet.add(sphere, rings);
+            return planet;
+          }
           return sphere;
         }
         if (kind === 'instrument') return instrumentModel(id);

@@ -1,7 +1,8 @@
-import { Matrix3, Matrix4, Mesh, PlaneGeometry, Scene, ShaderMaterial, Vector3, MathUtils } from 'three';
+import { Euler, Matrix3, Matrix4, Mesh, PlaneGeometry, Scene, ShaderMaterial, Vector3, MathUtils } from 'three';
 import { EARTH_RADIUS, launchUp, east } from './flight-missions.mjs';
 import { kennedyTiles } from './kennedy-layout.mjs';
 import { earthImageryShader } from './earth-imagery.mjs';
+import { earthSurfaceShader } from './earth-surface.mjs';
 import { cloudFieldShader, createEarthCloudLayer } from './earth-clouds.mjs';
 import { shortenedSpaceScale } from './short-flight.mjs';
 
@@ -18,7 +19,29 @@ function localImagery(terrainMaps) {
       float inside=min(edge.x,edge.y);
       if(inside>0.) {
         vec3 tile=texture2D(${sampler(id)},uv).rgb;
-        color=mix(color,tile,smoothstep(0.,.055,inside)*visibility);
+        ${id === 'region' ? `
+        // Two USGS survey strips meet inside Mosquito Lagoon. Soften their
+        // exposure mismatch over the water instead of showing a hard line as
+        // the camera climbs; the land and the launch-pad detail stay intact.
+        if(uv.x>.405&&uv.x<.458&&uv.y<.205) {
+          float seam=.4309+.0038*uv.y;
+          vec3 westWater=(texture2D(${sampler(id)},vec2(seam-.004,uv.y-.0007)).rgb
+            +texture2D(${sampler(id)},vec2(seam-.004,uv.y)).rgb
+            +texture2D(${sampler(id)},vec2(seam-.004,uv.y+.0007)).rgb)/3.;
+          vec3 eastWater=(texture2D(${sampler(id)},vec2(seam+.004,uv.y-.0007)).rgb
+            +texture2D(${sampler(id)},vec2(seam+.004,uv.y)).rgb
+            +texture2D(${sampler(id)},vec2(seam+.004,uv.y+.0007)).rgb)/3.;
+          float lagoon=smoothstep(.015,.035,uv.y)*(1.-smoothstep(.17,.205,uv.y));
+          float broad=smoothstep(seam-.025,seam+.025,uv.x);
+          float original=smoothstep(seam-.0005,seam+.0005,uv.x);
+          tile=clamp(tile+(eastWater-westWater)*(broad-original)*lagoon,0.,1.);
+        }` : ''}
+        // Aerial tiles contain different ocean exposures and occasional
+        // offshore no-data patches. Keep their detailed coastline but fade
+        // open water into the continuous globe rather than revealing squares.
+        float openWater=smoothstep(.004,.035,tile.b-max(tile.r,tile.g));
+        float waterFade=1.-openWater*smoothstep(3500.,10000.,length(ground));
+        color=mix(color,tile,smoothstep(0.,.065,inside)*visibility*waterFade);
       }
     }`;
   }).join('\n');
@@ -36,7 +59,7 @@ function localImagery(terrainMaps) {
 
 // Camera-relative ray/sphere intersection gives a continuous horizon all the
 // way from the launch coast to orbit, without giant low-altitude globe facets.
-export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lights = null) {
+export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lights = null, sky = null) {
   const imagery = localImagery(terrainMaps);
   const earthPhotos=earthImageryShader(earthPhotoMaps);
   const scene = new Scene();
@@ -47,6 +70,8 @@ export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lig
       ...imagery.uniforms,
       ...earthPhotos.uniforms,
       day: { value: day }, lights: { value: lights ?? day }, hasNightMap: { value: Boolean(lights) },
+      skyMap: { value: sky ?? day }, hasSkyMap: { value: Boolean(sky) },
+      skyFrame: { value: new Matrix3().setFromMatrix4(new Matrix4().makeRotationFromEuler(new Euler(.54,-.21,.38)).invert()) },
       eye: { value: new Vector3() }, cameraBasis: { value: new Matrix3() },
       frame: { value: new Matrix3() }, earthFrame: { value: new Matrix3() }, radial: { value: new Vector3(0,1,0) },
       launchOffset: { value: new Vector3() }, east: { value: new Vector3() }, north: { value: new Vector3() },
@@ -58,6 +83,7 @@ export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lig
     fragmentShader: `
       varying vec2 screen;
       uniform sampler2D day;uniform sampler2D lights;uniform bool hasNightMap;
+      uniform sampler2D skyMap;uniform bool hasSkyMap;uniform mat3 skyFrame;
       uniform vec3 eye;uniform vec3 radial;uniform mat3 cameraBasis;uniform mat3 frame;uniform mat3 earthFrame;
       uniform vec3 launchOffset;uniform vec3 east;uniform vec3 north;uniform vec3 sun;
       uniform float height;uniform float aspect;uniform float tanFov;uniform float opacity;
@@ -65,6 +91,7 @@ export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lig
       ${cloudFieldShader}
       ${imagery.shader}
       ${earthPhotos.shader}
+      ${earthSurfaceShader}
       const float R=6371.;const float PI=3.14159265359;
       float hash(vec3 p){p=fract(p*.1031);p+=dot(p,p.yzx+33.33);return fract((p.x+p.y)*p.z);}
       float hitSphere(vec3 ray,float shell){
@@ -80,7 +107,15 @@ export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lig
         vec3 color=mix(vec3(.001,.003,.009),daylight,air);
         float glow=pow(max(dot(ray,sun),0.),12.);color+=vec3(.32,.23,.11)*glow*air;
         color+=vec3(2.,1.8,1.5)*smoothstep(.99965,.99985,dot(ray,sun));
-        float stars=step(.9988,hash(floor((frame*ray)*1100.)))*smoothstep(75.,160.,height);color+=stars*.7;
+        vec3 starDirection=normalize(skyFrame*frame*ray);
+        vec2 skyUv=vec2(fract(atan(starDirection.z,-starDirection.x)/(2.*PI)+1.),asin(clamp(starDirection.y,-1.,1.))/PI+.5);
+        vec2 cells=skyUv*vec2(1600.,800.);vec2 cell=floor(cells);
+        float seed=hash(vec3(cell,7.));
+        vec2 point=vec2(hash(vec3(cell,13.)),hash(vec3(cell,31.)))*.7+.15;
+        float size=max(.08,length(fwidth(cells))*.5);
+        float stars=step(.9965,seed)*(1.-smoothstep(size*.25,size,length(fract(cells)-point)));
+        vec3 background=hasSkyMap?texture2D(skyMap,skyUv).rgb:vec3(0.);
+        color+=(background+vec3(.52,.61,.72)*stars)*smoothstep(65.,150.,height);
         return color;}
       void main(){
         vec3 ray=normalize(cameraBasis*vec3(screen.x*aspect*tanFov,screen.y*tanFov,-1.));
@@ -89,13 +124,15 @@ export function createAscentView(day, terrainMaps = {}, earthPhotoMaps = {}, lig
         if(distance>0.){
           vec3 p=eye+ray*distance;vec3 n=normalize(p-center);vec3 globeNormal=normalize(earthFrame*n);
           vec2 uv=vec2((atan(-globeNormal.z,globeNormal.x)+PI)/(2.*PI),asin(clamp(globeNormal.y,-1.,1.))/PI+.5);
-          vec3 map=applyEarthImagery(texture2D(day,uv).rgb,globeNormal);
+          vec3 base=texture2D(day,uv).rgb;
+          vec3 map=applyEarthImagery(base,globeNormal);
           vec3 relative=p+launchOffset;
           vec2 ground=vec2(dot(relative,east),-dot(relative,north))*1000.;
           map=applyKennedy(map,ground,1.-smoothstep(80.,200.,height));
           float facing=dot(n,sun),daylight=smoothstep(-.12,.18,facing);
           vec3 night=hasNightMap?texture2D(lights,uv).rgb*vec3(1.15,.91,.63)*1.45:vec3(0.);
           color=map*(.10+1.2*max(facing,0.))*mix(.1,1.,daylight)+night*(1.-daylight);
+          color+=earthOceanLight(base,n,-ray,sun);
           color*=cloudSurfaceShadow(globeNormal*R,normalize(earthFrame*sun),globeNormal);
           float haze=(1.-exp(-distance/(48.+height*4.)))*exp(-height/31.);
           color=mix(color,vec3(.38,.57,.73),haze*.78);
