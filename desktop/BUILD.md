@@ -33,3 +33,13 @@ checksums in the official matching Electron npm package before using it.
 Testers need only the final `.exe`. Instructions are in
 `../release/README_TESTERS.txt`. User data and capped error logs are stored under
 `%APPDATA%\JUGRE Space Project Test`, outside the portable extraction directory.
+
+# SI development launch
+
+On this machine, run `start-si.cmd` to open the current source build with the
+existing local Electron runtime. SI is available without a sign-in. The previous
+portable executable is not changed by this launcher.
+
+Run `start-web.cmd` to serve the same game locally at
+`http://127.0.0.1:4179/`. Keep the server window open while playing. SI sends
+requests to Cloudflare without including the API key in the browser.

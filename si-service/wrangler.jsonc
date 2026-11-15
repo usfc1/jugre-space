@@ -1,0 +1,10 @@
+{
+  "name": "jugre-si-84c31b",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-11-15",
+  "workers_dev": true,
+  "preview_urls": false,
+  "ratelimits": [
+    { "name": "SI_RATE_LIMIT", "namespace_id": "81402601", "simple": { "limit": 6, "period": 60 } }
+  ]
+}

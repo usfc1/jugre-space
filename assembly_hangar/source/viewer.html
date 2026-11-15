@@ -721,11 +721,26 @@
   <header class="design-header">
     <div class="designer-brand"><span class="designer-orbit" aria-hidden="true"></span><div><span>JUGRE</span><h2 id="design-title">Mission Planner</h2></div></div>
     <div class="designer-modes" role="group" aria-label="Planning mode">
+      <button type="button" data-designer-mode="si" aria-pressed="false">SI</button>
       <button type="button" data-designer-mode="standard" aria-pressed="true">Standard</button>
       <button type="button" data-designer-mode="engineering" aria-pressed="false">Engineering</button>
     </div>
     <button type="button" class="control" id="design-close">Close</button>
   </header>
+  <section id="si-mode" class="si-mode" data-state="idle" aria-label="SI mission planning" hidden>
+    <div class="si-hero">
+      <div class="si-emblem" aria-hidden="true"><i class="si-orbit si-orbit-a"></i><i class="si-orbit si-orbit-b"></i><span class="si-core">SI</span><i class="si-satellite"></i></div>
+      <div class="si-intro"><p>JUGRE SI / LUNA</p><h3>Imagine your mission.</h3><span>Describe your destination and goal. Luna will prepare a proposal for the mission engine to check.</span></div>
+    </div>
+    <form id="si-form">
+      <label for="si-prompt">Mission request</label>
+      <textarea id="si-prompt" maxlength="3000" required placeholder="For example: Send four astronauts to lunar orbit with 232 kg of science cargo and bring them home."></textarea>
+      <div class="si-actions"><button type="submit" class="standard-primary" id="si-submit">Design mission →</button></div>
+    </form>
+    <p class="si-note">Your request is sent to the mission service. Engineering checks use the game's existing simulator.</p>
+    <p id="si-status" role="status" aria-live="polite"></p>
+    <div id="si-result"></div>
+  </section>
   <section id="standard-mode" aria-label="Guided mission planning">
     <nav id="standard-steps" class="standard-steps" aria-label="Mission steps"></nav>
     <div class="standard-layout">

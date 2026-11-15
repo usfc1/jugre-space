@@ -1,6 +1,7 @@
 import { createMissionPreview } from './mission-preview.mjs';
 import { instruments } from './spacecraft-design.mjs';
 import { bodyNames, isPlanetaryDestination, nominalTransferS } from './mission-planets.mjs';
+import { setupSiMissionView } from './si-mission-view.mjs';
 import {
   newStandardDraft, prepareStandardMission, readStandardDraft, STANDARD_DRAFT_KEY, standardCargo,
   standardDestinations, standardDraftFromMission, standardGoals, standardMissionSpecification,
@@ -51,6 +52,14 @@ export function setupStandardMissionDesigner({ engineering, startFlight, preview
   let launched = false;
   let query = '';
   let previewKind = 'rocket';
+  const si = setupSiMissionView({ specs: previewOptions.specs, onReview({ spec, candidate }) {
+    try {
+      if (candidate?.ready) spec = engineering.savePrepared(spec, candidate);
+      switchMode('engineering');
+      engineering.open(spec);
+      showEngineeringPreview();
+    } catch (error) { get('si-status').textContent = error.message; }
+  } });
 
   try {
     const saved = localStorage.getItem(STANDARD_DRAFT_KEY);
@@ -534,11 +543,13 @@ export function setupStandardMissionDesigner({ engineering, startFlight, preview
   function switchMode(mode) {
     const previous = dialog.dataset.mode;
     dialog.dataset.mode = mode;
+    get('si-mode').hidden = mode !== 'si';
     get('standard-mode').hidden = mode !== 'standard';
     get('engineering-mode').hidden = mode !== 'engineering';
     for (const button of dialog.querySelectorAll('[data-designer-mode]')) button.setAttribute('aria-pressed', String(button.dataset.designerMode === mode));
     controller?.abort();
     controller = null;
+    if (mode !== 'si') si.cancel();
     if (mode === 'engineering') {
       engineeringPreviewKey = '';
       get('engineering-preview-slot').append(previewPanel);
@@ -547,7 +558,7 @@ export function setupStandardMissionDesigner({ engineering, startFlight, preview
       catch (error) { saveStatus.textContent = error.message; }
       engineering.open(spec);
       showEngineeringPreview();
-    } else {
+    } else if (mode === 'standard') {
       standardLayout.append(previewPanel);
       if (previous === 'engineering') {
         try {
@@ -595,7 +606,7 @@ export function setupStandardMissionDesigner({ engineering, startFlight, preview
     store();
     getPreview();
   });
-  dialog.addEventListener('close', () => { controller?.abort(); controller = null; });
+  dialog.addEventListener('close', () => { controller?.abort(); controller = null; si.cancel(); });
   return {
     open() { get('design-open').click(); },
     openProjects() { get('design-open').click(); switchMode('engineering'); engineering.showProjects(); },

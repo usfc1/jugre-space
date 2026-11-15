@@ -6,6 +6,7 @@ const smoke = process.argv.includes('--smoke-test');
 const menuTest = process.argv.includes('--menu-test');
 const isolated = smoke || menuTest;
 const build = require('./build-info.json');
+const siConfig = require('./si-service.json');
 app.setName('JUGRE Space Project Test');
 app.setAppUserModelId('space.jugre.testing');
 protocol.registerSchemesAsPrivileged([{ scheme:'jugre', privileges:{ standard:true, secure:true, supportFetchAPI:true } }]);
@@ -41,6 +42,33 @@ function fatal(error) {
   if (!smoke) dialog.showErrorBox('JUGRE · Ошибка приложения', `Не удалось продолжить работу.\n\n${error.message || error}\n\nЖурнал: ${logFile}`);
   app.exit(1);
 }
+function siServiceUrl() {
+  if (!siConfig.url) throw new Error('The SI service is not configured yet.');
+  let url;
+  try { url = new URL(siConfig.url); } catch { throw new Error('The SI service address is invalid.'); }
+  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash)
+    throw new Error('The SI service requires a secure HTTPS address.');
+  return url.origin;
+}
+function checkSiSender(event) {
+  if (event.sender !== window?.webContents || event.senderFrame?.url !== gameURL) throw new Error('Invalid request.');
+}
+async function readSiResponse(response) {
+  if (!response.body) throw new Error('The SI service returned an empty response.');
+  const reader = response.body.getReader();
+  const chunks = [];
+  let length = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      length += value.byteLength;
+      if (length > 16384) { await reader.cancel(); throw new Error('The SI response is too large.'); }
+      chunks.push(Buffer.from(value));
+    }
+  } finally { reader.releaseLock(); }
+  return JSON.parse(Buffer.concat(chunks).toString('utf8'));
+}
 process.on('uncaughtException', fatal);
 process.on('unhandledRejection', fatal);
 app.on('window-all-closed', () => app.quit());
@@ -59,6 +87,23 @@ else {
         preload: path.join(__dirname, 'preload.cjs'), backgroundThrottling: !isolated, webgl: true, devTools: true, spellcheck: false },
     });
     ipcMain.on('jugre:exit', event => { if (event.sender === window?.webContents && event.senderFrame?.url === gameURL) app.quit(); });
+    ipcMain.handle('jugre:si:propose', async (event, prompt) => {
+      checkSiSender(event);
+      if (typeof prompt !== 'string' || !prompt.trim() || prompt.length > 3000) throw new Error('Enter a mission request of up to 3,000 characters.');
+      const origin = siServiceUrl();
+      let response;
+      try {
+        response = await net.fetch(`${origin}/mission`, { method: 'POST', credentials: 'omit', redirect: 'manual',
+          headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: prompt.trim() }),
+          signal: AbortSignal.timeout(70000) });
+      } catch { throw new Error('Unable to reach SI. Check your connection and try again.'); }
+      if (response.status === 401 || response.status === 403 || (response.status >= 300 && response.status < 400))
+        throw new Error('The SI service is unavailable. Please try again later.');
+      let data;
+      try { data = await readSiResponse(response); } catch { throw new Error('The SI service returned an invalid response.'); }
+      if (!response.ok) throw new Error(typeof data.error === 'string' && data.error.length < 200 ? data.error : 'The SI service is unavailable.');
+      return data;
+    });
     window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
     window.webContents.on('will-navigate', (event, url) => { if (url.split('#')[0] !== gameURL) event.preventDefault(); });
     window.webContents.session.setPermissionRequestHandler((_contents, _permission, callback) => callback(false));
