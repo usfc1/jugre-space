@@ -1,0 +1,213 @@
+{
+ "duration": 101.0,
+ "voice": [
+  {
+   "at": 0.6,
+   "clip": "preflight",
+   "who": "ЦУП",
+   "ru": "Все посты готовы. Разрешаю финальный отсчёт.",
+   "en": "All stations go. Proceed to terminal count."
+  },
+  {
+   "at": 32.3,
+   "clip": "count_10",
+   "who": "ЦУП",
+   "ru": "До старта десять секунд.",
+   "en": "T-minus ten."
+  },
+  {
+   "at": 34.5,
+   "clip": "count_3",
+   "who": "ЦУП",
+   "ru": "Три.",
+   "en": "Three."
+  },
+  {
+   "at": 35.5,
+   "clip": "count_2",
+   "who": "ЦУП",
+   "ru": "Два.",
+   "en": "Two."
+  },
+  {
+   "at": 36.5,
+   "clip": "count_1",
+   "who": "ЦУП",
+   "ru": "Один.",
+   "en": "One."
+  },
+  {
+   "at": 37.3,
+   "clip": "ignition",
+   "who": "ЦУП",
+   "ru": "Зажигание.",
+   "en": "Ignition."
+  },
+  {
+   "at": 39.0,
+   "clip": "liftoff",
+   "who": "ЦУП",
+   "ru": "Старт!",
+   "en": "Liftoff!"
+  },
+  {
+   "at": 44.2,
+   "clip": "maxq",
+   "who": "ЦУП",
+   "ru": "Пик скоростного напора пройден.",
+   "en": "We are past maximum dynamic pressure."
+  },
+  {
+   "at": 47.6,
+   "clip": "stage",
+   "who": "Бортовой компьютер",
+   "ru": "Разделение ступеней подтверждено.",
+   "en": "Stage separation confirmed."
+  },
+  {
+   "at": 51.4,
+   "clip": "orbit",
+   "who": "ЦУП",
+   "ru": "Выведение подтверждено. Аппарат на орбите Земли.",
+   "en": "Orbital insertion confirmed. You are in Earth orbit."
+  },
+  {
+   "at": 60.2,
+   "clip": "lunar_descent",
+   "who": "ЦУП",
+   "ru": "Посадочный модуль, разрешаю управляемый спуск.",
+   "en": "Lander, you are go for powered descent."
+  },
+  {
+   "at": 63.3,
+   "clip": "moon_touch",
+   "who": "Экипаж",
+   "ru": "Контакт подтверждён. Мы на поверхности Луны.",
+   "en": "Contact confirmed. We are on the lunar surface."
+  },
+  {
+   "at": 71.2,
+   "clip": "mars_touch",
+   "who": "Бортовой компьютер",
+   "ru": "Касание подтверждено. Марсоход на поверхности.",
+   "en": "Touchdown confirmed. The rover is on the surface."
+  },
+  {
+   "at": 76.3,
+   "clip": "probe_impact",
+   "who": "ЦУП",
+   "ru": "Попадание подтверждено. Цель испытания достигнута.",
+   "en": "Target impact confirmed. The test objective is complete."
+  },
+  {
+   "at": 80.2,
+   "clip": "dock",
+   "who": "Бортовой компьютер",
+   "ru": "Контакт. Замки стыковочного узла закрыты.",
+   "en": "Contact. Docking latches are secured."
+  },
+  {
+   "at": 82.9,
+   "clip": "parachutes",
+   "who": "Бортовой компьютер",
+   "ru": "Парашюты раскрыты.",
+   "en": "Parachutes deployed."
+  },
+  {
+   "at": 84.15,
+   "clip": "splash",
+   "who": "Бортовой компьютер",
+   "ru": "Касание воды подтверждено. Включён режим эвакуации.",
+   "en": "Water contact confirmed. Recovery mode active."
+  },
+  {
+   "at": 95.6,
+   "clip": "success",
+   "who": "ЦУП",
+   "ru": "Миссия выполнена!",
+   "en": "Mission accomplished!"
+  }
+ ],
+ "hits": [
+  12.0,
+  30.0,
+  39.0,
+  47.0,
+  55.0,
+  76.0,
+  89.0,
+  94.0
+ ],
+ "softHits": [
+  14.0,
+  16.4,
+  20.2,
+  23.6,
+  25.6,
+  28.0,
+  28.4,
+  28.8,
+  29.2,
+  29.6,
+  43.0,
+  51.0,
+  60.0,
+  63.0,
+  66.0,
+  69.0,
+  71.0,
+  74.0,
+  75.5,
+  78.0,
+  81.0,
+  82.8,
+  84.0,
+  85.0,
+  85.5,
+  86.0,
+  86.5,
+  87.0,
+  87.5,
+  88.0,
+  88.5
+ ],
+ "whooshes": [
+  8.0,
+  11.6,
+  29.6,
+  54.6,
+  88.6
+ ],
+ "risers": [
+  [
+   9.0,
+   12.0
+  ],
+  [
+   28.0,
+   30.0
+  ],
+  [
+   33.0,
+   37.25
+  ],
+  [
+   53.0,
+   55.0
+  ],
+  [
+   86.0,
+   89.0
+  ],
+  [
+   92.5,
+   94.0
+  ]
+ ],
+ "rumble": [
+  37.25,
+  52.0
+ ],
+ "dartImpact": 76.0,
+ "splashAt": 84.0
+}

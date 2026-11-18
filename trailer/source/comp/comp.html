@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>JUGRE trailer compositor</title>
+<style>
+  :root { --amber: #e8b077; --amber2: #f3c993; --cyan: #8ce9ff; --mint: #c9ff76; --ink: #f2f7fb; --muted: #a9bccd; --navy: #030912; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+  body { font-family: 'Inter', sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  #stage { position: absolute; inset: 0; overflow: hidden; background: #000; }
+  .layer { position: absolute; inset: 0; will-change: transform, opacity; }
+  .layer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #grade { position: absolute; inset: 0; pointer-events: none; }
+  #vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 70% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); }
+  #grain { position: absolute; inset: -2px; mix-blend-mode: overlay; opacity: .06; }
+  #flash { position: absolute; inset: 0; background: #fff; opacity: 0; mix-blend-mode: screen; }
+  #dip { position: absolute; inset: 0; background: #000; opacity: 0; }
+  #warm { position: absolute; inset: 0; opacity: 0; mix-blend-mode: screen;
+    background: radial-gradient(ellipse 60% 80% at 15% 30%, rgba(255,150,60,.55), rgba(255,120,40,0) 60%), radial-gradient(ellipse 50% 60% at 90% 80%, rgba(255,190,120,.35), rgba(0,0,0,0) 60%); }
+  .bar { position: absolute; left: 0; right: 0; height: 0; background: #000; z-index: 30; }
+  #barTop { top: 0; } #barBot { bottom: 0; }
+  #fx { position: absolute; inset: 0; z-index: 40; }
+  .el { position: absolute; will-change: transform, opacity; }
+
+  /* Tech plate */
+  .plate { left: 96px; bottom: 178px; width: 1100px; isolation: isolate; }
+  .plate.top { bottom: auto; top: 150px; }
+  .plate::before { content: ''; position: absolute; left: -260px; right: -200px; top: -150px; bottom: -150px; z-index: -1;
+    background: radial-gradient(ellipse 60% 55% at 30% 55%, rgba(2,6,12,.62), rgba(2,6,12,0) 70%); }
+  .plate.backdrop::before { background: radial-gradient(ellipse 62% 60% at 32% 55%, rgba(2,6,12,.86), rgba(2,6,12,0) 75%); }
+  .plate .kick { font: 600 17px/1 'JetBrains Mono', monospace; letter-spacing: .32em; color: var(--cyan); text-transform: uppercase; display: flex; align-items: center; gap: 16px; }
+  .plate .kick i { display: block; height: 1px; background: var(--cyan); width: 72px; opacity: .8; }
+  .plate h2 { font: 700 54px/1.06 'Inter Display', 'Inter', sans-serif; letter-spacing: -.01em; margin-top: 18px; text-shadow: 0 2px 30px rgba(0,0,0,.65); white-space: nowrap; }
+  .plate h2 .m { clip-path: inset(0 100% 0 0); display: inline-block; }
+  .plate .det { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .plate .det span { font: 500 17px/1 'JetBrains Mono', monospace; letter-spacing: .06em; color: #dcecf7; padding: 10px 14px; border: 1px solid rgba(140,233,255,.38); background: rgba(6,16,28,.62); border-radius: 6px; backdrop-filter: blur(6px); }
+  .plate .det span b { color: var(--amber); font-weight: 600; }
+
+  /* Location tag (like the in-game chip) */
+  .tag { left: 64px; top: 58px; display: flex; align-items: center; font: 600 16px/1 'JetBrains Mono', monospace; letter-spacing: .2em; border: 1px solid rgba(232,176,119,.55); background: rgba(5,12,22,.7); border-radius: 6px; overflow: hidden; }
+  .tag span { padding: 11px 14px; color: var(--amber); }
+  .tag span + span { color: #fff; border-left: 1px solid rgba(232,176,119,.4); }
+
+  /* Act card */
+  .card { left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .card .num { font: 600 20px/1 'JetBrains Mono', monospace; letter-spacing: .5em; color: var(--amber); margin-bottom: 26px; padding-left: .5em; }
+  .card h1 { font: 800 190px/0.9 'Inter Display', 'Inter', sans-serif; letter-spacing: .14em; padding-left: .14em; text-shadow: 0 0 60px rgba(0,0,0,.6); }
+  .card .sub { margin-top: 30px; font: 500 22px/1 'JetBrains Mono', monospace; letter-spacing: .34em; color: #cfe3f1; padding-left: .34em; }
+  .card .rule { height: 1px; width: 560px; background: linear-gradient(90deg, transparent, var(--amber), transparent); margin-top: 34px; }
+
+  /* Statement */
+  .state { left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .state .line { font: 600 64px/1.18 'Inter Display', 'Inter', sans-serif; letter-spacing: -.005em; text-shadow: 0 2px 40px rgba(0,0,0,.8); }
+  .state .line em { font-style: normal; color: var(--amber2); }
+  .state .kick { font: 600 18px/1 'JetBrains Mono', monospace; letter-spacing: .42em; color: var(--cyan); margin-bottom: 30px; padding-left: .42em; }
+
+  /* Radio subtitle */
+  .radio { left: 50%; bottom: 74px; transform: translateX(-50%); text-align: center; }
+  .radio.top { bottom: auto; top: 92px; }
+  .radio.high { bottom: 205px; }
+  .state.left { align-items: flex-start; text-align: left; padding-left: 150px; }
+  .state.left .kick { padding-left: 0; }
+  .radio .who { display: inline-flex; align-items: center; gap: 10px; font: 600 14px/1 'JetBrains Mono', monospace; letter-spacing: .28em; color: var(--mint); text-transform: uppercase; }
+  .radio .who i { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 12px var(--mint); }
+  .radio .txt { margin-top: 12px; font: 500 30px/1.25 'Inter', sans-serif; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.95), 0 0 2px #000; white-space: nowrap; }
+  .radio .en { margin-top: 6px; font: 400 18px/1.2 'JetBrains Mono', monospace; color: rgba(220,236,247,.75); letter-spacing: .04em; text-shadow: 0 1px 8px #000; }
+
+  /* Count */
+  .count { left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+  .count b { font: 200 360px/1 'Inter Display', 'Inter', sans-serif; color: #fff; text-shadow: 0 0 80px rgba(255,190,120,.35); font-variant-numeric: tabular-nums; }
+
+  /* Tech wall */
+  .wall { left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .wall .head { font: 600 18px/1 'JetBrains Mono', monospace; letter-spacing: .42em; color: var(--amber); margin-bottom: 44px; padding-left: .42em; }
+  .wall .grid { display: grid; grid-template-columns: repeat(3, 470px); gap: 22px; }
+  .wall .cell { border: 1px solid rgba(140,233,255,.28); background: linear-gradient(180deg, rgba(14,30,48,.82), rgba(6,14,26,.82)); border-radius: 10px; padding: 26px 28px; position: relative; overflow: hidden; }
+  .wall .cell::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--cyan); opacity: .9; }
+  .wall .cell small { display: block; font: 600 13px/1 'JetBrains Mono', monospace; letter-spacing: .26em; color: var(--cyan); }
+  .wall .cell strong { display: block; margin-top: 14px; font: 700 34px/1.05 'Inter Display', 'Inter', sans-serif; }
+  .wall .cell span { display: block; margin-top: 10px; font: 400 17px/1.35 'Inter', sans-serif; color: var(--muted); }
+
+  /* Logo */
+  .logo { left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .logo .lock { display: flex; align-items: center; gap: 34px; color: var(--amber); }
+  .logo svg { width: 150px; height: 150px; overflow: visible; }
+  .logo .word strong { display: block; font: 800 128px/0.9 'Inter Display', 'Inter', sans-serif; letter-spacing: .16em; color: #f7f7f4; }
+  .logo .word span { display: block; margin-top: 14px; font: 600 26px/1 'Inter', sans-serif; letter-spacing: .58em; color: #b4becb; }
+  .logo .tagl { margin-top: 64px; font: 300 46px/1 'Inter Display', 'Inter', sans-serif; letter-spacing: .02em; color: #fff; }
+  .logo .tri { margin-top: 26px; font: 600 20px/1 'JetBrains Mono', monospace; letter-spacing: .5em; color: var(--amber); padding-left: .5em; }
+  .logo .foot { position: absolute; bottom: 70px; font: 500 16px/1.6 'JetBrains Mono', monospace; letter-spacing: .22em; color: rgba(200,215,228,.7); text-align: center; }
+
+  /* Corner telemetry frame */
+  .frame { left: 0; right: 0; top: 0; bottom: 0; }
+  .frame i { position: absolute; width: 46px; height: 46px; border-color: rgba(140,233,255,.55); border-style: solid; border-width: 0; }
+  .frame i:nth-child(1) { left: 40px; top: 40px; border-left-width: 2px; border-top-width: 2px; }
+  .frame i:nth-child(2) { right: 40px; top: 40px; border-right-width: 2px; border-top-width: 2px; }
+  .frame i:nth-child(3) { left: 40px; bottom: 40px; border-left-width: 2px; border-bottom-width: 2px; }
+  .frame i:nth-child(4) { right: 40px; bottom: 40px; border-right-width: 2px; border-bottom-width: 2px; }
+  .frame .rec { position: absolute; right: 96px; top: 52px; font: 600 15px/1 'JetBrains Mono', monospace; letter-spacing: .24em; color: rgba(220,236,247,.85); display: flex; gap: 14px; align-items: center; }
+  .frame .rec i { position: static; width: 9px; height: 9px; border-radius: 50%; background: #ff5a4a; border: 0; box-shadow: 0 0 10px #ff5a4a; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="A"><img id="imgA" alt=""></div>
+  <div class="layer" id="B"><img id="imgB" alt=""></div>
+  <div id="grade"><div id="warm"></div><div id="vignette"></div><canvas id="grain" width="960" height="540"></canvas></div>
+  <div id="dip"></div>
+  <div id="flash"></div>
+  <div class="bar" id="barTop"></div><div class="bar" id="barBot"></div>
+  <div id="fx"></div>
+</div>
+<script>
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => { t = clamp(t); return t * t * (3 - 2 * t); };
+const easeOut = t => { t = clamp(t); return 1 - Math.pow(1 - t, 3); };
+const easeIn = t => { t = clamp(t); return t * t * t; };
+const easeOutExpo = t => { t = clamp(t); return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); };
+let EDIT = null;
+
+// ---------- grain ----------
+const grain = document.getElementById('grain');
+const gctx = grain.getContext('2d');
+const tiles = [];
+function seeded(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+for (let k = 0; k < 8; k++) {
+  const r = seeded(k * 7919 + 13), d = gctx.createImageData(960, 540);
+  for (let i = 0; i < d.data.length; i += 4) { const v = 128 + (r() - .5) * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+  tiles.push(d);
+}
+
+// ---------- text element builders ----------
+const fx = document.getElementById('fx');
+const built = new Map();
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function build(item, idx) {
+  const el = document.createElement('div');
+  el.className = 'el ' + item.type + (item.pos ? ' ' + item.pos : '') + (item.align ? ' ' + item.align : '') + (item.backdrop ? ' backdrop' : '');
+  if (item.type === 'plate') {
+    el.innerHTML = `<div class="kick"><i></i>${esc(item.kick)}</div><h2><span class="m">${item.title}</span></h2>` +
+      `<div class="det">${(item.chips || []).map(c => `<span>${c}</span>`).join('')}</div>`;
+  } else if (item.type === 'tag') {
+    el.innerHTML = item.parts.map(p => `<span>${esc(p)}</span>`).join('');
+  } else if (item.type === 'card') {
+    el.innerHTML = `<div class="num">${esc(item.num)}</div><h1>${esc(item.title)}</h1><div class="sub">${esc(item.sub || '')}</div><div class="rule"></div>`;
+  } else if (item.type === 'state') {
+    el.innerHTML = (item.kick ? `<div class="kick">${esc(item.kick)}</div>` : '') + item.lines.map(l => `<div class="line">${l}</div>`).join('');
+  } else if (item.type === 'radio') {
+    el.innerHTML = `<div class="who"><i></i>${esc(item.who)}</div><div class="txt">${esc(item.ru)}</div>${item.en ? `<div class="en">“${esc(item.en)}”</div>` : ''}`;
+  } else if (item.type === 'count') {
+    el.innerHTML = `<b>${esc(item.n)}</b>`;
+  } else if (item.type === 'wall') {
+    el.innerHTML = `<div class="head">${esc(item.head)}</div><div class="grid">${item.cells.map(c => `<div class="cell"><small>${esc(c[0])}</small><strong>${c[1]}</strong><span>${c[2]}</span></div>`).join('')}</div>`;
+  } else if (item.type === 'logo') {
+    el.innerHTML = `<div class="lock"><svg viewBox="0 0 40 40" fill="none"><circle class="c1" cx="20" cy="20" r="10" stroke="currentColor" stroke-width="1.4" pathLength="100"/><ellipse class="c2" cx="20" cy="20" rx="18" ry="5.5" transform="rotate(-35 20 20)" stroke="currentColor" stroke-width="1.4" pathLength="100"/><circle class="c3" cx="32" cy="11" r="2.5" fill="currentColor"/></svg>` +
+      `<div class="word"><strong>JUGRE</strong><span>SPACE PROJECT</span></div></div><div class="tagl">${esc(item.tagline)}</div><div class="tri">${esc(item.tri)}</div><div class="foot">${item.foot}</div>`;
+  } else if (item.type === 'frame') {
+    el.innerHTML = `<i></i><i></i><i></i><i></i><div class="rec"><i></i>${esc(item.label || 'REC · IN-ENGINE FOOTAGE')}</div>`;
+  }
+  fx.appendChild(el);
+  built.set(idx, el);
+  return el;
+}
+
+// ---------- per-type animation ----------
+function animate(item, el, t) {
+  const dur = item.end - item.start, lt = t - item.start, rem = item.end - t;
+  const inP = easeOut(lt / (item.in ?? .5)), outP = 1 - ease(1 - rem / (item.out ?? .4));
+  const vis = Math.min(inP, 1 - clamp(1 - rem / (item.out ?? .4)));
+  if (item.type === 'plate') {
+    el.style.opacity = vis;
+    el.style.transform = `translateY(${(1 - inP) * 24}px)`;
+    const k = el.querySelector('.kick'); k.style.opacity = easeOut(lt / .35);
+    k.querySelector('i').style.width = `${72 * easeOutExpo(lt / .6)}px`;
+    const m = el.querySelector('.m'); const rp = easeOutExpo((lt - .12) / .7);
+    m.style.clipPath = `inset(-10% ${(1 - rp) * 100}% -10% 0)`;
+    m.style.transform = `translateX(${(1 - rp) * -14}px)`;
+    el.querySelectorAll('.det span').forEach((s, i) => { const p = easeOut((lt - .45 - i * .09) / .4); s.style.opacity = p; s.style.transform = `translateY(${(1 - p) * 10}px)`; });
+  } else if (item.type === 'tag') {
+    el.style.opacity = vis; el.style.transform = `translateX(${(1 - inP) * -16}px)`;
+  } else if (item.type === 'card') {
+    const p = lt / dur;
+    el.style.opacity = vis;
+    const h = el.querySelector('h1');
+    h.style.letterSpacing = `${lerp(.06, .2, easeOut(p))}em`;
+    h.style.transform = `scale(${lerp(1.06, 1, easeOut(p))})`;
+    h.style.filter = `blur(${(1 - easeOut(lt / .35)) * 14}px)`;
+    el.querySelector('.rule').style.width = `${560 * easeOutExpo((lt - .1) / .8)}px`;
+    el.querySelector('.num').style.opacity = easeOut((lt - .05) / .4);
+    el.querySelector('.sub').style.opacity = easeOut((lt - .25) / .5);
+  } else if (item.type === 'state') {
+    el.style.opacity = vis;
+    el.querySelectorAll('.line').forEach((l, i) => { const p = easeOut((lt - .1 - i * (item.stagger ?? .55)) / .7); l.style.opacity = p; l.style.transform = `translateY(${(1 - p) * 18}px)`; l.style.filter = `blur(${(1 - p) * 8}px)`; });
+    const k = el.querySelector('.kick'); if (k) k.style.opacity = easeOut(lt / .5);
+    el.style.transform = `scale(${1 + .03 * (lt / dur)})`;
+  } else if (item.type === 'radio') {
+    el.style.opacity = vis; el.style.transform = `translateX(-50%) translateY(${(1 - inP) * 10}px)`;
+  } else if (item.type === 'count') {
+    const p = lt / dur; el.style.opacity = Math.min(easeOut(lt / .08), 1 - ease((p - .55) / .45));
+    el.style.transform = `scale(${lerp(1.18, .96, easeOut(p))})`;
+  } else if (item.type === 'wall') {
+    el.style.opacity = Math.min(1, 1 - clamp(1 - rem / (item.out ?? .4)));
+    el.querySelector('.head').style.opacity = easeOut(lt / .4);
+    el.querySelectorAll('.cell').forEach((c, i) => { const p = easeOutExpo((lt - .15 - i * .11) / .6); c.style.opacity = p; c.style.transform = `translateY(${(1 - p) * 26}px) scale(${lerp(.96, 1, p)})`; });
+  } else if (item.type === 'logo') {
+    el.style.opacity = Math.min(1, 1 - clamp(1 - rem / (item.out ?? .6)));
+    const c1 = el.querySelector('.c1'), c2 = el.querySelector('.c2'), c3 = el.querySelector('.c3');
+    c1.style.strokeDasharray = 100; c1.style.strokeDashoffset = 100 * (1 - easeOut(lt / .9));
+    c2.style.strokeDasharray = 100; c2.style.strokeDashoffset = 100 * (1 - easeOut((lt - .25) / 1.1));
+    const orb = easeOut((lt - .8) / .5); c3.style.opacity = orb; c3.style.transform = `scale(${orb})`; c3.style.transformOrigin = '32px 11px';
+    const w = el.querySelector('.word'); const wp = easeOutExpo((lt - .35) / .9);
+    w.style.opacity = wp; w.style.transform = `translateX(${(1 - wp) * 30}px)`; w.querySelector('strong').style.letterSpacing = `${lerp(.3, .16, wp)}em`;
+    const tg = el.querySelector('.tagl'); const tp = easeOut((lt - 1.2) / .8); tg.style.opacity = tp; tg.style.filter = `blur(${(1 - tp) * 10}px)`;
+    el.querySelector('.tri').style.opacity = easeOut((lt - 1.8) / .7);
+    el.querySelector('.foot').style.opacity = easeOut((lt - 2.3) / .8) * .9;
+    el.querySelector('.lock').style.transform = `scale(${lerp(1.04, 1, easeOut(lt / dur))})`;
+  } else if (item.type === 'frame') {
+    el.style.opacity = vis * .9;
+    el.querySelector('.rec i').style.opacity = (Math.floor(lt * 2) % 2) ? .25 : 1;
+  }
+}
+
+// ---------- video layers ----------
+const layers = [{ div: document.getElementById('A'), img: document.getElementById('imgA') }, { div: document.getElementById('B'), img: document.getElementById('imgB') }];
+function clipFrameUrl(c, t) {
+  const lt = t - c.start;
+  const f = Math.max(0, Math.min(c.frames - 1, Math.round((c.in ?? 0) + lt * EDIT.fps * (c.speed ?? 1))));
+  return `${c.src}/f${String(f).padStart(5, '0')}.jpg`;
+}
+function clipStyle(c, t, layer) {
+  const lt = t - c.start, dur = c.end - c.start, p = clamp(lt / dur);
+  const z = c.zoom ? lerp(c.zoom[0], c.zoom[1], c.zoomEase === 'linear' ? p : ease(p)) : 1;
+  const pan = c.pan ? [lerp(c.pan[0][0], c.pan[1][0], ease(p)), lerp(c.pan[0][1], c.pan[1][1], ease(p))] : [0, 0];
+  let shake = [0, 0];
+  if (c.shake) { const a = typeof c.shake === 'number' ? c.shake : c.shake(lt); const s = Math.floor(t * EDIT.fps); const r = seeded(s * 31 + 7); shake = [(r() - .5) * a, (r() - .5) * a]; }
+  layer.div.style.transform = `translate(${pan[0] + shake[0]}px, ${pan[1] + shake[1]}px) scale(${z})`;
+  const g = c.grade || {};
+  layer.img.style.filter = `brightness(${g.b ?? 1.02}) contrast(${g.c ?? 1.08}) saturate(${g.s ?? 1.08})${g.hue ? ` hue-rotate(${g.hue}deg)` : ''}${c.blur ? ` blur(${typeof c.blur === 'number' ? c.blur : c.blur(lt)}px)` : ''}`;
+}
+
+async function renderFrame(t) {
+  const fi = Math.round(t * EDIT.fps);
+  // active clips (at most two: current + incoming crossfade)
+  const active = EDIT.clips.filter(c => t >= c.start - (c.xIn ?? 0) && t < c.end);
+  active.sort((a, b) => a.start - b.start);
+  const shown = active.slice(-2);
+  const loads = [];
+  for (let i = 0; i < 2; i++) {
+    const L = layers[i], c = shown[i];
+    if (!c) { L.div.style.opacity = 0; continue; }
+    let op = 1;
+    if (c.xIn && t < c.start) op = ease((t - (c.start - c.xIn)) / c.xIn);
+    if (c.fadeIn) op = Math.min(op, ease((t - c.start) / c.fadeIn));
+    if (c.fadeOut) op = Math.min(op, ease((c.end - t) / c.fadeOut));
+    L.div.style.opacity = op;
+    L.div.style.zIndex = i;
+    clipStyle(c, Math.max(t, c.start - (c.xIn ?? 0)), L);
+    const url = clipFrameUrl(c, t);
+    if (L.img.dataset.src !== url) { L.img.dataset.src = url; L.img.src = url; loads.push(L.img.decode().catch(() => {})); }
+  }
+  // global fx: flash, dip, bars, warm glow
+  let flash = 0, dip = 0, warm = 0, bars = 0;
+  for (const f of EDIT.fx || []) {
+    const hold = f.hold ?? 0;
+    if (t < f.at - (f.pre ?? 0) || t > f.at + hold + f.len) continue;
+    const k = t < f.at ? ease((t - (f.at - f.pre)) / f.pre) : t < f.at + hold ? 1 : 1 - ease((t - f.at - hold) / f.len);
+    if (f.kind === 'flash') flash = Math.max(flash, k * (f.amt ?? 1));
+    if (f.kind === 'dip') dip = Math.max(dip, k * (f.amt ?? 1));
+    if (f.kind === 'warm') warm = Math.max(warm, k * (f.amt ?? 1));
+  }
+  for (const b of EDIT.bars || []) if (t >= b.start && t <= b.end) bars = Math.max(bars, Math.min(ease((t - b.start) / .6), ease((b.end - t) / .6)));
+  document.getElementById('flash').style.opacity = flash;
+  document.getElementById('dip').style.opacity = dip;
+  document.getElementById('warm').style.opacity = warm;
+  document.getElementById('barTop').style.height = document.getElementById('barBot').style.height = `${bars * 92}px`;
+  gctx.putImageData(tiles[fi % tiles.length], 0, 0);
+  // text / graphics
+  EDIT.items.forEach((item, idx) => {
+    const on = t >= item.start && t < item.end;
+    let el = built.get(idx);
+    if (!on) { if (el) el.style.display = 'none'; return; }
+    if (!el) el = build(item, idx);
+    el.style.display = '';
+    animate(item, el, t);
+  });
+  await Promise.all(loads);
+  await new Promise(r => requestAnimationFrame(() => r()));
+  return true;
+}
+window.setEdit = e => { EDIT = e; };
+window.renderFrame = renderFrame;
+</script>
+</body>
+</html>

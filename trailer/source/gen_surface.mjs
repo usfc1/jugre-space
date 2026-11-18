@@ -1,0 +1,22 @@
+// Landing checkpoints (same construction as tests/planet-surfaces.spec.mjs)
+import { FlightState, MOON, MOON_RADIUS, moonUp, MARS, geoVector } from '../../assembly_hangar/source/flight-missions.mjs';
+import { writeFileSync } from 'node:fs';
+const [id, altitude, out] = [process.argv[2], +process.argv[3], process.argv[4]];
+const state = new FlightState(id);
+const lunar = id === 'apollo_11';
+const kind = (lunar ? 'moon' : 'mars') + 'Landing';
+state.phaseIndex = state.mission.phases.findIndex(p => p.kind === kind);
+const up = lunar ? moonUp : id === 'mars_2020' ? geoVector(18.44, 77.45) : geoVector(-4.59, 137.44);
+const center = lunar ? MOON : MARS, radius = lunar ? MOON_RADIUS : 3389.5;
+state.position.copy(center).addScaledVector(up, radius + Math.max(.004, altitude));
+state.segmentStart.copy(center).addScaledVector(up, radius + (lunar ? 120 : 800));
+state.altitude = altitude;
+state.heading.set(1, 0, 0);
+state.segmentHeading.copy(state.heading);
+state.countdown = 0;
+state.totalTime = 1000;
+state.progress = 1 - Math.sqrt(altitude / (lunar ? 120 : 800));
+state.time = state.progress * state.phase.duration;
+state.paused = true;
+writeFileSync(out, JSON.stringify({ version: 1, state: state.serialize(), visual: { staged: true, upperStaged: true, boostersReleased: true, recoverySeconds: 0 } }));
+console.log(out, state.kind, state.time.toFixed(1));

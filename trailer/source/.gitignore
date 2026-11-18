@@ -1,0 +1,6 @@
+out/
+clips/
+ckpt/
+audio/*.wav
+audio/*.f32
+node_modules/
